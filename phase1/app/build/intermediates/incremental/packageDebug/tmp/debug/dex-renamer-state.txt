@@ -1,4 +1,0 @@
-#Sun Oct 20 13:49:46 EDT 2019
-base.0=/Users/brandonliang/Desktop/group_0597/phase1/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
