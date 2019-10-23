@@ -1,6 +1,7 @@
 package com.example.userinterface.TowerDefense;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.view.SurfaceHolder;
 
 import com.example.userinterface.TowerDefense.GameView;

@@ -24,7 +24,8 @@ public class TowerDefenseActivity extends Activity {
     }
 
     public void click(View v){
-
+        GameView.temp = "HELLO";
+        TowerDefense.clicker++;
     }
 }
 

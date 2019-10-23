@@ -1,6 +1,10 @@
 package com.example.userinterface.TowerDefense;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -10,6 +14,8 @@ import androidx.annotation.Nullable;
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private MainThread thread;
+    public static String temp="";
+    public TowerDefense tower = new TowerDefense();
 
     public GameView(Context context) {
         super(context);
@@ -37,11 +43,27 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void update() {
+        tower.update();
+    }
+
+    public void draw(Canvas canvas) {
+        super.draw(canvas);
+        if (canvas != null) {
+            tower.draw(canvas);
+            Paint paintText = new Paint();
+            paintText.setTextSize(70);
+            paintText.setTypeface(Typeface.DEFAULT_BOLD);
+            paintText.setColor(Color.RED);
+            canvas.drawText(temp,400,400,paintText);
+        }
+
 
     }
 
+
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
+        TowerDefense.wave1.add(new Minion());
         thread.setRunning(true);
         thread.start();
     }
