@@ -1,8 +1,11 @@
 package com.example.userinterface.TowerDefense;
 
 import android.content.Context;
+import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import androidx.annotation.Nullable;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
@@ -16,6 +19,21 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
 
+    }
+    public GameView(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        getHolder().addCallback(this);
+
+        thread = new MainThread(getHolder(), this);
+        setFocusable(true);
+    }
+
+    public GameView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        getHolder().addCallback(this);
+
+        thread = new MainThread(getHolder(), this);
+        setFocusable(true);
     }
 
     public void update() {
