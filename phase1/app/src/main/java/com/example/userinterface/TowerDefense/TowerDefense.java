@@ -33,13 +33,7 @@ public class TowerDefense {
     }
 
     public void draw(Canvas canvas){
-        Paint paint = new Paint();
-        paint.setTextSize(40);
-        paint.setTypeface(Typeface.DEFAULT_BOLD);
-        paint.setColor(Color.RED);
-        for (Enemy item: wave1){
-            item.draw(canvas);
-        }
+        wave1.get(0).draw(canvas);
     }
 
 }

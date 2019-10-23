@@ -15,9 +15,9 @@ public class TowerDefenseActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /*getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);*/
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.tower_defense);
 
 

@@ -25,7 +25,6 @@ public class MainThread extends Thread {
     public void run() {
         while (running) {
             canvas = null;
-
             try {
                 canvas = this.surfaceHolder.lockCanvas();
                 synchronized(surfaceHolder) {
