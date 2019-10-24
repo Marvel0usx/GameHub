@@ -63,7 +63,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
-        TowerDefense.wave1.add(new Minion());
         thread.setRunning(true);
         thread.start();
     }

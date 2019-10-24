@@ -34,8 +34,14 @@ public class TowerDefense {
 
     }
 
+    public static void addEnemy(){
+        wave1.add(new Minion());
+    }
+
     public void draw(Canvas canvas){
-        wave1.get(0).draw(canvas);
+        for (Enemy item: wave1){
+            item.draw(canvas);
+        }
     }
 
     public static int getClicker() {

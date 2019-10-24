@@ -9,22 +9,32 @@
         android:layout_height="match_parent" />
 
     <Button
-        android:id="@+id/tap1"
+        android:id="@+id/hit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_marginStart="75dp"
+        android:layout_marginLeft="75dp"
+        android:layout_marginTop="650dp"
+        android:background="#FFFFFF"
+        android:onClick="click"
+        android:text="Save Drawing" />
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginStart="156dp"
-        android:layout_marginLeft="156dp"
-        android:layout_marginTop="627dp"
-        android:layout_marginEnd="153dp"
-        android:layout_marginRight="153dp"
+        android:layout_marginTop="650dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginRight="75dp"
         android:background="#FFFFFF"
-        android:text="Save Drawing"
-        android:onClick="click"/>
+        android:text="Start!"
+        android:onClick="start"/>
 
 
 </RelativeLayout>
