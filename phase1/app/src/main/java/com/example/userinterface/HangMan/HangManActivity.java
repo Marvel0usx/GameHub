@@ -1,4 +1,6 @@
 package com.example.userinterface.HangMan;
 
-public class HangManActivity {
+import android.app.Activity;
+
+public class HangManActivity extends Activity {
 }
