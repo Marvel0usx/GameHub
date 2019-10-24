@@ -15,5 +15,5 @@ abstract class Enemy {
 
     public abstract int getHealth();
 
-    public abstract void hit();
+    public abstract void hit(int num);
 }

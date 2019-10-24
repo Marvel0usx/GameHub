@@ -12,7 +12,7 @@ import com.example.userinterface.R;
 public class TowerDefenseActivity extends Activity {
 
     Button btnStart, btnHit;
-
+    TowerDefense towerDefense;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,18 +24,20 @@ public class TowerDefenseActivity extends Activity {
         btnStart = findViewById(R.id.start);
         btnHit = findViewById(R.id.hit);
         btnHit.setVisibility(View.GONE);
+        towerDefense = new TowerDefense();
+        GameView gameView = findViewById(R.id.myView);
+        gameView.setTowerDefense(towerDefense);
     }
 
     public void click(View v){
-        GameView.temp = "HELLO";
-        TowerDefense.clicker++;
+        towerDefense.setClicker(1);
     }
 
     public void start(View view){
         btnHit.setVisibility(View.VISIBLE);
         btnStart.setVisibility(View.GONE);
         btnHit.setX(200);
-        TowerDefense.addEnemy();
+        towerDefense.addEnemy();
     }
 }
 

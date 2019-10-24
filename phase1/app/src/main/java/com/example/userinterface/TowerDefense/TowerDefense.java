@@ -13,15 +13,15 @@ public class TowerDefense {
     int waves = 1;
     int lives = 5;
     ArrayList<Tower> existingTowers= new ArrayList<>();
-    static ArrayList<Enemy> wave1 = new ArrayList<>();
+    ArrayList<Enemy> wave1 = new ArrayList<>();
 
-    static int clicker=0;
+    int clicker=0;
 
 
     public void update(){
         ArrayList<Enemy> temp = new ArrayList<>();
         for (Enemy item: wave1){
-            item.hit();
+            item.hit(clicker);
             clicker = 0;
             if (item.getHealth() < 0){
                 temp.add(item);
@@ -34,7 +34,7 @@ public class TowerDefense {
 
     }
 
-    public static void addEnemy(){
+    public void addEnemy(){
         wave1.add(new Minion());
     }
 
@@ -44,7 +44,7 @@ public class TowerDefense {
         }
     }
 
-    public static int getClicker() {
-        return clicker;
+    public void setClicker(int num){
+        clicker=num;
     }
 }

@@ -41,8 +41,8 @@ public class Minion extends Enemy {
     }
 
     @Override
-    public void hit() {
-        health -= TowerDefense.getClicker();
+    public void hit(int num) {
+        health -= num;
         Log.d(health+"","this is the health"+health);
     }
 

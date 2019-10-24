@@ -14,8 +14,7 @@ import androidx.annotation.Nullable;
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private MainThread thread;
-    public static String temp="";
-    public TowerDefense towerDefense = new TowerDefense();
+    public TowerDefense towerDefense;
 
     public GameView(Context context) {
         super(context);
@@ -42,6 +41,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         setFocusable(true);
     }
 
+    public void setTowerDefense(TowerDefense towerDefense) {
+        this.towerDefense = towerDefense;
+    }
+
     public void update() {
         towerDefense.update();
     }
@@ -50,14 +53,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         super.draw(canvas);
         if (canvas != null) {
             towerDefense.draw(canvas);
-            Paint paintText = new Paint();
-            paintText.setTextSize(70);
-            paintText.setTypeface(Typeface.DEFAULT_BOLD);
-            paintText.setColor(Color.RED);
-            canvas.drawText(temp,400,400,paintText);
         }
-
-
     }
 
 
