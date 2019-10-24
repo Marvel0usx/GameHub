@@ -1,4 +1,4 @@
 package com.example.userinterface.HangMan;
 
-public class HangManView {
+public class HangManMain {
 }
