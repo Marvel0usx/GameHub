@@ -46,5 +46,15 @@ public class Minion extends Enemy {
         Log.d(health+"","this is the health"+health);
     }
 
+    @Override
+    public int getY() {
+        return this.y;
+    }
+
+    public void setLocation(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+
 
 }

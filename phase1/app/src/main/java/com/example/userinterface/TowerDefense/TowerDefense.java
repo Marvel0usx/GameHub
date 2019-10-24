@@ -20,9 +20,10 @@ public class TowerDefense {
 
     public void update(){
         ArrayList<Enemy> temp = new ArrayList<>();
+        Enemy enemy = getFirstEnemy();
+        enemy.hit(clicker);
+        clicker=0;
         for (Enemy item: wave1){
-            item.hit(clicker);
-            clicker = 0;
             if (item.getHealth() < 0){
                 temp.add(item);
             }
@@ -34,8 +35,28 @@ public class TowerDefense {
 
     }
 
+    public Enemy getFirstEnemy(){
+        int yCoor = -800;
+        Enemy temp = new Minion();
+        for (Enemy item: wave1){
+            if (item.getY()>yCoor){
+                temp = item;
+                yCoor = item.getY();
+            }
+        }
+        return temp;
+    }
+
     public void addEnemy(){
-        wave1.add(new Minion());
+        for (int i=0;i<10;i++){
+            Minion minion = new Minion();
+            int x = (int)(Math.random()*800);
+            int y = -(int)(Math.random()*700)-100;
+            minion.setLocation(x, y);
+            wave1.add(minion);
+
+        }
+
     }
 
     public void draw(Canvas canvas){

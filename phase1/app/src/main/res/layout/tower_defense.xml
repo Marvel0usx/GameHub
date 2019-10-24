@@ -20,7 +20,7 @@
         android:layout_marginTop="650dp"
         android:background="#FFFFFF"
         android:onClick="click"
-        android:text="Save Drawing" />
+        android:text="SHOOT" />
 
     <Button
         android:id="@+id/start"
