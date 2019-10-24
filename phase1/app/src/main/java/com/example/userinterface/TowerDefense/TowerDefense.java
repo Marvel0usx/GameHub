@@ -14,6 +14,7 @@ public class TowerDefense {
     int lives = 5;
     ArrayList<Tower> existingTowers= new ArrayList<>();
     static ArrayList<Enemy> wave1 = new ArrayList<>();
+
     static int clicker=0;
 
 
@@ -21,6 +22,7 @@ public class TowerDefense {
         ArrayList<Enemy> temp = new ArrayList<>();
         for (Enemy item: wave1){
             item.hit();
+            clicker = 0;
             if (item.getHealth() < 0){
                 temp.add(item);
             }
@@ -36,4 +38,7 @@ public class TowerDefense {
         wave1.get(0).draw(canvas);
     }
 
+    public static int getClicker() {
+        return clicker;
+    }
 }

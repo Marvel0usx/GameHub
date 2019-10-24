@@ -31,6 +31,7 @@ public class Minion extends Enemy {
         paint.setColor(Color.RED);
         for (int i = 0; i<appearence.length;i++){
             canvas.drawText(appearence[i],x,y+((i+1)*20),paint);
+            // decide each body parts' coordinates
         }
     }
 
@@ -41,8 +42,7 @@ public class Minion extends Enemy {
 
     @Override
     public void hit() {
-        health -= TowerDefense.clicker;
-        TowerDefense.clicker = 0;
+        health -= TowerDefense.getClicker();
         Log.d(health+"","this is the health"+health);
     }
 
