@@ -12,6 +12,8 @@ import android.widget.Button;
 
 public class HangManActivity extends Activity implements OnClickListener{
 
+    // activity
+
     HangManManager hangManManager;
 
     public static void main(String[] args) {
