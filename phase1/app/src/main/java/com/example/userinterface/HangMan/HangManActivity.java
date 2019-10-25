@@ -12,6 +12,9 @@ public class HangManActivity extends Activity {
 
     HangManManager hangManManager;
 
+    public static void main(String[] args) {
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
