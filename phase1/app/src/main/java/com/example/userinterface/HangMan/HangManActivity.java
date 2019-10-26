@@ -23,14 +23,14 @@ public class HangManActivity extends Activity implements OnClickListener{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hang_man_main);
-        Button playBtn = (Button)findViewById(R.id.playBtn);
+        Button playBtn = (Button)findViewById(R.id.playButton);
         playBtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         // handles clicks
-        if (v.getId() == R.id.playBtn) {
+        if (v.getId() == R.id.playButton) {
             Intent playIntent = new Intent(this, HangManGameActivity.class);
             this.startActivity(playIntent);
         }

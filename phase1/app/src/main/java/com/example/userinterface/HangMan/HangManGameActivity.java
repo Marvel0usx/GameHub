@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.os.Bundle;
 import java.util.Random;
 import com.example.userinterface.R;
+import android.widget.GridView;
 
 public class HangManGameActivity extends Activity{
     private ImageView[] balloons; // balloon images
@@ -26,11 +27,15 @@ public class HangManGameActivity extends Activity{
     private int remainingBallon; // number of balloons left
     private int numCorr; // number of letters correctly guessed
 
+    private GridView alphabet;
+    private LetterButton letterButton;
+
     private String[] words;
     private Random rand;
     private String currentWord;
     private LinearLayout wordLayout;
     private TextView[] characterViews;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,7 @@ public class HangManGameActivity extends Activity{
         rand = new Random();
         currentWord = "";
         wordLayout = (LinearLayout)findViewById(R.id.word);
+        alphabet = (GridView)findViewById(R.id.letters);
         playHangMan();
     }
 
