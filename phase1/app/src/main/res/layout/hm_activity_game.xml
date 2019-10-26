@@ -1,13 +1,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="fill_parent"
-    android:background="#FF000000"
+    android:background="#EEECEC"
     android:orientation="vertical">
 
     <RelativeLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="428dp"
         android:background="#EEECEC"
         android:orientation="vertical">
 
@@ -16,8 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="299dp"
             android:contentDescription="@string/ballon1"
-            app:srcCompat="@drawable/ballon1"
-            />
+            app:srcCompat="@drawable/ballon1" />
 
         <ImageView
             android:id="@+id/imageView1"
@@ -58,12 +57,26 @@
             android:id="@+id/imageView6"
             android:layout_width="match_parent"
             android:layout_height="458dp"
+            android:contentDescription="stickman"
+            android:paddingLeft="8dp"
             android:paddingTop="215dp"
             android:paddingBottom="50dp"
-            android:paddingLeft="8dp"
             app:srcCompat="@drawable/blackman" />
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/word"
+        android:layout_width="fill_parent"
+        android:layout_height="20dp"
+        android:layout_marginBottom="100dp"
+        android:background="#851A1A"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp"></LinearLayout>
+
+
+
 
 </LinearLayout>
 
