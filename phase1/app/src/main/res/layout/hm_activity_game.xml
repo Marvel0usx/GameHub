@@ -58,10 +58,10 @@
             android:id="@+id/imageView6"
             android:layout_width="match_parent"
             android:layout_height="458dp"
-            android:paddingTop="233dp"
+            android:paddingTop="215dp"
             android:paddingBottom="50dp"
             android:paddingLeft="8dp"
-            app:srcCompat="@drawable/stickman" />
+            app:srcCompat="@drawable/blackman" />
 
     </RelativeLayout>
 
