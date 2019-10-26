@@ -24,12 +24,9 @@ import android.widget.GridView;
 public class HangManGameActivity extends Activity{
     private ImageView[] balloons; // balloon images
     private int numLives = 6; // number of lives
-    private int keywordLen; // number of characters in current word
-    private int remainingBallon; // number of balloons left
+    private int currLen; // number of characters in current word
+    private int remainingBallons; // number of balloons left, decreases each time a wrong letter is guessed
     private int numCorr; // number of letters correctly guessed
-
-    private GridView alphabet;
-    private LetterButton letterButton;
 
     private String[] words;
     private Random rand;
@@ -42,6 +39,17 @@ public class HangManGameActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hm_activity_game);
+        balloons = new ImageView[numLives];
+        // initializes images containing different numbers of ballons, representing different number
+        // of lives.
+        rand = new Random();
+        currentWord = "";
+        balloons[0] = (ImageView)findViewById(R.id.ballon1);
+        balloons[1] = (ImageView)findViewById(R.id.ballon2);
+        balloons[2] = (ImageView)findViewById(R.id.ballon3);
+        balloons[3] = (ImageView)findViewById(R.id.ballon4);
+        balloons[4] = (ImageView)findViewById(R.id.ballon5);
+        balloons[5] = (ImageView)findViewById(R.id.ballon6);
         playHangMan();
     }
 
@@ -50,19 +58,63 @@ public class HangManGameActivity extends Activity{
         ((Button) v).setText("C");
     }
 
+    public void makeGuess(View v){
+        // the user has clicked on the letter he/she wants to guess
+        String letterGuessed = ((TextView)v).getText().toString();
+        char charGuessed = letterGuessed.charAt(0);
+        v.setEnabled(false);
+        v.setBackgroundResource(R.drawable.hm_letter_clicked);
+
+        boolean correct = false;
+
+        for (int i = 0; i < currentWord.length(); i++){
+            if (currentWord.charAt(i)==charGuessed){
+                correct = true;
+                numCorr ++;
+                characterViews[i].setTextColor(Color.BLACK);
+            }
+            if (correct) {
+                // correct guess
+                if (numCorr == currLen){
+                    // won the game
+                    AlertDialog.Builder winMsg = new AlertDialog.Builder(this);
+                    winMsg.setTitle("YAY");
+                    winMsg.setMessage("You win! Congratulations!");
+                    winMsg.setNegativeButton("Exit",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    HangManGameActivity.this.finish();
+                                }});
+
+                    winMsg.show();
+                }
+
+            } else if (remainingBallons > 0){
+                // player still has lives left
+                balloons[remainingBallons - 1].setVisibility(v.INVISIBLE);
+                remainingBallons = remainingBallons - 1;
+
+            } else{
+                // player has lost
+                AlertDialog.Builder loseMsg = new AlertDialog.Builder(this);
+                loseMsg.setTitle("OOPS :(");
+                loseMsg.setMessage("You lose!");
+
+            }
+            }
+        }
 
 
-    private void playHangMan(){
+    private void playHangMan() {
         // plays a new HangMan game
         String newWord = words[rand.nextInt(words.length)];
         currentWord = newWord;
         characterViews = new TextView[currentWord.length()];
         wordLayout.removeAllViews();
 
-        // create a text view for each character of the letter
-
-
-
-
+        remainingBallons = 6;
+        currLen = currentWord.length();
+        numCorr = 0;
+    }
 
 }
