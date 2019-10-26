@@ -11,23 +11,32 @@ public class TowerDefense {
     //User user;
     int money = 200;
     int waves = 1;
-    int lives = 5;
-    ArrayList<Tower> existingTowers= new ArrayList<>();
-    ArrayList<Enemy> wave1 = new ArrayList<>();
+    int lives = 3;
+    private int mapHeight;
+    private int mapWidth;
+    private ArrayList<Enemy> wave1 = new ArrayList<>();
 
-    int clicker=0;
+    private int clicker=0;
 
+    public TowerDefense(int screenWidth, int screenHeight) {
+        mapHeight = screenHeight;
+        mapWidth = screenWidth;
+    }
 
     public void update(){
         ArrayList<Enemy> temp = new ArrayList<>();
         Enemy enemy = getFirstEnemy();
         enemy.hit(clicker);
         clicker=0;
-        for (Enemy item: wave1){
-            if (item.getHealth() < 0){
-                temp.add(item);
+        for (Enemy e: wave1){
+            if (e.getHealth() < 0){
+                temp.add(e);
             }
-            item.move();
+            if (e.getY() >= mapHeight-1) {
+                temp.add(e);
+                lives -= 1;
+            }
+            e.move();
         }
         for (Enemy item: temp){
             wave1.remove(item);
@@ -35,8 +44,9 @@ public class TowerDefense {
 
     }
 
+
     public Enemy getFirstEnemy(){
-        int yCoor = -800;
+        int yCoor = -800;  //the highest enemy is -800
         Enemy temp = new Minion();
         for (Enemy item: wave1){
             if (item.getY()>yCoor){
@@ -50,8 +60,8 @@ public class TowerDefense {
     public void addEnemy(){
         for (int i=0;i<10;i++){
             Minion minion = new Minion();
-            int x = (int)(Math.random()*800);
-            int y = -(int)(Math.random()*700)-100;
+            int x = (int)(Math.random()*mapWidth);
+            int y = -(int)(Math.random()*mapHeight)-100; // a period of time for enemies to walk
             minion.setLocation(x, y);
             wave1.add(minion);
 

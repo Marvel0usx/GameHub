@@ -1,7 +1,10 @@
 package com.example.userinterface.TowerDefense;
 
 import android.app.Activity;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -24,7 +27,13 @@ public class TowerDefenseActivity extends Activity {
         btnStart = findViewById(R.id.start);
         btnHit = findViewById(R.id.hit);
         btnHit.setVisibility(View.GONE);
-        towerDefense = new TowerDefense();
+
+        DisplayMetrics metrics = new DisplayMetrics(); // find size of the screen
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        towerDefense = new TowerDefense(size.x, size.y);
         GameView gameView = findViewById(R.id.myView);
         gameView.setTowerDefense(towerDefense);
     }
