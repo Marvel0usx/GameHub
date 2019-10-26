@@ -1,18 +1,12 @@
 package com.example.userinterface.SpaceInvaders;
 
-public class SpaceObject {
+abstract class SpaceObject {
     private int x;
     private int y;
-    private int lives;
 
-    SpaceObject(int x, int y, int lives) {
-        this.setLives(lives);
+    SpaceObject(int x, int y) {
         this.setX(x);
         this.setY(y);
-    }
-
-    private void setLives(int lives) {
-        this.lives = lives;
     }
 
     private void setX(int x) {
@@ -29,10 +23,6 @@ public class SpaceObject {
 
     public int getY() {
         return y;
-    }
-
-    public int getLives() {
-        return lives;
     }
 
     public void move(){
