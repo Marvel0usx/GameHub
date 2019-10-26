@@ -70,6 +70,9 @@ public class HangManGameActivity extends Activity{
             //add to layout
             wordLayout.addView(characterViews[c]);
         }
+
+        letterButton = new LetterButton(this);
+        alphabet.setAdapter(letterButton);
     }
 
 
