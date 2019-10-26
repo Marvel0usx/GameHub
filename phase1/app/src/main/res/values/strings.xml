@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">UserInterface</string>
+    <string name="ballon1">Ballon 1</string>
+    <string name="ballon2">Ballon 2</string>
+    <string name="ballon3">Ballon 3</string>
+    <string name="ballon4">Ballon 4</string>
+    <string name="ballon5">Ballon 5</string>
+    <string name="ballon6">Ballon 6</string>
 </resources>
