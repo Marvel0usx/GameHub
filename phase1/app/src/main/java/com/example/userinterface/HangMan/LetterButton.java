@@ -11,12 +11,15 @@ import android.view.ViewGroup;
 
 public class LetterButton extends BaseAdapter {
 
-    private char[] alphabet;
+    private String[] alphabet;
     private LayoutInflater letterInflator;
 
     public LetterButton(Context c) {
         //setup buttons
-        char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+        alphabet=new String[26];
+        for (int a = 0; a < alphabet.length; a++) {
+            alphabet[a] = "" + (char)(a+'A');
+        }
         letterInflator = LayoutInflater.from(c);
     }
 

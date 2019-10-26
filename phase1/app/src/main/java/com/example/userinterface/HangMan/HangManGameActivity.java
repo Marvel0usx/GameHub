@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import android.content.res.Resources;
@@ -41,14 +42,15 @@ public class HangManGameActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hm_activity_game);
-        Resources res = getResources();
-        words = res.getStringArray(R.array.words);
-        rand = new Random();
-        currentWord = "";
-        wordLayout = (LinearLayout)findViewById(R.id.word);
-        alphabet = (GridView)findViewById(R.id.letters);
         playHangMan();
     }
+
+    public void buttonOnClick(View v){
+        Button button = (Button) v;
+        ((Button) v).setText("C");
+    }
+
+
 
     private void playHangMan(){
         // plays a new HangMan game
@@ -59,21 +61,6 @@ public class HangManGameActivity extends Activity{
 
         // create a text view for each character of the letter
 
-        for (int c = 0; c < currentWord.length(); c++) {
-            characterViews[c] = new TextView(this);
-            characterViews[c].setText(""+currentWord.charAt(c));
-
-            characterViews[c].setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-            characterViews[c].setGravity(Gravity.CENTER);
-            characterViews[c].setTextColor(Color.WHITE);
-            characterViews[c].setBackgroundResource(R.drawable.hm_letter_background);
-            //add to layout
-            wordLayout.addView(characterViews[c]);
-        }
-
-        letterButton = new LetterButton(this);
-        alphabet.setAdapter(letterButton);
-    }
 
 
 
