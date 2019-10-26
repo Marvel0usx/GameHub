@@ -9,6 +9,7 @@ public class Player extends SpaceObject {
         //to be implemented as a touch event
     }
     public void shoot(){
-        //fires bullet objects that damage player
+        //fires bullet o
+        // bjects that damage player
     }
 }

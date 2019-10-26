@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.userinterface.TowerDefense.TowerDefenseActivity;
@@ -61,6 +62,7 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
                 String myData = URLEncoder.encode("username","UTF-8")+"="+URLEncoder.encode(regName,"UTF-8")+"&"
                         +URLEncoder.encode("email","UTF-8")+"="+URLEncoder.encode(regEmail,"UTF-8")+"&"
                         +URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(regPassword,"UTF-8");
+                Log.d("message",myData);
                 bufferedWriter.write(myData);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -136,18 +138,7 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
             Toast.makeText(context,s,Toast.LENGTH_LONG).show();
         }
         else if(flag.equals("login")){
-            String[] serverResponse = s.split("[,]");
-                String test = "false", name = "", email = "";
-            if (serverResponse.length >1) {
-                test = serverResponse[0];
-                name = serverResponse[1];
-                email = serverResponse[2];
-            }
-            if(test.equals("true")){
-                editor.putString("username",name);
-                editor.commit();
-                editor.putString("email",email);
-                editor.commit();
+            if(s.equals("true")){
                 Intent intent = new Intent(context, TowerDefenseActivity.class);
                 context.startActivity(intent);
             }else{
