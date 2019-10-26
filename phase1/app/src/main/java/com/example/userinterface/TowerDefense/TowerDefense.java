@@ -46,7 +46,7 @@ public class TowerDefense {
 
 
     public Enemy getFirstEnemy(){
-        int yCoor = -800;  //the highest enemy is -800
+        int yCoor = -mapHeight/2;  //the highest enemy is half the map height above
         Enemy temp = new Minion();
         for (Enemy item: wave1){
             if (item.getY()>yCoor){
@@ -61,7 +61,7 @@ public class TowerDefense {
         for (int i=0;i<10;i++){
             Minion minion = new Minion();
             int x = (int)(Math.random()*mapWidth);
-            int y = -(int)(Math.random()*mapHeight)-100; // a period of time for enemies to walk
+            int y = -(int)(Math.random()*mapHeight/2); // a period of time for enemies to walk
             minion.setLocation(x, y);
             wave1.add(minion);
 
