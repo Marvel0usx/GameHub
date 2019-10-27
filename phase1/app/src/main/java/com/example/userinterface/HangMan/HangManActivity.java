@@ -14,16 +14,15 @@ public class HangManActivity extends Activity implements OnClickListener{
 
     // activity
 
-    HangManManager hangManManager;
-
-    public static void main(String[] args) {
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // refer to the hang_man_main layout
         setContentView(R.layout.hang_man_main);
-        Button playBtn = (Button)findViewById(R.id.playButton);
+
+        // the play button that controls if the game will start
+        Button playBtn = findViewById(R.id.playButton);
         playBtn.setOnClickListener(this);
     }
 

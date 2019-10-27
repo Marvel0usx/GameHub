@@ -84,7 +84,7 @@
             android:layout_width="46dp"
             android:layout_marginLeft="30dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/A" />
 
         <Button
@@ -92,7 +92,7 @@
             android:layout_width="46dp"
             android:layout_marginLeft="80dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/B" />
 
         <Button
@@ -100,7 +100,7 @@
             android:layout_width="46dp"
             android:layout_marginLeft="130dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/C" />
 
         <Button
@@ -108,7 +108,7 @@
             android:layout_width="46dp"
             android:layout_marginLeft="180dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/D" />
 
         <Button
@@ -116,7 +116,7 @@
             android:layout_width="46dp"
             android:layout_marginLeft="230dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/E" />
 
         <Button
@@ -124,14 +124,14 @@
             android:layout_width="46dp"
             android:layout_marginLeft="280dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/F" />
         <Button
             android:id="@+id/buttonG"
             android:layout_width="46dp"
             android:layout_marginLeft="330dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/G" />
         <Button
             android:id="@+id/buttonH"
@@ -139,7 +139,7 @@
             android:layout_marginTop="50dp"
             android:layout_marginLeft="30dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/H" />
         <Button
             android:id="@+id/buttonI"
@@ -147,7 +147,7 @@
             android:layout_marginTop="50dp"
             android:layout_marginLeft="80dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/I" />
         <Button
             android:id="@+id/buttonJ"
@@ -155,7 +155,7 @@
             android:layout_marginTop="50dp"
             android:layout_marginLeft="130dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/J" />
         <Button
             android:id="@+id/buttonK"
@@ -163,7 +163,7 @@
             android:layout_marginTop="50dp"
             android:layout_marginLeft="180dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/K" />
         <Button
             android:id="@+id/buttonL"
@@ -171,7 +171,7 @@
             android:layout_marginTop="50dp"
             android:layout_marginLeft="230dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/L" />
         <Button
             android:id="@+id/buttonM"
@@ -179,7 +179,7 @@
             android:layout_marginTop="50dp"
             android:layout_marginLeft="280dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/M" />
         <Button
             android:id="@+id/buttonN"
@@ -187,7 +187,7 @@
             android:layout_marginTop="50dp"
             android:layout_marginLeft="330dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/N" />
         <Button
             android:id="@+id/buttonO"
@@ -195,7 +195,7 @@
             android:layout_marginTop="100dp"
             android:layout_marginLeft="30dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/O" />
         <Button
             android:id="@+id/buttonP"
@@ -203,7 +203,7 @@
             android:layout_marginTop="100dp"
             android:layout_marginLeft="80dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/P" />
         <Button
             android:id="@+id/buttonQ"
@@ -211,7 +211,7 @@
             android:layout_marginTop="100dp"
             android:layout_marginLeft="130dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/Q" />
         <Button
             android:id="@+id/buttonR"
@@ -219,7 +219,7 @@
             android:layout_marginTop="100dp"
             android:layout_marginLeft="180dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/R" />
         <Button
             android:id="@+id/buttonS"
@@ -227,7 +227,7 @@
             android:layout_marginTop="100dp"
             android:layout_marginLeft="230dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/S" />
         <Button
             android:id="@+id/buttonT"
@@ -235,7 +235,7 @@
             android:layout_marginTop="100dp"
             android:layout_marginLeft="280dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/T" />
         <Button
             android:id="@+id/buttonU"
@@ -243,7 +243,7 @@
             android:layout_marginTop="100dp"
             android:layout_marginLeft="330dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/U" />
         <Button
             android:id="@+id/buttonV"
@@ -251,7 +251,7 @@
             android:layout_marginTop="150dp"
             android:layout_marginLeft="80dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/V" />
         <Button
             android:id="@+id/buttonW"
@@ -259,7 +259,7 @@
             android:layout_marginTop="150dp"
             android:layout_marginLeft="130dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/W" />
         <Button
             android:id="@+id/buttonX"
@@ -267,7 +267,7 @@
             android:layout_marginTop="150dp"
             android:layout_marginLeft="180dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/X" />
         <Button
             android:id="@+id/buttonY"
@@ -275,7 +275,7 @@
             android:layout_marginTop="150dp"
             android:layout_marginLeft="230dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/Y" />
 
         <Button
@@ -284,7 +284,7 @@
             android:layout_marginTop="150dp"
             android:layout_marginLeft="280dp"
             android:layout_height="wrap_content"
-            android:onClick="buttonOnClick"
+            android:onClick="makeGuess"
             android:text="@string/Z" />
     </RelativeLayout>
 

@@ -11,18 +11,13 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.4.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/HangManActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/HangManActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/HangManGameActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/HangManGameActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/LetterButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/LetterButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/hm_letter_clicked.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/hm_letter_clicked.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/hm_activity_game.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/hm_activity_game.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/hm_letters.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/hm_letters.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,167 +43,91 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.3898858">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/hm_activity_game.xml">
-              <provider editor-type-id="text-editor">
-                <state relative-caret-position="342">
-                  <caret line="131" column="39" selection-start-line="131" selection-start-column="39" selection-end-line="131" selection-end-column="39" />
-                  <folding>
-                    <element signature="e#647#664#0" expanded="true" />
-                    <element signature="e#3044#3055#0" expanded="true" />
-                    <element signature="e#3272#3283#0" expanded="true" />
-                    <element signature="e#3500#3511#0" expanded="true" />
-                    <element signature="e#3728#3739#0" expanded="true" />
-                    <element signature="e#3956#3967#0" expanded="true" />
-                    <element signature="e#4184#4195#0" expanded="true" />
-                    <element signature="e#4411#4422#0" expanded="true" />
-                    <element signature="e#4638#4649#0" expanded="true" />
-                    <element signature="e#4865#4876#0" expanded="true" />
-                    <element signature="e#5092#5103#0" expanded="true" />
-                    <element signature="e#5319#5330#0" expanded="true" />
-                    <element signature="e#5546#5557#0" expanded="true" />
-                    <element signature="e#5773#5784#0" expanded="true" />
-                    <element signature="e#6000#6011#0" expanded="true" />
-                    <element signature="e#6227#6238#0" expanded="true" />
-                    <element signature="e#6454#6465#0" expanded="true" />
-                    <element signature="e#6681#6692#0" expanded="true" />
-                    <element signature="e#6908#6919#0" expanded="true" />
-                    <element signature="e#7135#7146#0" expanded="true" />
-                    <element signature="e#7362#7373#0" expanded="true" />
-                    <element signature="e#7589#7600#0" expanded="true" />
-                    <element signature="e#7816#7827#0" expanded="true" />
-                    <element signature="e#8043#8054#0" expanded="true" />
-                    <element signature="e#8270#8281#0" expanded="true" />
-                    <element signature="e#8497#8508#0" expanded="true" />
-                    <element signature="e#8725#8736#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-              <provider selected="true" editor-type-id="android-designer2" />
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$USER_HOME$/Library/Android/sdk/platforms/android-29/data/res/values/attrs.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="141">
-                  <caret line="3393" column="20" selection-start-line="3393" selection-start-column="20" selection-end-line="3393" selection-end-column="20" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/hm_letters.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="120">
-                  <caret line="8" column="54" selection-start-line="8" selection-start-column="54" selection-end-line="8" selection-end-column="54" />
-                </state>
-              </provider>
-              <provider editor-type-id="android-designer2" />
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-149" />
-              </provider>
-              <provider editor-type-id="android-manifest" />
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/HangManGameActivity.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="142">
-                  <caret line="49" column="34" lean-forward="true" selection-start-line="49" selection-start-column="34" selection-end-line="49" selection-end-column="34" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/HangManActivity.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="198">
-                  <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/LetterButton.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="117">
-                  <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="23" selection-end-column="5" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#621#622#0" expanded="true" />
-                    <element signature="e#659#660#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/hm_letter_background.xml">
-              <provider selected="true" editor-type-id="text-editor" />
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="344">
-                  <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/hm_letter_clicked.xml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="165">
-                  <caret line="11" column="8" lean-forward="true" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/hm_activity_game.xml">
-              <provider editor-type-id="text-editor">
-                <state relative-caret-position="236">
-                  <caret line="72" column="36" lean-forward="true" selection-start-line="72" selection-start-column="36" selection-end-line="72" selection-end-column="36" />
-                  <folding>
-                    <element signature="e#6728#6739#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-              <provider selected="true" editor-type-id="android-designer2" />
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_signup.xml">
-              <provider selected="true" editor-type-id="text-editor" />
-              <provider editor-type-id="android-designer2" />
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml">
-              <provider selected="true" editor-type-id="text-editor" />
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/hm_activity_game.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="313">
+              <caret line="286" column="38" selection-start-line="286" selection-start-column="38" selection-end-line="286" selection-end-column="38" />
+              <folding>
+                <element signature="e#647#664#0" expanded="true" />
+                <element signature="e#3044#3055#0" expanded="true" />
+                <element signature="e#3272#3283#0" expanded="true" />
+                <element signature="e#3500#3511#0" expanded="true" />
+                <element signature="e#3728#3739#0" expanded="true" />
+                <element signature="e#3956#3967#0" expanded="true" />
+                <element signature="e#4184#4195#0" expanded="true" />
+                <element signature="e#4411#4422#0" expanded="true" />
+                <element signature="e#4638#4649#0" expanded="true" />
+                <element signature="e#4865#4876#0" expanded="true" />
+                <element signature="e#5092#5103#0" expanded="true" />
+                <element signature="e#5319#5330#0" expanded="true" />
+                <element signature="e#5546#5557#0" expanded="true" />
+                <element signature="e#5773#5784#0" expanded="true" />
+                <element signature="e#6000#6011#0" expanded="true" />
+                <element signature="e#6227#6238#0" expanded="true" />
+                <element signature="e#6454#6465#0" expanded="true" />
+                <element signature="e#6681#6692#0" expanded="true" />
+                <element signature="e#6908#6919#0" expanded="true" />
+                <element signature="e#7135#7146#0" expanded="true" />
+                <element signature="e#7362#7373#0" expanded="true" />
+                <element signature="e#7589#7600#0" expanded="true" />
+                <element signature="e#7816#7827#0" expanded="true" />
+                <element signature="e#8043#8054#0" expanded="true" />
+                <element signature="e#8270#8281#0" expanded="true" />
+                <element signature="e#8497#8508#0" expanded="true" />
+                <element signature="e#8725#8736#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/hm_letters.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="15" lean-forward="true" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-149" />
+          </provider>
+          <provider editor-type-id="android-manifest" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/HangManGameActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="146">
+              <caret line="56" column="25" selection-start-line="56" selection-start-column="25" selection-end-line="56" selection-end-column="25" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3055#3286#0" expanded="true" />
+                <element signature="e#3285#3286#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/HangManActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="327">
+              <caret line="23" column="53" lean-forward="true" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -224,22 +143,22 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/hm_letters.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/hang_man_main.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/HangManActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/hm_letter_clicked.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/LetterButton2.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/HangManGameActivity2.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/LetterButton.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/HangManGameActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/HangManActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/hm_letters.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/HangManGameActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/hm_activity_game.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-478" />
-    <option name="y" value="122" />
+    <option name="x" value="-115" />
+    <option name="y" value="48" />
     <option name="width" value="1699" />
     <option name="height" value="766" />
   </component>
@@ -303,6 +222,16 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="userinterface" type="462c0819:PsiDirectoryNode" />
               <item name="HangMan" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="phase1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="phase1" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="userinterface" type="462c0819:PsiDirectoryNode" />
+              <item name="SpaceInvaders" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="phase1" type="b2602c69:ProjectViewProjectNode" />
@@ -475,11 +404,26 @@
       <option name="project" value="LOCAL" />
       <updated>1572111555717</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added buttons in layout of HangMan">
+      <created>1572118517143</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1572118517143</updated>
+    </task>
+    <task id="LOCAL-00007" summary="implemented methods for the Hangman Game">
+      <created>1572134102231</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1572134102231</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-83" y="66" width="1699" height="766" extended-state="0" />
+    <frame x="37" y="49" width="1699" height="766" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" sideWeight="0.5011389" side_tool="true" weight="0.32212257" />
       <window_info id="Designer" order="1" />
@@ -492,12 +436,12 @@
       <window_info id="Favorites" order="8" side_tool="true" />
       <window_info anchor="bottom" id="Run" />
       <window_info anchor="bottom" id="Debug" />
-      <window_info anchor="bottom" id="Version Control" order="0" visible="true" weight="0.33086053" />
+      <window_info anchor="bottom" id="Version Control" order="0" weight="0.33086053" />
       <window_info anchor="bottom" id="TODO" order="1" />
       <window_info anchor="bottom" id="Android Profiler" order="2" />
       <window_info anchor="bottom" id="Terminal" order="3" />
       <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
-      <window_info anchor="bottom" id="Build" order="5" weight="0.3486647" />
+      <window_info anchor="bottom" id="Build" order="5" visible="true" weight="0.3486647" />
       <window_info anchor="bottom" id="Logcat" order="6" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
@@ -511,7 +455,9 @@
     <MESSAGE value="added black stick man to drawable" />
     <MESSAGE value="added a section for the letters in hm_activity_game layout file. Also&#10;made helper functions playGame() in HangManGameActivity" />
     <MESSAGE value="added LetterButton class for HangMan and relevant methods" />
-    <option name="LAST_COMMIT_MESSAGE" value="added LetterButton class for HangMan and relevant methods" />
+    <MESSAGE value="added buttons in layout of HangMan" />
+    <MESSAGE value="implemented methods for the Hangman Game" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented methods for the Hangman Game" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/main.iml" />
@@ -531,10 +477,6 @@
           <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/tower_defense.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/Balloon.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -564,25 +506,13 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/hm_letter_background.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/LetterButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="23" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#621#622#0" expanded="true" />
-            <element signature="e#659#660#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/LetterButton2.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/hm_letter_clicked.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="11" column="8" lean-forward="true" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -590,16 +520,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-104">
           <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/HangManActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -623,47 +543,129 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/userinterface/SpaceInvaders/Enemy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_signup.xml">
       <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-272" />
-      </provider>
-      <provider editor-type-id="android-designer2" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/hm_letters.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/LetterButton.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="54" selection-start-line="8" selection-start-column="54" selection-end-line="8" selection-end-column="54" />
+        <state relative-caret-position="222">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="23" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#621#622#0" expanded="true" />
+            <element signature="e#659#660#0" expanded="true" />
+          </folding>
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/HangManGameActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="-11" />
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/userinterface/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="49" column="34" lean-forward="true" selection-start-line="49" selection-start-column="34" selection-end-line="49" selection-end-column="34" />
+        <state relative-caret-position="-120">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/userinterface/SignupActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/tower_defense.xml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/userinterface/BackgroundActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="124" column="20" lean-forward="true" selection-start-line="124" selection-start-column="20" selection-end-line="124" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/HangManActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="23" column="53" lean-forward="true" selection-start-line="23" selection-start-column="53" selection-end-line="23" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/hm_activity_game.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="72" column="36" lean-forward="true" selection-start-line="72" selection-start-column="36" selection-end-line="72" selection-end-column="36" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/userinterface/HangMan/HangManGameActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="56" column="25" selection-start-line="56" selection-start-column="25" selection-end-line="56" selection-end-column="25" />
           <folding>
-            <element signature="e#6728#6739#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#3055#3286#0" expanded="true" />
+            <element signature="e#3285#3286#0" expanded="true" />
           </folding>
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/hm_activity_game.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="286" column="38" selection-start-line="286" selection-start-column="38" selection-end-line="286" selection-end-column="38" />
+          <folding>
+            <element signature="e#647#664#0" expanded="true" />
+            <element signature="e#3044#3055#0" expanded="true" />
+            <element signature="e#3272#3283#0" expanded="true" />
+            <element signature="e#3500#3511#0" expanded="true" />
+            <element signature="e#3728#3739#0" expanded="true" />
+            <element signature="e#3956#3967#0" expanded="true" />
+            <element signature="e#4184#4195#0" expanded="true" />
+            <element signature="e#4411#4422#0" expanded="true" />
+            <element signature="e#4638#4649#0" expanded="true" />
+            <element signature="e#4865#4876#0" expanded="true" />
+            <element signature="e#5092#5103#0" expanded="true" />
+            <element signature="e#5319#5330#0" expanded="true" />
+            <element signature="e#5546#5557#0" expanded="true" />
+            <element signature="e#5773#5784#0" expanded="true" />
+            <element signature="e#6000#6011#0" expanded="true" />
+            <element signature="e#6227#6238#0" expanded="true" />
+            <element signature="e#6454#6465#0" expanded="true" />
+            <element signature="e#6681#6692#0" expanded="true" />
+            <element signature="e#6908#6919#0" expanded="true" />
+            <element signature="e#7135#7146#0" expanded="true" />
+            <element signature="e#7362#7373#0" expanded="true" />
+            <element signature="e#7589#7600#0" expanded="true" />
+            <element signature="e#7816#7827#0" expanded="true" />
+            <element signature="e#8043#8054#0" expanded="true" />
+            <element signature="e#8270#8281#0" expanded="true" />
+            <element signature="e#8497#8508#0" expanded="true" />
+            <element signature="e#8725#8736#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/hm_letters.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="15" lean-forward="true" selection-start-line="13" selection-start-column="15" selection-end-line="13" selection-end-column="15" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
   </component>
   <component name="masterDetails">

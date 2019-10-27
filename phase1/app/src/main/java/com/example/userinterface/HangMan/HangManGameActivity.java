@@ -44,19 +44,15 @@ public class HangManGameActivity extends Activity{
         // of lives.
         rand = new Random();
         currentWord = "";
-        balloons[0] = (ImageView)findViewById(R.id.ballon1);
-        balloons[1] = (ImageView)findViewById(R.id.ballon2);
-        balloons[2] = (ImageView)findViewById(R.id.ballon3);
-        balloons[3] = (ImageView)findViewById(R.id.ballon4);
-        balloons[4] = (ImageView)findViewById(R.id.ballon5);
-        balloons[5] = (ImageView)findViewById(R.id.ballon6);
+        balloons[0] = findViewById(R.id.ballon1);
+        balloons[1] = findViewById(R.id.ballon2);
+        balloons[2] = findViewById(R.id.ballon3);
+        balloons[3] = findViewById(R.id.ballon4);
+        balloons[4] = findViewById(R.id.ballon5);
+        balloons[5] = findViewById(R.id.ballon6);
         playHangMan();
     }
 
-    public void buttonOnClick(View v){
-        Button button = (Button) v;
-        ((Button) v).setText("C");
-    }
 
     public void makeGuess(View v){
         // the user has clicked on the letter he/she wants to guess
