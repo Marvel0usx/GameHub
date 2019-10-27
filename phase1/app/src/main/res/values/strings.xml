@@ -31,6 +31,8 @@
     <string name="X">X</string>
     <string name="Y">Y</string>
     <string name="Z">Z</string>
-
+    <string name="end">End</string>
+    <string name="start">Start</string>
+    <string name="shoot">Shoot</string>
 
 </resources>
