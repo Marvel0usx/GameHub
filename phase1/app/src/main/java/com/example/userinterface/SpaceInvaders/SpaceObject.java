@@ -4,6 +4,17 @@ abstract class SpaceObject {
     private int x;
     private int y;
 
+    public double getSpeed() {
+        return speed;
+    }
+
+
+    public void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
+    private double speed;
+
     SpaceObject(int x, int y) {
         this.setX(x);
         this.setY(y);
