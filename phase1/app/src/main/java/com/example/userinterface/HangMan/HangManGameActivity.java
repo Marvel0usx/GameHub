@@ -5,12 +5,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.view.Gravity;
 import android.view.ViewGroup.LayoutParams;
@@ -44,6 +41,8 @@ public class HangManGameActivity extends Activity{
         // of lives.
         rand = new Random();
         currentWord = "";
+        wordLayout = findViewById(R.id.word);
+
         balloons[0] = findViewById(R.id.ballon1);
         balloons[1] = findViewById(R.id.ballon2);
         balloons[2] = findViewById(R.id.ballon3);
@@ -108,9 +107,26 @@ public class HangManGameActivity extends Activity{
         characterViews = new TextView[currentWord.length()];
         wordLayout.removeAllViews();
 
+        for (int c = 0; c < currentWord.length(); c++) {
+            characterViews[c] = new TextView(this);
+            characterViews[c].setText(""+currentWord.charAt(c));
+        }
+
         remainingBallons = 6;
         currLen = currentWord.length();
         numCorr = 0;
+
+        for (int c = 0; c < currentWord.length(); c++) {
+            characterViews[c] = new TextView(this);
+            characterViews[c].setText(""+currentWord.charAt(c));
+            characterViews[c].setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+            characterViews[c].setGravity(Gravity.CENTER);
+            characterViews[c].setTextColor(Color.WHITE);
+            characterViews[c].setBackgroundResource(R.drawable.hm_letter_background);
+            //add to layout
+            wordLayout.addView(characterViews[c]);
+        }
+
     }
 
 }
