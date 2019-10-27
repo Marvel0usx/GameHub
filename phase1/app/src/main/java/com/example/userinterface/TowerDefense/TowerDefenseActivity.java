@@ -1,5 +1,6 @@
 package com.example.userinterface.TowerDefense;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.graphics.Point;
@@ -30,11 +31,7 @@ public class TowerDefenseActivity extends Activity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(new GameView(this));
-
-        btnStart = findViewById(R.id.start);
-        btnHit = findViewById(R.id.hit);
-        btnHit.setVisibility(View.GONE);
+        setContentView(R.layout.tower_defense);
 
         DisplayMetrics metrics = new DisplayMetrics(); // find size of the screen
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -44,15 +41,25 @@ public class TowerDefenseActivity extends Activity {
         width = size.x;
         height = size.y;
         towerDefense = new TowerDefense(width, height);
+
+    }
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        btnStart = findViewById(R.id.start);
+        btnHit = findViewById(R.id.hit);
         GameView gameView = findViewById(R.id.myView);
-        gameView.setTowerDefense(towerDefense);
+        if(gameView != null) {
+            gameView.setTowerDefense(towerDefense);
+        }
     }
 
 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.start:
-                findViewById(R.id.hit).setVisibility(View.VISIBLE);
+                btnHit.setVisibility(View.VISIBLE);
                 btnStart.setVisibility(View.GONE);
                 towerDefense.addEnemy();
                 break;

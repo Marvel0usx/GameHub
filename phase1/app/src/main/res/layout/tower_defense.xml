@@ -16,6 +16,7 @@
         android:layout_marginTop="650dp"
         android:background="#FFFFFF"
         android:onClick="onClick"
+        android:visibility="invisible"
         android:text="@string/shoot" />
 
     <Button
