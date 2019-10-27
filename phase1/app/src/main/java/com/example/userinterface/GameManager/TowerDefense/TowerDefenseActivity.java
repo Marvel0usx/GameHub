@@ -2,6 +2,7 @@ package com.example.userinterface.GameManager.TowerDefense;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -63,21 +64,26 @@ public class TowerDefenseActivity extends Activity {
                 break;
 
             case R.id.hit:
-                towerDefense.setClicker(1);
+                towerDefense.clicked();
                 break;
 
             case R.id.finish: {
-                int lives = towerDefense.getLives();
+                boolean win = towerDefense.getWin();
                 ArrayList<Enemy> enemies = towerDefense.getWave1(); // change to wave3 when implemented
-                if (lives == 0) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                if (!win) {
                     builder.setMessage("You have LOST:(!");
                 }
-                if (enemies.isEmpty() && lives > 0) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                if (enemies.isEmpty() && win) {
                     builder.setMessage("Congratulations! You have WON!!");
                 }
-                finish();
+                builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                });
+                builder.show();
                 break;
             }
             default:
@@ -87,7 +93,7 @@ public class TowerDefenseActivity extends Activity {
     }
 }
 
-
+// can i push?
 
 
 

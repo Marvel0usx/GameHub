@@ -31,12 +31,9 @@
     <string name="X">X</string>
     <string name="Y">Y</string>
     <string name="Z">Z</string>
-    <string name="end">End</string>
-    <string name="start">Start</string>
-    <string name="shoot">Shoot</string>
-    <string name="left">left</string>
-    <string name="right">right</string>
-    <string name="Resume">Resume</string>
-    <string name="Stats">Stats</string>
+    <string name="end">end</string>
+    <string name="shoot">shoot</string>
+    <string name="start">start</string>
+
 
 </resources>

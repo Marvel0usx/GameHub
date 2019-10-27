@@ -8,10 +8,10 @@ public class TowerDefense {
     //User user;
     int money = 200;
     int waves = 1;
-    int lives = 3;
+    private int lives = 3;
     private int mapHeight;
     private int mapWidth;
-    boolean win = true;
+    private boolean win = true;
 
 
 
@@ -34,10 +34,10 @@ public class TowerDefense {
             if (e.getHealth() < 0){
                 temp.add(e);
             }
-            if (e.getY() >= mapHeight-1) {
+            if (e.getY() >= mapHeight-300) {
                 temp.add(e);
                 lives -= 1;
-                if (lives == 0)
+                if (lives <= 0)
                     win = false;
             }
             e.move();
@@ -49,7 +49,7 @@ public class TowerDefense {
 
 
     public Enemy getFirstEnemy(){
-        int yCoor = -mapHeight/2;  //the highest enemy is half the map height above
+        int yCoor = -mapHeight/2-100;  //the highest enemy is half the map height above
         Enemy firstEnemy = new Minion();
         for (Enemy item: wave1){
             if (item.getY()>yCoor){
@@ -68,7 +68,7 @@ public class TowerDefense {
         for (int i = 0; i < 10; i++) {
             Minion minion = new Minion();
             int x = (int) (Math.random() * mapWidth);
-            int y = -(int) (Math.random() * mapHeight / 2); // a period of time for enemies to walk
+            int y = -(int) (Math.random()* mapHeight/2)-100; // a period of time for enemies to walk
             minion.setLocation(x, y);
             wave1.add(minion);
         }
@@ -79,12 +79,11 @@ public class TowerDefense {
         for (Enemy item: wave1){
             item.draw(canvas);
         }
+
     }
-    public void setClicker(int num){clicker=num;}
+    public void clicked(){clicker += 1;}
 
     public ArrayList<Enemy> getWave1() { return wave1; }
-
-    public int getLives() {return lives; }
 
     public boolean getWin(){return win;}
 }
