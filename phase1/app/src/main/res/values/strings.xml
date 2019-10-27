@@ -34,5 +34,9 @@
     <string name="end">End</string>
     <string name="start">Start</string>
     <string name="shoot">Shoot</string>
+    <string name="left">left</string>
+    <string name="right">right</string>
+    <string name="Resume">Resume</string>
+    <string name="Stats">Stats</string>
 
 </resources>
