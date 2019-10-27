@@ -141,7 +141,7 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
         }
         else if(flag.equals("login")){
             if(s.equals("true")){
-                Intent intent = new Intent(context, TowerDefenseActivity.class);
+                Intent intent = new Intent(context, HangManActivity.class);
                 context.startActivity(intent);
             }else{
                 display("Login Failed...", "That email and password do not match our records :(.");
