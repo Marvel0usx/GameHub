@@ -52,6 +52,10 @@ public class HangManGameActivity extends Activity{
         playHangMan();
     }
 
+    public void displayBalloons(View v){
+
+    }
+
 
     public void makeGuess(View v){
         // the user has clicked on the letter he/she wants to guess
@@ -68,6 +72,7 @@ public class HangManGameActivity extends Activity{
                 numCorr ++;
                 characterViews[i].setTextColor(Color.BLACK);
             }
+
             if (correct) {
                 // correct guess
                 if (numCorr == currLen){
@@ -86,8 +91,10 @@ public class HangManGameActivity extends Activity{
 
             } else if (remainingBallons > 0){
                 // player still has lives left
+
                 balloons[remainingBallons - 1].setVisibility(v.INVISIBLE);
                 remainingBallons = remainingBallons - 1;
+
 
             } else{
                 // player has lost
@@ -102,10 +109,15 @@ public class HangManGameActivity extends Activity{
 
     private void playHangMan() {
         // plays a new HangMan game
-        String newWord = words[rand.nextInt(words.length)];
-        currentWord = newWord;
+       // String newWord = words[rand.nextInt(words.length)];
+        currentWord = "COMPUTER";
         characterViews = new TextView[currentWord.length()];
         wordLayout.removeAllViews();
+
+//        for(int p = 0; p < balloons.length; p++) {
+//            balloons[p].setVisibility(View.VISIBLE);
+//        }
+
 
         for (int c = 0; c < currentWord.length(); c++) {
             characterViews[c] = new TextView(this);

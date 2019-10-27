@@ -16,42 +16,42 @@
             android:layout_width="match_parent"
             android:layout_height="238dp"
             android:contentDescription="@string/ballon1"
-            app:srcCompat="@drawable/ballon1" />
+            android:src="@drawable/ballon1" />
 
         <ImageView
             android:id="@+id/ballon2"
             android:layout_width="match_parent"
             android:layout_height="238dp"
             android:contentDescription="@string/ballon2"
-            app:srcCompat="@drawable/ballon2" />
+            android:src="@drawable/ballon2" />
 
         <ImageView
             android:id="@+id/ballon3"
             android:layout_width="match_parent"
             android:layout_height="238dp"
             android:contentDescription="@string/ballon3"
-            app:srcCompat="@drawable/ballon3" />
+            android:src="@drawable/ballon3" />
 
         <ImageView
             android:id="@+id/ballon4"
             android:layout_width="match_parent"
             android:layout_height="238dp"
             android:contentDescription="@string/ballon4"
-            app:srcCompat="@drawable/ballon4" />
+            android:src="@drawable/ballon4" />
 
         <ImageView
             android:id="@+id/ballon5"
             android:layout_width="match_parent"
             android:layout_height="238dp"
             android:contentDescription="@string/ballon5"
-            app:srcCompat="@drawable/ballon5" />
+            android:src="@drawable/ballon5" />
 
         <ImageView
             android:id="@+id/ballon6"
             android:layout_width="match_parent"
             android:layout_height="238dp"
             android:contentDescription="@string/ballon6"
-            app:srcCompat="@drawable/ballon6" />
+            android:src="@drawable/ballon6" />
 
         <ImageView
             android:id="@+id/imageView6"
@@ -61,7 +61,7 @@
             android:paddingLeft="8dp"
             android:paddingTop="170dp"
             android:paddingBottom="0dp"
-            app:srcCompat="@drawable/blackman" />
+            android:src="@drawable/blackman" />
 
     </RelativeLayout>
 

@@ -12,11 +12,8 @@ import android.widget.Button;
 
 public class HangManActivity extends Activity implements OnClickListener{
 
-    // activity
-
-
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // refer to the hang_man_main layout
         setContentView(R.layout.hang_man_main);

@@ -10,6 +10,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.userinterface.TowerDefense.TowerDefenseActivity;
+import com.example.userinterface.HangMan.HangManActivity;
+
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
