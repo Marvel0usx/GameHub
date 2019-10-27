@@ -13,9 +13,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TowerDefense.TowerDefenseActivity"/>
-        <activity android:name=".HangMan.HangManGameActivity"/>
-        <activity android:name=".HangMan.HangManActivity"/>
+        <activity android:name=".GameManager.Stats"></activity>
+        <activity android:name=".GameManager.MenuActivity" />
+        <activity android:name=".GameManager.TowerDefense.TowerDefenseActivity" />
+        <activity android:name=".GameManager.HangMan.HangManGameActivity" />
+        <activity android:name=".GameManager.HangMan.HangManActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
