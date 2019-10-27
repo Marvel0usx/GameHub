@@ -1,4 +1,4 @@
-package com.example.userinterface.SpaceInvaders;
+package com.example.userinterface.GameManager.SpaceInvaders;
 
 public class Bullet extends SpaceObject {
     Bullet(int x, int y) {

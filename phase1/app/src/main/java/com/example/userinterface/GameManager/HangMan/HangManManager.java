@@ -1,4 +1,4 @@
-package com.example.userinterface.HangMan;
+package com.example.userinterface.GameManager.HangMan;
 
 
 import java.util.HashMap;

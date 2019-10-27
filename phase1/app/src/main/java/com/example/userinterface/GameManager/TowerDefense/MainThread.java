@@ -1,10 +1,7 @@
-package com.example.userinterface.TowerDefense;
+package com.example.userinterface.GameManager.TowerDefense;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.view.SurfaceHolder;
-
-import com.example.userinterface.TowerDefense.GameView;
 
 
 public class MainThread extends Thread {
