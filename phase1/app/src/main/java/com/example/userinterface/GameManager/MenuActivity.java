@@ -23,6 +23,8 @@ public class MenuActivity extends AppCompatActivity {
         btnStart = findViewById(R.id.start);
         btnResume = findViewById(R.id.Resume);
         btnStats = findViewById(R.id.Stats);
+        btnResume.setEnabled(false);
+        BackgroundActivity backgroundActivity = new BackgroundActivity();
     }
 
     public void startGame(View v){
