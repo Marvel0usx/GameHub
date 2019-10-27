@@ -101,11 +101,9 @@ public class HangManGameActivity extends Activity{
                 AlertDialog.Builder loseMsg = new AlertDialog.Builder(this);
                 loseMsg.setTitle("OOPS :(");
                 loseMsg.setMessage("You lose!");
-
             }
             }
         }
-
 
     private void playHangMan() {
         // plays a new HangMan game
