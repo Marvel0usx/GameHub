@@ -1,4 +1,4 @@
-package com.example.userinterface.SpaceInvaders;
+package com.example.userinterface.GameManager.SpaceInvaders;
 
 public class Enemy extends Ship {
     public Enemy(int x, int y, int lives){

@@ -1,4 +1,4 @@
-package com.example.userinterface.SpaceInvaders;
+package com.example.userinterface.GameManager.SpaceInvaders;
 
 abstract class SpaceObject {
     private int x;

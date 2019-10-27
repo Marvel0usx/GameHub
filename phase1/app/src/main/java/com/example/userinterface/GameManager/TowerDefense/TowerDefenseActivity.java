@@ -1,12 +1,10 @@
-package com.example.userinterface.TowerDefense;
+package com.example.userinterface.GameManager.TowerDefense;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.Window;

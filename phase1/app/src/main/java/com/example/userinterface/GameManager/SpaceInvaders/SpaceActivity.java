@@ -1,12 +1,10 @@
-package com.example.userinterface.SpaceInvaders;
+package com.example.userinterface.GameManager.SpaceInvaders;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.userinterface.R;
 
 import android.os.Bundle;
 import android.view.View;
-
-import com.example.userinterface.R;
 
 public class SpaceActivity extends AppCompatActivity {
 

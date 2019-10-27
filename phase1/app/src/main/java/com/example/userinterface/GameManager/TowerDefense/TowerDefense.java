@@ -1,9 +1,6 @@
-package com.example.userinterface.TowerDefense;
+package com.example.userinterface.GameManager.TowerDefense;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Typeface;
 
 import java.util.ArrayList;
 

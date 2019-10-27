@@ -1,4 +1,4 @@
-package com.example.userinterface.HangMan;
+package com.example.userinterface.GameManager.HangMan;
 
 public abstract class HangManPlayer {
 

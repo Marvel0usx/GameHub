@@ -1,10 +1,9 @@
-package com.example.userinterface.HangMan;
+package com.example.userinterface.GameManager.HangMan;
 
 import android.app.Activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -16,7 +15,6 @@ import android.widget.TextView;
 import android.os.Bundle;
 import java.util.Random;
 import com.example.userinterface.R;
-import android.widget.GridView;
 
 public class HangManGameActivity extends Activity{
     private ImageView[] balloons; // balloon images

@@ -9,8 +9,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.userinterface.TowerDefense.TowerDefenseActivity;
-import com.example.userinterface.HangMan.HangManActivity;
+import com.example.userinterface.GameManager.MenuActivity;
+import com.example.userinterface.GameManager.TowerDefense.TowerDefenseActivity;
 
 
 import java.io.BufferedReader;
@@ -141,7 +141,7 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
         }
         else if(flag.equals("login")){
             if(s.equals("true")){
-                Intent intent = new Intent(context, TowerDefenseActivity.class);
+                Intent intent = new Intent(context, MenuActivity.class);
                 context.startActivity(intent);
             }else{
                 display("Login Failed...", "That email and password do not match our records :(.");
