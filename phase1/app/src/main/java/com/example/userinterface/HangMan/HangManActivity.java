@@ -2,7 +2,6 @@ package com.example.userinterface.HangMan;
 
 import android.app.Activity;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
 import com.example.userinterface.R;
 
 import android.content.Intent;
@@ -11,6 +10,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class HangManActivity extends Activity implements OnClickListener{
+
+    //comment
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
