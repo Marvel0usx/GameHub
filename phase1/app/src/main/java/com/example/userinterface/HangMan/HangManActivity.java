@@ -12,25 +12,21 @@ import android.widget.Button;
 
 public class HangManActivity extends Activity implements OnClickListener{
 
-    // activity
-
-    HangManManager hangManManager;
-
-    public static void main(String[] args) {
-    }
-
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // refer to the hang_man_main layout
         setContentView(R.layout.hang_man_main);
-        Button playBtn = (Button)findViewById(R.id.playBtn);
+
+        // the play button that controls if the game will start
+        Button playBtn = findViewById(R.id.playButton);
         playBtn.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         // handles clicks
-        if (v.getId() == R.id.playBtn) {
+        if (v.getId() == R.id.playButton) {
             Intent playIntent = new Intent(this, HangManGameActivity.class);
             this.startActivity(playIntent);
         }

@@ -14,9 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".TowerDefense.TowerDefenseActivity"/>
-        <activity android:name=".HangMan.HangManGameActivity"
-            android:parentActivityName=".HangMan.HangManActivity"
-            android:screenOrientation="portrait" />
+        <activity android:name=".HangMan.HangManGameActivity"/>
+        <activity android:name=".HangMan.HangManActivity"/>
         <activity android:name=".SignupActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
