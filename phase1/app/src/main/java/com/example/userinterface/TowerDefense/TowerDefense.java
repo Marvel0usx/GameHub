@@ -14,6 +14,10 @@ public class TowerDefense {
     int lives = 3;
     private int mapHeight;
     private int mapWidth;
+    boolean win = true;
+
+
+
     private ArrayList<Enemy> wave1 = new ArrayList<>();
 
     private int clicker=0;
@@ -24,10 +28,11 @@ public class TowerDefense {
     }
 
     public void update(){
-        ArrayList<Enemy> temp = new ArrayList<>();
+
         Enemy enemy = getFirstEnemy();
         enemy.hit(clicker);
         clicker=0;
+        ArrayList<Enemy> temp = new ArrayList<>();
         for (Enemy e: wave1){
             if (e.getHealth() < 0){
                 temp.add(e);
@@ -35,47 +40,54 @@ public class TowerDefense {
             if (e.getY() >= mapHeight-1) {
                 temp.add(e);
                 lives -= 1;
+                if (lives == 0)
+                    win = false;
             }
             e.move();
         }
         for (Enemy item: temp){
             wave1.remove(item);
         }
-
     }
 
 
     public Enemy getFirstEnemy(){
         int yCoor = -mapHeight/2;  //the highest enemy is half the map height above
-        Enemy temp = new Minion();
+        Enemy firstEnemy = new Minion();
         for (Enemy item: wave1){
             if (item.getY()>yCoor){
-                temp = item;
+                firstEnemy = item;
                 yCoor = item.getY();
             }
         }
-        return temp;
+        return firstEnemy;
     }
 
     public void addEnemy(){
-        for (int i=0;i<10;i++){
-            Minion minion = new Minion();
-            int x = (int)(Math.random()*mapWidth);
-            int y = -(int)(Math.random()*mapHeight/2); // a period of time for enemies to walk
-            minion.setLocation(x, y);
-            wave1.add(minion);
-
+        addMinion();
         }
 
+    private void addMinion() {
+        for (int i = 0; i < 10; i++) {
+            Minion minion = new Minion();
+            int x = (int) (Math.random() * mapWidth);
+            int y = -(int) (Math.random() * mapHeight / 2); // a period of time for enemies to walk
+            minion.setLocation(x, y);
+            wave1.add(minion);
+        }
     }
+
 
     public void draw(Canvas canvas){
         for (Enemy item: wave1){
             item.draw(canvas);
         }
     }
+    public void setClicker(int num){clicker=num;}
 
-    public void setClicker(int num){
-        clicker=num;
-    }
+    public ArrayList<Enemy> getWave1() { return wave1; }
+
+    public int getLives() {return lives; }
+
+    public boolean getWin(){return win;}
 }

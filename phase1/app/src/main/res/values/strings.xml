@@ -5,4 +5,7 @@
     <string name="ballon4">Ballon 4</string>
     <string name="ballon5">Ballon 5</string>
     <string name="ballon6">Ballon 6</string>
+    <string name="shoot">SHOOT</string>
+    <string name="start">Start!</string>
+    <string name="end">End</string>
 </resources>

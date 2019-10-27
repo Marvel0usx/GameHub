@@ -12,15 +12,11 @@
         android:id="@+id/hit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="75dp"
-        android:layout_marginLeft="75dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="650dp"
         android:background="#FFFFFF"
-        android:onClick="click"
-        android:text="SHOOT" />
+        android:onClick="onClick"
+        android:text="@string/shoot" />
 
     <Button
         android:id="@+id/start"
@@ -33,8 +29,17 @@
         android:layout_marginEnd="75dp"
         android:layout_marginRight="75dp"
         android:background="#FFFFFF"
-        android:text="Start!"
-        android:onClick="start"/>
+        android:text="@string/start"
+        android:onClick="onClick"/>
+
+    <Button
+        android:id="@+id/finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/end"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="600dp"
+        android:onClick="onClick"/>
 
 
 </RelativeLayout>

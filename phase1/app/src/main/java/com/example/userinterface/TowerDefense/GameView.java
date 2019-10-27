@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
 
@@ -15,6 +16,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private MainThread thread;
     public TowerDefense towerDefense;
+    Button btnStart, btnHit;
 
     public GameView(Context context) {
         super(context);
@@ -61,6 +63,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         thread.setRunning(true);
         thread.start();
+
+
     }
 
     @Override

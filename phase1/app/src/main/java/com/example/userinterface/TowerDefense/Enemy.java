@@ -13,9 +13,14 @@ abstract class Enemy {
 
     public abstract void draw(Canvas canvas);
 
-    public abstract int getHealth();
+    public int getHealth(){ return health; }
 
     public abstract void hit(int num);
 
-    public abstract int getY();
+    public int getY(){return y;}
+
+    public void setLocation(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
 }

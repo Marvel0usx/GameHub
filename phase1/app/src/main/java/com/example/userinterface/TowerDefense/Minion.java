@@ -8,13 +8,11 @@ import android.util.Log;
 
 public class Minion extends Enemy {
 
-    String[] appearence;
+    private String[] appearence;
     public Minion(){
         health = 10;
         speed = 1;
         reward = 10;
-        x = 400;
-        y = 0;
         appearence = new String[]{"  o  ", " /|\\ ", "  ^  ", " / \\ "};
 
     }
@@ -23,38 +21,22 @@ public class Minion extends Enemy {
         y += speed;
     }
 
-    @Override
     public void draw(Canvas canvas) {
         Paint paint = new Paint();
         paint.setTextSize(20);
         paint.setTypeface(Typeface.DEFAULT_BOLD);
         paint.setColor(Color.RED);
         for (int i = 0; i<appearence.length;i++){
-            canvas.drawText(appearence[i],x,y+((i+1)*20),paint);
+            canvas.drawText(appearence[i],x,y+(i*20),paint);
             // decide each body parts' coordinates
         }
     }
 
-    @Override
-    public int getHealth() {
-        return health;
-    }
-
-    @Override
     public void hit(int num) {
         health -= num;
         Log.d(health+"","this is the health"+health);
     }
 
-    @Override
-    public int getY() {
-        return this.y;
-    }
-
-    public void setLocation(int x, int y){
-        this.x = x;
-        this.y = y;
-    }
 
 
 }
