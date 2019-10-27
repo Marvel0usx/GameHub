@@ -66,13 +66,13 @@ public class HangManGameActivity extends Activity{
 
         boolean correct = false;
 
-        for (int i = 0; i < currentWord.length(); i++){
-            if (currentWord.charAt(i)==charGuessed){
+        for (int i = 0; i < currentWord.length(); i++) {
+            if (currentWord.charAt(i) == charGuessed) {
                 correct = true;
-                numCorr ++;
+                numCorr++;
                 characterViews[i].setTextColor(Color.BLACK);
             }
-
+        }
             if (correct) {
                 // correct guess
                 if (numCorr == currLen){
@@ -93,6 +93,7 @@ public class HangManGameActivity extends Activity{
                 // player still has lives left
 
                 balloons[remainingBallons - 1].setVisibility(v.INVISIBLE);
+                System.out.println(20);
                 remainingBallons = remainingBallons - 1;
 
 
@@ -102,8 +103,7 @@ public class HangManGameActivity extends Activity{
                 loseMsg.setTitle("OOPS :(");
                 loseMsg.setMessage("You lose!");
             }
-            }
-        }
+    }
 
     private void playHangMan() {
         // plays a new HangMan game
