@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class TowerDefenseActivity extends Activity {
 
-    Button btnStart, btnHit;
+    Button btnStart, btnHit, btnTower1, btnTower2, btnTower3;
     TowerDefense towerDefense;
     int width;
     int height;
@@ -48,6 +48,9 @@ public class TowerDefenseActivity extends Activity {
         super.onPostCreate(savedInstanceState);
         btnStart = findViewById(R.id.start);
         btnHit = findViewById(R.id.hit);
+        btnTower1 = findViewById(R.id.tower1);
+        btnTower2 = findViewById(R.id.tower2);
+        btnTower3 = findViewById(R.id.tower3);
         GameView gameView = findViewById(R.id.myView);
         if(gameView != null) {
             gameView.setTowerDefense(towerDefense);
@@ -58,7 +61,10 @@ public class TowerDefenseActivity extends Activity {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.start:
-                btnHit.setVisibility(View.VISIBLE);
+                //btnHit.setVisibility(View.VISIBLE);
+                btnTower1.setVisibility(View.VISIBLE);
+                btnTower2.setVisibility(View.VISIBLE);
+                btnTower3.setVisibility(View.VISIBLE);
                 btnStart.setVisibility(View.GONE);
                 towerDefense.addEnemy();
                 break;

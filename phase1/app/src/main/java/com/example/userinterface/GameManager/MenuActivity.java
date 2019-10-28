@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.userinterface.GameManager.HangMan.HangManActivity;
+import com.example.userinterface.GameManager.TowerDefense.TowerDefenseActivity;
 import com.example.userinterface.R;
 
 public class MenuActivity extends AppCompatActivity {
@@ -28,7 +29,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void startGame(View v){
-        Intent intent = new Intent(MenuActivity.this, HangManActivity.class);
+        Intent intent = new Intent(MenuActivity.this, TowerDefenseActivity.class);
         startActivity(intent);
     }
     public void Resume(View v){
