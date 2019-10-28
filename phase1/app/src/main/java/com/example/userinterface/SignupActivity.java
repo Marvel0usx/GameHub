@@ -1,6 +1,7 @@
 package com.example.userinterface;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,22 +31,27 @@ public class SignupActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                name = etName.getText().toString();
-                email = etEmail.getText().toString();
-                password = etPassword.getText().toString();
-                rePassword = etRePassword.getText().toString();
+                getInfo();
                 //Check if the email is in a valid format and the password is entered the same.
                 if (!password.equals(rePassword) || !isValid(email)){
                     errorMessage("Incorrect Info", "Re-enter information.");
                 }else{
                     String task = "register";
                     BackgroundActivity backgroundTask = new BackgroundActivity(SignupActivity.this);
+                    getInfo();
                     backgroundTask.execute(task, name, email, password);
                     finish();
                 }
 
             }
         });
+    }
+
+    public void getInfo(){
+        name = etName.getText().toString();
+        email = etEmail.getText().toString();
+        password = etPassword.getText().toString();
+        rePassword = etRePassword.getText().toString();
     }
 
     // Show error message if there was an error that is being handled by.
