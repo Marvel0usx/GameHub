@@ -52,10 +52,6 @@ public class HangManGameActivity extends Activity{
         playHangMan();
     }
 
-    public void displayBalloons(View v){
-
-    }
-
 
     public void makeGuess(View v){
         // the user has clicked on the letter he/she wants to guess
