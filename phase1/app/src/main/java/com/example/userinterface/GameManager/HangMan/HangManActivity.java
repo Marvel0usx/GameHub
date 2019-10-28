@@ -3,7 +3,6 @@ package com.example.userinterface.GameManager.HangMan;
 import android.app.Activity;
 import android.os.Bundle;
 import com.example.userinterface.R;
-
 import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
