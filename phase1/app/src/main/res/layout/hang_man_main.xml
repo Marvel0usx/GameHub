@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".HangMan.HangManActivity" >
+    tools:context="GameManager.HangMan.HangManActivity" >
 
     <Button
         android:id="@+id/playButton"
