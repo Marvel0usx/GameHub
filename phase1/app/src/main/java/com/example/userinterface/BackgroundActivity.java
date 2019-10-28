@@ -155,7 +155,8 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
 
         }
         else if(flag.equals("login")){
-            if(s.equals("true")){
+            if(strings[0].equals("true")){
+
                 Intent intent = new Intent(context, MenuActivity.class);
                 context.startActivity(intent);
             }else{
