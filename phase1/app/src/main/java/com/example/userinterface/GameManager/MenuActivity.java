@@ -24,7 +24,7 @@ public class MenuActivity extends AppCompatActivity {
         btnResume = findViewById(R.id.Resume);
         btnStats = findViewById(R.id.Stats);
         btnResume.setEnabled(false);
-        BackgroundActivity backgroundActivity = new BackgroundActivity();
+        BackgroundActivity backgroundActivity = new BackgroundActivity(MenuActivity.this);
     }
 
     public void startGame(View v){
