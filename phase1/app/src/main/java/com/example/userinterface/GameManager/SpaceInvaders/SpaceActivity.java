@@ -1,23 +1,27 @@
 package com.example.userinterface.GameManager.SpaceInvaders;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.app.Activity;
+import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Space;
+
 import com.example.userinterface.R;
 
-import android.os.Bundle;
-import android.view.View;
+public class SpaceActivity extends Activity {
 
-public class SpaceActivity extends AppCompatActivity {
+    SpaceInvaders Space;
+    int width, height;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_space);
-    }
-    public void Left(View view){
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(new SpaceView(this));
+
 
     }
-    public void Right(View view){
-
-    }
-
 }
