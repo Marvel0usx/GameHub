@@ -24,6 +24,7 @@ public class SpaceInvaders {
         for (SpaceObject item: spaceObjects){
             if (item instanceof Enemy){
                 item.move();
+                ((Enemy) item).shoot();
             }
         }
 
