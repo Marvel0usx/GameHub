@@ -33,5 +33,4 @@ public class CollisionDetector implements Observer {
     }
 
     // Utils
-    boolean
 }
