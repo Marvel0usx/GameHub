@@ -8,59 +8,68 @@ public class TowerDefense {
     //User user;
     int money = 200;
     int waves = 1;
-    private int lives = 3;
+    private int lives = 5;
     private int mapHeight;
     private int mapWidth;
-    private boolean win = true;
-
+    private boolean gameOver = false;
+    private boolean win = false;
+    private VariableChangeListener listener = null;
 
 
     private ArrayList<Enemy> wave1 = new ArrayList<>();
 
     private int clicker=0;
 
+
     public TowerDefense(int screenWidth, int screenHeight) {
         mapHeight = screenHeight;
         mapWidth = screenWidth;
     }
 
-    public void update(){
-
+    void update(){
         Enemy enemy = getFirstEnemy();
-        enemy.hit(clicker);
-        clicker=0;
+        if (enemy != null) {
+            enemy.hit(clicker);
+            clicker = 0;
+        }
         ArrayList<Enemy> temp = new ArrayList<>();
         for (Enemy e: wave1){
-            if (e.getHealth() < 0){
+            if (e.getHealth() <= 0){
                 temp.add(e);
             }
             if (e.getY() >= mapHeight-300) {
                 temp.add(e);
                 lives -= 1;
-                if (lives <= 0)
-                    win = false;
             }
-            e.move();
+            else
+                e.move();
         }
         for (Enemy item: temp){
             wave1.remove(item);
         }
+        if (lives<=0 || wave1.isEmpty()){
+            gameOver = true;
+            win = lives>0;
+            if (listener != null)
+                listener.onVariableChange(true);
+        }
     }
 
 
-    public Enemy getFirstEnemy(){
-        int yCoor = -mapHeight/2-100;  //the highest enemy is half the map height above
-        Enemy firstEnemy = new Minion();
-        for (Enemy item: wave1){
-            if (item.getY()>yCoor){
+    private Enemy getFirstEnemy() {
+        int yCoor = -mapHeight / 2 - 100;  //the highest enemy is half the map height above
+        Enemy firstEnemy = null;
+        for (Enemy item : wave1) {
+            if (item.getY() > yCoor) {
                 firstEnemy = item;
                 yCoor = item.getY();
+                }
             }
-        }
         return firstEnemy;
+
     }
 
-    public void addEnemy(){
+    void addEnemy(){
         addMinion();
         }
 
@@ -81,9 +90,14 @@ public class TowerDefense {
         }
 
     }
-    public void clicked(){clicker += 1;}
 
-    public ArrayList<Enemy> getWave1() { return wave1; }
+    void setVariableChangeListener(VariableChangeListener variableChangeListener) {
+        this.listener = variableChangeListener;
+    }
 
-    public boolean getWin(){return win;}
+    void clicked(){clicker += 1;}
+
+    boolean getWin(){return win;}
+
+
 }
