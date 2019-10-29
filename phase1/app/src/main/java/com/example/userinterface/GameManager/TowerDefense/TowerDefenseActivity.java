@@ -3,6 +3,7 @@ package com.example.userinterface.GameManager.TowerDefense;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -12,6 +13,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import com.example.userinterface.GameManager.*;
+import com.example.userinterface.GameManager.GameBackgroundActivity;
 import com.example.userinterface.R;
 
 import java.util.ArrayList;
@@ -22,6 +25,7 @@ public class TowerDefenseActivity extends Activity {
     TowerDefense towerDefense;
     int width;
     int height;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,11 @@ public class TowerDefenseActivity extends Activity {
         width = size.x;
         height = size.y;
         towerDefense = new TowerDefense(width, height);
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            user = (User)bundle.getSerializable("User");
+        }
 
     }
 
@@ -55,6 +64,12 @@ public class TowerDefenseActivity extends Activity {
         if(gameView != null) {
             gameView.setTowerDefense(towerDefense);
         }
+    }
+
+    public void onBackPressed(){
+        super.onBackPressed();
+        GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(TowerDefenseActivity.this);
+        gameBackgroundActivity.execute("quit", user, 1);
     }
 
 

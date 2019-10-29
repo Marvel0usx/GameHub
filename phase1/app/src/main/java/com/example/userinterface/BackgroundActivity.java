@@ -68,7 +68,6 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
                 String myData = URLEncoder.encode("username","UTF-8")+"="+URLEncoder.encode(regName,"UTF-8")+"&"
                         +URLEncoder.encode("email","UTF-8")+"="+URLEncoder.encode(regEmail,"UTF-8")+"&"
                         +URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(regPassword,"UTF-8");
-                Log.d("message",myData);
                 bufferedWriter.write(myData);
                 bufferedWriter.flush();
                 bufferedWriter.close();
