@@ -10,21 +10,29 @@ public class SpaceInvaders {
     private int height;
     private int width;
 
+
     public static List<SpaceObject> spaceObjects = new ArrayList<>();
 
     public SpaceInvaders(int width, int height){
         this.height = height;
         this.width = width;
+
     }
 
     public void draw(Canvas canvas){
         for (SpaceObject item: spaceObjects) item.draw(canvas);
     }
     public void update(){
+
         for (SpaceObject item: spaceObjects){
             if (item instanceof Enemy){
+                if (item.getX() >= this.width || item.getX() <= 0){
+                    ((Enemy) item).shift();
+                }
                 item.move();
-                ((Enemy) item).shoot();
+            }
+            if (item instanceof Player){
+                item.move();
             }
         }
 

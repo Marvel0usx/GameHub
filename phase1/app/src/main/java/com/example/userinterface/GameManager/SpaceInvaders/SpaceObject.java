@@ -20,7 +20,7 @@ abstract class SpaceObject {
 
     private double speed;
 
-    SpaceObject(int x, int y) {
+    SpaceObject(float x, float y) {
         this.setX(x);
         this.setY(y);
     }
