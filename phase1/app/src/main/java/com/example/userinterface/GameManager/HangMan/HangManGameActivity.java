@@ -103,7 +103,7 @@ public class HangManGameActivity extends Activity{
     private void playHangMan() {
         // plays a new HangMan game
        // String newWord = words[rand.nextInt(words.length)];
-        currentWord = "HDSAKKSAHFSAS";
+        currentWord = "BULLETPROOF";
         characterViews = new TextView[currentWord.length()];
         wordLayout.removeAllViews();
 
