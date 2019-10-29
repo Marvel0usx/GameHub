@@ -9,40 +9,52 @@ public class SpaceInvaders {
 
     private int height;
     private int width;
+    private int command;
 
 
-    public static List<SpaceObject> spaceObjects = new ArrayList<>();
+    public static List<Enemy> enemyList = new ArrayList<>();
+    public static Player player;
 
-    public SpaceInvaders(int width, int height){
+    public SpaceInvaders(int width, int height) {
         this.height = height;
         this.width = width;
 
     }
 
-    public void draw(Canvas canvas){
-        for (SpaceObject item: spaceObjects) item.draw(canvas);
+    public void draw(Canvas canvas) {
+        for (SpaceObject item : enemyList) item.draw(canvas);
+        player.draw(canvas);
     }
-    public void update(){
 
-        for (SpaceObject item: spaceObjects){
-            if (item instanceof Enemy){
-                if (item.getX() >= this.width || item.getX() <= 0){
-                    ((Enemy) item).shift();
-                }
-                item.move();
+    public void update() {
+        System.out.println("this is running!");
+
+        for (Enemy item : enemyList) {
+            item.move();
+            if (item.getX() >= this.width || item.getX() <= 0) {
+                item.shift();
+                System.out.println("this is running!");
             }
-            if (item instanceof Player){
-                item.move();
-            }
+            System.out.println(item.getX());
         }
+        player.move(command);
+        command = 0;
 
     }
 
-    public void layout(){
-        spaceObjects.add(new Player((int) (this.width/2),1300,300));
-        spaceObjects.add(new Enemy(100,100,100));
-        spaceObjects.add(new Enemy(300,200,100));
-        spaceObjects.add(new Enemy(400,300,100));
+    public void layout() {
+        player = new Player( (this.width >> 1), 1300, 300);
+        enemyList.add(new Enemy(100, 100, 100));
+        enemyList.add(new Enemy(300, 200, 100));
+        enemyList.add(new Enemy(400, 300, 100));
+    }
+
+    void goLeft() {
+        this.command = -1;
+    }
+
+    void goRight() {
+        this.command = 1;
     }
 
 

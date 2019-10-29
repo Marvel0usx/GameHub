@@ -1,6 +1,7 @@
 package com.example.userinterface.GameManager.SpaceInvaders;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -14,23 +15,27 @@ import com.example.userinterface.R;
 public class SpaceActivity extends Activity {
 
     SpaceInvaders Space;
-    int width, height;
     Button btnLeft, btnRight;
+    private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+    private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Space = new SpaceInvaders(screenWidth, screenHeight);
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(new SpaceView(this));
+        SpaceView spaceView = new SpaceView(this);
+        spaceView.setSpace(Space);
+        setContentView(spaceView);
     }
     public void onClick(View v){
         switch (v.getId()){
             case R.id.Left:
-                break;
+                Space.goLeft();
             case R.id.Right:
-                break;
+                Space.goRight();
             default:
                 break;
         }

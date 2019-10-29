@@ -53,6 +53,10 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
+    public void setSpace(SpaceInvaders Space){
+        this.Space = Space;
+    }
+
     public void update(){
         Space.update();
     }

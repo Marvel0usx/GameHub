@@ -12,9 +12,9 @@ public class Player extends Ship {
         this.paintText.setTextSize(36);
     }
 
-    @Override
-    public void move(){
-        //to be implemented as a touch event
+
+    public void move(int command){
+        this.setX(this.getX() + 5*command);
     }
 
     @Override
