@@ -14,7 +14,8 @@ public class Player extends Ship {
 
 
     public void move(int command){
-        this.setX(this.getX() + 5*command);
+        this.setX(this.getX() + 15);
+        System.out.println(this.getX());
     }
 
     @Override

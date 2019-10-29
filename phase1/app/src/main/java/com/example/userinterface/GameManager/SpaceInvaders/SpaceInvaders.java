@@ -10,6 +10,7 @@ public class SpaceInvaders {
     private int height;
     private int width;
     private int command;
+    private int moveDelay;
 
 
     public static List<Enemy> enemyList = new ArrayList<>();
@@ -27,18 +28,16 @@ public class SpaceInvaders {
     }
 
     public void update() {
-        System.out.println("this is running!");
-
+        if (moveDelay > 0) {
+            player.move(this.command);
+            moveDelay = 0;
+        }
         for (Enemy item : enemyList) {
             item.move();
             if (item.getX() >= this.width || item.getX() <= 0) {
                 item.shift();
-                System.out.println("this is running!");
             }
-            System.out.println(item.getX());
         }
-        player.move(command);
-        command = 0;
 
     }
 
@@ -51,10 +50,11 @@ public class SpaceInvaders {
 
     void goLeft() {
         this.command = -1;
+        this.moveDelay = 1;
     }
-
     void goRight() {
         this.command = 1;
+        this.moveDelay = 1;
     }
 
 
