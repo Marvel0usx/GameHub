@@ -43,7 +43,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void startGame(View v){
-        Intent intent = new Intent(MenuActivity.this, TowerDefenseActivity.class);
+        Intent intent = new Intent(MenuActivity.this, HangManActivity.class);
         intent.putExtras(patch());
         startActivity(intent);
     }
