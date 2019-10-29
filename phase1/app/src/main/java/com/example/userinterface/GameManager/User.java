@@ -11,6 +11,10 @@ public class User implements Serializable {
         return email;
     }
 
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
     public int getLevel() {
         return level;
     }

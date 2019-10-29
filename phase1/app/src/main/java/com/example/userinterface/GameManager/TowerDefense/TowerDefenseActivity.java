@@ -25,7 +25,7 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
     TowerDefense towerDefense;
     int width;
     int height;
-    User user;
+    GameManager gameManager;
 
 
     @Override
@@ -49,7 +49,7 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
-            user = (User)bundle.getSerializable("User");
+            gameManager = (GameManager) bundle.getSerializable("Game");
         }
 
     }
@@ -69,9 +69,8 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
     }
 
     public void onBackPressed(){
-        super.onBackPressed();
-        GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(TowerDefenseActivity.this);
-        gameBackgroundActivity.execute("quit", user, 1);
+        gameManager.reLocate(TowerDefenseActivity.this, MenuActivity.class, 2);
+
     }
 
 

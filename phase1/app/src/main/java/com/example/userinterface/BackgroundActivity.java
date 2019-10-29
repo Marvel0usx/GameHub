@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.userinterface.GameManager.GameManager;
 import com.example.userinterface.GameManager.MenuActivity;
 import com.example.userinterface.GameManager.TowerDefense.TowerDefenseActivity;
 import com.example.userinterface.GameManager.User;
@@ -167,7 +168,8 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
                 int current = parseInt(strings[4]);
                 user.setScoreSystem(games, high, current);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("User",user);
+                GameManager gameManager = new GameManager(user);
+                bundle.putSerializable("Game",gameManager);
                 intent.putExtras(bundle);
                 context.startActivity(intent);
             }else{

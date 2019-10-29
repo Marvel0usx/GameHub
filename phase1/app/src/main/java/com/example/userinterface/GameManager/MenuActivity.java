@@ -2,26 +2,32 @@ package com.example.userinterface.GameManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.userinterface.BackgroundActivity;
 import com.example.userinterface.GameManager.HangMan.HangManActivity;
+import com.example.userinterface.GameManager.HangMan.HangManGameActivity;
 import com.example.userinterface.GameManager.SpaceInvaders.SpaceActivity;
+import com.example.userinterface.GameManager.TowerDefense.TowerDefense;
 import com.example.userinterface.GameManager.TowerDefense.TowerDefenseActivity;
+import com.example.userinterface.MainActivity;
 import com.example.userinterface.R;
 
-public class MenuActivity extends AppCompatActivity {
+import java.io.Serializable;
+
+public class MenuActivity extends Activity {
 
     Button btnStart;
     Button btnResume;
     Button btnStats;
-    User user;
+    GameManager gameManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         btnStart = findViewById(R.id.start);
         btnResume = findViewById(R.id.Resume);
@@ -29,53 +35,49 @@ public class MenuActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
-            user = (User)bundle.getSerializable("User");
+            gameManager = (GameManager) bundle.getSerializable("Game");
         }
-        if (user != null) {
-            if (user.getLevel() == 0){
+        if (gameManager != null) {
+            if (gameManager.getUser().getLevel()==0){
                 btnResume.setEnabled(false);
             }else{
                 btnResume.setEnabled(true);
             }
         }
-        GameBackgroundActivity backgroundActivity = new GameBackgroundActivity(MenuActivity.this);
+        super.onCreate(savedInstanceState);
 
+
+
+        btnStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gameManager.reLocate(MenuActivity.this, HangManGameActivity.class, 0);
+            }
+        });
+
+        btnResume.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (gameManager.getUser().getLevel()){
+                    case 1:
+                        gameManager.reLocate(MenuActivity.this,HangManGameActivity.class, 1);
+                        break;
+                    case 2:
+                        gameManager.reLocate(MenuActivity.this,TowerDefenseActivity.class, 2);
+                        break;
+                    case 3:
+                        gameManager.reLocate(MenuActivity.this,SpaceActivity.class, 3);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
     }
 
-    public void startGame(View v){
-        Intent intent = new Intent(MenuActivity.this, TowerDefenseActivity.class);
-        intent.putExtras(patch());
-        startActivity(intent);
-    }
-    public void Resume(View v){
-        Intent intent = null;
-        switch (user.getLevel()){
-            case 1:
-                intent = new Intent(MenuActivity.this, HangManActivity.class);
-                break;
-            case 2:
-                intent = new Intent(MenuActivity.this, TowerDefenseActivity.class);
-                break;
-            case 3:
-                intent = new Intent(MenuActivity.this, SpaceActivity.class);
-                break;
-            default:
-                break;
-        }
-        if (intent != null) {
-            intent.putExtras(patch());
-        }
-        startActivity(intent);
-    }
 
     public void Stats(View view) {
         Intent intent = new Intent(MenuActivity.this, Stats.class);
         startActivity(intent);
-    }
-
-    public Bundle patch(){
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("User",user);
-        return bundle;
     }
 }

@@ -4,6 +4,8 @@ import android.app.Activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,6 +17,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.os.Bundle;
 import java.util.Random;
+
+import com.example.userinterface.GameManager.GameManager;
+import com.example.userinterface.GameManager.MenuActivity;
+import com.example.userinterface.GameManager.TowerDefense.TowerDefenseActivity;
+import com.example.userinterface.GameManager.User;
 import com.example.userinterface.R;
 import android.widget.GridView;
 
@@ -30,6 +37,8 @@ public class HangManGameActivity extends Activity{
     private String currentWord;
     private LinearLayout wordLayout;
     private TextView[] characterViews;
+    private GameManager gameManager;
+    private User user;
 
 
     @Override
@@ -42,6 +51,12 @@ public class HangManGameActivity extends Activity{
         rand = new Random();
         currentWord = "";
         wordLayout = findViewById(R.id.word);
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            gameManager = (GameManager) bundle.getSerializable("Game");
+            user= (User) bundle.getSerializable("User");
+        }
 
         balloons[0] = findViewById(R.id.ballon1);
         balloons[1] = findViewById(R.id.ballon2);
@@ -50,6 +65,11 @@ public class HangManGameActivity extends Activity{
         balloons[4] = findViewById(R.id.ballon5);
         balloons[5] = findViewById(R.id.ballon6);
         playHangMan();
+    }
+
+    @Override
+    public void onBackPressed(){
+        gameManager.reLocate(HangManGameActivity.this, MenuActivity.class, 1);
     }
 
 
@@ -76,10 +96,12 @@ public class HangManGameActivity extends Activity{
                     AlertDialog.Builder winMsg = new AlertDialog.Builder(this);
                     winMsg.setTitle("YAY");
                     winMsg.setMessage("You win! Congratulations!");
-                    winMsg.setNegativeButton("Exit",
+                    winMsg.setNegativeButton("Next",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
+                                    gameManager.reLocate(HangManGameActivity.this, TowerDefenseActivity.class, 2);
                                     HangManGameActivity.this.finish();
+
                                 }});
 
                     winMsg.show();
@@ -99,6 +121,7 @@ public class HangManGameActivity extends Activity{
                     loseMsg.setNegativeButton("Try again",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
+                                    gameManager.reLocate(HangManGameActivity.this, TowerDefenseActivity.class, 2);
                                     HangManGameActivity.this.finish();
                                 }});
 
