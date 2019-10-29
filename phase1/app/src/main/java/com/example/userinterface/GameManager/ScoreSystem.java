@@ -1,14 +1,16 @@
 package com.example.userinterface.GameManager;
 
-public class ScoreSystem {
+import java.io.Serializable;
+
+public class ScoreSystem implements Serializable {
     public int gamesPlayed;
     public int highScore;
-    public int totalScore;
+    public int currentScore;
 
-    public ScoreSystem(){
-        gamesPlayed = 0;
-        highScore = 0;
-        totalScore = 0;
+    public ScoreSystem(int gamesPlayed, int highScore, int currentScore){
+        this.gamesPlayed = gamesPlayed;
+        this.highScore = highScore;
+        this.currentScore = currentScore;
     }
     public void setGamesPlayed(int gamesPlayed) {
         this.gamesPlayed = gamesPlayed;
@@ -18,9 +20,6 @@ public class ScoreSystem {
         this.highScore = highScore;
     }
 
-    public void setTotalScore(int totalScore) {
-        this.totalScore = totalScore;
-    }
 
     public int getGamesPlayed() {
         return gamesPlayed;
@@ -30,11 +29,12 @@ public class ScoreSystem {
         return highScore;
     }
 
-    public int getTotalScore() {
-        return totalScore;
+    public void setCurrentScore(int currentScore) {
+        this.currentScore = currentScore;
     }
 
-
-
+    public int getCurrentScore() {
+        return currentScore;
+    }
 
 }
