@@ -35,7 +35,6 @@ public class SpaceActivity extends Activity {
 
         btnLeft = findViewById(R.id.Left);
         btnRight = findViewById(R.id.Right);
-        btnExit = findViewById(R.id.Exit);
 
     }
     public void onClick(View v){
