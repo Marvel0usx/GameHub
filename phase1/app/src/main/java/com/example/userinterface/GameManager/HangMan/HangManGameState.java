@@ -1,6 +1,4 @@
 package com.example.userinterface.GameManager.HangMan;
 
-public class HangManMain {
-
-
+public class HangManGameState {
 }

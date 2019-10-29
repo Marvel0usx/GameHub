@@ -6,11 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.example.userinterface.GameManager.MenuActivity;
 import com.example.userinterface.GameManager.TowerDefense.TowerDefenseActivity;
+import com.example.userinterface.GameManager.User;
 
 
 import java.io.BufferedReader;
@@ -24,6 +26,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+
+import static java.lang.Integer.parseInt;
 
 public class BackgroundActivity extends AsyncTask<String,Void,String> {
     private SharedPreferences preferences;
@@ -64,7 +68,6 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
                 String myData = URLEncoder.encode("username","UTF-8")+"="+URLEncoder.encode(regName,"UTF-8")+"&"
                         +URLEncoder.encode("email","UTF-8")+"="+URLEncoder.encode(regEmail,"UTF-8")+"&"
                         +URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(regPassword,"UTF-8");
-                Log.d("message",myData);
                 bufferedWriter.write(myData);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -158,6 +161,14 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
             if(strings[0].equals("true")){
 
                 Intent intent = new Intent(context, MenuActivity.class);
+                User user = new User(strings[1], parseInt(strings[5]));
+                int high = parseInt(strings[2]);
+                int games = parseInt(strings[3]);
+                int current = parseInt(strings[4]);
+                user.setScoreSystem(games, high, current);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("User",user);
+                intent.putExtras(bundle);
                 context.startActivity(intent);
             }else{
                 display("Login Failed...", "That email and password do not match our records :(.");

@@ -91,19 +91,28 @@ public class HangManGameActivity extends Activity{
                 balloons[remainingBallons - 1].setVisibility(v.INVISIBLE);
                 remainingBallons = remainingBallons - 1;
 
+                if (remainingBallons == 0) {
+                    AlertDialog.Builder loseMsg = new AlertDialog.Builder(this);
+                    System.out.println(20);
+                    loseMsg.setTitle("OOPS :(");
+                    loseMsg.setMessage("You lose!");
+                    loseMsg.setNegativeButton("Try again",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    HangManGameActivity.this.finish();
+                                }});
 
-            } else{
-                // player has lost
-                AlertDialog.Builder loseMsg = new AlertDialog.Builder(this);
-                loseMsg.setTitle("OOPS :(");
-                loseMsg.setMessage("You lose!");
+                    loseMsg.show();
+                }
+
+
             }
             }
 
     private void playHangMan() {
         // plays a new HangMan game
        // String newWord = words[rand.nextInt(words.length)];
-        currentWord = "COMPUTER";
+        currentWord = "BULLETPROOF";
         characterViews = new TextView[currentWord.length()];
         wordLayout.removeAllViews();
 
