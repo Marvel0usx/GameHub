@@ -68,12 +68,22 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
                 bufferedWriter.write(myData);
                 bufferedWriter.flush();
                 bufferedWriter.close();
+
                 InputStream inputStream = httpURLConnection.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String dataResponse = "";
+                String inputLine = "";
+                while((inputLine = bufferedReader.readLine()) != null){
+                    dataResponse += inputLine;
+                }
+                bufferedReader.close();
                 inputStream.close();
+                httpURLConnection.disconnect();
 
                 editor.putString("flag","register");
                 editor.commit();
-                return "Successfully Registered " + regName;
+                return dataResponse;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -135,12 +145,18 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
     @Override
     protected void onPostExecute(String s) {
         String flag = preferences.getString("flag","0");
-
+        String [] strings = s.split("[,]");
         if(flag.equals("register")) {
-            Toast.makeText(context,s,Toast.LENGTH_LONG).show();
+            if (strings.length>1){
+                Intent intent = new Intent(context, SignupActivity.class);
+                context.startActivity(intent);
+            }
+            Toast.makeText(context, strings[0], Toast.LENGTH_LONG).show();
+
         }
         else if(flag.equals("login")){
-            if(s.equals("true")){
+            if(strings[0].equals("true")){
+
                 Intent intent = new Intent(context, MenuActivity.class);
                 context.startActivity(intent);
             }else{

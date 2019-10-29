@@ -1,8 +1,13 @@
 package com.example.userinterface.GameManager.SpaceInvaders;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+
 abstract class SpaceObject {
-    private int x;
-    private int y;
+    private float x;
+    private float y;
+    public String appearance;
+    public Paint paintText = new Paint();
 
     public double getSpeed() {
         return speed;
@@ -20,19 +25,19 @@ abstract class SpaceObject {
         this.setY(y);
     }
 
-    private void setX(int x) {
+    public void setX(float x) {
         this.x = x;
     }
 
-    private void setY(int y) {
+    public void setY(float y) {
         this.y = y;
     }
 
-    public int getX() {
+    public float getX() {
         return x;
     }
 
-    public int getY() {
+    public float getY() {
         return y;
     }
 
@@ -40,5 +45,5 @@ abstract class SpaceObject {
 
     }
 
-
+    public void draw(Canvas canvas){}
 }

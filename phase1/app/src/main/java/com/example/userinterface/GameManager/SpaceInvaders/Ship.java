@@ -18,4 +18,7 @@ abstract class Ship extends SpaceObject {
     public void shoot(){
         //fires bullet objects that damage player
     }
+    public void draw(){
+
+    }
 }

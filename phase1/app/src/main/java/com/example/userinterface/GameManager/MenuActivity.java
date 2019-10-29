@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.userinterface.GameManager.HangMan.HangManActivity;
+import com.example.userinterface.GameManager.HangMan.HangManGameActivity;
 import com.example.userinterface.GameManager.TowerDefense.TowerDefenseActivity;
 import com.example.userinterface.R;
 
