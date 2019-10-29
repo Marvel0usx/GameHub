@@ -17,6 +17,7 @@ public class MenuActivity extends AppCompatActivity {
     Button btnStart;
     Button btnResume;
     Button btnStats;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +26,20 @@ public class MenuActivity extends AppCompatActivity {
         btnStart = findViewById(R.id.start);
         btnResume = findViewById(R.id.Resume);
         btnStats = findViewById(R.id.Stats);
-        btnResume.setEnabled(false);
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            user = (User)bundle.getSerializable("User");
+        }
+        if (user != null) {
+            if (user.getLevel() == 0){
+                btnResume.setEnabled(false);
+            }else{
+                btnResume.setEnabled(true);
+            }
+        }
         BackgroundActivity backgroundActivity = new BackgroundActivity(MenuActivity.this);
+
     }
 
     public void startGame(View v){
