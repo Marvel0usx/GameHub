@@ -75,12 +75,12 @@ public class SpaceInvaders implements Observer{
 
     // Utils
     public void layout() {
-        player = new Player((this.width >> 1), 1300, 0, 300);
-        player.registerObserver(this);
-        subjects.add(player);
+        this.player = new Player((this.width >> 1), 1300, 0, 300);
+        this.player.registerObserver(this);
+        subjects.add(this.player);
 
         for (int x = 100; x < 800; x += 100)
-            subjects.add(new Enemy(x, 100, 100, 10, 100));
+            subjects.add(new Enemy(x, 100, 100, 3, 100));
         for (Subject sub : subjects)
             sub.registerObserver(this);
     }
@@ -99,24 +99,26 @@ public class SpaceInvaders implements Observer{
 
     public void draw(Canvas canvas) {
         for (SpaceObject item : subjects) item.draw(canvas);
-        player.draw(canvas);
+        this.player.draw(canvas);
     }
 
     void goLeft() {
 //        moveDelay = 1;
 //        command = -1;
         // If the player is at the border, then it can't go further
-        if (isAtBorder(player))
-            player.move(0);
-        else
-            player.move(-1);
+//        if (isAtBorder(player))
+//            player.move(0);
+//        else
+        System.out.println(this.player == null);
+        this.player.move(-1);
     }
     void goRight() {
 //        moveDelay = 1;
 //        command = 1;
-        if (isAtBorder(player))
-            player.move(0);
-        else
-            player.move(1);
+//        if (isAtBorder(player))
+//            player.move(0);
+//        else
+        System.out.println(this.player == null);
+        this.player.move(1);
     }
 }

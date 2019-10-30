@@ -28,7 +28,7 @@ public class Player extends Ship {
         // generate new bullet object and add this object's observer
         // to the bullet object's observer. Return the bullet object.
         setChanged();
-        bullet = new PlayerBullet(getX() + 12, getY(), 100, 10);
+        bullet = new PlayerBullet(getX() + 12, getY(), 100, 8);
         for (Observer obs : getObservers())
             bullet.registerObserver(obs);
     }

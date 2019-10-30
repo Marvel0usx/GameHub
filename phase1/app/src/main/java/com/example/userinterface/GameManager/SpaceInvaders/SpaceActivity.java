@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Space;
 
 import com.example.userinterface.GameManager.MenuActivity;
 import com.example.userinterface.GameManager.*;
@@ -15,6 +16,7 @@ import com.example.userinterface.R;
 public class SpaceActivity extends Activity {
 
     SpaceInvaders Space;
+    SpaceView spaceView;
     Button btnLeft, btnRight, btnExit;
     GameManager gameManager;
     private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
@@ -23,19 +25,16 @@ public class SpaceActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Space = new SpaceInvaders(screenWidth, screenHeight);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-
-        SpaceView spaceView = new SpaceView(this);
-        spaceView.setSpace(Space);
+        SpaceInvaders space = new SpaceInvaders(screenWidth, screenHeight);
+        spaceView = findViewById(R.id.spaceView);
         setContentView(R.layout.activity_space);
 
         btnLeft = findViewById(R.id.Left);
         btnRight = findViewById(R.id.Right);
-
     }
     public void onClick(View v){
         switch (v.getId()){
@@ -46,7 +45,5 @@ public class SpaceActivity extends Activity {
             default:
                 break;
         }
-
     }
-
 }
