@@ -9,6 +9,11 @@ abstract class Ship extends SpaceObject{
         this.setLives(lives);
     }
 
+    Ship(int x, int y, int damage, int xSpeed, int ySpeed, int lives) {
+        super(x, y, damage, xSpeed, ySpeed);
+        this.setLives(lives);
+    }
+
     // Setters and getters
     private void setLives(int lives) {
         this.lives = lives;

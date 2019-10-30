@@ -7,7 +7,7 @@ abstract class Bullet extends SpaceObject{
     Bullet(int x, int y){
         super(x, y);
         this.appearance = "*";
-        this.paintText.setColor(Color.RED);
+        this.paintText.setColor(Color.BLUE);
         this.paintText.setTextSize(36);
     }
 
@@ -28,8 +28,9 @@ abstract class Bullet extends SpaceObject{
     // Utils
     void move() {
         setChanged();
-        setX(getX() + getxSpeed());
-        setY(getY() + getySpeed());
+        setX(getX() + getXSpeed());
+        setY(getY() + getYSpeed());
+        notifyObservers();
     }
 
     public void draw(Canvas canvas){

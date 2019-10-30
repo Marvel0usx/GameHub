@@ -14,7 +14,6 @@ abstract class SpaceObject implements Subject {
     private int xSpeed;
     private int ySpeed;
     private boolean changed;
-    private boolean isDestroyed;
     private List<Observer> observers;
 
     // Public attributes
@@ -25,7 +24,6 @@ abstract class SpaceObject implements Subject {
     SpaceObject(int x, int y) {
         setX(x);
         setY(y);
-        isDestroyed = false;
         observers = new ArrayList<>();
     }
 
@@ -34,8 +32,7 @@ abstract class SpaceObject implements Subject {
         setY(y);
         setDamage(damage);
         setySpeed(ySpeed);
-        setxSpeed(0);
-        isDestroyed = false;
+        setXSpeed(0);
         observers = new ArrayList<>();
     }
 
@@ -43,9 +40,8 @@ abstract class SpaceObject implements Subject {
         setX(x);
         setY(y);
         setDamage(damage);
-        setxSpeed(xSpeed);
+        setXSpeed(xSpeed);
         setySpeed(ySpeed);
-        isDestroyed = false;
         observers = new ArrayList<>();
     }
 
@@ -70,36 +66,28 @@ abstract class SpaceObject implements Subject {
         return damage;
     }
 
-    public void setDamage(int damage) {
+    private void setDamage(int damage) {
         this.damage = damage;
     }
 
-    public int getxSpeed() {
+    int getXSpeed() {
         return xSpeed;
     }
 
-    public void setxSpeed(int xSpeed) {
+    void setXSpeed(int xSpeed) {
         this.xSpeed = xSpeed;
     }
 
-    public int getySpeed() {
+    int getYSpeed() {
         return ySpeed;
     }
 
-    public void setySpeed(int ySpeed) {
+    private void setySpeed(int ySpeed) {
         this.ySpeed = ySpeed;
     }
 
-    public List<Observer> getObservers() {
+    List<Observer> getObservers() {
         return observers;
-    }
-
-    public boolean isDestroyed() {
-        return isDestroyed;
-    }
-
-    public void setDestroyed(boolean destroyed) {
-        isDestroyed = destroyed;
     }
 
     // Implements Subject
@@ -146,7 +134,5 @@ abstract class SpaceObject implements Subject {
     }
 
     // Utils
-    abstract void move();
-
     public void draw(Canvas canvas){}
 }

@@ -3,8 +3,6 @@ package com.example.userinterface.GameManager.SpaceInvaders;
 import android.graphics.Canvas;
 import android.graphics.Color;
 
-import java.util.List;
-
 public class Enemy extends Ship {
     private boolean changed;
     private EnemyBullet bullet;
@@ -18,7 +16,7 @@ public class Enemy extends Ship {
 
     public Enemy(int x, int y, int damage, int xSpeed, int ySpeed, int lives){
         super(x, y, damage, ySpeed, lives);
-        setxSpeed(xSpeed);
+        setXSpeed(xSpeed);
         this.appearance = "💠";
         this.paintText.setColor(Color.GREEN);
         this.paintText.setTextSize(36);
@@ -36,21 +34,16 @@ public class Enemy extends Ship {
         //fires bullet objects that damage player
         // generate new bullet object and add this object's observer
         // to the bullet object's observer. Return the bullet object.
-        bullet = new EnemyBullet(getX(), getY(), 1, 1);
+        bullet = new EnemyBullet(getX() + 12, getY(), 100, 40);
         for (Observer obs : getObservers())
             bullet.registerObserver(obs);
     }
 
     void move() {
-        setX(getX() + getxSpeed());
-        setY(getY() + getySpeed());
-    }
-
-    void update(){
-        move();
         setChanged();
-        bullet = null;
-        if (Math.random() < 0.3){
+        setX(getX() + getXSpeed());
+        setY(getY() + getYSpeed());
+        if (Math.random() < 0.1) {
             shoot();
             for (Observer obs : getObservers())
                 obs.registerSubject(bullet);

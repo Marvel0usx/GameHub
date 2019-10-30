@@ -76,7 +76,7 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void update(){
-        Space.update();
+        Space.run();
     }
 
     public void draw(Canvas canvas){

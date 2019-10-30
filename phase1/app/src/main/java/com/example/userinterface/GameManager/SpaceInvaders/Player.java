@@ -6,9 +6,9 @@ import android.graphics.Color;
 public class Player extends Ship {
     private PlayerBullet bullet;
 
-    Player(int x, int y, int lives){
-        super(x, y, 0, 0, lives);
-        this.appearance = "🗼";
+    Player(int x, int y, int xSpeed, int ySpeed, int lives) {
+        super(x, y, 0, 10, ySpeed, lives);
+        this.appearance = "🔺";
         this.paintText.setColor(Color.CYAN);
         this.paintText.setTextSize(36);
     }
@@ -27,19 +27,15 @@ public class Player extends Ship {
         // generate new bullet object and add this object's observer
         // to the bullet object's observer. Return the bullet object.
         setChanged();
-        bullet = new PlayerBullet(getX(), getY(), 100, 10);
+        bullet = new PlayerBullet(getX() + 12, getY(), 100, 10);
         for (Observer obs : getObservers())
             bullet.registerObserver(obs);
     }
 
-    void move() {
-        setX(getX() + getxSpeed());
-        setY(getY() + getySpeed());
-    }
-
-    void update(){
+    // update the subject and subsequently update the observers
+    void move(int directionVector) {
         setChanged();
-        bullet = null;
+        setX(getX() + getXSpeed() * directionVector);
         if (Math.random() < 0.3){
             shoot();
             for (Observer obs : getObservers())
