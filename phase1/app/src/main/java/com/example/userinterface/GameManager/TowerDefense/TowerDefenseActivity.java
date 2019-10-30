@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.Window;
@@ -26,6 +27,7 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
     int width;
     int height;
     GameManager gameManager;
+    GameView gameView;
 
 
     @Override
@@ -42,6 +44,8 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
+
+        gameView = findViewById(R.id.myView);
         width = size.x;
         height = size.y;
         towerDefense = new TowerDefense(width, height);
@@ -62,7 +66,6 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
         btnTower1 = findViewById(R.id.tower1);
         btnTower2 = findViewById(R.id.tower2);
         btnTower3 = findViewById(R.id.tower3);
-        GameView gameView = findViewById(R.id.myView);
         if(gameView != null) {
             gameView.setTowerDefense(towerDefense);
         }
@@ -77,12 +80,13 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.start:
-                //btnHit.setVisibility(View.VISIBLE);
-                btnTower1.setVisibility(View.VISIBLE);
-                btnTower2.setVisibility(View.VISIBLE);
-                btnTower3.setVisibility(View.VISIBLE);
+                btnHit.setVisibility(View.VISIBLE);
+                //btnTower1.setVisibility(View.VISIBLE);
+                //btnTower2.setVisibility(View.VISIBLE);
+                //btnTower3.setVisibility(View.VISIBLE);
                 btnStart.setVisibility(View.GONE);
                 towerDefense.addEnemy();
+                gameView.setGameStart(true);
                 break;
 
             case R.id.hit:
@@ -96,26 +100,24 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
 
     @Override
     public void onVariableChange(boolean gameOver) {
+        gameView.setGameOver(true);
+        System.out.println("game over");
+        Log.d("message", "game over");
+        boolean win = towerDefense.getWin();
+        AlertDialog.Builder db = new AlertDialog.Builder(TowerDefenseActivity.this);
+        db.setPositiveButton("ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+               finish();
+            }
+        });
 
-
-//        boolean win = towerDefense.getWin();
-//        AlertDialog.Builder db = new AlertDialog.Builder(this);
-//        db.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//               finish();
-//            }
-//        });
-//
-//        if (!win) {
-//            db.setMessage("You have LOST:(!");
-//        }
-//        else{
-//            db.setMessage("Congratulations! You have WON!!");
-//        }
-//
-//
-//    }
+        if (!win) {
+            db.setMessage("You have LOST:(!");
+        }
+        else{
+            db.setMessage("Congratulations! You have WON!!");
+        }
     }
 }
 
