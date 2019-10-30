@@ -40,8 +40,10 @@ public class SpaceActivity extends Activity {
         switch (v.getId()){
             case R.id.Left:
                 spaceView.Space.goLeft();
+                break;
             case R.id.Right:
                 spaceView.Space.goRight();
+                break;
             default:
                 break;
         }

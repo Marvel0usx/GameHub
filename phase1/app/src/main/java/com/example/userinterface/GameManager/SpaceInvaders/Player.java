@@ -44,7 +44,7 @@ public class Player extends Ship {
                 obs.registerSubject(this.bullet);
             this.bullet = null;
         }
-        setX(getX() + getXSpeed() * directionVector);
+        setX(getX() + (getXSpeed() * directionVector));
         setUpdated(true);
         notifyObservers();
     }
