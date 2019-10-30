@@ -65,7 +65,7 @@ public class MenuActivity extends Activity {
                     case 2:
                         gameManager.reLocate(MenuActivity.this,3,3);
                         break;
-                    case 3:
+                    case 4:
                         gameManager.reLocate(MenuActivity.this,4,4);
                         break;
                     default:

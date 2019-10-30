@@ -15,11 +15,8 @@ import java.io.Serializable;
 public class GameManager implements Serializable, Games{
     private User user;
     private Class[] classes;
-    private int gameNum;
-    private int saved;
 
     User getUser() {
-        gameNum = 0;
         return user;
     }
 
