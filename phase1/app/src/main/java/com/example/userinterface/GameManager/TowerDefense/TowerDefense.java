@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class TowerDefense {
     //User user;
     int money = 200;
-    int waves = 1;
+    private int currentScore;
     private int lives = 5;
     private int mapHeight;
     private int mapWidth;
@@ -32,10 +32,22 @@ public class TowerDefense {
             enemy.hit(clicker);
             clicker = 0;
         }
+        removeEnemy(); // remove any enemies with 0 health or out of the map
+        if (lives<=0 || wave1.isEmpty()){
+            gameOver = true;
+            if (lives > 0)
+                currentScore += lives *100; //each life left adds another 100 pts.
+            win = lives>0;
+            if (listener != null)
+                listener.onVariableChange(true);
+        }
+    }
+    private void removeEnemy(){
         ArrayList<Enemy> temp = new ArrayList<>();
         for (Enemy e: wave1){
             if (e.getHealth() <= 0){
                 temp.add(e);
+                currentScore += e.getScore();
             }
             if (e.getY() >= mapHeight-300) {
                 temp.add(e);
@@ -47,14 +59,7 @@ public class TowerDefense {
         for (Enemy item: temp){
             wave1.remove(item);
         }
-        if (lives<=0 || wave1.isEmpty()){
-            gameOver = true;
-            win = lives>0;
-            if (listener != null)
-                listener.onVariableChange(true);
-        }
     }
-
 
     private Enemy getFirstEnemy() {
         int yCoor = -mapHeight / 2 - 100;  //the highest enemy is half the map height above
@@ -96,8 +101,12 @@ public class TowerDefense {
     }
 
     void clicked(){clicker += 1;}
-
     boolean getWin(){return win;}
+    public int getCurrentScore() {
+        return currentScore;
+    }
+
+
 
 
 }

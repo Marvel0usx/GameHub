@@ -5,7 +5,8 @@ import android.graphics.Canvas;
 abstract class Enemy {
     int health;
     int speed;
-    int reward;
+
+    int score;
     int x;
     int y;
 
@@ -18,7 +19,7 @@ abstract class Enemy {
     public abstract void hit(int num);
 
     public int getY(){return y;}
-
+    public int getScore(){return score;}
     public void setLocation(int x, int y){
         this.x = x;
         this.y = y;

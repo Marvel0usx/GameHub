@@ -101,6 +101,7 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
     @Override
     public void onVariableChange(boolean gameOver) {
         gameView.setGameOver(true);
+
         System.out.println("game over");
         Log.d("message", "game over");
         boolean win = towerDefense.getWin();
