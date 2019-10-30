@@ -21,5 +21,5 @@ public interface Subject {
     void notifyObservers();
 
     //method to get updates from subject
-    Object getUpdate(Observer obs);
+    int[] getUpdate(Observer obs);
 }

@@ -1,6 +1,6 @@
 package com.example.userinterface.GameManager.SpaceInvaders;
 
-public interface Observer<T extends SpaceObject> {
+public interface Observer {
     // Method to update the observer, used by subject.
     public void update();
 

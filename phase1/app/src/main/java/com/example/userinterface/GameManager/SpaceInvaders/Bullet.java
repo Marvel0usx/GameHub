@@ -2,25 +2,36 @@ package com.example.userinterface.GameManager.SpaceInvaders;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 
-public class Bullet extends SpaceObject {
-
-    float velocity;
-
-    Bullet(float x, float y, float velocity) {
+abstract class Bullet extends SpaceObject{
+    Bullet(int x, int y){
         super(x, y);
         this.appearance = "*";
         this.paintText.setColor(Color.RED);
         this.paintText.setTextSize(36);
-        this.velocity = velocity;
     }
 
-
-    public void move(int height) {
-        this.setY(this.getY() + this.velocity);
+    Bullet(int x, int y, int damage, int ySpeed){
+        super(x, y, damage, ySpeed);
+        this.appearance = "*";
+        this.paintText.setColor(Color.RED);
+        this.paintText.setTextSize(36);
     }
-    @Override
+
+    // Implements Subject Interface
+    // If this is a bullet fired by enemy, the observer will be player
+    // Method to update this object
+    public int[] getUpdate(Observer obj) {
+        return new int[] {getX(), getY()};
+    }
+
+    // Utils
+    void move() {
+        setChanged();
+        setX(getX() + getxSpeed());
+        setY(getY() + getySpeed());
+    }
+
     public void draw(Canvas canvas){
         canvas.drawText(this.appearance, this.getX(), this.getY(), paintText);
     }
