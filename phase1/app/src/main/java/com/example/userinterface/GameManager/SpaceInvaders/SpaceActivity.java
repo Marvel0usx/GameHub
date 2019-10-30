@@ -29,9 +29,9 @@ public class SpaceActivity extends Activity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        SpaceInvaders space = new SpaceInvaders(screenWidth, screenHeight);
-        spaceView = findViewById(R.id.spaceView);
+        SpaceInvaders Space = new SpaceInvaders(screenWidth, screenHeight);
         setContentView(R.layout.activity_space);
+        spaceView = findViewById(R.id.spaceView);
 
         btnLeft = findViewById(R.id.Left);
         btnRight = findViewById(R.id.Right);
@@ -39,9 +39,9 @@ public class SpaceActivity extends Activity {
     public void onClick(View v){
         switch (v.getId()){
             case R.id.Left:
-                Space.goLeft();
+                spaceView.Space.goLeft();
             case R.id.Right:
-                Space.goRight();
+                spaceView.Space.goRight();
             default:
                 break;
         }
