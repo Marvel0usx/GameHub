@@ -44,24 +44,39 @@ public class SpaceInvaders implements Observer{
     // update machine-controlled objects
     // this is the responsibility as a SpaceInvader manager
     void run() {
+        ArrayList<SpaceObject> subjectsToRemove = new ArrayList<>();
+        ArrayList<SpaceObject> subjectsToMove = new ArrayList<>();
         for (SpaceObject obj : subjects) {
+            if (obj.isUpdated())
+                continue;
             if (obj instanceof Bullet) {
                 if (isAboutBounceBack(obj) || isAtBorder(obj)) {
                     // eliminate bullet & enemy when it flies out
                     ((Subject) obj).unregisterAllObservers();
-                    subjects.remove(obj);
+                    subjectsToRemove.add(obj);
                 } else
-                    ((Bullet) obj).move();
+                    subjectsToMove.add(obj);
             } else if (obj instanceof Enemy) {
                 if (isAtBorder(obj)) {
                     ((Subject) obj).unregisterAllObservers();
-                    subjects.remove(obj);
+                    subjectsToRemove.add(obj);
                 } else if (isAboutBounceBack(obj))
                     // reverse the heading of enemy
                     obj.setXSpeed(-obj.getXSpeed());
                 else
-                    ((Enemy) obj).move();
+                    subjectsToMove.add(obj);
             }
+        }
+        for (SpaceObject obj : subjectsToRemove)
+            subjects.remove(obj);
+        for (SpaceObject obj : subjectsToMove)
+            if (obj instanceof Bullet) {
+                ((Bullet) obj).move();
+            } else if (obj instanceof Enemy) {
+                ((Enemy) obj).move();
+            }
+        for (SpaceObject obj : subjects) {
+            obj.setUpdated(false);
         }
     }
 

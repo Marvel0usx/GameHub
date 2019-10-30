@@ -19,6 +19,7 @@ abstract class Bullet extends SpaceObject{
     // Utils
     void move() {
         setChanged();
+        setUpdated(true);
         setX(getX() + getXSpeed());
         setY(getY() + getYSpeed());
         notifyObservers();

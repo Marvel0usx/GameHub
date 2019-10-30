@@ -28,22 +28,24 @@ public class Player extends Ship {
         // generate new bullet object and add this object's observer
         // to the bullet object's observer. Return the bullet object.
         setChanged();
-        bullet = new PlayerBullet(getX() + 12, getY(), 100, 8);
+        this.bullet = new PlayerBullet(getX() + 12, getY(), 100, 8);
         for (Observer obs : getObservers())
-            bullet.registerObserver(obs);
+            this.bullet.registerObserver(obs);
+        this.bullet.setUpdated(true);
     }
 
     // update the subject and subsequently update the observers
     void move(int directionVector) {
         setChanged();
-        setX(getX() + getXSpeed() * directionVector);
         if (shootCount == 0) {
             shoot();
             shootCount = 10;
             for (Observer obs : getObservers())
-                obs.registerSubject(bullet);
-            bullet = null;
+                obs.registerSubject(this.bullet);
+            this.bullet = null;
         }
+        setX(getX() + getXSpeed() * directionVector);
+        setUpdated(true);
         notifyObservers();
     }
 

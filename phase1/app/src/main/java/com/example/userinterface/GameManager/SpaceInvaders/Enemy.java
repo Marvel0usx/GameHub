@@ -33,21 +33,23 @@ public class Enemy extends Ship {
         //fires bullet objects that damage player
         // generate new bullet object and add this object's observer
         // to the bullet object's observer. Return the bullet object.
-        bullet = new EnemyBullet(getX() + 12, getY(), 100, 5);
+        this.bullet = new EnemyBullet(getX() + 13, getY(), 100, 5);
         for (Observer obs : getObservers())
-            bullet.registerObserver(obs);
+            this.bullet.registerObserver(obs);
+        this.bullet.setUpdated(true);
     }
 
     void move() {
         setChanged();
-        setX(getX() + getXSpeed());
-        setY(getY() + getYSpeed());
         if (Math.random() < 0.005) {
             shoot();
             for (Observer obs : getObservers())
-                obs.registerSubject(bullet);
-            bullet = null;
+                obs.registerSubject(this.bullet);
+            this.bullet = null;
         }
+        setX(getX() + getXSpeed());
+        setY(getY() + getYSpeed());
+        setUpdated(true);
         notifyObservers();
     }
 

@@ -14,7 +14,7 @@ abstract class SpaceObject implements Subject {
     private int xSpeed;
     private int ySpeed;
     private boolean changed;
-    private boolean updated;
+    private boolean updated = false;
     private List<Observer> observers;
 
     // Public attributes
