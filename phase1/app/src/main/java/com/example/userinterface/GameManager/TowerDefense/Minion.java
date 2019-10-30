@@ -12,7 +12,7 @@ public class Minion extends Enemy {
     public Minion(){
         health = 10;
         speed = 20;
-        reward = 10;
+        score = 50;
         appearence = new String[]{"  o  ", " /|\\ ", "  ^  ", " / \\ "};
 
     }

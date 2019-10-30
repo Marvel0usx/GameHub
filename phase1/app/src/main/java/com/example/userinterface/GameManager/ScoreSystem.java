@@ -2,10 +2,11 @@ package com.example.userinterface.GameManager;
 
 import java.io.Serializable;
 
-public class ScoreSystem implements Serializable {
-    public int gamesPlayed;
-    public int highScore;
-    public int currentScore;
+class ScoreSystem implements Serializable {
+    int gamesPlayed;
+    int highScore;
+    int currentScore;
+
 
     public ScoreSystem(int gamesPlayed, int highScore, int currentScore){
         this.gamesPlayed = gamesPlayed;
