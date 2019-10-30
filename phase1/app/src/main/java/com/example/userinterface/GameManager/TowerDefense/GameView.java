@@ -11,9 +11,13 @@ import androidx.annotation.Nullable;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
+    public MainThread getThread() {
+        return thread;
+    }
+
     private MainThread thread;
     public TowerDefense towerDefense;
-    Button btnStart, btnHit;
+    boolean gameStart=false, gameOver=false;
 
     public GameView(Context context) {
         super(context);
@@ -44,8 +48,18 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         this.towerDefense = towerDefense;
     }
 
+    public void setGameStart(boolean gameStart){
+        this.gameStart = gameStart;
+    }
+
+    public void setGameOver(boolean gameOver){
+        this.gameOver = gameOver;
+    }
+
     public void update() {
-        towerDefense.update();
+        if (gameStart&& !gameOver) {
+            towerDefense.update();
+        }
     }
 
     public void draw(Canvas canvas) {
