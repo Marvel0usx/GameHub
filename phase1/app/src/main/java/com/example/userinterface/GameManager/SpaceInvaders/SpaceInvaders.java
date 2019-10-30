@@ -15,8 +15,6 @@ public class SpaceInvaders implements Observer{
     // Private attributes
     private int height;
     private int width;
-    private int command;
-    private int moveDelay;
     private Player player;
     private List<SpaceObject> subjects = new ArrayList<>();
 
@@ -77,11 +75,12 @@ public class SpaceInvaders implements Observer{
 
     // Utils
     public void layout() {
-        player = new Player((this.width >> 1), 1300, 10, 0, 300);
+        player = new Player((this.width >> 1), 1300, 0, 300);
         player.registerObserver(this);
-        subjects.add(new Enemy(100, 100, 100, 10, 100));
-        subjects.add(new Enemy(300, 200, 100, 10, 100));
-        subjects.add(new Enemy(400, 300, 100, 10, 100));
+        subjects.add(player);
+
+        for (int x = 100; x < 800; x += 100)
+            subjects.add(new Enemy(x, 100, 100, 10, 100));
         for (Subject sub : subjects)
             sub.registerObserver(this);
     }

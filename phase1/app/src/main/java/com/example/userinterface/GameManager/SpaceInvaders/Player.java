@@ -5,8 +5,9 @@ import android.graphics.Color;
 
 public class Player extends Ship {
     private PlayerBullet bullet;
+    private int shootCount = 10;
 
-    Player(int x, int y, int xSpeed, int ySpeed, int lives) {
+    Player(int x, int y, int ySpeed, int lives) {
         super(x, y, 0, 10, ySpeed, lives);
         this.appearance = "🔺";
         this.paintText.setColor(Color.CYAN);
@@ -36,8 +37,9 @@ public class Player extends Ship {
     void move(int directionVector) {
         setChanged();
         setX(getX() + getXSpeed() * directionVector);
-        if (Math.random() < 0.3){
+        if (shootCount == 0) {
             shoot();
+            shootCount = 10;
             for (Observer obs : getObservers())
                 obs.registerSubject(bullet);
             bullet = null;

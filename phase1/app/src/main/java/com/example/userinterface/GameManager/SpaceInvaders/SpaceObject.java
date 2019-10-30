@@ -21,12 +21,6 @@ abstract class SpaceObject implements Subject {
     Paint paintText = new Paint();
 
     // Initializer
-    SpaceObject(int x, int y) {
-        setX(x);
-        setY(y);
-        observers = new ArrayList<>();
-    }
-
     SpaceObject(int x, int y, int damage, int ySpeed){
         setX(x);
         setY(y);

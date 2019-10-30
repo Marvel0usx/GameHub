@@ -4,10 +4,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 
 public class Enemy extends Ship {
-    private boolean changed;
     private EnemyBullet bullet;
 
-    public Enemy(int x, int y, int damage, int ySpeed, int lives){
+    Enemy(int x, int y, int damage, int ySpeed, int lives) {
         super(x, y, damage, ySpeed, lives);
         this.appearance = "💠";
         this.paintText.setColor(Color.GREEN);
@@ -43,7 +42,7 @@ public class Enemy extends Ship {
         setChanged();
         setX(getX() + getXSpeed());
         setY(getY() + getYSpeed());
-        if (Math.random() < 0.1) {
+        if (Math.random() < 0.01) {
             shoot();
             for (Observer obs : getObservers())
                 obs.registerSubject(bullet);

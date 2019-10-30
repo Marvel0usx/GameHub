@@ -1,20 +1,11 @@
 package com.example.userinterface.GameManager.SpaceInvaders;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 
 abstract class Bullet extends SpaceObject{
-    Bullet(int x, int y){
-        super(x, y);
-        this.appearance = "*";
-        this.paintText.setColor(Color.BLUE);
-        this.paintText.setTextSize(36);
-    }
-
     Bullet(int x, int y, int damage, int ySpeed){
         super(x, y, damage, ySpeed);
         this.appearance = "*";
-        this.paintText.setColor(Color.RED);
         this.paintText.setTextSize(36);
     }
 
