@@ -124,7 +124,6 @@ public class SpaceInvaders implements Observer{
 //        if (isAtBorder(player))
 //            player.move(0);
 //        else
-        System.out.println(this.player == null);
         this.player.move(-1);
     }
     void goRight() {
@@ -133,7 +132,6 @@ public class SpaceInvaders implements Observer{
 //        if (isAtBorder(player))
 //            player.move(0);
 //        else
-        System.out.println(this.player == null);
         this.player.move(1);
     }
 }
