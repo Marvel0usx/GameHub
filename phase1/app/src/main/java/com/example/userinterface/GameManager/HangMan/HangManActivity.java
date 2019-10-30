@@ -2,6 +2,8 @@ package com.example.userinterface.GameManager.HangMan;
 
 import android.app.Activity;
 import android.os.Bundle;
+
+import com.example.userinterface.GameManager.Games;
 import com.example.userinterface.R;
 import android.content.Intent;
 import android.view.View;
@@ -12,6 +14,7 @@ public class HangManActivity extends Activity implements OnClickListener{
 
     //comment
     // hey
+    Games gameManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +25,18 @@ public class HangManActivity extends Activity implements OnClickListener{
         // the play button that controls if the game will start
         Button playBtn = findViewById(R.id.playButton);
         playBtn.setOnClickListener(this);
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            gameManager = (Games) bundle.getSerializable("Game");
+        }
     }
 
     @Override
     public void onClick(View v) {
         // handles clicks
         if (v.getId() == R.id.playButton) {
-            Intent playIntent = new Intent(this, HangManGameActivity.class);
-            this.startActivity(playIntent);
+            gameManager.reLocate(this,2,2);
         }
     }
 }

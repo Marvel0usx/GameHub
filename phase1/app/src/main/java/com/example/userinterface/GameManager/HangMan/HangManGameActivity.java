@@ -19,6 +19,7 @@ import android.os.Bundle;
 import java.util.Random;
 
 import com.example.userinterface.GameManager.GameManager;
+import com.example.userinterface.GameManager.Games;
 import com.example.userinterface.GameManager.MenuActivity;
 import com.example.userinterface.GameManager.TowerDefense.TowerDefenseActivity;
 import com.example.userinterface.GameManager.User;
@@ -37,8 +38,7 @@ public class HangManGameActivity extends Activity{
     private String currentWord;
     private LinearLayout wordLayout;
     private TextView[] characterViews;
-    private GameManager gameManager;
-    private User user;
+    private Games gameManager;
 
 
     @Override
@@ -54,8 +54,7 @@ public class HangManGameActivity extends Activity{
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
-            gameManager = (GameManager) bundle.getSerializable("Game");
-            user= (User) bundle.getSerializable("User");
+            gameManager = (Games) bundle.getSerializable("Game");
         }
 
         balloons[0] = findViewById(R.id.ballon1);
@@ -69,7 +68,7 @@ public class HangManGameActivity extends Activity{
 
     @Override
     public void onBackPressed(){
-        gameManager.reLocate(HangManGameActivity.this, MenuActivity.class, 1);
+        gameManager.reLocate(HangManGameActivity.this,1,0);
     }
 
 
@@ -99,7 +98,7 @@ public class HangManGameActivity extends Activity{
                     winMsg.setNegativeButton("Next",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    gameManager.reLocate(HangManGameActivity.this, TowerDefenseActivity.class, 2);
+                                    gameManager.reLocate(HangManGameActivity.this,2,3);
                                     HangManGameActivity.this.finish();
 
                                 }});
@@ -121,7 +120,7 @@ public class HangManGameActivity extends Activity{
                     loseMsg.setNegativeButton("Try again",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    gameManager.reLocate(HangManGameActivity.this, TowerDefenseActivity.class, 2);
+                                    gameManager.reLocate(HangManGameActivity.this,0,0);
                                     HangManGameActivity.this.finish();
                                 }});
 
