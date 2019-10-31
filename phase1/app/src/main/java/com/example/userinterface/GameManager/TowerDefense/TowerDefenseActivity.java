@@ -73,15 +73,10 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
         }
     }
 
-    public Context getContext() {
-        return this;
-    }
-
     public void onBackPressed() {
         gameManager.reLocate(TowerDefenseActivity.this, SAVED, 0);
 
     }
-
 
     public void onClick(View v) {
         switch (v.getId()) {
