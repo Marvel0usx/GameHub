@@ -30,6 +30,7 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
     int height;
     Games gameManager;
     GameView gameView;
+    final int NEXT = 3, SAVED = 2;
 
 
     @Override
@@ -57,7 +58,6 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
         if (bundle != null) {
             gameManager = (Games) bundle.getSerializable("Game");
         }
-
     }
 
     @Override
@@ -78,7 +78,7 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
     }
 
     public void onBackPressed(){
-        gameManager.reLocate(TowerDefenseActivity.this,3,0);
+        gameManager.reLocate(TowerDefenseActivity.this, SAVED,0);
 
     }
 
@@ -107,7 +107,7 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
     @Override
     public void onVariableChange(boolean gameOver) {
         gameView.setGameOver(true);
-        gameManager.reLocate(this, 0, 0);
+        gameManager.toInter(TowerDefenseActivity.this, false);
 //        System.out.println("game over");
 //        Log.d("message", "game over");
 //        boolean win = towerDefense.getWin();

@@ -28,8 +28,6 @@ import com.example.userinterface.R;
 
 import android.widget.GridView;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 public class HangManGameActivity extends Activity {
     private ImageView[] balloons; // balloon images
     private int numLives = 6; // number of lives
@@ -48,7 +46,7 @@ public class HangManGameActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.hm_activity_gameee);
+        setContentView(R.layout.hm_activity_game);
         balloons = new ImageView[numLives];
         // initializes images containing different numbers of ballons, representing different number
         // of lives.
@@ -102,7 +100,7 @@ public class HangManGameActivity extends Activity {
                 winMsg.setNegativeButton("Next",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                gameManager.reLocate(HangManGameActivity.this, 2, 3);
+                                gameManager.reLocate(HangManGameActivity.this, 2, 2);
                                 HangManGameActivity.this.finish();
 
                             }
@@ -118,19 +116,8 @@ public class HangManGameActivity extends Activity {
             remainingBallons = remainingBallons - 1;
 
             if (remainingBallons == 0) {
-                AlertDialog.Builder loseMsg = new AlertDialog.Builder(this);
-                System.out.println(20);
-                loseMsg.setTitle("OOPS :(");
-                loseMsg.setMessage("You lose!");
-                loseMsg.setNegativeButton("Try again",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                gameManager.reLocate(HangManGameActivity.this, 0, 0);
-                                HangManGameActivity.this.finish();
-                            }
-                        });
-
-                loseMsg.show();
+                gameManager.toInter(HangManGameActivity.this,false);
+                HangManGameActivity.this.finish();
             }
 
 
@@ -143,7 +130,6 @@ public class HangManGameActivity extends Activity {
         currentWord = "BULLETPROOF";
         characterViews = new TextView[currentWord.length()];
         wordLayout.removeAllViews();
-
 
 //        for(int p = 0; p < balloons.length; p++) {
 //            balloons[p].setVisibility(View.VISIBLE);
