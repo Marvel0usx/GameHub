@@ -7,8 +7,7 @@ import com.example.userinterface.GameManager.ScoreSystem;
 import java.util.ArrayList;
 
 public class TowerDefense implements ScoreSystem {
-    //User user;
-    int money = 200;
+
     private int currentScore;
     private int lives = 5;
     private int mapHeight;
@@ -16,10 +15,7 @@ public class TowerDefense implements ScoreSystem {
     private boolean gameOver;
     private boolean win;
     private VariableChangeListener listener = null;
-
-
     private ArrayList<Enemy> wave1 = new ArrayList<>();
-
     private int clicker=0;
 
 

@@ -4,10 +4,19 @@ import java.io.Serializable;
 
 public class User implements Serializable {
     private String email;
-    private ScoreSystem scoreSystem;
     private int level;
+
+    public int getCurrScore() {
+        return currScore;
+    }
+
     private int currScore;
     private int highScore;
+
+    public int getNumOfGames() {
+        return numOfGames;
+    }
+
     private int numOfGames;
 
     public void addGame(){
@@ -30,8 +39,14 @@ public class User implements Serializable {
         return highScore;
     }
 
-    public void setHighScore(int highScore) {
-        this.highScore = highScore;
+
+    public void setHighScore(int ScoreOfTheRound) {
+        if (ScoreOfTheRound > highScore)
+            this.highScore = ScoreOfTheRound;
+    }
+
+    public void setNumOfGames(int numOfGames) {
+        this.numOfGames = numOfGames;
     }
 
     public void addToCurrScore(int gameScore){

@@ -104,8 +104,8 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
     @Override
     public void onVariableChange(boolean gameOver) {
         gameView.setGameOver(true);
-        gameManager.toInter(TowerDefenseActivity.this, towerDefense.getWin());
         gameManager.getUser().addToCurrScore(towerDefense.getGameScore());
+        gameManager.toInter(TowerDefenseActivity.this, towerDefense.getWin());
     }
 }
 
