@@ -62,7 +62,7 @@ public class MenuActivity extends Activity {
                     case 1:
                         gameManager.reLocate(MenuActivity.this,1,1);
                         break;
-                    case 2:
+                    case 3:
                         gameManager.reLocate(MenuActivity.this,3,3);
                         break;
                     case 4:
