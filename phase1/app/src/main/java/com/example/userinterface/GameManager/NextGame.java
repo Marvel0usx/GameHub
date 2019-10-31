@@ -39,4 +39,5 @@ public class NextGame extends AppCompatActivity {
     public void quit(View view){
         games.toMenu(NextGame.this);
     }
+    public void next(View view){games.next(NextGame.this);}
 }

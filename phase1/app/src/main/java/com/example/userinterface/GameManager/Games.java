@@ -9,4 +9,6 @@ public interface Games {
     void toInter(Context context, boolean winOrLose);
 
     void toMenu(Context context);
+
+    void next(Context context);
 }

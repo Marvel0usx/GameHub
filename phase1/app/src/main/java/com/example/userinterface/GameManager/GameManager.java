@@ -59,6 +59,12 @@ public class GameManager implements Serializable, Games{
         helper(intent,context,bundle);
     }
 
+    public void next(Context context){
+        Intent intent = new Intent(context, classes[saved]);
+        Bundle bundle = new Bundle();
+        helper(intent, context,bundle);
+    }
+
 
     private void helper(Intent intent, Context context, Bundle bundle){
         bundle.putSerializable("Game", this);

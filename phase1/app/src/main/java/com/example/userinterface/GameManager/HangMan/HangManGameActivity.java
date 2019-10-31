@@ -94,19 +94,8 @@ public class HangManGameActivity extends Activity {
             // correct guess
             if (numCorr == currLen) {
                 // won the game
-                AlertDialog.Builder winMsg = new AlertDialog.Builder(this);
-                winMsg.setTitle("YAY");
-                winMsg.setMessage("You win! Congratulations!");
-                winMsg.setNegativeButton("Next",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                gameManager.reLocate(HangManGameActivity.this, 2, 2);
-                                HangManGameActivity.this.finish();
-
-                            }
-                        });
-
-                winMsg.show();
+                gameManager.toInter(HangManGameActivity.this,true);
+                HangManGameActivity.this.finish();
             }
 
         } else if (remainingBallons > 0) {
