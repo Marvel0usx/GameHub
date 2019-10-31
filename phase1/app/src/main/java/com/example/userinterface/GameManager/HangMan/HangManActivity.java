@@ -5,12 +5,13 @@ import android.os.Bundle;
 
 import com.example.userinterface.GameManager.Games;
 import com.example.userinterface.R;
+
 import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class HangManActivity extends Activity implements OnClickListener{
+public class HangManActivity extends Activity implements OnClickListener {
 
     //comment
     // hey
@@ -36,7 +37,7 @@ public class HangManActivity extends Activity implements OnClickListener{
     public void onClick(View v) {
         // handles clicks
         if (v.getId() == R.id.playButton) {
-            gameManager.reLocate(this,2,2);
+            gameManager.reLocate(this, 2, 2);
         }
     }
 }

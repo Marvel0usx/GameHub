@@ -16,6 +16,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.os.Bundle;
+
 import java.util.Random;
 
 import com.example.userinterface.GameManager.GameManager;
@@ -24,9 +25,10 @@ import com.example.userinterface.GameManager.MenuActivity;
 import com.example.userinterface.GameManager.TowerDefense.TowerDefenseActivity;
 import com.example.userinterface.GameManager.User;
 import com.example.userinterface.R;
+
 import android.widget.GridView;
 
-public class HangManGameActivity extends Activity{
+public class HangManGameActivity extends Activity {
     private ImageView[] balloons; // balloon images
     private int numLives = 6; // number of lives
     private int currLen; // number of characters in current word
@@ -67,14 +69,14 @@ public class HangManGameActivity extends Activity{
     }
 
     @Override
-    public void onBackPressed(){
-        gameManager.reLocate(HangManGameActivity.this,1,0);
+    public void onBackPressed() {
+        gameManager.reLocate(HangManGameActivity.this, 1, 0);
     }
 
 
-    public void makeGuess(View v){
+    public void makeGuess(View v) {
         // the user has clicked on the letter he/she wants to guess
-        String letterGuessed = ((TextView)v).getText().toString();
+        String letterGuessed = ((TextView) v).getText().toString();
         char charGuessed = letterGuessed.charAt(0);
         v.setEnabled(false);
         v.setBackgroundResource(R.drawable.hm_letter_clicked);
@@ -88,52 +90,54 @@ public class HangManGameActivity extends Activity{
                 characterViews[i].setTextColor(Color.BLACK);
             }
         }
-            if (correct) {
-                // correct guess
-                if (numCorr == currLen){
-                    // won the game
-                    AlertDialog.Builder winMsg = new AlertDialog.Builder(this);
-                    winMsg.setTitle("YAY");
-                    winMsg.setMessage("You win! Congratulations!");
-                    winMsg.setNegativeButton("Next",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    gameManager.reLocate(HangManGameActivity.this,2,3);
-                                    HangManGameActivity.this.finish();
+        if (correct) {
+            // correct guess
+            if (numCorr == currLen) {
+                // won the game
+                AlertDialog.Builder winMsg = new AlertDialog.Builder(this);
+                winMsg.setTitle("YAY");
+                winMsg.setMessage("You win! Congratulations!");
+                winMsg.setNegativeButton("Next",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                gameManager.reLocate(HangManGameActivity.this, 2, 3);
+                                HangManGameActivity.this.finish();
 
-                                }});
+                            }
+                        });
 
-                    winMsg.show();
-                }
-
-            } else if (remainingBallons > 0){
-                // player still has lives left
-
-                balloons[remainingBallons - 1].setVisibility(v.INVISIBLE);
-                remainingBallons = remainingBallons - 1;
-
-                if (remainingBallons == 0) {
-                    AlertDialog.Builder loseMsg = new AlertDialog.Builder(this);
-                    System.out.println(20);
-                    loseMsg.setTitle("OOPS :(");
-                    loseMsg.setMessage("You lose!");
-                    loseMsg.setNegativeButton("Try again",
-                            new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    gameManager.reLocate(HangManGameActivity.this,0,0);
-                                    HangManGameActivity.this.finish();
-                                }});
-
-                    loseMsg.show();
-                }
-
-
+                winMsg.show();
             }
+
+        } else if (remainingBallons > 0) {
+            // player still has lives left
+
+            balloons[remainingBallons - 1].setVisibility(v.INVISIBLE);
+            remainingBallons = remainingBallons - 1;
+
+            if (remainingBallons == 0) {
+                AlertDialog.Builder loseMsg = new AlertDialog.Builder(this);
+                System.out.println(20);
+                loseMsg.setTitle("OOPS :(");
+                loseMsg.setMessage("You lose!");
+                loseMsg.setNegativeButton("Try again",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                gameManager.reLocate(HangManGameActivity.this, 0, 0);
+                                HangManGameActivity.this.finish();
+                            }
+                        });
+
+                loseMsg.show();
             }
+
+
+        }
+    }
 
     private void playHangMan() {
         // plays a new HangMan game
-       // String newWord = words[rand.nextInt(words.length)];
+        // String newWord = words[rand.nextInt(words.length)];
         currentWord = "BULLETPROOF";
         characterViews = new TextView[currentWord.length()];
         wordLayout.removeAllViews();
@@ -145,7 +149,7 @@ public class HangManGameActivity extends Activity{
 
         for (int c = 0; c < currentWord.length(); c++) {
             characterViews[c] = new TextView(this);
-            characterViews[c].setText(""+currentWord.charAt(c));
+            characterViews[c].setText("" + currentWord.charAt(c));
         }
 
         remainingBallons = 6;
@@ -154,7 +158,7 @@ public class HangManGameActivity extends Activity{
 
         for (int c = 0; c < currentWord.length(); c++) {
             characterViews[c] = new TextView(this);
-            characterViews[c].setText(""+currentWord.charAt(c));
+            characterViews[c].setText("" + currentWord.charAt(c));
             characterViews[c].setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
             characterViews[c].setGravity(Gravity.CENTER);
             characterViews[c].setTextColor(Color.WHITE);
