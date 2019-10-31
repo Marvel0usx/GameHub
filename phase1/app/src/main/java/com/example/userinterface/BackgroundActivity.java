@@ -166,7 +166,6 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
                 int high = parseInt(strings[2]);
                 int games = parseInt(strings[3]);
                 int current = parseInt(strings[4]);
-                user.setScoreSystem(games, high, current);
                 Bundle bundle = new Bundle();
                 GameManager gameManager = new GameManager(user);
                 bundle.putSerializable("Game",gameManager);

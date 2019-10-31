@@ -17,7 +17,7 @@ public class GameManager implements Serializable, Games{
     private Class[] classes;
     private int saved;
 
-    User getUser() {
+    public User getUser() {
         return user;
     }
 

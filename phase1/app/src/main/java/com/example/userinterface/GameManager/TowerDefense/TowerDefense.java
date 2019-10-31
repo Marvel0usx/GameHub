@@ -2,17 +2,19 @@ package com.example.userinterface.GameManager.TowerDefense;
 
 import android.graphics.Canvas;
 
+import com.example.userinterface.GameManager.ScoreSystem;
+
 import java.util.ArrayList;
 
-public class TowerDefense {
+public class TowerDefense implements ScoreSystem {
     //User user;
     int money = 200;
     private int currentScore;
     private int lives = 5;
     private int mapHeight;
     private int mapWidth;
-    private boolean gameOver = false;
-    private boolean win = false;
+    private boolean gameOver;
+    private boolean win;
     private VariableChangeListener listener = null;
 
 
@@ -27,13 +29,13 @@ public class TowerDefense {
     }
 
     void update(){
-        Enemy enemy = getFirstEnemy();
+        Enemy enemy = getFirstEnemy(); //hit the enemy that is at the frontmost
         if (enemy != null) {
             enemy.hit(clicker);
             clicker = 0;
         }
-        removeEnemy(); // remove any enemies with 0 health or out of the map
-        if (lives<=0 || wave1.isEmpty()){
+        removeEnemy();
+        if (lives<=0 || wave1.isEmpty()){ //decide if game is over or not
             gameOver = true;
             if (lives > 0)
                 currentScore += lives *100; //each life left adds another 100 pts.
@@ -45,11 +47,11 @@ public class TowerDefense {
     private void removeEnemy(){
         ArrayList<Enemy> temp = new ArrayList<>();
         for (Enemy e: wave1){
-            if (e.getHealth() <= 0){
+            if (e.getHealth() <= 0){  //if enemy health is 0 remove it
                 temp.add(e);
                 currentScore += e.getScore();
             }
-            if (e.getY() >= mapHeight-300) {
+            if (e.getY() >= mapHeight-300) { //if enemy is out of map remove it
                 temp.add(e);
                 lives -= 1;
             }
@@ -79,7 +81,7 @@ public class TowerDefense {
         }
 
     private void addMinion() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) { //add ten minions
             Minion minion = new Minion();
             int x = (int) (Math.random() * mapWidth);
             int y = -(int) (Math.random()* mapHeight/2)-100; // a period of time for enemies to walk
@@ -101,13 +103,15 @@ public class TowerDefense {
     }
 
     void clicked(){clicker += 1;}
-    boolean getWin(){return win;}
-    public int getCurrentScore() {
-        return currentScore;
+
+    boolean getWin(){
+        return win;
     }
 
-    public void convertLivesToScore() {
+    @Override
+    public int getGameScore() {
         if (lives > 0)
-            currentScore += lives *100; //each life left adds another 100 pts.
+            currentScore += lives * 100; //each life left adds another 100 pts.
+        return currentScore;
     }
 }

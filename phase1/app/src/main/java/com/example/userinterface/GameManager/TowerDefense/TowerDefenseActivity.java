@@ -22,7 +22,7 @@ import com.example.userinterface.R;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TowerDefenseActivity extends Activity implements VariableChangeListener {
+public class TowerDefenseActivity extends Activity implements VariableChangeListener{
 
     Button btnStart, btnHit, btnTower1, btnTower2, btnTower3;
     TowerDefense towerDefense;
@@ -68,17 +68,17 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
         btnTower1 = findViewById(R.id.tower1);
         btnTower2 = findViewById(R.id.tower2);
         btnTower3 = findViewById(R.id.tower3);
-        if(gameView != null) {
+        if (gameView != null) {
             gameView.setTowerDefense(towerDefense);
         }
     }
 
-    public Context getContext(){
+    public Context getContext() {
         return this;
     }
 
-    public void onBackPressed(){
-        gameManager.reLocate(TowerDefenseActivity.this, SAVED,0);
+    public void onBackPressed() {
+        gameManager.reLocate(TowerDefenseActivity.this, SAVED, 0);
 
     }
 
@@ -87,9 +87,6 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
         switch (v.getId()) {
             case R.id.start:
                 btnHit.setVisibility(View.VISIBLE);
-                //btnTower1.setVisibility(View.VISIBLE);
-                //btnTower2.setVisibility(View.VISIBLE);
-                //btnTower3.setVisibility(View.VISIBLE);
                 btnStart.setVisibility(View.GONE);
                 towerDefense.addEnemy();
                 gameView.setGameStart(true);
@@ -107,27 +104,10 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
     @Override
     public void onVariableChange(boolean gameOver) {
         gameView.setGameOver(true);
-        gameManager.toInter(TowerDefenseActivity.this, false);
-//        System.out.println("game over");
-//        Log.d("message", "game over");
-//        boolean win = towerDefense.getWin();
-//        AlertDialog.Builder db = new AlertDialog.Builder(TowerDefenseActivity.this);
-//        db.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//               finish();
-//            }
-//        });
-//
-//        if (!win) {
-//            db.setMessage("You have LOST:(!");
-//        }
-//        else{
-//            db.setMessage("Congratulations! You have WON!!");
-//        }
+        gameManager.toInter(TowerDefenseActivity.this, towerDefense.getWin());
+        gameManager.getUser().addToCurrScore(towerDefense.getGameScore());
     }
 }
-
 
 
 
