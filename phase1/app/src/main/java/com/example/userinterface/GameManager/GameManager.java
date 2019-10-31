@@ -22,7 +22,8 @@ public class GameManager implements Serializable, Games{
 
     public GameManager(User user){
         this.user = user;
-        classes = new Class[]{MenuActivity.class, HangManActivity.class, HangManGameActivity.class, TowerDefenseActivity.class, SpaceActivity.class};
+        classes = new Class[]{MenuActivity.class, HangManActivity.class, HangManGameActivity.class,
+                TowerDefenseActivity.class, SpaceActivity.class};
 
     }
 
