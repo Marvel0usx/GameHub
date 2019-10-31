@@ -16,6 +16,7 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
 
     public SpaceInvaders Space;
     public MainThread thread;
+    public boolean gameover;
 
     private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
     private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
@@ -84,5 +85,9 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
         if (canvas!= null){
             Space.draw(canvas);
         }
+    }
+
+    public void setGameover(boolean gameover) {
+        this.gameover = gameover;
     }
 }

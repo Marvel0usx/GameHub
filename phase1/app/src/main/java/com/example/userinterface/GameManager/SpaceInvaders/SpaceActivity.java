@@ -14,7 +14,7 @@ import com.example.userinterface.GameManager.MenuActivity;
 import com.example.userinterface.GameManager.*;
 import com.example.userinterface.R;
 
-public class SpaceActivity extends Activity {
+public class SpaceActivity extends Activity implements VariableChangeListener{
 
     SpaceInvaders Space;
     SpaceView spaceView;
@@ -35,6 +35,7 @@ public class SpaceActivity extends Activity {
         spaceView = findViewById(R.id.spaceView);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
+        spaceView.Space.setVariableChangeListener(this);
         if (bundle != null) {
             gameManager = (Games) bundle.getSerializable("Game");
         }
@@ -54,4 +55,9 @@ public class SpaceActivity extends Activity {
                 break;
         }
     }
+    @Override
+    public void onVariableChange(boolean spaceGame){
+        spaceView.setGameover(true);
+    }
+
 }

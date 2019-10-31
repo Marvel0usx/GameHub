@@ -5,35 +5,27 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
-
 import android.graphics.Color;
 import android.view.Gravity;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.os.Bundle;
-
 import java.util.Random;
-
-import com.example.userinterface.GameManager.GameManager;
 import com.example.userinterface.GameManager.Games;
-import com.example.userinterface.GameManager.MenuActivity;
-import com.example.userinterface.GameManager.TowerDefense.TowerDefenseActivity;
-import com.example.userinterface.GameManager.User;
+import com.example.userinterface.GameManager.ScoreSystem;
 import com.example.userinterface.R;
 
-import android.widget.GridView;
 
-public class HangManGameActivity extends Activity {
+public class HangManGameActivity extends Activity implements ScoreSystem {
     private ImageView[] balloons; // balloon images
     private int numLives = 6; // number of lives
     private int currLen; // number of characters in current word
     private int remainingBallons; // number of balloons left, decreases each time a wrong letter is guessed
     private int numCorr; // number of letters correctly guessed
+    private int currentScore = 200;
 
     private String[] words;
     private Random rand;
@@ -86,6 +78,7 @@ public class HangManGameActivity extends Activity {
         for (int i = 0; i < currentWord.length(); i++) {
             if (currentWord.charAt(i) == charGuessed) {
                 correct = true;
+                currentScore += 10;
                 numCorr++;
                 characterViews[i].setTextColor(Color.BLACK);
             }
@@ -94,17 +87,20 @@ public class HangManGameActivity extends Activity {
             // correct guess
             if (numCorr == currLen) {
                 // won the game
+                currentScore += 100;
+                gameManager.getUser().addToCurrScore(getGameScore());
                 gameManager.toInter(HangManGameActivity.this,true);
                 HangManGameActivity.this.finish();
             }
 
         } else if (remainingBallons > 0) {
             // player still has lives left
-
+            currentScore -= 20;
             balloons[remainingBallons - 1].setVisibility(v.INVISIBLE);
             remainingBallons = remainingBallons - 1;
 
             if (remainingBallons == 0) {
+                gameManager.getUser().addToCurrScore(getGameScore());
                 gameManager.toInter(HangManGameActivity.this,false);
                 HangManGameActivity.this.finish();
             }
@@ -125,10 +121,6 @@ public class HangManGameActivity extends Activity {
 //        }
 
 
-        for (int c = 0; c < currentWord.length(); c++) {
-            characterViews[c] = new TextView(this);
-            characterViews[c].setText("" + currentWord.charAt(c));
-        }
 
         remainingBallons = 6;
         currLen = currentWord.length();
@@ -147,4 +139,8 @@ public class HangManGameActivity extends Activity {
 
     }
 
+    @Override
+    public int getGameScore() {
+        return currentScore;
+    }
 }
