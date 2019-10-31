@@ -78,6 +78,9 @@ public class MenuActivity extends Activity {
 
     public void Stats(View view) {
         Intent intent = new Intent(MenuActivity.this, Stats.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("user",gameManager.getUser());
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 }

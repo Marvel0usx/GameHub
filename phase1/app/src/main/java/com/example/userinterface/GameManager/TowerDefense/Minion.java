@@ -11,7 +11,7 @@ public class Minion extends Enemy {
     private String[] appearence;
     public Minion(){
         health = 10;
-        speed = 20;
+        speed = 3;
         score = 50;
         appearence = new String[]{"  o  ", " /|\\ ", "  ^  ", " / \\ "};
 
