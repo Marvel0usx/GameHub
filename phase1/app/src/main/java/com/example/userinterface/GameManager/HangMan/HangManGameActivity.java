@@ -40,7 +40,7 @@ public class HangManGameActivity extends Activity {
     private String[] words;
     private Random rand;
     private String currentWord;
-    private ConstraintLayout wholeLayout;
+    private LinearLayout wordLayout;
     private TextView[] characterViews;
     private Games gameManager;
 
@@ -54,7 +54,7 @@ public class HangManGameActivity extends Activity {
         // of lives.
         rand = new Random();
         currentWord = "";
-        wholeLayout = findViewById(R.id.whole);
+        wordLayout = findViewById(R.id.word);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
@@ -142,6 +142,8 @@ public class HangManGameActivity extends Activity {
         // String newWord = words[rand.nextInt(words.length)];
         currentWord = "BULLETPROOF";
         characterViews = new TextView[currentWord.length()];
+        wordLayout.removeAllViews();
+
 
 //        for(int p = 0; p < balloons.length; p++) {
 //            balloons[p].setVisibility(View.VISIBLE);
@@ -165,7 +167,7 @@ public class HangManGameActivity extends Activity {
             characterViews[c].setTextColor(Color.WHITE);
             characterViews[c].setBackgroundResource(R.drawable.hm_letter_background);
             //add to layout
-            wholeLayout.addView(characterViews[c]);
+            wordLayout.addView(characterViews[c]);
         }
 
     }
