@@ -30,8 +30,10 @@ public class User implements Serializable {
         return highScore;
     }
 
-    public void setHighScore(int highScore) {
-        this.highScore = highScore;
+
+    public void setHighScore(int ScoreOfTheRound) {
+        if (ScoreOfTheRound > highScore)
+            this.highScore = ScoreOfTheRound;
     }
 
     public void addToCurrScore(int gameScore){
