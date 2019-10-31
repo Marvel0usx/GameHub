@@ -1,6 +1,6 @@
 package com.example.userinterface.GameManager.SpaceInvaders;
 
-abstract class Ship extends SpaceObject{
+abstract class Ship extends SpaceObject {
     private int lives;
 
     // Initializer
@@ -15,13 +15,14 @@ abstract class Ship extends SpaceObject{
     }
 
     // Setters and getters
-    private void setLives(int lives) {
+    public void setLives(int lives) {
         this.lives = lives;
     }
 
-    public int getLives() {
+    int getLives() {
         return lives;
     }
+
 
     // Utils
     abstract void shoot();
