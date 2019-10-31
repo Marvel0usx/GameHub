@@ -114,11 +114,7 @@ public class HangManGameActivity extends Activity {
 //            balloons[p].setVisibility(View.VISIBLE);
 //        }
 
-
-        for (int c = 0; c < currentWord.length(); c++) {
-            characterViews[c] = new TextView(this);
-            characterViews[c].setText("" + currentWord.charAt(c));
-        }
+        
 
         remainingBallons = 6;
         currLen = currentWord.length();
