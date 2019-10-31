@@ -16,7 +16,7 @@ public class CollisionDetector implements Observer {
     }
 
     @Override
-    public void update() {
+    public void update(SpaceObject object) {
         for (Subject sub : subjects){
             if (sub instanceof Bullet){
                 // cause damage

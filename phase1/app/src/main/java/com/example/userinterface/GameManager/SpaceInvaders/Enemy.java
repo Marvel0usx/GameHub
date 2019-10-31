@@ -10,7 +10,7 @@ public class Enemy extends Ship {
         super(x, y, damage, ySpeed, lives);
         this.appearance = "💠";
         this.paintText.setColor(Color.GREEN);
-        this.paintText.setTextSize(36);
+        this.paintText.setTextSize(80);
     }
 
     public Enemy(int x, int y, int damage, int xSpeed, int ySpeed, int lives){
@@ -18,7 +18,7 @@ public class Enemy extends Ship {
         setXSpeed(xSpeed);
         this.appearance = "💠";
         this.paintText.setColor(Color.GREEN);
-        this.paintText.setTextSize(36);
+        this.paintText.setTextSize(80);
     }
 
     // Implements Subject
@@ -33,21 +33,23 @@ public class Enemy extends Ship {
         //fires bullet objects that damage player
         // generate new bullet object and add this object's observer
         // to the bullet object's observer. Return the bullet object.
-        bullet = new EnemyBullet(getX() + 12, getY(), 100, 40);
+        this.bullet = new EnemyBullet(getX() + 35, getY(), 100, 5);
         for (Observer obs : getObservers())
-            bullet.registerObserver(obs);
+            this.bullet.registerObserver(obs);
+        this.bullet.setUpdated(true);
     }
 
     void move() {
         setChanged();
-        setX(getX() + getXSpeed());
-        setY(getY() + getYSpeed());
-        if (Math.random() < 0.01) {
+        if (Math.random() < 0.005) {
             shoot();
             for (Observer obs : getObservers())
-                obs.registerSubject(bullet);
-            bullet = null;
+                obs.registerSubject(this.bullet);
+            this.bullet = null;
         }
+        setX(getX() + getXSpeed());
+        setY(getY() + getYSpeed());
+        setUpdated(true);
         notifyObservers();
     }
 

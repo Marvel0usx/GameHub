@@ -14,6 +14,7 @@ abstract class SpaceObject implements Subject {
     private int xSpeed;
     private int ySpeed;
     private boolean changed;
+    private boolean updated = false;
     private List<Observer> observers;
 
     // Public attributes
@@ -84,6 +85,15 @@ abstract class SpaceObject implements Subject {
         return observers;
     }
 
+
+    boolean isUpdated() {
+        return updated;
+    }
+
+    void setUpdated(boolean updated) {
+        this.updated = updated;
+    }
+
     // Implements Subject
     @Override
     public void registerObserver(Observer observer) {
@@ -122,7 +132,7 @@ abstract class SpaceObject implements Subject {
     public void notifyObservers() {
         if (hasChange()){
             for (Observer obs : getObservers())
-                obs.update();
+                obs.update(this);
             clearChanged();
         }
     }
