@@ -31,12 +31,12 @@ public class GameBackgroundActivity extends AsyncTask<Object,Void,String> {
     @Override
     protected String doInBackground(Object... objects) {
         String urlUpdate = "http://159.203.20.150/save.php";
-        String urlRefresh = "http://159.203.20.150/save.php";
+        String urlStat = "http://159.203.20.150/single_stat.php";
         String task = (String)objects[0];
-        User user = (User)objects[1];
-        int level = (Integer)objects[2];
         if (task.equals("quit")){
             try {
+                User user = (User)objects[1];
+                int level = (Integer)objects[2];
                 URL url = new URL(urlUpdate);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -72,16 +72,18 @@ public class GameBackgroundActivity extends AsyncTask<Object,Void,String> {
                 e.printStackTrace();
             }
         }
-        /*else if (task.equals("refresh")){
+        /*else if(task.equals("stats")){
+            URL url = null;
+            User user = (User)objects[1];
             try {
-                URL url = new URL(urlRefresh);
+                url = new URL(urlUpdate);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-                String myData = URLEncoder.encode("email","UTF-8")+"="+URLEncoder.encode(user.getEmail(), "UTF-8");
+                String myData = URLEncoder.encode("email", "UTF-8")+"="+URLEncoder.encode(user.getEmail());
                 bufferedWriter.write(myData);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -97,7 +99,6 @@ public class GameBackgroundActivity extends AsyncTask<Object,Void,String> {
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
-                user.setLevel(parseInt(dataResponse));
                 return dataResponse;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
