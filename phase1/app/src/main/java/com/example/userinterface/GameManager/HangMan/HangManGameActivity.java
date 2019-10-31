@@ -46,7 +46,8 @@ public class HangManGameActivity extends Activity implements ScoreSystem {
         if (bundle != null) {
             gameManager = (Games) bundle.getSerializable("Game");
         }
-
+        // refers each element in balloons array to the particular image view that contains each
+        // possible number of balloons (the image views are already being created)
         balloons[0] = findViewById(R.id.ballon1);
         balloons[1] = findViewById(R.id.ballon2);
         balloons[2] = findViewById(R.id.ballon3);
@@ -86,6 +87,7 @@ public class HangManGameActivity extends Activity implements ScoreSystem {
                 currentScore += 100;
                 gameManager.getUser().addToCurrScore(getGameScore());
                 gameManager.toInter(HangManGameActivity.this,true);
+                // the game ends since the user has won
                 HangManGameActivity.this.finish();
             }
 
