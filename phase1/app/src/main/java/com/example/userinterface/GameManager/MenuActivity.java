@@ -51,7 +51,7 @@ public class MenuActivity extends Activity {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gameManager.reLocate(MenuActivity.this, SpaceActivity.class, 0);
+                gameManager.reLocate(MenuActivity.this, 1, 1);
             }
         });
 
@@ -60,13 +60,13 @@ public class MenuActivity extends Activity {
             public void onClick(View v) {
                 switch (gameManager.getUser().getLevel()){
                     case 1:
-                        gameManager.reLocate(MenuActivity.this,HangManGameActivity.class, 1);
+                        gameManager.reLocate(MenuActivity.this,1,1);
                         break;
                     case 2:
-                        gameManager.reLocate(MenuActivity.this,TowerDefenseActivity.class, 2);
+                        gameManager.reLocate(MenuActivity.this,3,3);
                         break;
-                    case 3:
-                        gameManager.reLocate(MenuActivity.this,SpaceActivity.class, 3);
+                    case 4:
+                        gameManager.reLocate(MenuActivity.this,4,4);
                         break;
                     default:
                         break;

@@ -1,6 +1,7 @@
 package com.example.userinterface.GameManager.SpaceInvaders;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
@@ -18,7 +19,7 @@ public class SpaceActivity extends Activity {
     SpaceInvaders Space;
     SpaceView spaceView;
     Button btnLeft, btnRight, btnExit;
-    GameManager gameManager;
+    Games gameManager;
     private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
     private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
@@ -32,6 +33,11 @@ public class SpaceActivity extends Activity {
         SpaceInvaders Space = new SpaceInvaders(screenWidth, screenHeight);
         setContentView(R.layout.activity_space);
         spaceView = findViewById(R.id.spaceView);
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        if (bundle != null) {
+            gameManager = (Games) bundle.getSerializable("Game");
+        }
 
         btnLeft = findViewById(R.id.Left);
         btnRight = findViewById(R.id.Right);
