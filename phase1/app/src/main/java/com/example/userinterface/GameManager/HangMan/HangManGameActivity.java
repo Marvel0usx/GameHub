@@ -25,7 +25,7 @@ public class HangManGameActivity extends Activity implements ScoreSystem {
     private int currLen; // number of characters in current word
     private int remainingBallons; // number of balloons left, decreases each time a wrong letter is guessed
     private int numCorr; // number of letters correctly guessed
-    private int currentScore = 200;
+    private int currentScore;
 
     private String[] words;
     private Random rand;
