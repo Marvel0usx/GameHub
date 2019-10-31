@@ -3,6 +3,7 @@ package com.example.userinterface.GameManager.HangMan;
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.example.userinterface.GameManager.GameManager;
 import com.example.userinterface.GameManager.Games;
 import com.example.userinterface.R;
 
@@ -35,7 +36,11 @@ public class HangManActivity extends Activity implements OnClickListener {
     public void onClick(View v) {
         // handles clicks
         if (v.getId() == R.id.playButton) {
-            gameManager.reLocate(this, 2, 2);
+            Intent intent = new Intent(HangManActivity.this, HangManGameActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("Game", (GameManager)gameManager);
+            intent.putExtras(bundle);
+            startActivity(intent);
         }
     }
 }

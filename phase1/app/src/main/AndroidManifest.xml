@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GameManager.Stats"></activity>
+        <activity android:name=".GameManager.NextGame"></activity>
+        <activity android:name=".GameManager.Stats" />
         <activity android:name=".GameManager.MenuActivity" />
         <activity android:name=".GameManager.TowerDefense.TowerDefenseActivity" />
         <activity android:name=".GameManager.SpaceInvaders.SpaceActivity" />

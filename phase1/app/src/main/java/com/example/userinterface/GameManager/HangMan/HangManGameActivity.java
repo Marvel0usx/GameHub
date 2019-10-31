@@ -94,19 +94,8 @@ public class HangManGameActivity extends Activity {
             // correct guess
             if (numCorr == currLen) {
                 // won the game
-                AlertDialog.Builder winMsg = new AlertDialog.Builder(this);
-                winMsg.setTitle("YAY");
-                winMsg.setMessage("You win! Congratulations!");
-                winMsg.setNegativeButton("Next",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                gameManager.reLocate(HangManGameActivity.this, 2, 3);
-                                HangManGameActivity.this.finish();
-
-                            }
-                        });
-
-                winMsg.show();
+                gameManager.toInter(HangManGameActivity.this,true);
+                HangManGameActivity.this.finish();
             }
 
         } else if (remainingBallons > 0) {
@@ -116,19 +105,8 @@ public class HangManGameActivity extends Activity {
             remainingBallons = remainingBallons - 1;
 
             if (remainingBallons == 0) {
-                AlertDialog.Builder loseMsg = new AlertDialog.Builder(this);
-                System.out.println(20);
-                loseMsg.setTitle("OOPS :(");
-                loseMsg.setMessage("You lose!");
-                loseMsg.setNegativeButton("Try again",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                gameManager.reLocate(HangManGameActivity.this, 0, 0);
-                                HangManGameActivity.this.finish();
-                            }
-                        });
-
-                loseMsg.show();
+                gameManager.toInter(HangManGameActivity.this,false);
+                HangManGameActivity.this.finish();
             }
 
 
