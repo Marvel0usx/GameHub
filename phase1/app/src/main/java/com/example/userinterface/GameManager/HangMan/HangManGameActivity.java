@@ -88,6 +88,7 @@ public class HangManGameActivity extends Activity implements ScoreSystem {
             if (numCorr == currLen) {
                 // won the game
                 currentScore += 100;
+                gameManager.getUser().addToCurrScore(getGameScore());
                 gameManager.toInter(HangManGameActivity.this,true);
                 HangManGameActivity.this.finish();
             }
@@ -99,6 +100,7 @@ public class HangManGameActivity extends Activity implements ScoreSystem {
             remainingBallons = remainingBallons - 1;
 
             if (remainingBallons == 0) {
+                gameManager.getUser().addToCurrScore(getGameScore());
                 gameManager.toInter(HangManGameActivity.this,false);
                 HangManGameActivity.this.finish();
             }
