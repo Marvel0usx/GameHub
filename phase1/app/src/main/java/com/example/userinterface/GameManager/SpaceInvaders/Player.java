@@ -5,15 +5,19 @@ import android.graphics.Color;
 
 public class Player extends Ship {
     private PlayerBullet bullet;
-    private int shootCount = 10;
+    private int shootCount = 0;
 
     Player(int x, int y, int ySpeed, int lives) {
-        super(x, y, 0, 10, ySpeed, lives);
+        super(x, y, 0, 40, ySpeed, lives);
         this.appearance = "🔺";
         this.paintText.setColor(Color.CYAN);
-        this.paintText.setTextSize(36);
+        this.paintText.setTextSize(80);
     }
 
+    // Setter
+    void updateShootCount() {
+        this.shootCount--;
+    }
 
     // Implements Subject
     @Override
@@ -28,7 +32,7 @@ public class Player extends Ship {
         // generate new bullet object and add this object's observer
         // to the bullet object's observer. Return the bullet object.
         setChanged();
-        this.bullet = new PlayerBullet(getX() + 12, getY(), 100, 8);
+        this.bullet = new PlayerBullet(getX() + 37, getY(), 100, -8);
         for (Observer obs : getObservers())
             this.bullet.registerObserver(obs);
         this.bullet.setUpdated(true);
@@ -37,9 +41,9 @@ public class Player extends Ship {
     // update the subject and subsequently update the observers
     void move(int directionVector) {
         setChanged();
-        if (shootCount == 0) {
+        if (this.shootCount <= 0) {
             shoot();
-            shootCount = 10;
+            this.shootCount = 50;
             for (Observer obs : getObservers())
                 obs.registerSubject(this.bullet);
             this.bullet = null;

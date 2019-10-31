@@ -6,7 +6,7 @@ abstract class Bullet extends SpaceObject{
     Bullet(int x, int y, int damage, int ySpeed){
         super(x, y, damage, ySpeed);
         this.appearance = "*";
-        this.paintText.setTextSize(36);
+        this.paintText.setTextSize(50);
     }
 
     // Implements Subject Interface

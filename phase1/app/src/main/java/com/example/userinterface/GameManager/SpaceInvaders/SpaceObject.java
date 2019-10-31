@@ -86,11 +86,11 @@ abstract class SpaceObject implements Subject {
     }
 
 
-    public boolean isUpdated() {
+    boolean isUpdated() {
         return updated;
     }
 
-    public void setUpdated(boolean updated) {
+    void setUpdated(boolean updated) {
         this.updated = updated;
     }
 
@@ -132,7 +132,7 @@ abstract class SpaceObject implements Subject {
     public void notifyObservers() {
         if (hasChange()){
             for (Observer obs : getObservers())
-                obs.update();
+                obs.update(this);
             clearChanged();
         }
     }
