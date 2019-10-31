@@ -28,7 +28,7 @@ public class Player extends Ship {
     // Utils
     @Override
     void shoot() {
-        //fires bullet objects that damage player
+        //fires bullet objects that deductLife player
         // generate new bullet object and add this object's observer
         // to the bullet object's observer. Return the bullet object.
         setChanged();
