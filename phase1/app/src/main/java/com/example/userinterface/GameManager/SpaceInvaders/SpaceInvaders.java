@@ -161,19 +161,17 @@ public class SpaceInvaders implements Observer{
         boolean yCollision = false;
 
         if (x1 >= x2)
-            xCollision = (SpaceObject.UNIWIDTH >= (x2 - x1));
+            xCollision = (SpaceObject.UNIWIDTH >= (x1 - x2));
         else // (x1 < x2)
-            xCollision = (SpaceObject.UNIWIDTH < (x1 - x2));
+            xCollision = (SpaceObject.UNIWIDTH >= (x2 - x1));
 
         if (y2 >= y1)
-            yCollision = (SpaceObject.UNIWIDTH >= (y2 - y1));
+            yCollision = (SpaceObject.UNIHEIGHT >= (y2 - y1));
         else // (y2 < y1)
-            yCollision = (SpaceObject.UNIHEIGHT > (y1 - y2));
+            yCollision = (SpaceObject.UNIHEIGHT >= (y1 - y2));
 
         return xCollision & yCollision;
         // End of Jan endorsed algorithm
-
-
     }
 
     private void exertDamage(SpaceObject o1, SpaceObject o2) {
