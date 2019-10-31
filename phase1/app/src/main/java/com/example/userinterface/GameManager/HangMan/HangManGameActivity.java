@@ -28,6 +28,8 @@ import com.example.userinterface.R;
 
 import android.widget.GridView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 public class HangManGameActivity extends Activity {
     private ImageView[] balloons; // balloon images
     private int numLives = 6; // number of lives
@@ -38,7 +40,7 @@ public class HangManGameActivity extends Activity {
     private String[] words;
     private Random rand;
     private String currentWord;
-    private LinearLayout wordLayout;
+    private ConstraintLayout wholeLayout;
     private TextView[] characterViews;
     private Games gameManager;
 
@@ -46,13 +48,13 @@ public class HangManGameActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.hm_activity_game);
+        setContentView(R.layout.hm_activity_gameee);
         balloons = new ImageView[numLives];
         // initializes images containing different numbers of ballons, representing different number
         // of lives.
         rand = new Random();
         currentWord = "";
-        wordLayout = findViewById(R.id.word);
+        wholeLayout = findViewById(R.id.whole);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
@@ -140,7 +142,6 @@ public class HangManGameActivity extends Activity {
         // String newWord = words[rand.nextInt(words.length)];
         currentWord = "BULLETPROOF";
         characterViews = new TextView[currentWord.length()];
-        wordLayout.removeAllViews();
 
 //        for(int p = 0; p < balloons.length; p++) {
 //            balloons[p].setVisibility(View.VISIBLE);
@@ -164,7 +165,7 @@ public class HangManGameActivity extends Activity {
             characterViews[c].setTextColor(Color.WHITE);
             characterViews[c].setBackgroundResource(R.drawable.hm_letter_background);
             //add to layout
-            wordLayout.addView(characterViews[c]);
+            wholeLayout.addView(characterViews[c]);
         }
 
     }
