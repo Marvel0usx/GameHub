@@ -17,6 +17,7 @@ public class SpaceInvaders implements Observer{
     private int width;
     private Player player;
     private List<SpaceObject> subjects = new ArrayList<>();
+    public VariableChangeListener var = null;
 
     private boolean gamemode;
 
@@ -163,7 +164,7 @@ public class SpaceInvaders implements Observer{
             player.move(1);
     }
 
-    public boolean isGameOver(){
-        return this.gamemode;
+    void setVariableChangeListener(VariableChangeListener variableChangeListener) {
+        this.var = variableChangeListener;
     }
 }
