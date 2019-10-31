@@ -27,13 +27,10 @@ public class HangManGameActivity extends Activity implements ScoreSystem {
     private int numCorr; // number of letters correctly guessed
     private int currentScore = 200;
 
-    private String[] words;
-    private Random rand;
     private String currentWord;
     private LinearLayout wordLayout;
     private TextView[] characterViews;
     private Games gameManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +39,6 @@ public class HangManGameActivity extends Activity implements ScoreSystem {
         balloons = new ImageView[numLives];
         // initializes images containing different numbers of ballons, representing different number
         // of lives.
-        rand = new Random();
         currentWord = "";
         wordLayout = findViewById(R.id.word);
         Intent intent = getIntent();
@@ -115,13 +111,6 @@ public class HangManGameActivity extends Activity implements ScoreSystem {
         currentWord = "BULLETPROOF";
         characterViews = new TextView[currentWord.length()];
         wordLayout.removeAllViews();
-
-//        for(int p = 0; p < balloons.length; p++) {
-//            balloons[p].setVisibility(View.VISIBLE);
-//        }
-
-
-
         remainingBallons = 6;
         currLen = currentWord.length();
         numCorr = 0;
