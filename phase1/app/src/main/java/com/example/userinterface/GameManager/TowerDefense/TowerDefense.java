@@ -47,7 +47,7 @@ public class TowerDefense implements ScoreSystem {
                 temp.add(e);
                 currentScore += e.getScore();
             }
-            if (e.getY() >= mapHeight-300) { //if enemy is out of map remove it
+            if (e.getY() >= mapHeight) { //if enemy is out of map remove it
                 temp.add(e);
                 lives -= 1;
             }
