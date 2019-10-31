@@ -5,6 +5,11 @@ import java.io.Serializable;
 public class User implements Serializable {
     private String email;
     private int level;
+
+    public int getCurrScore() {
+        return currScore;
+    }
+
     private int currScore;
     private int highScore;
 
