@@ -106,7 +106,8 @@ public class TowerDefense {
         return currentScore;
     }
 
-
-
-
+    public void convertLivesToScore() {
+        if (lives > 0)
+            currentScore += lives *100; //each life left adds another 100 pts.
+    }
 }
