@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.example.userinterface.R;
 
 public class Stats extends AppCompatActivity {
-    TextView userLevel, highScore, gamesPlayed;
+    TextView userLevel, highScore, gamesPlayed, currentScore;
     User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +22,12 @@ public class Stats extends AppCompatActivity {
         setContentView(R.layout.activity_stats);
         userLevel= findViewById(R.id.userlevel);
         highScore = findViewById(R.id.highscore);
+        currentScore = findViewById(R.id.currentScore);
         gamesPlayed = findViewById(R.id.gamesplayed);
         userLevel.setText(user.getLevel()+"");
         highScore.setText(user.getHighScore()+"");
         gamesPlayed.setText(user.getNumOfGames()+"");
+        currentScore.setText(user.getCurrScore()+"");
     }
 
 }

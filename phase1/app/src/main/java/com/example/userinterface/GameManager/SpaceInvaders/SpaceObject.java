@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 abstract class SpaceObject implements Subject {
+    static int UNIWIDTH = 20;
+    static int UNIHEIGHT = 20;
+
     // Private attributes
     private int x;
     private int y;
@@ -14,6 +17,7 @@ abstract class SpaceObject implements Subject {
     private int xSpeed;
     private int ySpeed;
     private boolean changed;
+    private boolean destoryed;
     private boolean updated = false;
     private List<Observer> observers;
 
@@ -85,13 +89,20 @@ abstract class SpaceObject implements Subject {
         return observers;
     }
 
-
     boolean isUpdated() {
         return updated;
     }
 
     void setUpdated(boolean updated) {
         this.updated = updated;
+    }
+
+    public boolean isDestoryed() {
+        return destoryed;
+    }
+
+    public void setDestoryed(boolean destoryed) {
+        this.destoryed = destoryed;
     }
 
     // Implements Subject

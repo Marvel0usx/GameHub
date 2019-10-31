@@ -2,7 +2,7 @@ package com.example.userinterface.GameManager.SpaceInvaders;
 
 import android.graphics.Canvas;
 
-abstract class Bullet extends SpaceObject{
+abstract class Bullet extends SpaceObject {
     Bullet(int x, int y, int damage, int ySpeed){
         super(x, y, damage, ySpeed);
         this.appearance = "*";
