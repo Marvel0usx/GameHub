@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 abstract class SpaceObject implements Subject {
-    static int UNIWIDTH = 20;
-    static int UNIHEIGHT = 20;
+    static int UNIWIDTH = 40;
+    static int UNIHEIGHT = 40;
 
     // Private attributes
     private int x;

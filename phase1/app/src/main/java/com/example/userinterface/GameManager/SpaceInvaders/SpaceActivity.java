@@ -35,8 +35,7 @@ public class SpaceActivity extends Activity implements VariableChangeListener{
         spaceView = findViewById(R.id.spaceView);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        spaceView.setSpace(Space);
-        Space.setVariableChangeListener(this);
+//        spaceView.Space.setVariableChangeListener(this);
         if (bundle != null) {
             gameManager = (Games) bundle.getSerializable("Game");
         }

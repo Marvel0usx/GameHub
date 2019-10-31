@@ -17,6 +17,8 @@ abstract class Ship extends SpaceObject {
     // Setters and getters
     public void setLives(int lives) {
         this.lives = lives;
+        if (this.lives <= 0)
+            setDestoryed(true);
     }
 
     int getLives() {
