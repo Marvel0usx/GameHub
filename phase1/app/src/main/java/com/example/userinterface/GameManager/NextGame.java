@@ -13,7 +13,7 @@ import com.example.userinterface.R;
 public class NextGame extends AppCompatActivity {
     Games games;
     TextView textView;
-    boolean winOrLose;
+    boolean won;
     Button btnNext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +25,9 @@ public class NextGame extends AppCompatActivity {
         btnNext = findViewById(R.id.next);
         if (bundle != null) {
             games = (Games) bundle.getSerializable("Game");
-            winOrLose = bundle.getBoolean("winOrLose");
+            won = bundle.getBoolean("won");
         }
-        if (winOrLose){
+        if (won){
             textView.setText("You Have Won");
         }else{
             textView.setText("You Have Lost");

@@ -38,9 +38,9 @@ public class GameManager implements Serializable, Games{
         helper(intent, context, bundle);
     }
 
-    public void toInter(Context context,boolean winOrLose){
+    public void toInter(Context context,boolean won){
         GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(context);
-        if (winOrLose){
+        if (won){
             saved++;
         }else {
             saved = 0;
@@ -49,7 +49,7 @@ public class GameManager implements Serializable, Games{
         user.setLevel(saved);
         Intent intent = new Intent(context, NextGame.class);
         Bundle bundle = new Bundle();
-        bundle.putBoolean("winOrLose", winOrLose);
+        bundle.putBoolean("won", won);
         helper(intent, context,bundle);
     }
 
