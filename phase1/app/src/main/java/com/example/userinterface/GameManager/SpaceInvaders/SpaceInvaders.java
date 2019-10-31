@@ -18,6 +18,8 @@ public class SpaceInvaders implements Observer{
     private Player player;
     private List<SpaceObject> subjects = new ArrayList<>();
 
+    private boolean gamemode;
+
     // Initializer
     public SpaceInvaders(int width, int height) {
         this.height = height;
@@ -84,6 +86,9 @@ public class SpaceInvaders implements Observer{
         for (SpaceObject obj : subjects) {
             obj.setUpdated(false);
         }
+        if (subjects.isEmpty()){
+            this.gamemode = false;
+        }
     }
 
     // actual update of the observer
@@ -109,6 +114,7 @@ public class SpaceInvaders implements Observer{
     public void layout() {
         this.player = new Player((this.width >> 1), 1300, 0, 300);
         this.player.registerObserver(this);
+        this.gamemode = true;
         subjects.add(this.player);
 
         for (int x = 50; x < 500; x += 200)
@@ -155,5 +161,9 @@ public class SpaceInvaders implements Observer{
             player.move(0);
         else
             player.move(1);
+    }
+
+    public boolean isGameOver(){
+        return this.gamemode;
     }
 }
