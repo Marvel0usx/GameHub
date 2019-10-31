@@ -5,28 +5,18 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
-
 import android.graphics.Color;
 import android.view.Gravity;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.os.Bundle;
-
 import java.util.Random;
-
-import com.example.userinterface.GameManager.GameManager;
 import com.example.userinterface.GameManager.Games;
-import com.example.userinterface.GameManager.MenuActivity;
-import com.example.userinterface.GameManager.TowerDefense.TowerDefenseActivity;
-import com.example.userinterface.GameManager.User;
 import com.example.userinterface.R;
 
-import android.widget.GridView;
 
 public class HangManGameActivity extends Activity {
     private ImageView[] balloons; // balloon images
