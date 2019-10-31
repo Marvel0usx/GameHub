@@ -13,8 +13,6 @@ import android.widget.Button;
 
 public class HangManActivity extends Activity implements OnClickListener {
 
-    //comment
-    // hey
     Games gameManager;
 
     @Override
