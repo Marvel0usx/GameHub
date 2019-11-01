@@ -12,7 +12,7 @@ public class Balloon {
     private ImageView balloonImage; //the image view of the balloon.
 
     /**
-     * Construct a new balloon with its image view.
+     * Initialize a new balloon with its image view.
      * @param balloon
      */
     public Balloon(ImageView balloon){
