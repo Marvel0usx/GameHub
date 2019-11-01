@@ -41,6 +41,9 @@ public class SpaceActivity extends Activity implements VariableChangeListener{
         if (bundle != null) {
             gameManager = (Games) bundle.getSerializable("Game");
         }
+        if (spaceView != null) {
+            spaceView.setSpace(Space);
+        }
 
         btnLeft = findViewById(R.id.Left);
         btnRight = findViewById(R.id.Right);

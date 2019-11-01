@@ -19,11 +19,11 @@ public class Scoreboard {
     }
 
     public void setAppearance(int lives, int score) {
-        this.appearance = lives + " " + score;
+        this.appearance = "Lives: "+ lives + " " + "Score: " + score;
     }
 
     public void draw(Canvas canvas){
-        canvas.drawText(this.appearance, 500, 200, paintText);
+        canvas.drawText(this.appearance, 200, 200, paintText);
     }
 
 }
