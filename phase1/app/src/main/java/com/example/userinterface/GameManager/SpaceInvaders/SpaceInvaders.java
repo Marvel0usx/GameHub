@@ -1,7 +1,7 @@
 package com.example.userinterface.GameManager.SpaceInvaders;
 
 import android.graphics.Canvas;
-import android.graphics.SumPathEffect;
+//import android.graphics.SumPathEffect;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -9,13 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SpaceInvaders implements Observer{
-    // Private Constants
-    private static int X = 0;
-    private static int Y = 1;
-
-
-    // Public Constant
-
     // Private attributes
     private int height;
     private int width;
@@ -23,7 +16,7 @@ public class SpaceInvaders implements Observer{
     private int hardness = 1;
     private Player player;
     private List<SpaceObject> subjects = new ArrayList<>();
-    public VariableChangeListener var;
+    private VariableChangeListener var;
     private Scoreboard scoreboard;
 
     private boolean gameOver = false;
@@ -41,12 +34,15 @@ public class SpaceInvaders implements Observer{
     public void registerSubject(Subject subject){
         // if this is an enemy ship, it's subject will be player and player's bullet;
         // player, enemy and their bullets.
-        if (!subjects.contains((SpaceObject) subject))
+        // noinspection SuspiciousMethodCalls
+        if (!subjects.contains(subject))
             subjects.add((SpaceObject) subject);
     }
 
     public void unregisterSubject(Subject subject) {
-        subjects.remove((SpaceObject) subject);
+        // Since we know that SpaceObjects are Subject
+        // noinspection SuspiciousMethodCalls
+        subjects.remove(subject);
     }
 
     public void unregisterAll() {
@@ -67,12 +63,10 @@ public class SpaceInvaders implements Observer{
         this.player.move(0);
         this.scoreboard.setAppearance(this.player.getLives(), this.score);
 
-
-
         for (SpaceObject obj : subjects) {
             if (obj.isUpdated())
                 continue;
-            if (obj.isDestoryed()) {
+            if (obj.isDestroyed()) {
                 subjectsToRemove.add(obj);
                 continue;
             }
@@ -97,13 +91,13 @@ public class SpaceInvaders implements Observer{
         }
         // find all objects that is dead, garbage collecting
         for (SpaceObject obj : subjects) {
-            if (obj.isDestoryed())
+            if (obj.isDestroyed())
                 subjectsToRemove.add(obj);
         }
         // user local list to modify, avoiding the Concurrent Modification Error
         for (SpaceObject obj : subjectsToRemove)
             // remove from both observer & subject
-            subjects.remove(obj); // perhaps we need too consider the reversed reference
+            this.unregisterSubject(obj); // perhaps we need too consider the reversed reference
         for (SpaceObject obj : subjectsToMove)
             if (obj instanceof Bullet) {
                 ((Bullet) obj).move();
@@ -116,26 +110,24 @@ public class SpaceInvaders implements Observer{
 
         if (this.noEnemies(subjects)){
             this.gameOver = true;
+            unregisterAll();
             if (this.player.getLives() > 0) {
                 this.isWin = true;
             }
             if (this.var != null)
-
                 this.var.onVariableChange(true);
-
         }
         if (this.player.getLives() <= 0){
             this.gameOver = true;
             this.isWin = false;
+            unregisterAll();
             if (this.var != null)
-
                 this.var.onVariableChange(true);
-
         }
     }
 
     private boolean noEnemies(List<SpaceObject> list){
-        List list1 = new ArrayList();
+        List<SpaceObject> list1 = new ArrayList<>();
         for (SpaceObject e: list){
             if (e instanceof Enemy){
                 list1.add(e);
@@ -149,6 +141,8 @@ public class SpaceInvaders implements Observer{
     public void update(SpaceObject obj) {
         // obj is the object (in this cycle) that exerts deductLife to others,
         // i.e. local variable o
+        int X = 0;
+        int Y = 1;
         int[] newPosition = obj.getUpdate(this);
         for (SpaceObject o : subjects) {
             if ((o == obj) || o.getClass().equals(obj.getClass()))
@@ -162,15 +156,16 @@ public class SpaceInvaders implements Observer{
 
     // Utils
     public void layout() {
-        this.player = new Player((this.width >> 1), 1300, 0, 300);
-        this.player.registerObserver(this);
-        subjects.add(this.player);
-        this.scoreboard = new Scoreboard();
+        player = new Player((this.width >> 1), 1300, 0, 500);
+        player.registerObserver(this);
+        subjects.add(player);
+        scoreboard = new Scoreboard();
 
         for (int x = 50; x < 500; x += 200)
-            subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100));
+            subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 200));
         for (int x = 700; x < 1000; x += 200)
-            subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100));
+            subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 200));
+
         for (Subject sub : subjects)
             sub.registerObserver(this);
         hardness++;
@@ -178,18 +173,18 @@ public class SpaceInvaders implements Observer{
 
     private boolean isCollide(int x1, int y1, int x2, int y2) {
         // Jan endorsed algorithm
-        boolean xCollision = false;
-        boolean yCollision = false;
+        boolean xCollision;
+        boolean yCollision;
 
         if (x1 >= x2)
-            xCollision = (SpaceObject.UNIWIDTH >= (x1 - x2));
+            xCollision = (SpaceObject.WIDTH >= (x1 - x2));
         else // (x1 < x2)
-            xCollision = (SpaceObject.UNIWIDTH >= (x2 - x1));
+            xCollision = (SpaceObject.WIDTH >= (x2 - x1));
 
         if (y2 >= y1)
-            yCollision = (SpaceObject.UNIHEIGHT >= (y2 - y1));
+            yCollision = (SpaceObject.HEIGHT >= (y2 - y1));
         else // (y2 < y1)
-            yCollision = (SpaceObject.UNIHEIGHT >= (y1 - y2));
+            yCollision = (SpaceObject.HEIGHT >= (y1 - y2));
 
         return xCollision & yCollision;
         // End of Jan endorsed algorithm
@@ -199,24 +194,24 @@ public class SpaceInvaders implements Observer{
         // we can later add method to receive harm to all Ship
         if (o1 instanceof Player && (o2 instanceof Enemy || o2 instanceof EnemyBullet)) {
             ((Player) o1).setLives(((Player) o1).getLives() - o2.getDamage());
-            o2.setDestoryed(true);
+            o2.setDestroyed();
         }
         if (o1 instanceof Enemy && (o2 instanceof Player || o2 instanceof PlayerBullet)) {
             if (o2 instanceof Player) {
                 ((Player) o2).setLives(((Player) o2).getLives() - o1.getDamage());
-                o1.setDestoryed(true);
+                o1.setDestroyed();
             } else {
                 ((Enemy) o1).setLives(((Enemy) o1).getLives() - o2.getDamage());
-                o2.setDestoryed(true);
+                o2.setDestroyed();
             }
         }
         if (o1 instanceof EnemyBullet && o2 instanceof Player) {
             ((Player) o2).setLives(((Player) o2).getLives() - o1.getDamage());
-            o1.setDestoryed(true);
+            o1.setDestroyed();
         }
         if (o1 instanceof PlayerBullet && o2 instanceof Enemy) {
             ((Enemy) o2).setLives(((Enemy) o2).getLives() - o1.getDamage());
-            o1.setDestoryed(true);
+            o1.setDestroyed();
             this.score += 20;
         }
     }
@@ -264,13 +259,15 @@ public class SpaceInvaders implements Observer{
         this.var = variableChangeListener;
     }
 
-    public boolean isWin(){
+    boolean isWin() {
         return this.isWin;
     }
-    public boolean isGameOver(){
+
+    boolean isGameOver() {
         return this.gameOver;
     }
-    public int getScore(){
+
+    int getScore() {
         return this.score;
     }
 }

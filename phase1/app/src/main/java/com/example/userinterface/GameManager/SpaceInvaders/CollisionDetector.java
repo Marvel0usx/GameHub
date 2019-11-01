@@ -3,6 +3,7 @@ package com.example.userinterface.GameManager.SpaceInvaders;
 import java.util.ArrayList;
 import java.util.List;
 
+@Deprecated
 public class CollisionDetector implements Observer {
     private List<Subject> subjects = new ArrayList<>();
 
@@ -17,11 +18,6 @@ public class CollisionDetector implements Observer {
 
     @Override
     public void update(SpaceObject object) {
-        for (Subject sub : subjects){
-            if (sub instanceof Bullet){
-                // cause damage
-            }
-        }
     }
 
     public void unregisterSubject(Subject subject) {

@@ -6,14 +6,7 @@ import android.graphics.Color;
 public class Enemy extends Ship {
     private EnemyBullet bullet;
 
-    Enemy(int x, int y, int damage, int ySpeed, int lives) {
-        super(x, y, damage, ySpeed, lives);
-        this.appearance = "💠";
-        this.paintText.setColor(Color.GREEN);
-        this.paintText.setTextSize(80);
-    }
-
-    public Enemy(int x, int y, int damage, int xSpeed, int ySpeed, int lives){
+    Enemy(int x, int y, int damage, int xSpeed, int ySpeed, int lives) {
         super(x, y, damage, ySpeed, lives);
         setXSpeed(xSpeed);
         this.appearance = "💠";

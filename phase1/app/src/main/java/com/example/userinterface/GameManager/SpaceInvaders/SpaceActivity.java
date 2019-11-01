@@ -8,9 +8,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.Space;
-
-import com.example.userinterface.GameManager.MenuActivity;
 import com.example.userinterface.GameManager.*;
 import com.example.userinterface.R;
 
@@ -18,7 +15,7 @@ public class SpaceActivity extends Activity implements VariableChangeListener{
 
     SpaceInvaders Space;
     SpaceView spaceView;
-    Button btnLeft, btnRight, btnExit;
+    Button btnLeft, btnRight;
     Games gameManager;
     private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
     private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;

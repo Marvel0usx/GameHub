@@ -5,20 +5,16 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 public class Scoreboard {
-
-
     private String appearance;
-    private int score;
-    private int lives;
     private Paint paintText = new Paint();
 
-    public Scoreboard(){
+    Scoreboard() {
         this.appearance = "";
         this.paintText.setColor(Color.CYAN);
         this.paintText.setTextSize(80);
     }
 
-    public void setAppearance(int lives, int score) {
+    void setAppearance(int lives, int score) {
         this.appearance = "Lives: "+ lives + " " + "Score: " + score;
     }
 

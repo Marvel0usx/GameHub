@@ -1,7 +1,6 @@
 package com.example.userinterface.GameManager.SpaceInvaders;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
@@ -18,8 +17,8 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
     public MainThread thread;
     public boolean gameOver;
 
-    private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
-    private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
+//    private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+//    private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
     public SpaceView(Context context) {
         super(context);
@@ -94,9 +93,4 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
             Space.draw(canvas);
         }
     }
-
-    public void setGameOver(boolean bool){
-        this.gameOver = bool;
-    }
-
 }

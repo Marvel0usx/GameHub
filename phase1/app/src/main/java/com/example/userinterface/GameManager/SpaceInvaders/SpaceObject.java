@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 abstract class SpaceObject implements Subject {
-    static int UNIWIDTH = 40;
-    static int UNIHEIGHT = 40;
+    static int WIDTH = 40;
+    static int HEIGHT = 40;
 
     // Private attributes
     private int x;
@@ -17,7 +17,7 @@ abstract class SpaceObject implements Subject {
     private int xSpeed;
     private int ySpeed;
     private boolean changed;
-    private boolean destoryed;
+    private boolean destroyed;
     private boolean updated = false;
     private List<Observer> observers;
 
@@ -30,7 +30,7 @@ abstract class SpaceObject implements Subject {
         setX(x);
         setY(y);
         setDamage(damage);
-        setySpeed(ySpeed);
+        setYSpeed(ySpeed);
         setXSpeed(0);
         observers = new ArrayList<>();
     }
@@ -40,7 +40,7 @@ abstract class SpaceObject implements Subject {
         setY(y);
         setDamage(damage);
         setXSpeed(xSpeed);
-        setySpeed(ySpeed);
+        setYSpeed(ySpeed);
         observers = new ArrayList<>();
     }
 
@@ -61,7 +61,7 @@ abstract class SpaceObject implements Subject {
         return y;
     }
 
-    public int getDamage() {
+    int getDamage() {
         return damage;
     }
 
@@ -81,7 +81,7 @@ abstract class SpaceObject implements Subject {
         return ySpeed;
     }
 
-    private void setySpeed(int ySpeed) {
+    private void setYSpeed(int ySpeed) {
         this.ySpeed = ySpeed;
     }
 
@@ -97,12 +97,12 @@ abstract class SpaceObject implements Subject {
         this.updated = updated;
     }
 
-    public boolean isDestoryed() {
-        return destoryed;
+    boolean isDestroyed() {
+        return destroyed;
     }
 
-    public void setDestoryed(boolean destoryed) {
-        this.destoryed = destoryed;
+    void setDestroyed() {
+        this.destroyed = true;
     }
 
     // Implements Subject

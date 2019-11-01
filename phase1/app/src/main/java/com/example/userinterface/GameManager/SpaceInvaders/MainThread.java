@@ -5,11 +5,11 @@ import android.view.SurfaceHolder;
 
 public class MainThread extends Thread {
     private SpaceView spaceView;
-    private SurfaceHolder surfaceHolder;
+    private final SurfaceHolder surfaceHolder;
     private boolean isRunning;
     public static Canvas canvas;
 
-    public MainThread(SurfaceHolder surfaceHolder, SpaceView spaceView){
+    MainThread(SurfaceHolder surfaceHolder, SpaceView spaceView) {
         this.surfaceHolder = surfaceHolder;
         this.spaceView = spaceView;
     }
@@ -39,7 +39,7 @@ public class MainThread extends Thread {
         }
     }
 
-    public void setRunning(boolean isRunning) {
+    void setRunning(boolean isRunning) {
         this.isRunning = isRunning;
     }
 }
