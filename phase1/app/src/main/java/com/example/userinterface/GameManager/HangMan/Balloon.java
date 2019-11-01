@@ -3,20 +3,25 @@ package com.example.userinterface.GameManager.HangMan;
 import android.view.View;
 import android.widget.ImageView;
 
+/**
+ * A balloon.
+ */
+
 public class Balloon {
 
-    private boolean display;
-    private ImageView balloonImage;
-    // private ImageView[] balloons;
+    private ImageView balloonImage; //the image view of the balloon.
 
+    /**
+     * Construct a new balloon with its image view.
+     * @param balloon
+     */
     public Balloon(ImageView balloon){
         this.balloonImage = balloon;
     }
 
-    protected void displayInitialBalloons(int numLives){
-        this.balloonImage.setVisibility(View.VISIBLE);
-    }
-
+    /**
+     * Set the balloon invisible.
+     */
     protected void disappear(){
         this.balloonImage.setVisibility(View.INVISIBLE);
     }
