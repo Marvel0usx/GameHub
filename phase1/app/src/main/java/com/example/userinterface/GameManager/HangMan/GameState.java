@@ -6,14 +6,13 @@ public class GameState {
     private int remainingBalloons; // number of balloons left, decreases each time a wrong letter is guessed
     private int numCorr; // number of letters correctly guessed
     private String currentWord;
-    private Balloon[] balloons;
 
-    public GameState(String currentWord) {
-        this.currentWord = currentWord;
+    public GameState() {
+        currentWord = "BULLETPROOF";
         currLen = currentWord.length();
         remainingBalloons = 6;
-        balloons = new Balloon[remainingBalloons];
     }
+
 
 
 }
