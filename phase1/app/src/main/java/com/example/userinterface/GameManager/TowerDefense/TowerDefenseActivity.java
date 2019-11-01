@@ -84,6 +84,9 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
                 btnHit.setVisibility(View.VISIBLE);
                 btnStart.setVisibility(View.GONE);
                 towerDefense.addEnemy();
+                btnTower1.setVisibility(View.VISIBLE);
+                btnTower2.setVisibility(View.VISIBLE);
+                btnTower3.setVisibility(View.VISIBLE);
                 gameView.setGameStart(true);
                 break;
 
