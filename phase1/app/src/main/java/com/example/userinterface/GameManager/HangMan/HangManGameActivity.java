@@ -27,13 +27,10 @@ public class HangManGameActivity extends Activity implements ScoreSystem {
     private int numCorr; // number of letters correctly guessed
     private int currentScore;
 
-    private String[] words;
-    private Random rand;
     private String currentWord;
     private LinearLayout wordLayout;
     private TextView[] characterViews;
     private Games gameManager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +39,6 @@ public class HangManGameActivity extends Activity implements ScoreSystem {
         balloons = new ImageView[numLives];
         // initializes images containing different numbers of ballons, representing different number
         // of lives.
-        rand = new Random();
         currentWord = "";
         wordLayout = findViewById(R.id.word);
         Intent intent = getIntent();
@@ -50,7 +46,8 @@ public class HangManGameActivity extends Activity implements ScoreSystem {
         if (bundle != null) {
             gameManager = (Games) bundle.getSerializable("Game");
         }
-
+        // refers each element in balloons array to the particular image view that contains each
+        // possible number of balloons (the image views are already being created)
         balloons[0] = findViewById(R.id.ballon1);
         balloons[1] = findViewById(R.id.ballon2);
         balloons[2] = findViewById(R.id.ballon3);
@@ -90,6 +87,7 @@ public class HangManGameActivity extends Activity implements ScoreSystem {
                 currentScore += 100;
                 gameManager.getUser().addToCurrScore(getGameScore());
                 gameManager.toInter(HangManGameActivity.this,true);
+                // the game ends since the user has won
                 HangManGameActivity.this.finish();
             }
 
@@ -115,13 +113,6 @@ public class HangManGameActivity extends Activity implements ScoreSystem {
         currentWord = "BULLETPROOF";
         characterViews = new TextView[currentWord.length()];
         wordLayout.removeAllViews();
-
-//        for(int p = 0; p < balloons.length; p++) {
-//            balloons[p].setVisibility(View.VISIBLE);
-//        }
-
-
-
         remainingBallons = 6;
         currLen = currentWord.length();
         numCorr = 0;
