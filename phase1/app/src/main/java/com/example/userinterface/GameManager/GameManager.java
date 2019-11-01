@@ -1,12 +1,10 @@
 package com.example.userinterface.GameManager;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.userinterface.GameManager.HangMan.HangManActivity;
-import com.example.userinterface.GameManager.HangMan.HangManGameActivity;
 import com.example.userinterface.GameManager.SpaceInvaders.SpaceActivity;
 import com.example.userinterface.GameManager.TowerDefense.TowerDefenseActivity;
 

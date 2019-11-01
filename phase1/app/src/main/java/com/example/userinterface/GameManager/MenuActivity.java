@@ -1,23 +1,12 @@
 package com.example.userinterface.GameManager;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.userinterface.BackgroundActivity;
-import com.example.userinterface.GameManager.HangMan.HangManActivity;
-import com.example.userinterface.GameManager.HangMan.HangManGameActivity;
-import com.example.userinterface.GameManager.SpaceInvaders.SpaceActivity;
-import com.example.userinterface.GameManager.TowerDefense.TowerDefense;
-import com.example.userinterface.GameManager.TowerDefense.TowerDefenseActivity;
-import com.example.userinterface.MainActivity;
 import com.example.userinterface.R;
-
-import java.io.Serializable;
 
 public class MenuActivity extends Activity {
 
@@ -51,7 +40,7 @@ public class MenuActivity extends Activity {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gameManager.reLocate(MenuActivity.this, 1, 3);
+                gameManager.reLocate(MenuActivity.this, 1, 1);
             }
         });
 

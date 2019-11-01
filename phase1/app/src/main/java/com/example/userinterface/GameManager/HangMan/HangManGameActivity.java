@@ -1,144 +1,109 @@
 package com.example.userinterface.GameManager.HangMan;
 
 import android.app.Activity;
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.view.View;
-import android.widget.ImageView;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.view.Gravity;
-import android.view.ViewGroup.LayoutParams;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.os.Bundle;
-import java.util.Random;
+
 import com.example.userinterface.GameManager.Games;
-import com.example.userinterface.GameManager.ScoreSystem;
 import com.example.userinterface.R;
 
 
-public class HangManGameActivity extends Activity implements ScoreSystem {
-    private ImageView[] balloons; // balloon images
-    private int numLives = 6; // number of lives
-    private int currLen; // number of characters in current word
-    private int remainingBallons; // number of balloons left, decreases each time a wrong letter is guessed
-    private int numCorr; // number of letters correctly guessed
+public class HangManGameActivity extends Activity {
+    protected Games gameManager;
+    private GameState gameState;
     private int currentScore;
 
-    private String currentWord;
-    private LinearLayout wordLayout;
+    private int numLives;
+    private ImageView[] balloons;
+
+    private AnswerKeyLetter[] answerKey;
     private TextView[] characterViews;
-    private Games gameManager;
+    private LinearLayout wordLayout;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hm_activity_game);
-        balloons = new ImageView[numLives];
-        // initializes images containing different numbers of ballons, representing different number
-        // of lives.
-        currentWord = "";
         wordLayout = findViewById(R.id.word);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
             gameManager = (Games) bundle.getSerializable("Game");
         }
-        // refers each element in balloons array to the particular image view that contains each
-        // possible number of balloons (the image views are already being created)
+        balloons = new ImageView[numLives];
         balloons[0] = findViewById(R.id.ballon1); // the part right of equal sign is an image view
+        Balloon balloon_0 = new Balloon(balloons[0]);
         balloons[1] = findViewById(R.id.ballon2);
+        Balloon balloon_1 = new Balloon(balloons[1]);
         balloons[2] = findViewById(R.id.ballon3);
+        Balloon balloon_2 = new Balloon(balloons[2]);
         balloons[3] = findViewById(R.id.ballon4);
+        Balloon balloon_3 = new Balloon(balloons[3]);
         balloons[4] = findViewById(R.id.ballon5);
+        Balloon balloon_4 = new Balloon(balloons[4]);
         balloons[5] = findViewById(R.id.ballon6);
-        playHangMan();
+        Balloon balloon_5 = new Balloon(balloons[5]);
+        Balloon[] tempBalloons = {balloon_0, balloon_1, balloon_2, balloon_3, balloon_4, balloon_5};
+        //List<Balloon> tempBalloons = new ArrayList<Balloon>();
+
+        gameState = new GameState("BULLETPROOF", tempBalloons);
+
+        wordLayout.removeAllViews();
+        String keyword = gameState.getKeyWord();
+        answerKey = new AnswerKeyLetter[keyword.length()]; // an array of all answerkey letters (correct)
+        for (int c = 0; c < keyword.length(); c++){
+            answerKey[c] = new AnswerKeyLetter(keyword.charAt(c)); // makes a new AnswerKeyLetter for each iteration
+            characterViews[c] = new TextView(this); // creates a text view
+            characterViews[c].setText("" + keyword.charAt(c));
+            characterViews[c].setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            characterViews[c].setGravity(Gravity.CENTER);
+            characterViews[c].setTextColor(Color.WHITE); // set it to be white
+            characterViews[c].setBackgroundResource(R.drawable.hm_letter_background);
+            answerKey[c].addTextView(characterViews[c]);
+            wordLayout.addView(answerKey[c].getTextView());
+        }
+
+
     }
+    // don't need playHangMan method anymore; can directly use the buttons
+    public void makeGuess(View v){
+        String letterGuessed = ((TextView) v).getText().toString();
+        char charGuessed = letterGuessed.charAt(0);
+        v.setEnabled(false);
+        v.setBackgroundResource(R.drawable.hm_letter_clicked);
+
+        this.gameState.updateState(charGuessed);
+        this.currentScore = gameState.getCurrentScore();
+        endGame();
+    }
+
+    public void endGame(){
+        if (gameState.numCorr == gameState.keywordLen) {
+            this.currentScore += 100;
+            gameManager.getUser().addToCurrScore(this.currentScore);
+            gameManager.toInter(HangManGameActivity.this,true);
+            HangManGameActivity.this.finish();
+        } else if (gameState.remainingBalloons == 0){
+            gameManager.getUser().addToCurrScore(this.currentScore);
+            gameManager.toInter(HangManGameActivity.this,false);
+            // game ends because all lives have been used up
+            HangManGameActivity.this.finish();
+        }
+    }
+
 
     @Override
     public void onBackPressed() {
         gameManager.reLocate(HangManGameActivity.this, 1, 0);
     }
 
-
-    public void makeGuess(View v) {
-        // the user has clicked on the letter he/she wants to guess
-        String letterGuessed = ((TextView) v).getText().toString();
-        char charGuessed = letterGuessed.charAt(0);
-        v.setEnabled(false);
-        v.setBackgroundResource(R.drawable.hm_letter_clicked);
-
-        boolean correct = false;
-
-        for (int i = 0; i < currentWord.length(); i++) {
-            if (currentWord.charAt(i) == charGuessed) {
-                correct = true;
-                currentScore += 10;
-                numCorr++;
-                characterViews[i].setTextColor(Color.BLACK);
-            }
-        }
-        if (correct) {
-            // correct guess
-            if (numCorr == currLen) {
-                // won the game
-                currentScore += 100;
-                gameManager.getUser().addToCurrScore(getGameScore());
-                gameManager.toInter(HangManGameActivity.this,true);
-                // the game ends since the user has won
-                HangManGameActivity.this.finish();
-            }
-
-        } else if (remainingBallons > 0) {
-            // player still has lives left
-            currentScore -= 20;
-            balloons[remainingBallons - 1].setVisibility(v.INVISIBLE);
-            remainingBallons = remainingBallons - 1;
-
-            if (remainingBallons == 0) {
-                // updates the current score for this particular user
-                gameManager.getUser().addToCurrScore(getGameScore());
-                gameManager.toInter(HangManGameActivity.this,false);
-                // game ends because all lives have been used up
-                HangManGameActivity.this.finish();
-            }
-        }
-    }
-
-    private void playHangMan() {
-        // plays a new HangMan game
-        currentWord = "BULLETPROOF";
-        /**
-         * creates the view that holds the actual word that is being guessed; the number of
-         * "dashes" that are at the bottom of each letter depends on the length of the word
-         * sets initial  number of lives to 6, which equals number of balloons */
-        characterViews = new TextView[currentWord.length()];
-        wordLayout.removeAllViews();
-        remainingBallons = 6;
-        currLen = currentWord.length();
-        numCorr = 0;
-
-        for (int c = 0; c < currentWord.length(); c++) {
-            /**
-             * add the correct letters onto the screen. Since none of the letters have been guessed,
-             * all the letters are being set to white and will be set to black once the correct
-             * letter has been guessed. */
-            characterViews[c] = new TextView(this);
-            characterViews[c].setText("" + currentWord.charAt(c));
-            characterViews[c].setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
-            characterViews[c].setGravity(Gravity.CENTER);
-            characterViews[c].setTextColor(Color.WHITE);
-            characterViews[c].setBackgroundResource(R.drawable.hm_letter_background);
-            /** add to layout */
-            wordLayout.addView(characterViews[c]);
-        }
-
-    }
-
-    @Override
-    public int getGameScore() {
-        return currentScore;
-    }
 }

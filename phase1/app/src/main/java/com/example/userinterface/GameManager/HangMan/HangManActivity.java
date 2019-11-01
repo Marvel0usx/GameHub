@@ -36,7 +36,7 @@ public class HangManActivity extends Activity implements OnClickListener {
     public void onClick(View v) {
         // handles clicks
         if (v.getId() == R.id.playButton) {
-            Intent intent = new Intent(HangManActivity.this, HangManGameActivity.class);
+            Intent intent = new Intent(HangManActivity.this, NewHangManGameActivity.class);
             Bundle bundle = new Bundle();
             bundle.putSerializable("Game", (GameManager)gameManager);
             intent.putExtras(bundle);

@@ -9,7 +9,7 @@ public class Balloon {
     private ImageView balloonImage;
     // private ImageView[] balloons;
 
-    public Balloon(ImageView balloon, int numLives){
+    public Balloon(ImageView balloon){
         this.balloonImage = balloon;
     }
 

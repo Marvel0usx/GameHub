@@ -5,12 +5,15 @@ import android.widget.TextView;
 
 public class AnswerKeyLetter {
 
-    private char letter;
+    protected char letter;
 
     private TextView textView;
 
+    private boolean shown;
+
     public AnswerKeyLetter(char letter) {
         this.letter = letter;
+        shown = false;
     }
 
     void addTextView(TextView textView) {
@@ -20,6 +23,13 @@ public class AnswerKeyLetter {
     TextView getTextView(){
         return textView;
     }
+
+    //void showLetter(){
+     //   shown = true;
+      //  if (shown) {
+       //     this.turnBlack();
+      //  }
+   // }
 
     void turnBlack(){
         textView.setTextColor(Color.BLACK);

@@ -18,7 +18,7 @@
         <activity android:name=".GameManager.MenuActivity" />
         <activity android:name=".GameManager.TowerDefense.TowerDefenseActivity" />
         <activity android:name=".GameManager.SpaceInvaders.SpaceActivity" />
-        <activity android:name=".GameManager.HangMan.HangManGameActivity" />
+        <activity android:name=".GameManager.HangMan.NewHangManGameActivity" />
         <activity android:name=".GameManager.HangMan.HangManActivity" />
         <activity android:name=".SignupActivity" />
         <activity android:name=".MainActivity">
