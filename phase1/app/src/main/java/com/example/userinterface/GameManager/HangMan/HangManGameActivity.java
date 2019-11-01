@@ -98,19 +98,22 @@ public class HangManGameActivity extends Activity implements ScoreSystem {
             remainingBallons = remainingBallons - 1;
 
             if (remainingBallons == 0) {
+                // updates the current score for this particular user
                 gameManager.getUser().addToCurrScore(getGameScore());
                 gameManager.toInter(HangManGameActivity.this,false);
+                // game ends because all lives have been used up
                 HangManGameActivity.this.finish();
             }
-
-
         }
     }
 
     private void playHangMan() {
         // plays a new HangMan game
-        // String newWord = words[rand.nextInt(words.length)];
         currentWord = "BULLETPROOF";
+        /**
+         * creates the view that holds the actual word that is being guessed; the number of
+         * "dashes" that are at the bottom of each letter depends on the length of the word
+         * sets initial  number of lives to 6, which equals number of balloons */
         characterViews = new TextView[currentWord.length()];
         wordLayout.removeAllViews();
         remainingBallons = 6;
@@ -118,13 +121,17 @@ public class HangManGameActivity extends Activity implements ScoreSystem {
         numCorr = 0;
 
         for (int c = 0; c < currentWord.length(); c++) {
+            /**
+             * add the correct letters onto the screen. Since none of the letters have been guessed,
+             * all the letters are being set to white and will be set to black once the correct
+             * letter has been guessed. */
             characterViews[c] = new TextView(this);
             characterViews[c].setText("" + currentWord.charAt(c));
             characterViews[c].setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
             characterViews[c].setGravity(Gravity.CENTER);
             characterViews[c].setTextColor(Color.WHITE);
             characterViews[c].setBackgroundResource(R.drawable.hm_letter_background);
-            //add to layout
+            /** add to layout */
             wordLayout.addView(characterViews[c]);
         }
 

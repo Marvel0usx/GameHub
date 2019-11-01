@@ -25,7 +25,6 @@ public class GameManager implements Serializable, Games{
         this.user = user;
         classes = new Class[]{MenuActivity.class, HangManActivity.class,TowerDefenseActivity.class,
                 SpaceActivity.class};
-
     }
 
     public void reLocate(Context context, int saved, int destination){
