@@ -49,7 +49,7 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
         paintText.setTextSize(36);
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
 
-        Space = new SpaceInvaders(screenWidth, screenHeight);
+
         Space.layout();
 
         thread.setRunning(true);

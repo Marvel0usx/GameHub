@@ -30,7 +30,7 @@ public class SpaceActivity extends Activity implements VariableChangeListener{
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        SpaceInvaders Space = new SpaceInvaders(screenWidth, screenHeight);
+        Space = new SpaceInvaders(screenWidth, screenHeight);
         setContentView(R.layout.activity_space);
         spaceView = findViewById(R.id.spaceView);
         Intent intent = getIntent();
