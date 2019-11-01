@@ -12,17 +12,9 @@ public class SpaceInvaders implements Observer{
     // Private Constants
     private static int X = 0;
     private static int Y = 1;
-    private static int RUNNING = 0;
-    private static int WON = 1;
-    private static int LOSE = 2;
+
 
     // Public Constant
-    static int STATE;
-
-    static {
-        // not initialized
-        STATE = -1;
-    }
 
     // Private attributes
     private int height;
@@ -31,15 +23,17 @@ public class SpaceInvaders implements Observer{
     private int hardness = 1;
     private Player player;
     private List<SpaceObject> subjects = new ArrayList<>();
-    public VariableChangeListener var = null;
+    public VariableChangeListener var;
+    private Scoreboard scoreboard;
 
-    private boolean gamemode;
+    private boolean gameOver = false;
+    private boolean isWin = false;
 
     // Initializer
     public SpaceInvaders(int width, int height) {
         this.height = height;
         this.width = width;
-        STATE = RUNNING;
+
     }
 
     // Implements Observer
@@ -66,20 +60,21 @@ public class SpaceInvaders implements Observer{
         ArrayList<SpaceObject> subjectsToRemove = new ArrayList<>();
         ArrayList<SpaceObject> subjectsToMove = new ArrayList<>();
 
-        player.updateShootCount();
+        this.player.updateShootCount();
         // this moving command serves the purpose of update
         // player's shoot count and make it fire bullet
         // even if it's not moving
-        player.move(0);
+        this.player.move(0);
+        this.scoreboard.setAppearance(this.player.getLives(), this.score);
+
+
+
         for (SpaceObject obj : subjects) {
             if (obj.isUpdated())
                 continue;
             if (obj.isDestoryed()) {
                 subjectsToRemove.add(obj);
                 continue;
-            }
-            if (player.getLives() <= 0) {
-                STATE = LOSE;
             }
             // update according to the type of obj
             if (obj instanceof Bullet) {
@@ -118,9 +113,37 @@ public class SpaceInvaders implements Observer{
         for (SpaceObject obj : subjects) {
             obj.setUpdated(false);
         }
-        if (subjects.isEmpty()){
-            this.gamemode = false;
+
+        if (this.noEnemies(subjects)){
+            this.gameOver = true;
+            if (this.player.getLives() > 0) {
+                this.isWin = true;
+            }
+            if (this.var != null)
+
+                this.var.onVariableChange(true);
+                System.out.println(this.var == null);
+
         }
+        if (this.player.getLives() <= 0){
+            this.gameOver = true;
+            this.isWin = false;
+            if (this.var != null)
+
+                this.var.onVariableChange(true);
+                System.out.println(this.var == null);
+
+        }
+    }
+
+    private boolean noEnemies(List<SpaceObject> list){
+        List list1 = new ArrayList();
+        for (SpaceObject e: list){
+            if (e instanceof Enemy){
+                list1.add(e);
+            }
+        }
+        return list1.isEmpty();
     }
 
     // Method serves the purpose of collision detection and
@@ -143,8 +166,8 @@ public class SpaceInvaders implements Observer{
     public void layout() {
         this.player = new Player((this.width >> 1), 1300, 0, 300);
         this.player.registerObserver(this);
-        this.gamemode = true;
         subjects.add(this.player);
+        this.scoreboard = new Scoreboard();
 
         for (int x = 50; x < 500; x += 200)
             subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100));
@@ -196,6 +219,7 @@ public class SpaceInvaders implements Observer{
         if (o1 instanceof PlayerBullet && o2 instanceof Enemy) {
             ((Enemy) o2).setLives(((Enemy) o2).getLives() - o1.getDamage());
             o1.setDestoryed(true);
+            this.score += 20;
         }
     }
 
@@ -221,23 +245,34 @@ public class SpaceInvaders implements Observer{
     public void draw(Canvas canvas) {
         for (SpaceObject item : subjects) item.draw(canvas);
         this.player.draw(canvas);
+        this.scoreboard.draw(canvas);
     }
 
     void goLeft() {
         // If the player is at the border, then it can't go further
-        if (player.getX() <= 10)
-            player.move(0);
+        if (this.player.getX() <= 10)
+            this.player.move(0);
         else
-            player.move(-1);
+            this.player.move(-1);
     }
     void goRight() {
-        if (player.getX() + player.getXSpeed() + 80 >= width)
-            player.move(0);
+        if (this.player.getX() + this.player.getXSpeed() + 80 >= width)
+            this.player.move(0);
         else
-            player.move(1);
+            this.player.move(1);
     }
 
     void setVariableChangeListener(VariableChangeListener variableChangeListener) {
         this.var = variableChangeListener;
+    }
+
+    public boolean isWin(){
+        return this.isWin;
+    }
+    public boolean isGameOver(){
+        return this.gameOver;
+    }
+    public int getScore(){
+        return this.score;
     }
 }

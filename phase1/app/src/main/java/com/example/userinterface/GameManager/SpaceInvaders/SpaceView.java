@@ -16,17 +16,18 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
 
     public SpaceInvaders Space;
     public MainThread thread;
-    public boolean gameover;
+    public boolean gameOver;
 
     private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
     private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
-    public SpaceView(Context context){
+    public SpaceView(Context context) {
         super(context);
         getHolder().addCallback(this);
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
     }
+
     public SpaceView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         getHolder().addCallback(this);
@@ -43,7 +44,7 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
         setFocusable(true);
     }
 
-    public void surfaceCreated(SurfaceHolder surfaceHolder){
+    public void surfaceCreated(SurfaceHolder surfaceHolder) {
         Paint paintText = new Paint();
         paintText.setTextSize(36);
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
@@ -55,10 +56,12 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
         thread.start();
 
     }
-    public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int width, int height){
+
+    public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int width, int height) {
 
     }
-    public void surfaceDestroyed(SurfaceHolder surfaceHolder){
+
+    public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         boolean retry = true;
         while (retry) {
             try {
@@ -72,22 +75,24 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-    public void setSpace(SpaceInvaders Space){
+    public void setSpace(SpaceInvaders Space) {
         this.Space = Space;
     }
 
-    public void update(){
+    public void update() {
         Space.run();
+
     }
 
-    public void draw(Canvas canvas){
+    public void draw(Canvas canvas) {
         super.draw(canvas);
-        if (canvas!= null){
+        if (canvas != null) {
             Space.draw(canvas);
         }
     }
 
-    public void setGameover(boolean gameover) {
-        this.gameover = gameover;
+    public void setGameOver(boolean bool){
+        this.gameOver = bool;
     }
+
 }

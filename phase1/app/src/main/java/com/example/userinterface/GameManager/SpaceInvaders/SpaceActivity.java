@@ -35,7 +35,9 @@ public class SpaceActivity extends Activity implements VariableChangeListener{
         spaceView = findViewById(R.id.spaceView);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-//        spaceView.Space.setVariableChangeListener(this);
+        spaceView.setSpace(Space);
+        Space.setVariableChangeListener(this);
+
         if (bundle != null) {
             gameManager = (Games) bundle.getSerializable("Game");
         }
@@ -57,7 +59,9 @@ public class SpaceActivity extends Activity implements VariableChangeListener{
     }
     @Override
     public void onVariableChange(boolean spaceGame){
-        spaceView.setGameover(true);
+        gameManager.getUser().addToCurrScore(Space.getScore());
+        gameManager.toInter(SpaceActivity.this, Space.isWin());
+
     }
 
 }
