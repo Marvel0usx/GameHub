@@ -30,14 +30,19 @@ public class SpaceActivity extends Activity implements VariableChangeListener{
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        SpaceInvaders Space = new SpaceInvaders(screenWidth, screenHeight);
+        Space = new SpaceInvaders(screenWidth, screenHeight);
         setContentView(R.layout.activity_space);
         spaceView = findViewById(R.id.spaceView);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-//        spaceView.Space.setVariableChangeListener(this);
+        spaceView.setSpace(Space);
+        Space.setVariableChangeListener(this);
+
         if (bundle != null) {
             gameManager = (Games) bundle.getSerializable("Game");
+        }
+        if (spaceView != null) {
+            spaceView.setSpace(Space);
         }
 
         btnLeft = findViewById(R.id.Left);
@@ -57,7 +62,9 @@ public class SpaceActivity extends Activity implements VariableChangeListener{
     }
     @Override
     public void onVariableChange(boolean spaceGame){
-        spaceView.setGameover(true);
+        gameManager.getUser().addToCurrScore(Space.getScore());
+        gameManager.toInter(SpaceActivity.this, Space.isWin());
+
     }
 
 }

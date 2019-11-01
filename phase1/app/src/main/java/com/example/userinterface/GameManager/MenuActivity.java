@@ -51,7 +51,7 @@ public class MenuActivity extends Activity {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gameManager.reLocate(MenuActivity.this, 1, 1);
+                gameManager.reLocate(MenuActivity.this, 1, 3);
             }
         });
 
