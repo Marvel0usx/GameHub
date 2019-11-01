@@ -1,18 +1,28 @@
 package com.example.userinterface.GameManager.HangMan;
 
+import android.graphics.Color;
 import android.widget.TextView;
 
 public class AnswerKeyLetter {
 
     private char letter;
-    private boolean shown;
+
+    private TextView textView;
 
     public AnswerKeyLetter(char letter) {
         this.letter = letter;
     }
 
-    void turnBlack(char ltr){
-        shown = true;
+    void addTextView(TextView textView) {
+        this.textView = textView;
+    }
+
+    TextView getTextView(){
+        return textView;
+    }
+
+    void turnBlack(){
+        textView.setTextColor(Color.BLACK);
     }
 
 

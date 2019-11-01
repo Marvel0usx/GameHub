@@ -13,6 +13,9 @@ public class GameState {
         remainingBalloons = 6;
     }
 
+    String getCurrentWord(){
+        return currentWord;
+    }
 
 
 }
