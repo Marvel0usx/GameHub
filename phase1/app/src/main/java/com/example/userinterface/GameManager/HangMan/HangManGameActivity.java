@@ -48,7 +48,7 @@ public class HangManGameActivity extends Activity implements ScoreSystem {
         }
         // refers each element in balloons array to the particular image view that contains each
         // possible number of balloons (the image views are already being created)
-        balloons[0] = findViewById(R.id.ballon1);
+        balloons[0] = findViewById(R.id.ballon1); // the part right of equal sign is an image view
         balloons[1] = findViewById(R.id.ballon2);
         balloons[2] = findViewById(R.id.ballon3);
         balloons[3] = findViewById(R.id.ballon4);

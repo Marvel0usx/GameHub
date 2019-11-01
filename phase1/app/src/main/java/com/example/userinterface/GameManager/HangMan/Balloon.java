@@ -1,15 +1,24 @@
 package com.example.userinterface.GameManager.HangMan;
 
+import android.view.View;
+import android.widget.ImageView;
+
 public class Balloon {
 
     private boolean display;
+    private ImageView balloonImage;
+    // private ImageView[] balloons;
 
-    protected void displayInitialBalloons(){
-        /** display all 6 initial balloons */
+    public Balloon(ImageView balloon, int numLives){
+        this.balloonImage = balloon;
+    }
+
+    protected void displayInitialBalloons(int numLives){
+        this.balloonImage.setVisibility(View.VISIBLE);
     }
 
     protected void disappear(){
-        /** make a balloon disappear when user gets the wrong letter */
+        this.balloonImage.setVisibility(View.INVISIBLE);
     }
     
 
