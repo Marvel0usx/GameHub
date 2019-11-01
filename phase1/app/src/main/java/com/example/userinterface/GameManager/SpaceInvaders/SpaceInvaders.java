@@ -122,7 +122,6 @@ public class SpaceInvaders implements Observer{
             if (this.var != null)
 
                 this.var.onVariableChange(true);
-                System.out.println(this.var == null);
 
         }
         if (this.player.getLives() <= 0){
@@ -131,7 +130,6 @@ public class SpaceInvaders implements Observer{
             if (this.var != null)
 
                 this.var.onVariableChange(true);
-                System.out.println(this.var == null);
 
         }
     }
