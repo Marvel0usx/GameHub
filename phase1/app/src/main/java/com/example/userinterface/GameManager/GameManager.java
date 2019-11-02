@@ -61,12 +61,20 @@ public class GameManager implements Serializable, Games{
         helper(intent, context,bundle);
     }
 
+    /**
+     * to the menu
+     * @param context
+     */
     public void toMenu(Context context){
         Intent intent = new Intent(context, MenuActivity.class);
         Bundle bundle = new Bundle();
         helper(intent,context,bundle);
     }
 
+    /**
+     * to the next game
+     * @param context
+     */
     public void next(Context context){
         Intent intent = new Intent(context, classes[saved]);
         Bundle bundle = new Bundle();
