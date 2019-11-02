@@ -10,7 +10,7 @@ public class Minion extends Enemy {
 
     private String[] appearence;
 
-    public Minion() {
+    Minion() {
         health = 10;
         speed = 3;
         score = 50;

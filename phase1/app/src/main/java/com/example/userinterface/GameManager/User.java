@@ -6,7 +6,7 @@ public class User implements Serializable {
     private String email;
     private int level;
 
-    public int getCurrScore() {
+    int getCurrScore() {
 
         return currScore;
     }
@@ -14,7 +14,7 @@ public class User implements Serializable {
     private int currScore;
     private int highScore;
 
-    public int getNumOfGames() {
+    int getNumOfGames() {
 
         return numOfGames;
     }
@@ -25,22 +25,21 @@ public class User implements Serializable {
         numOfGames += 1;
     }
 
-    public String getEmail() {
+    String getEmail() {
         return email;
     }
 
-    public void setLevel(int level) {
+    void setLevel(int level) {
         this.level = level;
     }
 
-    public int getLevel() {
+    int getLevel() {
         return level;
     }
 
-    public int getHighScore() {
+    int getHighScore() {
         return highScore;
     }
-
 
     public void setHighScore(int ScoreOfTheRound) {
         if (ScoreOfTheRound > highScore)

@@ -20,18 +20,11 @@ public class HangManGameActivity extends Activity {
     private GameState gameState;
     private int currentScore;
 
-
-    private int numLives = 6;
-    private ImageView[] balloons;
-
-    private AnswerKeyLetter[] answerKey;
-    private LinearLayout wordLayout;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hm_activity_game);
-        wordLayout = findViewById(R.id.word);
+        LinearLayout wordLayout = findViewById(R.id.word);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
@@ -40,7 +33,8 @@ public class HangManGameActivity extends Activity {
         // creates an array list of ImageView objects, each associated with a balloon image
         // that gets displayed
         // initialize each Balloon object
-        balloons = new ImageView[numLives];
+        int numLives = 6;
+        ImageView[] balloons = new ImageView[numLives];
         balloons[0] = findViewById(R.id.ballon1);
         Balloon balloon_0 = new Balloon(balloons[0]);
         balloons[1] = findViewById(R.id.ballon2);
@@ -59,7 +53,7 @@ public class HangManGameActivity extends Activity {
         wordLayout.removeAllViews();
         String keyword = gameState.getKeyWord();
         // an array that stores all letters of the correct word
-        answerKey = new AnswerKeyLetter[keyword.length()];
+        AnswerKeyLetter[] answerKey = new AnswerKeyLetter[keyword.length()];
         // each letter of the correct word is represented as a TextView object
 
         TextView[] characterViews = new TextView[keyword.length()];

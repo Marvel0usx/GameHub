@@ -2,13 +2,13 @@ package com.example.userinterface.GameManager.HangMan;
 
 public class GameState {
 
-    protected int keywordLen; // number of characters in current word
-    protected int remainingBalloons; // number of balloons left, decreases each time a wrong letter is guessed
-    protected int numCorr; // number of letters correctly guessed
-    protected String keyword;
+    int keywordLen; // number of characters in current word
+    int remainingBalloons; // number of balloons left, decreases each time a wrong letter is guessed
+    int numCorr; // number of letters correctly guessed
+    private String keyword;
     private Balloon[] balloons; // an array of Balloon objects
     private AnswerKeyLetter[] answerKeyLetters; // all of the correct letters in correct order
-    protected int currentScore;
+    private int currentScore;
 
     /**
      * Constructs a new GameState object
@@ -16,7 +16,7 @@ public class GameState {
      * @param keyWord  the correct word to be guessed
      * @param balloons all Balloon objects whose images that will be displayed
      */
-    public GameState(String keyWord, Balloon[] balloons) {
+    GameState(String keyWord, Balloon[] balloons) {
         this.keyword = keyWord;
         this.keywordLen = keyword.length();
         remainingBalloons = 6;
@@ -29,7 +29,7 @@ public class GameState {
      * @param answers an array of AnswerKeyLetter objects that store information about letters in
      *                the correct word
      */
-    protected void setAnswerKeys(AnswerKeyLetter[] answers) {
+    void setAnswerKeys(AnswerKeyLetter[] answers) {
         this.answerKeyLetters = answers;
     }
 
@@ -38,7 +38,7 @@ public class GameState {
      *
      * @return a String object representing the correct word
      */
-    public String getKeyWord() {
+    String getKeyWord() {
         return this.keyword;
     }
 
@@ -47,7 +47,7 @@ public class GameState {
      *
      * @return an integer representing the current score
      */
-    protected int getCurrentScore() {
+    int getCurrentScore() {
         return this.currentScore;
     }
 
@@ -57,7 +57,7 @@ public class GameState {
      *
      * @param charGuessed the character that is guessed by user by pressing corresponding button
      */
-    public void updateState(char charGuessed) { // updates the correct letters guessed (if any)
+    void updateState(char charGuessed) { // updates the correct letters guessed (if any)
         boolean correct = false;
         for (int i = 0; i < this.keyword.length(); i++) {
             if (this.answerKeyLetters[i].letter == (charGuessed)) { // a correct letter being guessed

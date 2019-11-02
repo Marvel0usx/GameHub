@@ -8,22 +8,22 @@ import android.widget.TextView;
  */
 public class AnswerKeyLetter {
 
-    protected char letter; // the character of the AnswerKeyLetter
+    char letter; // the character of the AnswerKeyLetter
     private TextView textView; // the text view of
 
     /**
      * Initialize a new answer key letter.
      *
-     * @param letter
+     * @param letter the letter that this AnswerKeyLetter represents
      */
-    public AnswerKeyLetter(char letter) {
+    AnswerKeyLetter(char letter) {
         this.letter = letter;
     }
 
     /**
      * Add a text view to the answer key letter.
      *
-     * @param textView
+     * @param textView textView of this AnswerKeyLetter object
      */
     void addTextView(TextView textView) {
         this.textView = textView;
