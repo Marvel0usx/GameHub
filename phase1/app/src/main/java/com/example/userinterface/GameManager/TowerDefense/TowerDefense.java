@@ -12,7 +12,7 @@ public class TowerDefense implements ScoreSystem {
     private int lives = 5;
     private int mapHeight;
     private int mapWidth;
-    private boolean gameOver;
+
     private boolean win;
     private VariableChangeListener listener = null;
     private ArrayList<Enemy> wave1 = new ArrayList<>();
@@ -25,6 +25,7 @@ public class TowerDefense implements ScoreSystem {
     }
 
     void update() {
+        boolean gameOver = false;
         Enemy enemy = getFirstEnemy(); //hit the enemy that is at the frontmost
         if (enemy != null) {
             enemy.hit(clicker);
