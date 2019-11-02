@@ -11,7 +11,6 @@ import com.example.userinterface.R;
 public class Stats extends AppCompatActivity {
     TextView userLevel, highScore, gamesPlayed, currentScore;
     User user;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,14 +20,14 @@ public class Stats extends AppCompatActivity {
             user = (User) bundle.getSerializable("user");
         }
         setContentView(R.layout.activity_stats);
-        userLevel = findViewById(R.id.userlevel);
+        userLevel= findViewById(R.id.userlevel);
         highScore = findViewById(R.id.highscore);
         currentScore = findViewById(R.id.currentScore);
         gamesPlayed = findViewById(R.id.gamesplayed);
-        userLevel.setText(user.getLevel() + "");
-        highScore.setText(user.getHighScore() + "");
-        gamesPlayed.setText(user.getNumOfGames() + "");
-        currentScore.setText(user.getCurrScore() + "");
+        userLevel.setText(user.getStatTracker().getLevel()+"");
+        highScore.setText(user.getStatTracker().getHighScore()+"");
+        gamesPlayed.setText(user.getStatTracker().getNumOfGames()+"");
+        currentScore.setText(user.getStatTracker().getCurrScore()+"");
     }
 
 }

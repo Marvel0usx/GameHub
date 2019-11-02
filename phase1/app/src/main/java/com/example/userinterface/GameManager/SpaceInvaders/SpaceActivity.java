@@ -8,11 +8,10 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-
 import com.example.userinterface.GameManager.*;
 import com.example.userinterface.R;
 
-public class SpaceActivity extends Activity implements VariableChangeListener {
+public class SpaceActivity extends Activity implements VariableChangeListener{
 
     SpaceInvaders Space;
     SpaceView spaceView;
@@ -46,9 +45,8 @@ public class SpaceActivity extends Activity implements VariableChangeListener {
         btnLeft = findViewById(R.id.Left);
         btnRight = findViewById(R.id.Right);
     }
-
-    public void onClick(View v) {
-        switch (v.getId()) {
+    public void onClick(View v){
+        switch (v.getId()){
             case R.id.Left:
                 spaceView.Space.goLeft();
                 break;
@@ -59,12 +57,12 @@ public class SpaceActivity extends Activity implements VariableChangeListener {
                 break;
         }
     }
-
     @Override
-    public void onVariableChange(boolean spaceGame) {
-        gameManager.getUser().addToCurrScore(Space.getScore());
+    public void onVariableChange(boolean spaceGame){
+        gameManager.getUser().getStatTracker().addToCurrScore(Space.getScore());
+        gameManager.getUser().getStatTracker().setHighScoreToCurrent();
+        gameManager.getUser().getStatTracker().addNumOfGames();
         gameManager.toInter(SpaceActivity.this, Space.isWin());
-
     }
 
 }

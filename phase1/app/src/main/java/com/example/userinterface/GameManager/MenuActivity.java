@@ -27,13 +27,14 @@ public class MenuActivity extends Activity {
             gameManager = (GameManager) bundle.getSerializable("Game");
         }
         if (gameManager != null) {
-            if (gameManager.getUser().getLevel() == 0) {
+            if (gameManager.getUser().getStatTracker().getLevel()==0){
                 btnResume.setEnabled(false);
-            } else {
+            }else{
                 btnResume.setEnabled(true);
             }
         }
         super.onCreate(savedInstanceState);
+
 
 
         btnStart.setOnClickListener(new View.OnClickListener() {
@@ -46,15 +47,15 @@ public class MenuActivity extends Activity {
         btnResume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (gameManager.getUser().getLevel()) {
+                switch (gameManager.getUser().getStatTracker().getLevel()){
                     case 1:
-                        gameManager.reLocate(MenuActivity.this, 1, 1);
+                        gameManager.reLocate(MenuActivity.this,1,1);
                         break;
                     case 2:
-                        gameManager.reLocate(MenuActivity.this, 2, 2);
+                        gameManager.reLocate(MenuActivity.this,2,2);
                         break;
                     case 3:
-                        gameManager.reLocate(MenuActivity.this, 3, 3);
+                        gameManager.reLocate(MenuActivity.this,3,3);
                         break;
                     default:
                         break;
@@ -67,7 +68,7 @@ public class MenuActivity extends Activity {
     public void Stats(View view) {
         Intent intent = new Intent(MenuActivity.this, Stats.class);
         Bundle bundle = new Bundle();
-        bundle.putSerializable("user", gameManager.getUser());
+        bundle.putSerializable("user",gameManager.getUser());
         intent.putExtras(bundle);
         startActivity(intent);
     }

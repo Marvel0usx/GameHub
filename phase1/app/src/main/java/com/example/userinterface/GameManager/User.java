@@ -4,59 +4,21 @@ import java.io.Serializable;
 
 public class User implements Serializable {
     private String email;
-    private int level;
 
-    int getCurrScore() {
-
-        return currScore;
+    public StatTracker getStatTracker() {
+        return statTracker;
     }
 
-    private int currScore;
-    private int highScore;
+    private StatTracker statTracker;
 
-    int getNumOfGames() {
-
-        return numOfGames;
-    }
-
-    private int numOfGames;
-
-    public void addGame() {
-        numOfGames += 1;
-    }
-
-    String getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    void setLevel(int level) {
-        this.level = level;
-    }
-
-    int getLevel() {
-        return level;
-    }
-
-    int getHighScore() {
-        return highScore;
-    }
-
-    public void setHighScore(int ScoreOfTheRound) {
-        if (ScoreOfTheRound > highScore)
-            this.highScore = ScoreOfTheRound;
-    }
-
-    public void setNumOfGames(int numOfGames) {
-        this.numOfGames = numOfGames;
-    }
-
-    public void addToCurrScore(int gameScore) {
-        currScore += gameScore;
-    }
-
-    public User(String email, int level) {
+    public User(String email, StatTracker statTracker) {
         this.email = email;
-        this.level = level;
+        this.statTracker = statTracker;
     }
+
 
 }
