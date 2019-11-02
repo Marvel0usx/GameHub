@@ -10,18 +10,19 @@ import com.example.userinterface.R;
 
 public class EndGame extends AppCompatActivity {
     GameManager gameManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_end_game);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        if (bundle!=null){
-            gameManager =(GameManager) bundle.getSerializable("Game");
+        if (bundle != null) {
+            gameManager = (GameManager) bundle.getSerializable("Game");
         }
     }
 
-    public void endgame(View view){
+    public void endgame(View view) {
         gameManager.getUser().getStatTracker().setLevel(0);
         gameManager.toMenu(this);
     }

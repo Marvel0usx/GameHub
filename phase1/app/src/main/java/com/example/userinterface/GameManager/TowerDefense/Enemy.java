@@ -2,7 +2,7 @@ package com.example.userinterface.GameManager.TowerDefense;
 
 import android.graphics.Canvas;
 
-abstract class Enemy {
+abstract class Enemy { //common interface for all Enemies
     int health;
     int speed;
 

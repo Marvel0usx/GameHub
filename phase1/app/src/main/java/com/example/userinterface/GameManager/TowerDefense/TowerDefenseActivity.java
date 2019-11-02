@@ -80,7 +80,7 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
 
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.start:
+            case R.id.start: //if press start the hit buttons will become visible.
                 btnHit.setVisibility(View.VISIBLE);
                 btnStart.setVisibility(View.GONE);
                 towerDefense.addEnemy();
@@ -102,7 +102,7 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
     @Override
     public void onVariableChange(boolean gameOver) {
         gameView.setGameOver(true);
-        gameManager.getUser().addToCurrScore(towerDefense.getGameScore());
+        gameManager.getUser().getStatTracker().addToCurrScore(towerDefense.getGameScore());
         gameManager.toInter(TowerDefenseActivity.this, towerDefense.getWin());
     }
 }
