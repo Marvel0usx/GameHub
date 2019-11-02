@@ -81,7 +81,7 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
     public void update() {
         if (!Space.isGameOver()) {
             Space.run();
-        }else{
+        } else {
             this.gameOver = true;
         }
 

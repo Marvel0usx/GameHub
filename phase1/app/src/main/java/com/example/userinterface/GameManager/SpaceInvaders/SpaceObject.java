@@ -26,7 +26,7 @@ abstract class SpaceObject implements Subject {
     Paint paintText = new Paint();
 
     // Initializer
-    SpaceObject(int x, int y, int damage, int ySpeed){
+    SpaceObject(int x, int y, int damage, int ySpeed) {
         setX(x);
         setY(y);
         setDamage(damage);
@@ -35,7 +35,7 @@ abstract class SpaceObject implements Subject {
         observers = new ArrayList<>();
     }
 
-    SpaceObject(int x, int y, int damage, int xSpeed, int ySpeed){
+    SpaceObject(int x, int y, int damage, int xSpeed, int ySpeed) {
         setX(x);
         setY(y);
         setDamage(damage);
@@ -141,7 +141,7 @@ abstract class SpaceObject implements Subject {
 
     @Override
     public void notifyObservers() {
-        if (hasChange()){
+        if (hasChange()) {
             for (Observer obs : getObservers())
                 obs.update(this);
             clearChanged();
@@ -149,5 +149,6 @@ abstract class SpaceObject implements Subject {
     }
 
     // Utils
-    public void draw(Canvas canvas){}
+    public void draw(Canvas canvas) {
+    }
 }

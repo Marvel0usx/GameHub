@@ -1,5 +1,5 @@
 package com.example.userinterface.GameManager.SpaceInvaders;
 
- interface VariableChangeListener {
+interface VariableChangeListener {
     void onVariableChange(boolean spaceGame);
 }

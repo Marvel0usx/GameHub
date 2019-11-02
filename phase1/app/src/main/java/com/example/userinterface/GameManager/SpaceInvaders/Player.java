@@ -53,7 +53,7 @@ public class Player extends Ship {
         notifyObservers();
     }
 
-    public void draw(Canvas canvas){
+    public void draw(Canvas canvas) {
         canvas.drawText(this.appearance, this.getX(), this.getY(), paintText);
     }
 }

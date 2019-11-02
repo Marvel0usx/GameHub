@@ -17,7 +17,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     private MainThread thread;
     public TowerDefense towerDefense;
-    boolean gameStart=false, gameOver=false;
+    boolean gameStart = false, gameOver = false;
 
     public GameView(Context context) {
         super(context);
@@ -28,6 +28,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         setFocusable(true);
 
     }
+
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         getHolder().addCallback(this);
@@ -48,16 +49,16 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         this.towerDefense = towerDefense;
     }
 
-    public void setGameStart(boolean gameStart){
+    public void setGameStart(boolean gameStart) {
         this.gameStart = gameStart;
     }
 
-    public void setGameOver(boolean gameOver){
+    public void setGameOver(boolean gameOver) {
         this.gameOver = gameOver;
     }
 
     public void update() {
-        if (gameStart&& !gameOver) {
+        if (gameStart && !gameOver) {
             towerDefense.update();
         }
     }

@@ -15,6 +15,7 @@ public class NextGame extends AppCompatActivity {
     TextView textView;
     boolean won;
     Button btnNext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,17 +28,20 @@ public class NextGame extends AppCompatActivity {
             games = (Games) bundle.getSerializable("Game");
             won = bundle.getBoolean("won");
         }
-        if (won){
+        if (won) {
             textView.setText("You Have Won");
-        }else{
+        } else {
             textView.setText("You Have Lost");
             btnNext.setEnabled(false);
 
         }
     }
 
-    public void quit(View view){
+    public void quit(View view) {
         games.toMenu(NextGame.this);
     }
-    public void next(View view){games.next(NextGame.this);}
+
+    public void next(View view) {
+        games.next(NextGame.this);
+    }
 }

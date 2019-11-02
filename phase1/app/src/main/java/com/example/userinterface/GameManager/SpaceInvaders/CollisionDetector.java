@@ -9,7 +9,7 @@ public class CollisionDetector implements Observer {
 
     // Implements Observer
     // Register subject to observe
-    public void registerSubject(Subject subject){
+    public void registerSubject(Subject subject) {
         // if this is an enemy ship, it's subject will be player and player's bullet;
         // player, enemy and their bullets.
         if (!subjects.contains(subject))

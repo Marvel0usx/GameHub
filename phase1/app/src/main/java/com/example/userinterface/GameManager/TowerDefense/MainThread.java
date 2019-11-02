@@ -11,7 +11,7 @@ public class MainThread extends Thread {
     public static Canvas canvas;
 
 
-    public MainThread(SurfaceHolder surfaceHolder, GameView gameView) {
+    MainThread(SurfaceHolder surfaceHolder, GameView gameView) {
 
         super();
         this.surfaceHolder = surfaceHolder;
@@ -24,11 +24,12 @@ public class MainThread extends Thread {
             canvas = null;
             try {
                 canvas = this.surfaceHolder.lockCanvas();
-                synchronized(surfaceHolder) {
+                synchronized (surfaceHolder) {
                     this.gameView.update();
                     this.gameView.draw(canvas);
                 }
-            } catch (Exception e) {} finally {
+            } catch (Exception e) {
+            } finally {
                 if (canvas != null) {
                     try {
                         surfaceHolder.unlockCanvasAndPost(canvas);

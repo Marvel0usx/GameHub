@@ -15,10 +15,10 @@ public class Scoreboard {
     }
 
     void setAppearance(int lives, int score) {
-        this.appearance = "Lives: "+ lives + " " + "Score: " + score;
+        this.appearance = "Lives: " + lives + " " + "Score: " + score;
     }
 
-    public void draw(Canvas canvas){
+    public void draw(Canvas canvas) {
         canvas.drawText(this.appearance, 200, 200, paintText);
     }
 

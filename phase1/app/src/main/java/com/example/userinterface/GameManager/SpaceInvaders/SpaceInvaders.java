@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SpaceInvaders implements Observer{
+public class SpaceInvaders implements Observer {
     // Private attributes
     private int height;
     private int width;
@@ -31,7 +31,7 @@ public class SpaceInvaders implements Observer{
 
     // Implements Observer
     // Register subject to observe
-    public void registerSubject(Subject subject){
+    public void registerSubject(Subject subject) {
         // if this is an enemy ship, it's subject will be player and player's bullet;
         // player, enemy and their bullets.
         // noinspection SuspiciousMethodCalls
@@ -108,7 +108,7 @@ public class SpaceInvaders implements Observer{
             obj.setUpdated(false);
         }
 
-        if (this.noEnemies(subjects)){
+        if (this.noEnemies(subjects)) {
             this.gameOver = true;
             unregisterAll();
             if (this.player.getLives() > 0) {
@@ -117,7 +117,7 @@ public class SpaceInvaders implements Observer{
             if (this.var != null)
                 this.var.onVariableChange(true);
         }
-        if (this.player.getLives() <= 0){
+        if (this.player.getLives() <= 0) {
             this.gameOver = true;
             this.isWin = false;
             unregisterAll();
@@ -126,10 +126,10 @@ public class SpaceInvaders implements Observer{
         }
     }
 
-    private boolean noEnemies(List<SpaceObject> list){
+    private boolean noEnemies(List<SpaceObject> list) {
         List<SpaceObject> list1 = new ArrayList<>();
-        for (SpaceObject e: list){
-            if (e instanceof Enemy){
+        for (SpaceObject e : list) {
+            if (e instanceof Enemy) {
                 list1.add(e);
             }
         }
@@ -248,6 +248,7 @@ public class SpaceInvaders implements Observer{
         else
             this.player.move(-1);
     }
+
     void goRight() {
         if (this.player.getX() + this.player.getXSpeed() + 80 >= width)
             this.player.move(0);
