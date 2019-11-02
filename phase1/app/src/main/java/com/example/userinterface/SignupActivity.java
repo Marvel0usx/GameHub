@@ -47,6 +47,7 @@ public class SignupActivity extends AppCompatActivity {
         });
     }
 
+    //method used to get the users info on the UI
     public void getInfo(){
         name = etName.getText().toString();
         email = etEmail.getText().toString();

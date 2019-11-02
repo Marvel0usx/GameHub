@@ -153,6 +153,7 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
         String [] strings = s.split("[,]");
         if(flag.equals("register")) {
             if (strings.length>1){
+                //If the email is already registered, restart the process.
                 Intent intent = new Intent(context, SignupActivity.class);
                 context.startActivity(intent);
             }
@@ -161,7 +162,7 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
         }
         else if(flag.equals("login")){
             if(strings[0].equals("true")){
-
+                //set up the game with the proper user and his statistics
                 Intent intent = new Intent(context, MenuActivity.class);
                 StatTracker statTracker = new StatTracker(parseInt(strings[5]));
                 int high = parseInt(strings[2]);
@@ -170,7 +171,7 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
                 statTracker.setCurrScore(current);
                 statTracker.setHighScore(high);
                 statTracker.setNumOfGames(games);
-
+                // create a new user instance
                 User user = new User(strings[1],statTracker);
                 Bundle bundle = new Bundle();
                 GameManager gameManager = new GameManager(user);

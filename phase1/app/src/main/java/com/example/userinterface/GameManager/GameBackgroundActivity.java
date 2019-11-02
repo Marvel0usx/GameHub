@@ -3,7 +3,10 @@ package com.example.userinterface.GameManager;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -18,6 +21,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 import static java.lang.Integer.parseInt;
 
@@ -31,12 +35,19 @@ public class GameBackgroundActivity extends AsyncTask<Object, Void, String> {
         this.context = context;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected String doInBackground(Object... objects) {
+        /**
+         * This is the background!, these methods will connect to the server we set up and update and
+         * get the information in the server.
+         */
         String urlUpdate = "http://159.203.20.150/save.php";
         String urlStat = "http://159.203.20.150/single_stat.php";
         String task = (String) objects[0];
         if (task.equals("quit")) {
+            //This is the case where the user quits the game in the middle and we save the level
+            // they are on and the current score they have.
             try {
                 User user = (User) objects[1];
                 int level = user.getStatTracker().getLevel();
@@ -46,7 +57,7 @@ public class GameBackgroundActivity extends AsyncTask<Object, Void, String> {
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 OutputStream outputStream = httpURLConnection.getOutputStream();
-                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-8");
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
                 String myData = URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(user.getEmail(), "UTF-8")
                         + "&" + URLEncoder.encode("level", "UTF-8") + "=" + URLEncoder.encode(level + "", "UTF-8")
@@ -56,7 +67,7 @@ public class GameBackgroundActivity extends AsyncTask<Object, Void, String> {
                 bufferedWriter.close();
 
                 InputStream inputStream = httpURLConnection.getInputStream();
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 String dataResponse = "";
                 String inputLine = "";
@@ -81,6 +92,10 @@ public class GameBackgroundActivity extends AsyncTask<Object, Void, String> {
             URL url = null;
             User user = (User)objects[1];
             try {
+                /**
+                 * This is the case where the user finishes a game and we update all the information
+                 * that is needed to update.
+                 */
                 int high = user.getStatTracker().getHighScore();
                 int gamesplayed = user.getStatTracker().getNumOfGames();
                 int level = 0;
@@ -90,7 +105,7 @@ public class GameBackgroundActivity extends AsyncTask<Object, Void, String> {
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 OutputStream outputStream = httpURLConnection.getOutputStream();
-                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
                 String myData = URLEncoder.encode("email", "UTF-8")+"="+URLEncoder.encode(user.getEmail())+"&"+
                         URLEncoder.encode("highscore", "UTF-8")+"="+URLEncoder.encode(high+"","UTF-8")+"&"+
@@ -102,7 +117,7 @@ public class GameBackgroundActivity extends AsyncTask<Object, Void, String> {
                 bufferedWriter.close();
 
                 InputStream inputStream = httpURLConnection.getInputStream();
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 String dataResponse = "";
                 String inputLine = "";

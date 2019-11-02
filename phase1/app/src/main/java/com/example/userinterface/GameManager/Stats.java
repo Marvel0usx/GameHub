@@ -2,6 +2,7 @@ package com.example.userinterface.GameManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -11,6 +12,7 @@ import com.example.userinterface.R;
 public class Stats extends AppCompatActivity {
     TextView userLevel, highScore, gamesPlayed, currentScore;
     User user;
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
