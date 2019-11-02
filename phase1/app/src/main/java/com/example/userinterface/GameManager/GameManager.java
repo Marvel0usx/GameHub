@@ -25,6 +25,12 @@ public class GameManager implements Serializable, Games{
                 SpaceActivity.class, EndGame.class};
     }
 
+    /**
+     * relocate to another activity
+     * @param context
+     * @param saved
+     * @param destination
+     */
     public void reLocate(Context context, int saved, int destination){
         this.saved = destination;
         GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(context);
@@ -35,6 +41,11 @@ public class GameManager implements Serializable, Games{
         helper(intent, context, bundle);
     }
 
+    /**
+     * Go to a interconnection activity
+     * @param context
+     * @param won
+     */
     public void toInter(Context context,boolean won){
         GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(context);
         if (won){
