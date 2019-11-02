@@ -22,14 +22,14 @@ public class GameManager implements Serializable, Games{
     public GameManager(User user){
         this.user = user;
         classes = new Class[]{MenuActivity.class, HangManActivity.class,TowerDefenseActivity.class,
-                SpaceActivity.class};
+                SpaceActivity.class, EndGame.class};
     }
 
     public void reLocate(Context context, int saved, int destination){
         this.saved = destination;
         GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(context);
         gameBackgroundActivity.execute("quit", user, saved);
-        user.setLevel(saved);
+        user.getStatTracker().setLevel(saved);
         Intent intent = new Intent(context,classes[destination]);
         Bundle bundle = new Bundle();
         helper(intent, context, bundle);
@@ -43,7 +43,7 @@ public class GameManager implements Serializable, Games{
             saved = 0;
         }
         gameBackgroundActivity.execute("quit", user, saved);
-        user.setLevel(saved);
+        user.getStatTracker().setLevel(saved);
         Intent intent = new Intent(context, NextGame.class);
         Bundle bundle = new Bundle();
         bundle.putBoolean("won", won);

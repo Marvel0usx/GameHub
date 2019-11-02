@@ -72,10 +72,13 @@ public class GameBackgroundActivity extends AsyncTask<Object,Void,String> {
                 e.printStackTrace();
             }
         }
-        /*else if(task.equals("stats")){
+        else if(task.equals("stats")){
             URL url = null;
             User user = (User)objects[1];
             try {
+                int high = user.getStatTracker().getHighScore();
+                int gamesplayed = user.getStatTracker().getNumOfGames();
+                int level = 0;
                 url = new URL(urlUpdate);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -83,7 +86,10 @@ public class GameBackgroundActivity extends AsyncTask<Object,Void,String> {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-                String myData = URLEncoder.encode("email", "UTF-8")+"="+URLEncoder.encode(user.getEmail());
+                String myData = URLEncoder.encode("email", "UTF-8")+"="+URLEncoder.encode(user.getEmail())+
+                        URLEncoder.encode("highscore", "UTF-8")+"="+URLEncoder.encode(high+"","UTF-8")+
+                        URLEncoder.encode("gamesplayed", "UTF-8")+"="+URLEncoder.encode(gamesplayed+"","UTF-8")+
+                        URLEncoder.encode("level", "UTF-8")+"="+URLEncoder.encode(level+"","UTF-8");
                 bufferedWriter.write(myData);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -109,7 +115,7 @@ public class GameBackgroundActivity extends AsyncTask<Object,Void,String> {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }*/
+        }
         return null;
     }
 

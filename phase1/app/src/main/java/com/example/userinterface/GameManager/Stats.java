@@ -24,10 +24,10 @@ public class Stats extends AppCompatActivity {
         highScore = findViewById(R.id.highscore);
         currentScore = findViewById(R.id.currentScore);
         gamesPlayed = findViewById(R.id.gamesplayed);
-        userLevel.setText(user.getLevel()+"");
-        highScore.setText(user.getHighScore()+"");
-        gamesPlayed.setText(user.getNumOfGames()+"");
-        currentScore.setText(user.getCurrScore()+"");
+        userLevel.setText(user.getStatTracker().getLevel()+"");
+        highScore.setText(user.getStatTracker().getHighScore()+"");
+        gamesPlayed.setText(user.getStatTracker().getNumOfGames()+"");
+        currentScore.setText(user.getStatTracker().getCurrScore()+"");
     }
 
 }

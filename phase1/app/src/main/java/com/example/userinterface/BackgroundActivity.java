@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.userinterface.GameManager.GameManager;
 import com.example.userinterface.GameManager.MenuActivity;
+import com.example.userinterface.GameManager.StatTracker;
 import com.example.userinterface.GameManager.TowerDefense.TowerDefenseActivity;
 import com.example.userinterface.GameManager.User;
 
@@ -162,12 +163,15 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
             if(strings[0].equals("true")){
 
                 Intent intent = new Intent(context, MenuActivity.class);
-                User user = new User(strings[1], parseInt(strings[5]));
+                StatTracker statTracker = new StatTracker(parseInt(strings[5]));
                 int high = parseInt(strings[2]);
                 int games = parseInt(strings[3]);
                 int current = parseInt(strings[4]);
-                user.setHighScore(high);
-                user.setNumOfGames(games);
+                statTracker.setCurrScore(current);
+                statTracker.setHighScore(high);
+                statTracker.setNumOfGames(games);
+
+                User user = new User(strings[1],statTracker);
                 Bundle bundle = new Bundle();
                 GameManager gameManager = new GameManager(user);
                 bundle.putSerializable("Game",gameManager);

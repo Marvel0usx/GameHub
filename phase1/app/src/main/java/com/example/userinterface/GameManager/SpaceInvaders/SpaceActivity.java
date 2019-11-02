@@ -59,9 +59,10 @@ public class SpaceActivity extends Activity implements VariableChangeListener{
     }
     @Override
     public void onVariableChange(boolean spaceGame){
-        gameManager.getUser().addToCurrScore(Space.getScore());
+        gameManager.getUser().getStatTracker().addToCurrScore(Space.getScore());
+        gameManager.getUser().getStatTracker().setHighScoreToCurrent();
+        gameManager.getUser().getStatTracker().addNumOfGames();
         gameManager.toInter(SpaceActivity.this, Space.isWin());
-
     }
 
 }

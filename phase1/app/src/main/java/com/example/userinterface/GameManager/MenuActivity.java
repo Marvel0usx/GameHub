@@ -27,7 +27,7 @@ public class MenuActivity extends Activity {
             gameManager = (GameManager) bundle.getSerializable("Game");
         }
         if (gameManager != null) {
-            if (gameManager.getUser().getLevel()==0){
+            if (gameManager.getUser().getStatTracker().getLevel()==0){
                 btnResume.setEnabled(false);
             }else{
                 btnResume.setEnabled(true);
@@ -47,7 +47,7 @@ public class MenuActivity extends Activity {
         btnResume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (gameManager.getUser().getLevel()){
+                switch (gameManager.getUser().getStatTracker().getLevel()){
                     case 1:
                         gameManager.reLocate(MenuActivity.this,1,1);
                         break;
