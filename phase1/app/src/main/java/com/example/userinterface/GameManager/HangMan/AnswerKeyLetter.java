@@ -6,7 +6,7 @@ import android.widget.TextView;
 /**
  * A letter in the answer key.
  */
-public class AnswerKeyLetter {
+class AnswerKeyLetter {
 
     char letter; // the character of the AnswerKeyLetter
     private TextView textView; // the text view of
