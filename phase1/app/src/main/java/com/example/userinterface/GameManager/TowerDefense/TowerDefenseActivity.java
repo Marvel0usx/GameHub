@@ -81,7 +81,7 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
 
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.start:
+            case R.id.start: //hit button and towers become visible after pressing startbutton
                 btnHit.setVisibility(View.VISIBLE);
                 btnStart.setVisibility(View.GONE);
                 towerDefense.addEnemy();
@@ -92,7 +92,7 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
                 break;
 
             case R.id.hit:
-                towerDefense.clicked();
+                towerDefense.clicked(); //record one click to hit the enemy
                 break;
 
             default:
@@ -106,6 +106,7 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
         gameView.getThread().setRunning(false);
         gameManager.getUser().getStatTracker().addToCurrScore(towerDefense.getGameScore());
         gameManager.toInter(TowerDefenseActivity.this, towerDefense.getWin());
+        // record score of the level Intermediate page between games
     }
 }
 

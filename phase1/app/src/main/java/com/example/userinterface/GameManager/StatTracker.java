@@ -1,7 +1,9 @@
 package com.example.userinterface.GameManager;
 
 import java.io.Serializable;
-
+/**
+ * A tracker of all the game information.
+ */
 public class StatTracker implements Serializable {
 
 
