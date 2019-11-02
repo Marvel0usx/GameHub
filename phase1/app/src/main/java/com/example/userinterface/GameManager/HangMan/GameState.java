@@ -1,7 +1,5 @@
 package com.example.userinterface.GameManager.HangMan;
 
-import com.example.userinterface.GameManager.Games;
-
 public class GameState {
 
     protected int keywordLen; // number of characters in current word
