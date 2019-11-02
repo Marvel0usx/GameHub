@@ -28,7 +28,7 @@ public class GameManager implements Serializable, Games{
     public void reLocate(Context context, int saved, int destination){
         this.saved = destination;
         GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(context);
-        gameBackgroundActivity.execute("quit", user, saved);
+        gameBackgroundActivity.execute("quit", user);
         user.getStatTracker().setLevel(saved);
         Intent intent = new Intent(context,classes[destination]);
         Bundle bundle = new Bundle();
@@ -42,7 +42,7 @@ public class GameManager implements Serializable, Games{
         }else {
             saved = 0;
         }
-        gameBackgroundActivity.execute("quit", user, saved);
+        gameBackgroundActivity.execute("quit", user);
         user.getStatTracker().setLevel(saved);
         Intent intent = new Intent(context, NextGame.class);
         Bundle bundle = new Bundle();

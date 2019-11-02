@@ -78,6 +78,10 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
         this.Space = Space;
     }
 
+    public MainThread getThread() {
+        return thread;
+    }
+
     public void update() {
         if (!Space.isGameOver()) {
             Space.run();
@@ -88,8 +92,8 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void draw(Canvas canvas) {
-        super.draw(canvas);
         if (canvas != null) {
+            super.draw(canvas);
             Space.draw(canvas);
         }
     }

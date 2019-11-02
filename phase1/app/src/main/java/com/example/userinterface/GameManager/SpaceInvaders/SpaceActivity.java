@@ -57,12 +57,19 @@ public class SpaceActivity extends Activity implements VariableChangeListener{
                 break;
         }
     }
+
+    public void onBackPressed(){
+        spaceView.getThread().setRunning(false);
+        gameManager.toMenu(this);
+    }
     @Override
     public void onVariableChange(boolean spaceGame){
-        gameManager.getUser().getStatTracker().addToCurrScore(Space.getScore());
-        gameManager.getUser().getStatTracker().setHighScoreToCurrent();
-        gameManager.getUser().getStatTracker().addNumOfGames();
+        spaceView.getThread().setRunning(false);
+        StatTracker statTracker = gameManager.getUser().getStatTracker();
+        statTracker.addToCurrScore(Space.getScore());
         gameManager.toInter(SpaceActivity.this, Space.isWin());
+        System.out.println("good");
+
     }
 
 }

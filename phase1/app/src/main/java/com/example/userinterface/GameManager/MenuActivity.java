@@ -40,6 +40,7 @@ public class MenuActivity extends Activity {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                gameManager.getUser().getStatTracker().setCurrScore(0);
                 gameManager.reLocate(MenuActivity.this, 1, 1);
             }
         });

@@ -22,6 +22,13 @@ public class EndGame extends AppCompatActivity {
     }
 
     public void endgame(View view){
+        StatTracker statTracker = gameManager.getUser().getStatTracker();
+        statTracker.addNumOfGames();
+        if (statTracker.getCurrScore()>statTracker.getHighScore()){
+            statTracker.setHighScoreToCurrent();
+        }
+        GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(this);
+        gameBackgroundActivity.execute("stats", gameManager.getUser());
         gameManager.getUser().getStatTracker().setLevel(0);
         gameManager.toMenu(this);
     }

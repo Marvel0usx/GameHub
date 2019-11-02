@@ -74,7 +74,8 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
     }
 
     public void onBackPressed() {
-        gameManager.reLocate(TowerDefenseActivity.this, SAVED, 0);
+        gameView.getThread().setRunning(false);
+        gameManager.toMenu(this);
 
     }
 
@@ -102,7 +103,8 @@ public class TowerDefenseActivity extends Activity implements VariableChangeList
     @Override
     public void onVariableChange(boolean gameOver) {
         gameView.setGameOver(true);
-        gameManager.getUser().addToCurrScore(towerDefense.getGameScore());
+        gameView.getThread().setRunning(false);
+        gameManager.getUser().getStatTracker().addToCurrScore(towerDefense.getGameScore());
         gameManager.toInter(TowerDefenseActivity.this, towerDefense.getWin());
     }
 }

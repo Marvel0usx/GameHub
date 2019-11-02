@@ -1,6 +1,8 @@
 package com.example.userinterface.GameManager;
 
-public class StatTracker {
+import java.io.Serializable;
+
+public class StatTracker implements Serializable {
 
 
     private int currScore;

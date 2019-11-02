@@ -98,12 +98,12 @@ public class HangManGameActivity extends Activity {
         if (gameState.numCorr == gameState.keywordLen) {
             // if all letters have been guessed, wins the game
             this.currentScore += 100;
-            gameManager.getUser().addToCurrScore(this.currentScore);
+            gameManager.getUser().getStatTracker().addToCurrScore(this.currentScore);
             gameManager.toInter(HangManGameActivity.this, true);
             HangManGameActivity.this.finish();
         } else if (gameState.remainingBalloons == 0) {
             // loses the game if all lives are used up/balloons have disappeared.
-            gameManager.getUser().addToCurrScore(this.currentScore);
+            gameManager.getUser().getStatTracker().addToCurrScore(this.currentScore);
             gameManager.toInter(HangManGameActivity.this, false);
             HangManGameActivity.this.finish();
         }

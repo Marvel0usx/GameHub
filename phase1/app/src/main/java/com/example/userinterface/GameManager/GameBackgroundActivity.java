@@ -39,7 +39,8 @@ public class GameBackgroundActivity extends AsyncTask<Object, Void, String> {
         if (task.equals("quit")) {
             try {
                 User user = (User) objects[1];
-                int level = (Integer) objects[2];
+                int level = user.getStatTracker().getLevel();
+                int current = user.getStatTracker().getCurrScore();
                 URL url = new URL(urlUpdate);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
@@ -48,7 +49,8 @@ public class GameBackgroundActivity extends AsyncTask<Object, Void, String> {
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-8");
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
                 String myData = URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(user.getEmail(), "UTF-8")
-                        + "&" + URLEncoder.encode("level", "UTF-8") + "=" + URLEncoder.encode(level + "", "UTF-8");
+                        + "&" + URLEncoder.encode("level", "UTF-8") + "=" + URLEncoder.encode(level + "", "UTF-8")
+                        + "&" + URLEncoder.encode("current", "UTF-8") + "=" + URLEncoder.encode(current + "", "UTF-8");
                 bufferedWriter.write(myData);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -82,17 +84,19 @@ public class GameBackgroundActivity extends AsyncTask<Object, Void, String> {
                 int high = user.getStatTracker().getHighScore();
                 int gamesplayed = user.getStatTracker().getNumOfGames();
                 int level = 0;
-                url = new URL(urlUpdate);
+                int current = 0;
+                url = new URL(urlStat);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-                String myData = URLEncoder.encode("email", "UTF-8")+"="+URLEncoder.encode(user.getEmail())+
-                        URLEncoder.encode("highscore", "UTF-8")+"="+URLEncoder.encode(high+"","UTF-8")+
-                        URLEncoder.encode("gamesplayed", "UTF-8")+"="+URLEncoder.encode(gamesplayed+"","UTF-8")+
-                        URLEncoder.encode("level", "UTF-8")+"="+URLEncoder.encode(level+"","UTF-8");
+                String myData = URLEncoder.encode("email", "UTF-8")+"="+URLEncoder.encode(user.getEmail())+"&"+
+                        URLEncoder.encode("highscore", "UTF-8")+"="+URLEncoder.encode(high+"","UTF-8")+"&"+
+                        URLEncoder.encode("games", "UTF-8")+"="+URLEncoder.encode(gamesplayed+"","UTF-8")+"&"+
+                        URLEncoder.encode("level", "UTF-8")+"="+URLEncoder.encode(level+"","UTF-8")+"&"+
+                        URLEncoder.encode("current", "UTF-8")+"="+URLEncoder.encode(current+"","UTF-8");
                 bufferedWriter.write(myData);
                 bufferedWriter.flush();
                 bufferedWriter.close();
