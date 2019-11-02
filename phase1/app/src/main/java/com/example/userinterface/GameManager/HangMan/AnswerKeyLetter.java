@@ -13,6 +13,7 @@ public class AnswerKeyLetter {
 
     /**
      * Initialize a new answer key letter.
+     *
      * @param letter
      */
     public AnswerKeyLetter(char letter) {
@@ -21,6 +22,7 @@ public class AnswerKeyLetter {
 
     /**
      * Add a text view to the answer key letter.
+     *
      * @param textView
      */
     void addTextView(TextView textView) {
@@ -29,16 +31,17 @@ public class AnswerKeyLetter {
 
     /**
      * Get the text view of the answer key letter.
+     *
      * @return textView
      */
-    TextView getTextView(){
+    TextView getTextView() {
         return textView;
     }
 
     /**
      * Turn the color of the answer key letter to black.
      */
-    void turnBlack(){
+    void turnBlack() {
         textView.setTextColor(Color.BLACK);
     }
 

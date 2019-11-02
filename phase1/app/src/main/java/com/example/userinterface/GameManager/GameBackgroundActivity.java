@@ -21,41 +21,44 @@ import java.net.URLEncoder;
 
 import static java.lang.Integer.parseInt;
 
-public class GameBackgroundActivity extends AsyncTask<Object,Void,String> {
+public class GameBackgroundActivity extends AsyncTask<Object, Void, String> {
 
 
     @SuppressLint("StaticFieldLeak")
     private Context context;
-    public GameBackgroundActivity(Context context){this.context = context;}
+
+    public GameBackgroundActivity(Context context) {
+        this.context = context;
+    }
 
     @Override
     protected String doInBackground(Object... objects) {
         String urlUpdate = "http://159.203.20.150/save.php";
         String urlStat = "http://159.203.20.150/single_stat.php";
-        String task = (String)objects[0];
-        if (task.equals("quit")){
+        String task = (String) objects[0];
+        if (task.equals("quit")) {
             try {
-                User user = (User)objects[1];
-                int level = (Integer)objects[2];
+                User user = (User) objects[1];
+                int level = (Integer) objects[2];
                 URL url = new URL(urlUpdate);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 OutputStream outputStream = httpURLConnection.getOutputStream();
-                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-8");
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-                String myData = URLEncoder.encode("email","UTF-8")+"="+URLEncoder.encode(user.getEmail(), "UTF-8")
-                        +"&"+URLEncoder.encode("level","UTF-8")+"="+URLEncoder.encode(level+"","UTF-8");
+                String myData = URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(user.getEmail(), "UTF-8")
+                        + "&" + URLEncoder.encode("level", "UTF-8") + "=" + URLEncoder.encode(level + "", "UTF-8");
                 bufferedWriter.write(myData);
                 bufferedWriter.flush();
                 bufferedWriter.close();
 
                 InputStream inputStream = httpURLConnection.getInputStream();
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 String dataResponse = "";
                 String inputLine = "";
-                while((inputLine = bufferedReader.readLine()) != null){
+                while ((inputLine = bufferedReader.readLine()) != null) {
                     dataResponse += inputLine;
                 }
                 bufferedReader.close();

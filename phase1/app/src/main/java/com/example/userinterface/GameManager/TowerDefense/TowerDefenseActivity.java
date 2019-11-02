@@ -22,7 +22,7 @@ import com.example.userinterface.R;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TowerDefenseActivity extends Activity implements VariableChangeListener{
+public class TowerDefenseActivity extends Activity implements VariableChangeListener {
 
     Button btnStart, btnHit, btnTower1, btnTower2, btnTower3;
     TowerDefense towerDefense;

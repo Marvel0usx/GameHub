@@ -12,7 +12,8 @@ public class GameState {
 
     /**
      * Constructs a new GameState object
-     * @param keyWord the correct word to be guessed
+     *
+     * @param keyWord  the correct word to be guessed
      * @param balloons all Balloon objects whose images that will be displayed
      */
     public GameState(String keyWord, Balloon[] balloons) {
@@ -24,33 +25,39 @@ public class GameState {
 
     /**
      * A setter for the correct letters of the correct word to be guessed
+     *
      * @param answers an array of AnswerKeyLetter objects that store information about letters in
      *                the correct word
      */
-    protected void setAnswerKeys(AnswerKeyLetter[] answers){
+    protected void setAnswerKeys(AnswerKeyLetter[] answers) {
         this.answerKeyLetters = answers;
     }
 
     /**
      * Getter for the correct word
+     *
      * @return a String object representing the correct word
      */
-    public String getKeyWord(){
+    public String getKeyWord() {
         return this.keyword;
     }
 
     /**
      * Getter for the current score
+     *
      * @return an integer representing the current score
      */
-    protected int getCurrentScore() { return this.currentScore; }
+    protected int getCurrentScore() {
+        return this.currentScore;
+    }
 
     /**
      * Based on the character guessed, correctness of this letter will be evaluated, and if correct
      * the corresponding letter will be displayed on the screen
+     *
      * @param charGuessed the character that is guessed by user by pressing corresponding button
      */
-    public void updateState(char charGuessed){ // updates the correct letters guessed (if any)
+    public void updateState(char charGuessed) { // updates the correct letters guessed (if any)
         boolean correct = false;
         for (int i = 0; i < this.keyword.length(); i++) {
             if (this.answerKeyLetters[i].letter == (charGuessed)) { // a correct letter being guessed

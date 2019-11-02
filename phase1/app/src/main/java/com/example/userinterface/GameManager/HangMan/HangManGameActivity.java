@@ -63,7 +63,7 @@ public class HangManGameActivity extends Activity {
         // each letter of the correct word is represented as a TextView object
 
         TextView[] characterViews = new TextView[keyword.length()];
-        for (int c = 0; c < keyword.length(); c++){
+        for (int c = 0; c < keyword.length(); c++) {
             answerKey[c] = new AnswerKeyLetter(keyword.charAt(c)); // makes a new AnswerKeyLetter
             characterViews[c] = new TextView(this); // creates a TextView object
             characterViews[c].setText("" + keyword.charAt(c));
@@ -82,9 +82,10 @@ public class HangManGameActivity extends Activity {
 
     /**
      * Guesses a new letter
+     *
      * @param v View object
      */
-    public void makeGuess(View v){
+    public void makeGuess(View v) {
         String letterGuessed = ((TextView) v).getText().toString();
         char charGuessed = letterGuessed.charAt(0);
         v.setEnabled(false);
@@ -99,17 +100,17 @@ public class HangManGameActivity extends Activity {
      * Based on whether all letters habve been guessed, decides whether the game is won. If won,
      * currentScore is updated. This game is finished.
      */
-    public void endGame(){
+    public void endGame() {
         if (gameState.numCorr == gameState.keywordLen) {
             // if all letters have been guessed, wins the game
             this.currentScore += 100;
             gameManager.getUser().addToCurrScore(this.currentScore);
-            gameManager.toInter(HangManGameActivity.this,true);
+            gameManager.toInter(HangManGameActivity.this, true);
             HangManGameActivity.this.finish();
-        } else if (gameState.remainingBalloons == 0){
+        } else if (gameState.remainingBalloons == 0) {
             // loses the game if all lives are used up/balloons have disappeared.
             gameManager.getUser().addToCurrScore(this.currentScore);
-            gameManager.toInter(HangManGameActivity.this,false);
+            gameManager.toInter(HangManGameActivity.this, false);
             HangManGameActivity.this.finish();
         }
     }

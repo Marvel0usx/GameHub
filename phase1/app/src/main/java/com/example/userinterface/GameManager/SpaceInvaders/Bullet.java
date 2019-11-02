@@ -3,7 +3,7 @@ package com.example.userinterface.GameManager.SpaceInvaders;
 import android.graphics.Canvas;
 
 abstract class Bullet extends SpaceObject {
-    Bullet(int x, int y, int damage, int ySpeed){
+    Bullet(int x, int y, int damage, int ySpeed) {
         super(x, y, damage, ySpeed);
         this.appearance = "*";
         this.paintText.setTextSize(50);
@@ -13,7 +13,7 @@ abstract class Bullet extends SpaceObject {
     // If this is a bullet fired by enemy, the observer will be player
     // Method to update this object
     public int[] getUpdate(Observer obj) {
-        return new int[] {getX(), getY()};
+        return new int[]{getX(), getY()};
     }
 
     // Utils
@@ -25,7 +25,7 @@ abstract class Bullet extends SpaceObject {
         notifyObservers();
     }
 
-    public void draw(Canvas canvas){
+    public void draw(Canvas canvas) {
         canvas.drawText(this.appearance, this.getX(), this.getY(), paintText);
     }
 }

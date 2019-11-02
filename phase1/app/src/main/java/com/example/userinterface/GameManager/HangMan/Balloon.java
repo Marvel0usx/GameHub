@@ -13,18 +13,19 @@ public class Balloon {
 
     /**
      * Initialize a new balloon with its image view.
+     *
      * @param balloon
      */
-    public Balloon(ImageView balloon){
+    public Balloon(ImageView balloon) {
         this.balloonImage = balloon;
     }
 
     /**
      * Set the balloon invisible.
      */
-    protected void disappear(){
+    protected void disappear() {
         this.balloonImage.setVisibility(View.INVISIBLE);
     }
-    
+
 
 }
