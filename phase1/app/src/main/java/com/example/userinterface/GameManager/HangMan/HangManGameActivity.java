@@ -55,12 +55,13 @@ public class HangManGameActivity extends Activity {
         Balloon balloon_5 = new Balloon(balloons[5]);
         Balloon[] tempBalloons = {balloon_0, balloon_1, balloon_2, balloon_3, balloon_4, balloon_5};
         // initialize a new GameState object for this round
-        gameState = new GameState("BULLETPROOF", tempBalloons);
+        gameState = new GameState("ANDROID", tempBalloons);
         wordLayout.removeAllViews();
         String keyword = gameState.getKeyWord();
         // an array that stores all letters of the correct word
         answerKey = new AnswerKeyLetter[keyword.length()];
         // each letter of the correct word is represented as a TextView object
+
         TextView[] characterViews = new TextView[keyword.length()];
         for (int c = 0; c < keyword.length(); c++){
             answerKey[c] = new AnswerKeyLetter(keyword.charAt(c)); // makes a new AnswerKeyLetter
@@ -75,6 +76,8 @@ public class HangManGameActivity extends Activity {
             answerKey[c].addTextView(characterViews[c]);
             wordLayout.addView(answerKey[c].getTextView());
         }
+
+        gameState.setAnswerKeys(answerKey);
     }
 
     /**
