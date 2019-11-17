@@ -3,6 +3,7 @@ package com.example.userinterface.GameManager.TowerDefense;
 import android.graphics.Canvas;
 
 import com.example.userinterface.GameManager.ScoreSystem;
+import com.example.userinterface.GameManager.VariableChangeListener;
 
 import java.util.ArrayList;
 

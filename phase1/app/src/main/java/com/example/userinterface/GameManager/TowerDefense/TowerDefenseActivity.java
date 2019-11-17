@@ -1,14 +1,10 @@
 package com.example.userinterface.GameManager.TowerDefense;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.Window;
@@ -16,11 +12,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.userinterface.GameManager.*;
-import com.example.userinterface.GameManager.GameBackgroundActivity;
 import com.example.userinterface.R;
-
-import java.io.Serializable;
-import java.util.ArrayList;
 
 public class TowerDefenseActivity extends Activity implements VariableChangeListener {
 
