@@ -1,4 +1,0 @@
-#Sat Nov 16 11:51:10 EST 2019
-base.0=/Users/wangtingshu/Desktop/game/phase1/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
