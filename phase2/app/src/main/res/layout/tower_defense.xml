@@ -1,0 +1,79 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.example.userinterface.GameManager.TowerDefense.GameView
+        android:id="@+id/myView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/hit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="650dp"
+        android:background="#FFFFFF"
+        android:onClick="onClick"
+        android:visibility="invisible"
+        android:text="@string/shoot" />
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="650dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginRight="75dp"
+        android:background="#FFFFFF"
+        android:text="@string/start"
+        android:onClick="onClick"/>
+
+
+    <Button
+        android:id="@+id/tower1"
+        android:layout_width="66dp"
+        android:layout_height="65dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginTop="521dp"
+        android:background="@drawable/tower"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/tower2"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="520dp"
+        android:layout_toEndOf="@+id/tower1"
+        android:layout_toRightOf="@+id/tower1"
+        android:background="@drawable/tower2"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/tower3"
+        android:layout_width="66dp"
+        android:layout_height="66dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="54dp"
+        android:layout_marginLeft="54dp"
+        android:layout_marginTop="525dp"
+        android:layout_toEndOf="@+id/tower2"
+        android:layout_toRightOf="@+id/tower2"
+        android:background="@drawable/tower3"
+        android:visibility="invisible" />
+
+
+
+
+</RelativeLayout>
