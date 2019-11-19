@@ -15,6 +15,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.example.userinterface.GameManager.*;
 import com.example.userinterface.GameManager.GameBackgroundActivity;
 import com.example.userinterface.R;
@@ -28,7 +30,6 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
     TowerDefense towerDefense;
     int width;
     int height;
-    Games gameManager;
     GameView gameView;
 
 
@@ -51,6 +52,19 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
         height = size.y;
         towerDefense = new TowerDefense(width, height);
         towerDefense.setVariableChangeListener(this); //Activity listens to TowerDefense's variable change
+        Button button = findViewById(R.id.button);
+        button.setLayoutParams(new ConstraintLayout.LayoutParams(width/6, height/14));
+        button.setX(width/6);
+        Button button1 = findViewById(R.id.button2);
+        button1.setLayoutParams(new ConstraintLayout.LayoutParams(width/6, height/14));
+        button1.setX(2*width/3);
+
+    }
+
+    public void onBackPressed(){
+        gameView.setGameOver(true);
+        gameView.getThread().setRunning(false);
+        toMenu();
     }
 
     @Override
@@ -63,8 +77,6 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
         btnTower3 = findViewById(R.id.tower3);
         if (gameView!=null){
             gameView.setTowerDefense(towerDefense);
-            gameView.setHeight(height);
-            gameView.setWidth(width);
         }
     }
 

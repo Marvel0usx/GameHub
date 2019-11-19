@@ -23,7 +23,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public TowerDefense towerDefense;
     boolean gameStart = false, gameOver = false;
     private Background background;
-    private int width, height;
 
     public GameView(Context context) {
         super(context);
@@ -83,7 +82,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         thread.setRunning(true);
         thread.start();
-        background = new Background(Bitmap.createBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.map)),getWidth(),getHeight());
+        background = new Background(Bitmap.createBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.map)),getWidth(),getHeight()-getHeight()/10);
 
     }
 
@@ -105,13 +104,5 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             retry = false;
         }
 
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
     }
 }

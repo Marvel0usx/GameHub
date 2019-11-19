@@ -80,7 +80,7 @@ public class TowerDefense implements ScoreSystem {
     private void addMinion() {
         for (int i = 0; i < 1; i++) { //add ten minions
             Minion minion = new Minion();
-            int x = (int) (Math.random() * mapWidth);
+            int x = (int) (Math.random() *  (mapWidth/3)) + (mapWidth/3);
             int y = -(int) (Math.random() * mapHeight / 2) - 100; // a period of time for enemies to walk
             minion.setLocation(x, y);
             wave1.add(minion);

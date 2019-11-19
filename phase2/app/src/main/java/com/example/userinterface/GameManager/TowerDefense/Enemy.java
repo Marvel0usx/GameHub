@@ -9,6 +9,7 @@ abstract class Enemy { //common interface for all Enemies
     int score;
     int x;
     int y;
+    String appearence;
 
     public abstract void move();
 
