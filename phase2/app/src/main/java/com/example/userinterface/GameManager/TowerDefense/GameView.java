@@ -1,6 +1,7 @@
 package com.example.userinterface.GameManager.TowerDefense;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.SurfaceHolder;
@@ -8,6 +9,8 @@ import android.view.SurfaceView;
 import android.widget.Button;
 
 import androidx.annotation.Nullable;
+
+import com.example.userinterface.R;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
@@ -18,6 +21,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private MainThread thread;
     public TowerDefense towerDefense;
     boolean gameStart = false, gameOver = false;
+    private Background background;
 
     public GameView(Context context) {
         super(context);
@@ -65,8 +69,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     public void draw(Canvas canvas) {
         super.draw(canvas);
+        final float scaleFactorX = getWidth();
+        final float scaleFactorY = getHeight();
         if (canvas != null) {
+            final int savedState = canvas.save();
+            canvas.scale(scaleFactorX, scaleFactorY);
             towerDefense.draw(canvas);
+            background.draw(canvas);
+            canvas.restoreToCount(savedState);
         }
     }
 
@@ -75,7 +85,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         thread.setRunning(true);
         thread.start();
-
+        background = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.map));
 
     }
 
