@@ -1,14 +1,13 @@
 package com.example.userinterface.GameManager.SpaceInvaders;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import com.example.userinterface.GameManager.*;
+
+import com.example.userinterface.GameManager.GameActivity;
 import com.example.userinterface.R;
 
 public class SpaceActivity extends GameActivity implements VariableChangeListener{

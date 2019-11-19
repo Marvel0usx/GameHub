@@ -1,14 +1,8 @@
 package com.example.userinterface.GameManager.TowerDefense;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.Window;
@@ -17,12 +11,8 @@ import android.widget.Button;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.userinterface.GameManager.*;
-import com.example.userinterface.GameManager.GameBackgroundActivity;
+import com.example.userinterface.GameManager.GameActivity;
 import com.example.userinterface.R;
-
-import java.io.Serializable;
-import java.util.ArrayList;
 
 public class TowerDefenseActivity extends GameActivity implements VariableChangeListener {
 
@@ -50,9 +40,14 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
         gameView = findViewById(R.id.myView);
         width = size.x;
         height = size.y;
+        TowerPositions.height = height/14;
+        TowerPositions.width = width/6;
         towerDefense = new TowerDefense(width, height);
         towerDefense.setVariableChangeListener(this); //Activity listens to TowerDefense's variable change
         Button button = findViewById(R.id.button);
+        TowerPositions tower1Position = new TowerPositions(button);
+        tower1Position.setButtonX(width/6);
+
         button.setLayoutParams(new ConstraintLayout.LayoutParams(width/6, height/14));
         button.setX(width/6);
         Button button1 = findViewById(R.id.button2);
