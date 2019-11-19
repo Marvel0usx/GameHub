@@ -1,6 +1,7 @@
 package com.example.userinterface.GameManager.TowerDefense;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
@@ -22,6 +23,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public TowerDefense towerDefense;
     boolean gameStart = false, gameOver = false;
     private Background background;
+    private int width, height;
 
     public GameView(Context context) {
         super(context);
@@ -69,14 +71,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        final float scaleFactorX = getWidth();
-        final float scaleFactorY = getHeight();
         if (canvas != null) {
-            final int savedState = canvas.save();
-            canvas.scale(scaleFactorX, scaleFactorY);
-            towerDefense.draw(canvas);
             background.draw(canvas);
-            canvas.restoreToCount(savedState);
+            towerDefense.draw(canvas);
+
         }
     }
 
@@ -85,7 +83,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         thread.setRunning(true);
         thread.start();
-        background = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.map));
+        background = new Background(Bitmap.createBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.map)),getWidth(),getHeight());
 
     }
 
@@ -107,5 +105,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
             retry = false;
         }
 
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
 }

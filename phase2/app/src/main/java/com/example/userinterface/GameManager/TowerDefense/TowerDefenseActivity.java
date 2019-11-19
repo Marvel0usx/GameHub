@@ -63,6 +63,8 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
         btnTower3 = findViewById(R.id.tower3);
         if (gameView!=null){
             gameView.setTowerDefense(towerDefense);
+            gameView.setHeight(height);
+            gameView.setWidth(width);
         }
     }
 
