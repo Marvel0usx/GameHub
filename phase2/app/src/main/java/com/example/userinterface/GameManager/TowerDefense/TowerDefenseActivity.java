@@ -82,7 +82,6 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
         towerPositions.showAvailable(true);
     }
 
-    @SuppressLint("NewApi")
     public void setTower(View view){
         Button tower = null;
         for (Button button: towers){
@@ -94,6 +93,10 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
             view.setEnabled(false);
             if (tower == btnTower1){
                 view.setBackgroundResource(R.drawable.towercopy);
+            }else if(tower == btnTower2){
+                view.setBackgroundResource(R.drawable.tower2copy);
+            }else if(tower == btnTower3){
+                view.setBackgroundResource(R.drawable.tower3copy);
             }
         }
         for (Button button: towers){
