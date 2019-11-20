@@ -9,7 +9,6 @@ import android.widget.TextView;
 import com.example.userinterface.R;
 
 public class NextGame extends GameActivity {
-    Games games;
     TextView textView;
     boolean won;
     Button btnNext;

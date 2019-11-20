@@ -7,15 +7,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import com.example.userinterface.GameManager.GameActivity;
+import com.example.userinterface.GameManager.*;
 import com.example.userinterface.R;
 
-public class SpaceActivity extends GameActivity implements VariableChangeListener{
+public class SpaceActivity extends GameActivity implements VariableChangeListener {
 
     SpaceInvaders Space;
     SpaceView spaceView;
     Button btnLeft, btnRight;
-    //Games gameManager;
     private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
     private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 

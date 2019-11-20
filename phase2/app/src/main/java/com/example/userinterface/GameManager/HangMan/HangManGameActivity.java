@@ -15,7 +15,6 @@ import com.example.userinterface.R;
 
 
 public class HangManGameActivity extends GameActivity {
-    //protected Games gameManager;
     private GameState gameState;
     private int currentScore;
 

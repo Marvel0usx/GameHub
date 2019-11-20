@@ -3,7 +3,6 @@ package com.example.userinterface.GameManager.HangMan;
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.example.userinterface.GameManager.Games;
 import com.example.userinterface.R;
 
 import android.content.Intent;
@@ -13,7 +12,6 @@ import android.widget.Button;
 
 public class HangManActivity extends Activity implements OnClickListener {
 
-    Games gameManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
