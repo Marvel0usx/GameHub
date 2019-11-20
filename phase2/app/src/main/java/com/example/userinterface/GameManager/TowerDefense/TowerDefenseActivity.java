@@ -11,7 +11,7 @@ import android.widget.Button;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.userinterface.GameManager.GameActivity;
+import com.example.userinterface.GameManager.*;
 import com.example.userinterface.R;
 
 public class TowerDefenseActivity extends GameActivity implements VariableChangeListener {
