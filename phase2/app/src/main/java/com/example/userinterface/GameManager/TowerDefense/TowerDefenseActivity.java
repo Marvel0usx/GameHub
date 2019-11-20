@@ -1,5 +1,7 @@
 package com.example.userinterface.GameManager.TowerDefense;
 
+import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -80,6 +82,7 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
         towerPositions.showAvailable(true);
     }
 
+    @SuppressLint("NewApi")
     public void setTower(View view){
         Button tower = null;
         for (Button button: towers){
@@ -89,9 +92,10 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
         }
         if (tower!=null){
             view.setEnabled(false);
-            view.setBackgroundDrawable(tower.getBackground());
+            if (tower == btnTower1){
+                view.setBackgroundResource(R.drawable.towercopy);
+            }
         }
-
         for (Button button: towers){
             if (button != tower){
                 button.setEnabled(true);
