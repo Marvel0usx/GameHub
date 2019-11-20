@@ -12,7 +12,7 @@ import com.example.userinterface.GameManager.TowerDefense.TowerDefenseActivity;
 
 public abstract class GameActivity extends AppCompatActivity{
     public Context context;
-    private static UserDAO user;
+    private static UserDAO user = null;
     private static boolean ifLost = false;
     private static final Class[] CLASSES =new Class[]{MenuActivity.class, HangManActivity.class, TowerDefenseActivity.class,
             SpaceActivity.class, EndGame.class};
@@ -57,8 +57,15 @@ public abstract class GameActivity extends AppCompatActivity{
         startActivity(intent);
     }
 
-    protected static void setUser(UserDAO user){
-        GameActivity.user = user;
+    public static void setUser(UserDAO user){
+        if (GameActivity.user == null){
+            GameActivity.user = user;
+        }
+
+    }
+
+    public void deleteUser(){
+        user.delete();
     }
 
     public void next(View view){

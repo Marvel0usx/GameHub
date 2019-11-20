@@ -1,6 +1,7 @@
 package com.example.userinterface.GameManager.TowerDefense;
 
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
@@ -21,6 +22,8 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
     int width;
     int height;
     GameView gameView;
+    TowerPositions towerPositions;
+    Button [] towers;
 
 
     @Override
@@ -40,19 +43,25 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
         gameView = findViewById(R.id.myView);
         width = size.x;
         height = size.y;
-        TowerPositions.height = height/14;
-        TowerPositions.width = width/6;
+        TowerPositions.height = height;
+        TowerPositions.width = width;
         towerDefense = new TowerDefense(width, height);
         towerDefense.setVariableChangeListener(this); //Activity listens to TowerDefense's variable change
-        Button button = findViewById(R.id.button);
-        TowerPositions tower1Position = new TowerPositions(button);
-        tower1Position.setButtonX(width/6);
 
-        button.setLayoutParams(new ConstraintLayout.LayoutParams(width/6, height/14));
-        button.setX(width/6);
+        Button button = findViewById(R.id.button);
         Button button1 = findViewById(R.id.button2);
-        button1.setLayoutParams(new ConstraintLayout.LayoutParams(width/6, height/14));
-        button1.setX(2*width/3);
+        Button button2 = findViewById(R.id.button3);
+        Button button3 = findViewById(R.id.button4);
+        Button button4 = findViewById(R.id.button5);
+        Button button5 = findViewById(R.id.button6);
+        Button button6 = findViewById(R.id.button7);
+        Button button7 = findViewById(R.id.button8);
+        Button button8 = findViewById(R.id.button9);
+        Button button9 = findViewById(R.id.button10);
+        Button[] buttons = {button, button1,button2,button3,button4,button5,button6,button7,button8,button9};
+        towerPositions = new TowerPositions(buttons);
+        towerPositions.setXLocation();
+        towerPositions.setYLocation();
 
     }
 
@@ -60,6 +69,32 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
         gameView.setGameOver(true);
         gameView.getThread().setRunning(false);
         toMenu();
+    }
+
+    public void towerClick(View view){
+        for (Button button: towers){
+            if (button !=  view){
+                button.setEnabled(false);
+            }
+        }
+        towerPositions.showAvailable();
+    }
+
+    public void setTower(View view){
+        Button tower = null;
+        for (Button button: towers){
+            if (button.isEnabled()){
+                tower = button;
+            }
+        }
+        if (tower!=null){
+            view.setEnabled(false);
+            view.setBackgroundDrawable(tower.getBackground());
+        }
+        for (Button button: towers){
+            button.setEnabled(true);
+        }
+
     }
 
     @Override
@@ -70,6 +105,11 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
         btnTower1 = findViewById(R.id.tower1);
         btnTower2 = findViewById(R.id.tower2);
         btnTower3 = findViewById(R.id.tower3);
+        towers = new Button[]{btnTower1,btnTower2,btnTower3};
+        for (Button button: towers){
+            button.setWidth(70);
+            button.setHeight(70);
+        }
         if (gameView!=null){
             gameView.setTowerDefense(towerDefense);
         }
