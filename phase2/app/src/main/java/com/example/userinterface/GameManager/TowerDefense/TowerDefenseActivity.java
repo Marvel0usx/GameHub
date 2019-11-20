@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.RotateDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
@@ -83,29 +84,30 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
     }
 
     public void setTower(View view){
-        Button tower = null;
-        for (Button button: towers){
-            if (button.isEnabled()){
-                tower = button;
+        if (towerPositions.isTowerClicked()) {
+            Button tower = null;
+            for (Button button : towers) {
+                if (button.isEnabled()) {
+                    tower = button;
+                }
             }
-        }
-        if (tower!=null){
-            view.setEnabled(false);
-            if (tower == btnTower1){
-                view.setBackgroundResource(R.drawable.towercopy);
-            }else if(tower == btnTower2){
-                view.setBackgroundResource(R.drawable.tower2copy);
-            }else if(tower == btnTower3){
-                view.setBackgroundResource(R.drawable.tower3copy);
+            if (tower != null) {
+                view.setEnabled(false);
+                if (tower == btnTower1) {
+                    view.setBackgroundResource(R.drawable.towercopy);
+                } else if (tower == btnTower2) {
+                    view.setBackgroundResource(R.drawable.tower2copy);
+                } else if (tower == btnTower3) {
+                    view.setBackgroundResource(R.drawable.tower3copy);
+                }
             }
-        }
-        for (Button button: towers){
-            if (button != tower){
-                button.setEnabled(true);
+            for (Button button : towers) {
+                if (button != tower) {
+                    button.setEnabled(true);
+                }
             }
+            towerPositions.showAvailable(false);
         }
-        towerPositions.showAvailable(false);
-
     }
 
     @Override

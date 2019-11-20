@@ -10,11 +10,12 @@ import com.example.userinterface.R;
 public class TowerPositions {
     private Button [] spots;
     static int width = 0, height = 0;
+    private boolean towerClicked;
 
     public TowerPositions(Button [] spots){
         this.spots = spots;
         for (Button button: this.spots){
-            button.setLayoutParams(new ConstraintLayout.LayoutParams(width/6, height/14));
+            button.setLayoutParams(new ConstraintLayout.LayoutParams(width/7, height/13));
         }
     }
 
@@ -22,7 +23,7 @@ public class TowerPositions {
         int i = 0;
         for (Button button: spots){
             if (i == 0){
-                button.setX(width/6);
+                button.setX(width - 19*width/24);
                 i = 1;
             }else{
                 button.setX(2*width/3);
@@ -50,7 +51,9 @@ public class TowerPositions {
             if (button.isEnabled()){
                 if (show){
                     button.setBackgroundResource(R.drawable.spotselect);
+                    towerClicked = true;
                 }else{
+                    towerClicked=false;
                     button.setBackgroundResource(R.drawable.spot);
                 }
 
@@ -58,4 +61,7 @@ public class TowerPositions {
         }
     }
 
+    public boolean isTowerClicked() {
+        return towerClicked;
+    }
 }
