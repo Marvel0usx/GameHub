@@ -45,10 +45,15 @@ public class TowerPositions {
 
     }
 
-    public void showAvailable(){
+    public void showAvailable(boolean show){
         for (Button button: spots){
             if (button.isEnabled()){
-                button.setBackgroundResource(R.drawable.spotselect);
+                if (show){
+                    button.setBackgroundResource(R.drawable.spotselect);
+                }else{
+                    button.setBackgroundResource(R.drawable.spot);
+                }
+
             }
         }
     }

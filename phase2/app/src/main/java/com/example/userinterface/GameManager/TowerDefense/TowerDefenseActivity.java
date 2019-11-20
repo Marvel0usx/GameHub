@@ -77,7 +77,7 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
                 button.setEnabled(false);
             }
         }
-        towerPositions.showAvailable();
+        towerPositions.showAvailable(true);
     }
 
     public void setTower(View view){
@@ -91,9 +91,13 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
             view.setEnabled(false);
             view.setBackgroundDrawable(tower.getBackground());
         }
+
         for (Button button: towers){
-            button.setEnabled(true);
+            if (button != tower){
+                button.setEnabled(true);
+            }
         }
+        towerPositions.showAvailable(false);
 
     }
 
@@ -106,10 +110,6 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
         btnTower2 = findViewById(R.id.tower2);
         btnTower3 = findViewById(R.id.tower3);
         towers = new Button[]{btnTower1,btnTower2,btnTower3};
-        for (Button button: towers){
-            button.setWidth(70);
-            button.setHeight(70);
-        }
         if (gameView!=null){
             gameView.setTowerDefense(towerDefense);
         }
