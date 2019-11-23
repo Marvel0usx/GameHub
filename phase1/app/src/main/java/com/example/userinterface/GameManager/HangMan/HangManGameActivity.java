@@ -19,6 +19,7 @@ public class HangManGameActivity extends Activity {
     protected Games gameManager;
     private GameState gameState;
     private int currentScore;
+    private IDifficultyStrategy iDifficultyStrategy;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
