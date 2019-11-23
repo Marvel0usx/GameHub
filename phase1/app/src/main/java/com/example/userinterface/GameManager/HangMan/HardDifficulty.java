@@ -5,4 +5,4 @@ public class HardDifficulty implements IDifficultyStrategy {
     public void createBalloons(int numLives){
 
     }
-    }
+}
