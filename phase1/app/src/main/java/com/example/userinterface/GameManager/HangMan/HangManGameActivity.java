@@ -14,8 +14,10 @@ import android.widget.TextView;
 import com.example.userinterface.GameManager.Games;
 import com.example.userinterface.R;
 
+import java.util.Observer;
 
-public class HangManGameActivity extends Activity {
+
+public class HangManGameActivity extends Activity{
     protected Games gameManager;
     private GameState gameState;
     private int currentScore;
