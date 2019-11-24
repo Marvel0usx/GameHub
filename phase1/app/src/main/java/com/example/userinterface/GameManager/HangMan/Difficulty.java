@@ -8,7 +8,7 @@ public class Difficulty {
 
     void setupLevelofDifficulty(){
         // load balloons
-
+        //
         // pass numLives to GameState
     }
 
