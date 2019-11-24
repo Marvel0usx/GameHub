@@ -43,4 +43,29 @@ public class HangManActivity extends Activity implements OnClickListener {
             startActivity(intent);
         }
     }
+
+    private void setEasyButton(){
+        findViewById(R.id.easyButton).setOnClickListener(v -> {
+            EasyDifficulty.createBalloons;
+            Intent i = new Intent(HangManActivity.this, HangManGameActivity.class);
+            startActivity(i);
+        });
+    }
+
+    private void setModerateButton(){
+        findViewById(R.id.moderateButton).setOnClickListener(v -> {
+            ModerateDifficulty.createBalloons;
+            Intent i = new Intent(HangManActivity.this, HangManGameActivity.class);
+            startActivity(i);
+        });
+    }
+
+    private void setDifficultButton(){
+        findViewById(R.id.hardButton).setOnClickListener(v -> {
+            HardDifficulty.createBalloons;
+            Intent i = new Intent(HangManActivity.this, HangManGameActivity.class);
+            startActivity(i);
+        });
+    }
+
 }
