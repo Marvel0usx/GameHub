@@ -1,6 +1,7 @@
 package com.example.userinterface.GameManager.HangMan;
 
-import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -11,40 +12,42 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.userinterface.GameManager.GameActivity;
+import com.example.userinterface.GameManager.User;
 import com.example.userinterface.R;
+
 
 
 public class HangManGameActivity extends GameActivity {
     private GameState gameState;
     private int currentScore;
+    ImageView[] balloons;
+    Difficulty difficulty;
+    User user;
 
-    @SuppressLint("SetTextI18n")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         context = this;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.hm_activity_game);
+        setContentView(R.layout.hm_activity_gameee);
         LinearLayout wordLayout = findViewById(R.id.word);
+        Intent intent = getIntent();
+        user = getUser();
+
+        difficulty = (Difficulty) intent.getSerializableExtra("difficulty");
+        difficulty.setWord();
+        difficulty.setNumLives();
+
         // creates an array list of ImageView objects, each associated with a balloon image
         // that gets displayed
         // initialize each Balloon object
-        int numLives = 6;
-        ImageView[] balloons = new ImageView[numLives];
-        balloons[0] = findViewById(R.id.ballon1);
-        Balloon balloon_0 = new Balloon(balloons[0]);
-        balloons[1] = findViewById(R.id.ballon2);
-        Balloon balloon_1 = new Balloon(balloons[1]);
-        balloons[2] = findViewById(R.id.ballon3);
-        Balloon balloon_2 = new Balloon(balloons[2]);
-        balloons[3] = findViewById(R.id.ballon4);
-        Balloon balloon_3 = new Balloon(balloons[3]);
-        balloons[4] = findViewById(R.id.ballon5);
-        Balloon balloon_4 = new Balloon(balloons[4]);
-        balloons[5] = findViewById(R.id.ballon6);
-        Balloon balloon_5 = new Balloon(balloons[5]);
-        Balloon[] tempBalloons = {balloon_0, balloon_1, balloon_2, balloon_3, balloon_4, balloon_5};
+        Balloon[] tempBalloons = loadBalloons();
+
         // initialize a new GameState object for this round
-        gameState = new GameState("ANDROID", tempBalloons);
+        gameState = new GameState(difficulty);
+        gameState.setBalloons(tempBalloons);
+        gameState.setKeyword(difficulty.keyword);
+        gameState.setRemainingBalloons(difficulty.numLives);
         wordLayout.removeAllViews();
         String keyword = gameState.getKeyWord();
         // an array that stores all letters of the correct word
@@ -93,15 +96,28 @@ public class HangManGameActivity extends GameActivity {
         if (gameState.numCorr == gameState.keywordLen) {
             // if all letters have been guessed, wins the game
             this.currentScore += 100;
-            getUser().getStatTracker().addToCurrScore(this.currentScore);
+            user.getStatTracker().addToCurrScore(currentScore);
             goToIntermediate(true);
             HangManGameActivity.this.finish();
         } else if (gameState.remainingBalloons == 0) {
             // loses the game if all lives are used up/balloons have disappeared.
-            getUser().getStatTracker().addToCurrScore(this.currentScore);
             goToIntermediate(false);
             HangManGameActivity.this.finish();
         }
     }
+
+    public Balloon[] loadBalloons(){
+        int numLives = difficulty.getNumLives();
+        balloons = new ImageView[numLives];
+        Balloon[] temp = new Balloon[numLives];
+        for (int i = 0; i < numLives; i++) {
+            String balloonId = "ballon" + (i + 1);
+            int resID = getResources().getIdentifier(balloonId, "id", getPackageName());
+            balloons[i] = ((ImageView) findViewById(resID));
+            temp[i] = new Balloon(balloons[i]);
+        }
+        return temp;
+    }
+
 
 }

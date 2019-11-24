@@ -9,20 +9,27 @@ public class GameState {
     private Balloon[] balloons; // an array of Balloon objects
     private AnswerKeyLetter[] answerKeyLetters; // all of the correct letters in correct order
     private int currentScore;
+    Difficulty difficulty;
 
     /**
      * Constructs a new GameState object
-     *
-     * @param keyWord  the correct word to be guessed
-     * @param balloons all Balloon objects whose images that will be displayed
      */
-    GameState(String keyWord, Balloon[] balloons) {
-        this.keyword = keyWord;
-        this.keywordLen = keyword.length();
-        remainingBalloons = 6;
+    GameState(Difficulty diffi) {
+        this.difficulty = diffi;
+    }
+
+    void setBalloons(Balloon[] balloons){
         this.balloons = balloons;
     }
 
+    void setKeyword(String keyword){
+        this.keyword = keyword;
+        this.keywordLen = keyword.length();
+    }
+
+    void setRemainingBalloons(int numLives){
+        this.remainingBalloons = numLives;
+    }
     /**
      * A setter for the correct letters of the correct word to be guessed
      *
@@ -50,6 +57,7 @@ public class GameState {
     int getCurrentScore() {
         return this.currentScore;
     }
+
 
     /**
      * Based on the character guessed, correctness of this letter will be evaluated, and if correct
