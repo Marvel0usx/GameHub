@@ -1,10 +1,8 @@
 package com.example.userinterface.GameManager.HangMan;
 
-public class EasyDifficulty implements IDifficultyStrategy {
-    @Override
-    public void createBalloons(int numLives){
+public class EasyDifficulty extends Difficulty {
 
+    int numLives = 6;
 
-    }
 
 }
