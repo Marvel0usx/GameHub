@@ -3,6 +3,8 @@ package com.example.userinterface.GameManager.TowerDefense;
 import android.graphics.Canvas;
 
 import com.example.userinterface.GameManager.ScoreSystem;
+import com.example.userinterface.GameManager.TowerDefense.DifferentAmmo.Ammo;
+import com.example.userinterface.GameManager.TowerDefense.Towers.GunTower;
 import com.example.userinterface.GameManager.VariableChangeListener;
 
 import java.util.ArrayList;
@@ -19,14 +21,25 @@ public class TowerDefense implements ScoreSystem {
     private VariableChangeListener listener = null;
     private ArrayList<Enemy> wave1 = new ArrayList<>();
     private int clicker = 0;
+    private ArrayList<Ammo> ammo;
+    private GunTower[] towers = new GunTower[10];
 
 
     public TowerDefense(int screenWidth, int screenHeight) {
         mapHeight = screenHeight;
         mapWidth = screenWidth;
+        ammo = new ArrayList<>();
     }
 
     void update() {
+        updateEnemy();
+    }
+
+    void updateBullet(){
+        
+    }
+
+    void updateEnemy(){
         Enemy enemy = getFirstEnemy(); //hit the enemy that is at the frontmost
         if (enemy != null) {
             enemy.hit(clicker);
@@ -81,7 +94,7 @@ public class TowerDefense implements ScoreSystem {
     private void addMinion() {
         for (int i = 0; i < 1; i++) { //add ten minions
             Minion minion = new Minion();
-            int x = (int) (Math.random() *  (mapWidth/3)) + (mapWidth/3);
+            int x = (int) (Math.random() *  (mapWidth/3)) + (mapWidth/3)-40;
             int y = -(int) (Math.random() * mapHeight / 2) - 100; // a period of time for enemies to walk
             minion.setLocation(x, y);
             wave1.add(minion);
