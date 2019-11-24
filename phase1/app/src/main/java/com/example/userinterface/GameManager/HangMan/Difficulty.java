@@ -11,7 +11,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 
-public abstract class Difficulty {
+import java.io.Serializable;
+
+public abstract class Difficulty implements Serializable {
 
     String keyword;
     private Balloon[] balloons; // an array of Balloon objects
@@ -19,6 +21,12 @@ public abstract class Difficulty {
 
 
     abstract void setWord();
+
+    abstract void setNumLives();
+
+    int getNumLives(){
+        return numLives;
+    }
 
 
 

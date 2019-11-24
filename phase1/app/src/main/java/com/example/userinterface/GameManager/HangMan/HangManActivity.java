@@ -41,8 +41,8 @@ public class HangManActivity extends Activity{
     private void setEasyBtn(){
         findViewById(R.id.easyButton).setOnClickListener(v -> {
             this.diff = new EasyDifficulty();
-            diff.setWord();
             Intent intent = new Intent(HangManActivity.this, HangManGameActivity.class);
+            intent.putExtra("difficulty", diff);
             startActivity(intent);
         });
     }
@@ -50,8 +50,8 @@ public class HangManActivity extends Activity{
     private void setModerateBtn(){
         findViewById(R.id.moderateButton).setOnClickListener(v -> {
             this.diff = new ModerateDifficulty();
-            diff.setWord();
             Intent intent = new Intent(HangManActivity.this, HangManGameActivity.class);
+            intent.putExtra("difficulty", diff);
             startActivity(intent);
         });
     }
@@ -59,8 +59,8 @@ public class HangManActivity extends Activity{
     private void setHardBtn(){
         findViewById(R.id.hardButton).setOnClickListener(v -> {
             this.diff = new HardDifficulty();
-            diff.setWord();
             Intent intent = new Intent(HangManActivity.this, HangManGameActivity.class);
+            intent.putExtra("difficulty", diff);
             startActivity(intent);
         });
     }

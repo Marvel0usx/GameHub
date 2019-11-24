@@ -13,16 +13,23 @@ public class GameState {
 
     /**
      * Constructs a new GameState object
-     *
-     * @param keyWord  the correct word to be guessed
-     * @param balloons all Balloon objects whose images that will be displayed
      */
-    GameState(String keyWord, Balloon[] balloons) {
-        this.keyword = keyWord;
-        this.keywordLen = keyword.length();
+    GameState(Difficulty diffi) {
+        this.difficulty = diffi;
+    }
+
+    void setBalloons(Balloon[] balloons){
         this.balloons = balloons;
     }
 
+    void setKeyword(String keyword){
+        this.keyword = keyword;
+        this.keywordLen = keyword.length();
+    }
+
+    void setRemainingBalloons(int numLives){
+        this.remainingBalloons = numLives;
+    }
     /**
      * A setter for the correct letters of the correct word to be guessed
      *

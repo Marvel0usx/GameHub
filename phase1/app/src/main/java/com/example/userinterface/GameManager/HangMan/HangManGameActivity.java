@@ -14,14 +14,13 @@ import android.widget.TextView;
 import com.example.userinterface.GameManager.Games;
 import com.example.userinterface.R;
 
-import java.util.Observer;
-
 
 public class HangManGameActivity extends Activity{
     protected Games gameManager;
     private GameState gameState;
     private int currentScore;
     ImageView[] balloons;
+    Difficulty difficulty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +28,9 @@ public class HangManGameActivity extends Activity{
         setContentView(R.layout.hm_activity_game);
         LinearLayout wordLayout = findViewById(R.id.word);
         Intent intent = getIntent();
+        difficulty = (Difficulty) intent.getSerializableExtra("difficulty");
+        difficulty.setWord();
+        difficulty.setNumLives();
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
             gameManager = (Games) bundle.getSerializable("Game");
@@ -36,10 +38,13 @@ public class HangManGameActivity extends Activity{
         // creates an array list of ImageView objects, each associated with a balloon image
         // that gets displayed
         // initialize each Balloon object
-        Balloon[] tempBalloons = loadBalloons(4);
+        Balloon[] tempBalloons = loadBalloons();
 
         // initialize a new GameState object for this round
-        gameState = new GameState("ANDROID", tempBalloons);
+        gameState = new GameState(difficulty);
+        gameState.setBalloons(tempBalloons);
+        gameState.setKeyword(difficulty.keyword);
+        gameState.setRemainingBalloons(difficulty.numLives);
         wordLayout.removeAllViews();
         String keyword = gameState.getKeyWord();
         // an array that stores all letters of the correct word
@@ -99,7 +104,8 @@ public class HangManGameActivity extends Activity{
         }
     }
 
-    public Balloon[] loadBalloons(int numLives){
+    public Balloon[] loadBalloons(){
+        int numLives = difficulty.getNumLives();
         balloons = new ImageView[numLives];
         Balloon[] temp = new Balloon[numLives];
         for (int i = 0; i < numLives; i++) {
