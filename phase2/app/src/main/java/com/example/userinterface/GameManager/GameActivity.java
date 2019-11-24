@@ -23,12 +23,13 @@ public abstract class GameActivity extends AppCompatActivity{
         startActivity(intent);
     }
 
-    public void toGame(int saved){
+    public void toGame(int saved, boolean practiceMode){
         ifLost = false;
         GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(context);
         gameBackgroundActivity.execute("quit", user.get());
-        user.get().getStatTracker().setLevel(saved);
         Intent intent = new Intent(context, CLASSES[saved]);
+        intent.putExtra("practice", true);
+        user.get().getStatTracker().setLevel(saved);
         startActivity(intent);
     }
 
