@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.userinterface.GameManager.GameActivity;
+import com.example.userinterface.GameManager.User;
 import com.example.userinterface.R;
 
 
@@ -21,6 +22,8 @@ public class HangManGameActivity extends GameActivity {
     private int currentScore;
     ImageView[] balloons;
     Difficulty difficulty;
+    User user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,7 @@ public class HangManGameActivity extends GameActivity {
         setContentView(R.layout.hm_activity_gameee);
         LinearLayout wordLayout = findViewById(R.id.word);
         Intent intent = getIntent();
+        user = getUser();
 
         difficulty = (Difficulty) intent.getSerializableExtra("difficulty");
         difficulty.setWord();
@@ -92,9 +96,12 @@ public class HangManGameActivity extends GameActivity {
         if (gameState.numCorr == gameState.keywordLen) {
             // if all letters have been guessed, wins the game
             this.currentScore += 100;
+            user.getStatTracker().addToCurrScore(currentScore);
+            goToIntermediate(true);
             HangManGameActivity.this.finish();
         } else if (gameState.remainingBalloons == 0) {
             // loses the game if all lives are used up/balloons have disappeared.
+            goToIntermediate(false);
             HangManGameActivity.this.finish();
         }
     }
