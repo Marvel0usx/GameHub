@@ -21,6 +21,7 @@ public class HangManGameActivity extends Activity{
     protected Games gameManager;
     private GameState gameState;
     private int currentScore;
+    ImageView[] balloons;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,21 +36,8 @@ public class HangManGameActivity extends Activity{
         // creates an array list of ImageView objects, each associated with a balloon image
         // that gets displayed
         // initialize each Balloon object
-        int numLives = 6;
-        ImageView[] balloons = new ImageView[numLives];
-        balloons[0] = findViewById(R.id.ballon1);
-        Balloon balloon_0 = new Balloon(balloons[0]);
-        balloons[1] = findViewById(R.id.ballon2);
-        Balloon balloon_1 = new Balloon(balloons[1]);
-        balloons[2] = findViewById(R.id.ballon3);
-        Balloon balloon_2 = new Balloon(balloons[2]);
-        balloons[3] = findViewById(R.id.ballon4);
-        Balloon balloon_3 = new Balloon(balloons[3]);
-        balloons[4] = findViewById(R.id.ballon5);
-        Balloon balloon_4 = new Balloon(balloons[4]);
-        balloons[5] = findViewById(R.id.ballon6);
-        Balloon balloon_5 = new Balloon(balloons[5]);
-        Balloon[] tempBalloons = {balloon_0, balloon_1, balloon_2, balloon_3, balloon_4, balloon_5};
+        Balloon[] tempBalloons = loadBalloons(4);
+
         // initialize a new GameState object for this round
         gameState = new GameState("ANDROID", tempBalloons);
         wordLayout.removeAllViews();
@@ -109,6 +97,18 @@ public class HangManGameActivity extends Activity{
             gameManager.toInter(HangManGameActivity.this, false);
             HangManGameActivity.this.finish();
         }
+    }
+
+    public Balloon[] loadBalloons(int numLives){
+        balloons = new ImageView[numLives];
+        Balloon[] temp = new Balloon[numLives];
+        for (int i = 0; i < numLives; i++) {
+            String balloonId = "ballon" + (i + 1);
+            int resID = getResources().getIdentifier(balloonId, "id", getPackageName());
+            balloons[i] = ((ImageView) findViewById(resID));
+            temp[i] = new Balloon(balloons[i]);
+        }
+        return temp;
     }
 
     @Override

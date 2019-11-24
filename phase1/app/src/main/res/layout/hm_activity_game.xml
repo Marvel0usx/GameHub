@@ -13,6 +13,7 @@
 
         <ImageView
             android:id="@+id/ballon1"
+            android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="238dp"
             android:contentDescription="@string/ballon1"
@@ -20,6 +21,7 @@
 
         <ImageView
             android:id="@+id/ballon2"
+            android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="238dp"
             android:contentDescription="@string/ballon2"
@@ -27,6 +29,7 @@
 
         <ImageView
             android:id="@+id/ballon3"
+            android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="238dp"
             android:contentDescription="@string/ballon3"
@@ -34,6 +37,7 @@
 
         <ImageView
             android:id="@+id/ballon4"
+            android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="238dp"
             android:contentDescription="@string/ballon4"
@@ -41,6 +45,7 @@
 
         <ImageView
             android:id="@+id/ballon5"
+            android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="238dp"
             android:contentDescription="@string/ballon5"
@@ -48,6 +53,7 @@
 
         <ImageView
             android:id="@+id/ballon6"
+            android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="238dp"
             android:contentDescription="@string/ballon6"

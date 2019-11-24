@@ -12,9 +12,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-public class HangManActivity extends Activity implements OnClickListener {
+public class HangManActivity extends Activity{
 
     Games gameManager;
+    GameState gameState;
+    Difficulty diff;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,49 +26,47 @@ public class HangManActivity extends Activity implements OnClickListener {
         setContentView(R.layout.hang_man_main);
 
         // the play button that controls if the game will start
-        Button playBtn = findViewById(R.id.playButton);
-        playBtn.setOnClickListener(this);
+
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         if (bundle != null) {
             gameManager = (Games) bundle.getSerializable("Game");
         }
+
+        setEasyBtn();
+        setModerateBtn();
+        setHardBtn();
     }
 
-    @Override
-    public void onClick(View v) {
-        // handles clicks
-        if (v.getId() == R.id.playButton) {
-            Intent intent = new Intent(HangManActivity.this, HangManGameActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("Game", (GameManager) gameManager);
-            intent.putExtras(bundle);
-            startActivity(intent);
-        }
-    }
-
-    private void setEasyButton(){
+    private void setEasyBtn(){
         findViewById(R.id.easyButton).setOnClickListener(v -> {
-            EasyDifficulty.createBalloons;
-            Intent i = new Intent(HangManActivity.this, HangManGameActivity.class);
-            startActivity(i);
+            this.diff = new EasyDifficulty();
+            diff.setWord();
+            Intent intent = new Intent(HangManActivity.this, HangManGameActivity.class);
+            startActivity(intent);
         });
     }
 
-    private void setModerateButton(){
+    private void setModerateBtn(){
         findViewById(R.id.moderateButton).setOnClickListener(v -> {
-            ModerateDifficulty.createBalloons;
-            Intent i = new Intent(HangManActivity.this, HangManGameActivity.class);
-            startActivity(i);
+            this.diff = new ModerateDifficulty();
+            diff.setWord();
+            Intent intent = new Intent(HangManActivity.this, HangManGameActivity.class);
+            startActivity(intent);
         });
     }
 
-    private void setDifficultButton(){
+    private void setHardBtn(){
         findViewById(R.id.hardButton).setOnClickListener(v -> {
-            HardDifficulty.createBalloons;
-            Intent i = new Intent(HangManActivity.this, HangManGameActivity.class);
-            startActivity(i);
+            this.diff = new HardDifficulty();
+            diff.setWord();
+            Intent intent = new Intent(HangManActivity.this, HangManGameActivity.class);
+            startActivity(intent);
         });
     }
+
+
+
+
 
 }

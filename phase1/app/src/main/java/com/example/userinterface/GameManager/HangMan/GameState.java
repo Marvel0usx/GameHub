@@ -9,6 +9,7 @@ public class GameState {
     private Balloon[] balloons; // an array of Balloon objects
     private AnswerKeyLetter[] answerKeyLetters; // all of the correct letters in correct order
     private int currentScore;
+    Difficulty difficulty;
 
     /**
      * Constructs a new GameState object
@@ -19,7 +20,6 @@ public class GameState {
     GameState(String keyWord, Balloon[] balloons) {
         this.keyword = keyWord;
         this.keywordLen = keyword.length();
-        remainingBalloons = 6;
         this.balloons = balloons;
     }
 
@@ -50,6 +50,7 @@ public class GameState {
     int getCurrentScore() {
         return this.currentScore;
     }
+
 
     /**
      * Based on the character guessed, correctness of this letter will be evaluated, and if correct
