@@ -36,7 +36,7 @@ public class TowerDefense implements ScoreSystem {
     }
 
     void updateBullet(){
-        
+
     }
 
     void updateEnemy(){
