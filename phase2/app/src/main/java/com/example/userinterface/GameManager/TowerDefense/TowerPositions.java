@@ -64,4 +64,13 @@ public class TowerPositions {
     public boolean isTowerClicked() {
         return towerClicked;
     }
+
+    public int getTowerNumber(Button button){
+        for (int i  = 0; i < spots.length; i++){
+            if (button == spots[i]){
+                return i;
+            }
+        }
+        return 0;
+    }
 }

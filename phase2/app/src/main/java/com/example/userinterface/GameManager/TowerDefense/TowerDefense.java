@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import com.example.userinterface.GameManager.ScoreSystem;
 import com.example.userinterface.GameManager.TowerDefense.DifferentAmmo.Ammo;
 import com.example.userinterface.GameManager.TowerDefense.Towers.GunTower;
+import com.example.userinterface.GameManager.TowerDefense.Towers.TowerFactory;
+import com.example.userinterface.GameManager.TowerDefense.Towers.Towers;
 import com.example.userinterface.GameManager.VariableChangeListener;
 
 import java.util.ArrayList;
@@ -22,7 +24,7 @@ public class TowerDefense implements ScoreSystem {
     private ArrayList<Enemy> wave1 = new ArrayList<>();
     private int clicker = 0;
     private ArrayList<Ammo> ammo;
-    private GunTower[] towers = new GunTower[10];
+    private Towers[] towers = new Towers[10];
 
 
     public TowerDefense(int screenWidth, int screenHeight) {
@@ -33,10 +35,30 @@ public class TowerDefense implements ScoreSystem {
 
     void update() {
         updateEnemy();
+        updateBullet();
     }
 
     void updateBullet(){
-
+        for (Towers towers: towers) {
+            if (towers != null) {
+                Ammo shoot = towers.generateBullet();
+                if (shoot != null) {
+                    ammo.add(shoot);
+                    shoot.setLocation(towers.getX(), towers.getY());
+                }
+            }
+        }
+        ArrayList<Ammo> temp = new ArrayList<>();
+        for (Ammo ammo: ammo){
+            ammo.update(getFirstEnemy());
+            if (ammo.ifHit(getFirstEnemy().getX())){
+                getFirstEnemy().health = 0;
+                temp.add(ammo);
+            }
+        }
+        for (Ammo ammo: temp){
+            this.ammo.remove(ammo);
+        }
     }
 
     void updateEnemy(){
@@ -92,9 +114,9 @@ public class TowerDefense implements ScoreSystem {
     }
 
     private void addMinion() {
-        for (int i = 0; i < 1; i++) { //add ten minions
+        for (int i = 0; i < 5; i++) { //add ten minions
             Minion minion = new Minion();
-            int x = (int) (Math.random() *  (mapWidth/3)) + (mapWidth/3)-40;
+            int x = (int) (Math.random() *  (mapWidth/3)) + (mapWidth/3);
             int y = -(int) (Math.random() * mapHeight / 2) - 100; // a period of time for enemies to walk
             minion.setLocation(x, y);
             wave1.add(minion);
@@ -106,11 +128,18 @@ public class TowerDefense implements ScoreSystem {
         for (Enemy item : wave1) {
             item.draw(canvas);
         }
+        for (Ammo ammo: ammo){
+            ammo.draw(canvas);
+        }
 
     }
 
     void setVariableChangeListener(VariableChangeListener variableChangeListener) {
         this.listener = variableChangeListener;
+    }
+
+    void addTower(int index, Towers tower){
+        towers[index] = tower;
     }
 
     void clicked() {
