@@ -93,6 +93,7 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
             }
             if (tower != null) {
                 view.setEnabled(false);
+
                 if (tower == btnTower1) {
                     view.setBackgroundResource(R.drawable.towercopy);
                 } else if (tower == btnTower2) {
@@ -101,6 +102,7 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
                     view.setBackgroundResource(R.drawable.tower3copy);
                 }
             }
+
             for (Button button : towers) {
                 if (button != tower) {
                     button.setEnabled(true);
