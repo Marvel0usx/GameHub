@@ -18,6 +18,7 @@ public class Balloon {
      */
     Balloon(ImageView balloon) {
         this.balloonImage = balloon;
+        this.balloonImage.setVisibility(View.VISIBLE);
     }
 
     /**
