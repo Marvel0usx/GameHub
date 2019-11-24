@@ -1,18 +1,24 @@
 package com.example.userinterface.GameManager.HangMan;
 
-public class Difficulty {
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import com.example.userinterface.R;
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.Toast;
 
-    private String keyword;
+public abstract class Difficulty {
+
+    String keyword;
     private Balloon[] balloons; // an array of Balloon objects
     int numLives;
 
-    void setupLevelofDifficulty(){
-        // load balloons
-        //
-        // pass numLives to GameState
-    }
 
-
+    abstract void setWord();
 
 
 

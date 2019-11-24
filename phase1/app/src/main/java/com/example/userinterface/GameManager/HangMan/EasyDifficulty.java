@@ -4,5 +4,8 @@ public class EasyDifficulty extends Difficulty {
 
     int numLives = 6;
 
+    void setWord(){
+        this.keyword = "Apple";
+    }
 
 }
