@@ -23,7 +23,6 @@ public abstract class Enemy { //common interface for all Enemies
         health -= damage;
     }
 
-    abstract void hit(int num);
 
     public int getY() {
         return y;

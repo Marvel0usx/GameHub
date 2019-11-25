@@ -5,7 +5,7 @@ public class Bomb extends Ammunition implements Ammo {
     public Bomb(String direction){
         damage = 10;
         appearence = "💣";
-        speed = 4;
+        speed = 6;
         this.direction = direction;
     }
 }

@@ -70,10 +70,8 @@ public class TowerDefense implements ScoreSystem {
     }
 
     private void updateEnemy(){
-        Enemy enemy = getFirstEnemy(); //hit the enemy that is at the frontmost
-        if (enemy != null) {
-            enemy.hit(clicker);
-            clicker = 0;
+        for (Enemy enemy: wave1){
+            enemy.move();
         }
         removeEnemy();
         if (lives <= 0 || wave1.isEmpty()) { //decide if game is over or not
@@ -97,25 +95,11 @@ public class TowerDefense implements ScoreSystem {
             if (e.getY() >= mapHeight) { //if enemy is out of map remove it
                 temp.add(e);
                 lives -= 1;
-            } else
-                e.move();
+            }
         }
         for (Enemy item : temp) {
             wave1.remove(item);
         }
-    }
-
-    private Enemy getFirstEnemy() {
-        int yCoor = -mapHeight / 2 - 100;  //the highest enemy is half the map height above
-        Enemy firstEnemy = null;
-        for (Enemy item : wave1) {
-            if (item.getY() > yCoor) {
-                firstEnemy = item;
-                yCoor = item.getY();
-            }
-        }
-        return firstEnemy;
-
     }
 
     private Enemy getFirstEnemyInRange(int lowerbound, int upperbound){

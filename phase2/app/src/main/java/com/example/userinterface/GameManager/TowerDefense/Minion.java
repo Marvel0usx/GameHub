@@ -10,7 +10,7 @@ public class Minion extends Enemy {
 
     Minion() {
         health = 10;
-        speed = 5;
+        speed = 4;
         score = 50;
         appearence = "👻";
 
