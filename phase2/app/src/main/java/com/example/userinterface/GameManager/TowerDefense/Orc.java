@@ -6,18 +6,21 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.util.Log;
 
-public class Minion extends Enemy {
-
-    Minion() {
-        health = 10;
-        speed = 5;
-        score = 50;
-        appearence = "👻";
+public class Orc extends Enemy {
+    Orc() {
+        health = 60;
+        speed = 1;
+        score = 60;
+        appearence = "👹";
 
     }
 
     public void move() {
-        y += speed;
+        if (health > 20)
+            y += speed;
+        else
+            y += 3 * speed;
+
     }
 
     public void draw(Canvas canvas) {

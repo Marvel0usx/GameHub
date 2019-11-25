@@ -1,6 +1,7 @@
 package com.example.userinterface.GameManager.TowerDefense;
 
 import android.graphics.Canvas;
+import android.util.Log;
 
 public abstract class Enemy { //common interface for all Enemies
     int health;
@@ -11,7 +12,6 @@ public abstract class Enemy { //common interface for all Enemies
     int y;
     String appearence;
 
-    public abstract void move();
 
     public abstract void draw(Canvas canvas);
 
@@ -19,8 +19,11 @@ public abstract class Enemy { //common interface for all Enemies
         return health;
     }
 
-    abstract void hit(int num);
-
+    void hit(int num) {
+        health -= num;
+        Log.d(health + "", "this is the health" + health);
+    }
+    abstract  void move();
     public int getY() {
         return y;
     }
