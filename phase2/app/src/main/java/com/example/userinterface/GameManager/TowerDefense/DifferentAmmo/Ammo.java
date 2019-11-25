@@ -5,11 +5,15 @@ import android.graphics.Canvas;
 import com.example.userinterface.GameManager.TowerDefense.Enemy;
 
 public interface Ammo {
-    void update(Enemy enemy);
+    void update();
 
-    boolean ifHit(int x);
+    boolean ifHit();
 
     void setLocation(int x, int y);
 
     void draw(Canvas canvas);
+
+    int getDamage();
+
+    void setTarget(Enemy enemy);
 }

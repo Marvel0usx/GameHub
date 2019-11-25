@@ -4,8 +4,6 @@ import android.graphics.Canvas;
 
 import com.example.userinterface.GameManager.ScoreSystem;
 import com.example.userinterface.GameManager.TowerDefense.DifferentAmmo.Ammo;
-import com.example.userinterface.GameManager.TowerDefense.Towers.GunTower;
-import com.example.userinterface.GameManager.TowerDefense.Towers.TowerFactory;
 import com.example.userinterface.GameManager.TowerDefense.Towers.Towers;
 import com.example.userinterface.GameManager.VariableChangeListener;
 
@@ -25,12 +23,14 @@ public class TowerDefense implements ScoreSystem {
     private int clicker = 0;
     private ArrayList<Ammo> ammo;
     private Towers[] towers = new Towers[10];
+    private int cash;
 
 
     public TowerDefense(int screenWidth, int screenHeight) {
         mapHeight = screenHeight;
         mapWidth = screenWidth;
         ammo = new ArrayList<>();
+        cash = 100;
     }
 
     void update() {
@@ -38,11 +38,15 @@ public class TowerDefense implements ScoreSystem {
         updateBullet();
     }
 
-    void updateBullet(){
+    private void updateBullet(){
         for (Towers towers: towers) {
             if (towers != null) {
-                Ammo shoot = towers.generateBullet();
+                Enemy temp = getFirstEnemyInRange(
+                        towers.getY() - towers.getRange(),
+                        towers.getY() + towers.getRange());
+                Ammo shoot = towers.generateBullet(temp);
                 if (shoot != null) {
+                    shoot.setTarget(temp);
                     ammo.add(shoot);
                     shoot.setLocation(towers.getX(), towers.getY());
                 }
@@ -50,18 +54,18 @@ public class TowerDefense implements ScoreSystem {
         }
         ArrayList<Ammo> temp = new ArrayList<>();
         for (Ammo ammo: ammo){
-            ammo.update(getFirstEnemy());
-            if (ammo.ifHit(getFirstEnemy().getX())){
-                getFirstEnemy().health = 0;
+            ammo.update();
+            if (ammo.ifHit()){
+                getFirstEnemy().health-=ammo.getDamage();
                 temp.add(ammo);
-            }
+            }ammo.setTarget(getFirstEnemy());
         }
         for (Ammo ammo: temp){
             this.ammo.remove(ammo);
         }
     }
 
-    void updateEnemy(){
+    private void updateEnemy(){
         Enemy enemy = getFirstEnemy(); //hit the enemy that is at the frontmost
         if (enemy != null) {
             enemy.hit(clicker);
@@ -83,6 +87,7 @@ public class TowerDefense implements ScoreSystem {
         for (Enemy e : wave1) {
             if (e.getHealth() <= 0) {  //if enemy health is 0 remove it
                 temp.add(e);
+                cash += 20;
                 currentScore += e.getScore();
             }
             if (e.getY() >= mapHeight) { //if enemy is out of map remove it
@@ -109,6 +114,20 @@ public class TowerDefense implements ScoreSystem {
 
     }
 
+    private Enemy getFirstEnemyInRange(int lowerbound, int upperbound){
+        int temp = lowerbound;
+        Enemy first = null;
+        for (Enemy item: wave1){
+            if (item.getY()>lowerbound && item.getY() < upperbound){
+                if (item.getY() > temp) {
+                    first = item;
+                    temp = item.getY();
+                }
+            }
+        }
+        return first;
+    }
+
     void addEnemy() {
         addMinion();
     }
@@ -122,7 +141,6 @@ public class TowerDefense implements ScoreSystem {
             wave1.add(minion);
         }
     }
-
 
     public void draw(Canvas canvas) {
         for (Enemy item : wave1) {
@@ -156,4 +174,13 @@ public class TowerDefense implements ScoreSystem {
             currentScore += lives * 100; //each life left adds another 100 pts.
         return currentScore;
     }
+
+    public int getCash() {
+        return cash;
+    }
+
+    public void costMoney(int cost){
+        cash -= cost;
+    }
+
 }

@@ -2,23 +2,30 @@ package com.example.userinterface.GameManager.TowerDefense.Towers;
 
 import com.example.userinterface.GameManager.TowerDefense.DifferentAmmo.Ammo;
 import com.example.userinterface.GameManager.TowerDefense.DifferentAmmo.AmmoFactory;
+import com.example.userinterface.GameManager.TowerDefense.Enemy;
 
-public class MainTower implements Towers{
+public class MainTower implements Towers {
     public int waitTime, time;
     String type;
 
     String side;
     int x;
-
     int y;
 
-    public Ammo generateBullet() {
+    int range;
+
+    public Ammo generateBullet(Enemy enemy) {
         AmmoFactory ammoFactory = new AmmoFactory();
-        if (time <= 0){
-            time = waitTime;
-            return ammoFactory.buildAmmunition(type,side);
+        if (enemy.getY() > y-range && enemy.getY()< y+range){
+            if (time <= 0){
+                time = waitTime;
+                return ammoFactory.buildAmmunition(type,side);
+            }else{
+                time --;
+                return null;
+            }
         }else{
-            time --;
+            time = 0;
             return null;
         }
     }
@@ -37,5 +44,9 @@ public class MainTower implements Towers{
     @Override
     public int getY() {
         return y;
+    }
+
+    public int getRange() {
+        return range;
     }
 }

@@ -7,6 +7,7 @@ public class Bullet extends Ammunition implements Ammo {
         appearence = "🌕";
         speed = 7;
         this.direction = direction;
+        textSize = 20;
     }
 
 }
