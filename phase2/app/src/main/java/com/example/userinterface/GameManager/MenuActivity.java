@@ -69,7 +69,7 @@ public class MenuActivity extends GameActivity {
      * Go to the stats board
      * @param view
      */
-    public void Stats(View view) {
+    public void goToStatsheet(View view) {
         Intent intent = new Intent(MenuActivity.this, Stats.class);
         startActivity(intent);
     }
