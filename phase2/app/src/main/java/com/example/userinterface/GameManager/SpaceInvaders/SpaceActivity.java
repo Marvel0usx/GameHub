@@ -14,7 +14,8 @@ public class SpaceActivity extends GameActivity implements VariableChangeListene
 
     SpaceInvaders Space;
     SpaceView spaceView;
-    Button btnLeft, btnRight;
+    View leftSide;
+    View rightSide;
     private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
     private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
     boolean practiceMode;
@@ -36,16 +37,18 @@ public class SpaceActivity extends GameActivity implements VariableChangeListene
             spaceView.setSpace(Space);
         }
 
-        btnLeft = findViewById(R.id.Left);
-        btnRight = findViewById(R.id.Right);
+        leftSide = findViewById(R.id.Leftside);
+        rightSide = findViewById(R.id.Rightside);
     }
     public void onClick(View v){
         switch (v.getId()){
-            case R.id.Left:
+            case R.id.Leftside:
                 spaceView.Space.goLeft();
+                System.out.println("getleft hit ");
                 break;
-            case R.id.Right:
+            case R.id.Rightside:
                 spaceView.Space.goRight();
+                System.out.println("getright hit ");
                 break;
             default:
                 break;
@@ -71,7 +74,6 @@ public class SpaceActivity extends GameActivity implements VariableChangeListene
                 getUser().getStatTracker().addToCurrScore(Space.getScore());
         }
         goToIntermediate(Space.isWin(), practiceMode);
-        System.out.println("good");
 
     }
 

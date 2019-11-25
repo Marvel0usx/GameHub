@@ -7,37 +7,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/Left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+
+    <View
+        android:id="@+id/Leftside"
+        android:layout_width="205dp"
+        android:layout_height="match_parent"
+        android:layout_alignStart="@id/spaceView"
+        android:layout_alignLeft="@id/spaceView"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginEnd="115dp"
-        android:layout_marginRight="115dp"
-        android:layout_marginBottom="60dp"
-        android:layout_toStartOf="@+id/Right"
-        android:layout_toLeftOf="@+id/Right"
-        android:background="@android:color/background_light"
-        android:onClick="onClick"
-        android:text="@string/left" />
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:onClick="onClick" />
 
-    <Button
-        android:id="@+id/Right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="60dp"
-        android:layout_marginRight="60dp"
-        android:layout_marginBottom="60dp"
-        android:background="@android:color/background_light"
-        android:onClick="onClick"
-        android:text="@string/right" />
+    <View
+        android:id="@+id/Rightside"
+        android:layout_width="205dp"
+        android:layout_height="match_parent"
+        android:layout_alignEnd="@+id/spaceView"
+        android:layout_alignRight="@+id/spaceView"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="-2dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="0dp"
+        android:layout_toEndOf="@+id/Leftside"
+        android:layout_toRightOf="@+id/Leftside"
+        android:onClick="onClick" />
 
 </RelativeLayout>
 
