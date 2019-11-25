@@ -132,17 +132,27 @@ public class TowerDefense implements ScoreSystem {
         return first;
     }
 
-    void addEnemy() {
+    void addEnemy() { // GENERICS OR SOME KIND OF PATTERN??
         addMinion();
+        addOrc();
     }
 
     private void addMinion() {
-        for (int i = 0; i < 5; i++) { //add ten minions
+        for (int i = 0; i < 5; i++) {
             Minion minion = new Minion();
             int x = (int) (Math.random() *  (mapWidth/3)) + (mapWidth/3);
             int y = -(int) (Math.random() * mapHeight / 2) - 100; // a period of time for enemies to walk
             minion.setLocation(x, y);
             wave1.add(minion);
+        }
+    }
+    private void addOrc() {
+        for (int i = 0; i < 3; i++) {
+            Orc orc  = new Orc();
+            int x = (int) (Math.random() *  (mapWidth/3)) + (mapWidth/3);
+            int y = -(int) (Math.random() * mapHeight / 2) - 100; // a period of time for enemies to walk
+            orc.setLocation(x, y);
+            wave1.add(orc);
         }
     }
 

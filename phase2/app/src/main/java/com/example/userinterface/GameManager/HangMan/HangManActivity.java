@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -16,6 +17,7 @@ public class HangManActivity extends Activity{
 
     GameState gameState;
     Difficulty diff;
+    boolean practiceMode;
 
 
     @Override
@@ -26,7 +28,13 @@ public class HangManActivity extends Activity{
 
         // the play button that controls if the game will start
 
-        Intent intent = getIntent();
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            practiceMode = bundle.getBoolean("practice");
+            Log.d("message", "0 " + practiceMode);
+        }
+        else
+            practiceMode = false;
 
         setEasyBtn();
         setModerateBtn();
@@ -38,6 +46,7 @@ public class HangManActivity extends Activity{
             this.diff = new EasyDifficulty();
             Intent intent = new Intent(HangManActivity.this, HangManGameActivity.class);
             intent.putExtra("difficulty", diff);
+            intent.putExtra("practice", practiceMode);
             startActivity(intent);
         });
     }
@@ -47,6 +56,7 @@ public class HangManActivity extends Activity{
             this.diff = new ModerateDifficulty();
             Intent intent = new Intent(HangManActivity.this, HangManGameActivity.class);
             intent.putExtra("difficulty", diff);
+            intent.putExtra("practice", practiceMode);
             startActivity(intent);
         });
     }
@@ -56,6 +66,7 @@ public class HangManActivity extends Activity{
             this.diff = new HardDifficulty();
             Intent intent = new Intent(HangManActivity.this, HangManGameActivity.class);
             intent.putExtra("difficulty", diff);
+            intent.putExtra("practice", practiceMode);
             startActivity(intent);
         });
     }

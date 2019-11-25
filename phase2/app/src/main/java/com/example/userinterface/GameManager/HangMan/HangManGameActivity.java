@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ public class HangManGameActivity extends GameActivity {
     ImageView[] balloons;
     Difficulty difficulty;
     User user;
+    boolean practiceMode;
 
 
     @Override
@@ -93,15 +95,27 @@ public class HangManGameActivity extends GameActivity {
      * currentScore is updated. This game is finished.
      */
     public void endGame() {
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            practiceMode = bundle.getBoolean("practice");
+            Log.d("message", "0 " + practiceMode);
+        }
+        else
+            practiceMode = false;
+        Log.d("message","1 "+practiceMode);
+
         if (gameState.numCorr == gameState.keywordLen) {
             // if all letters have been guessed, wins the game
             this.currentScore += 100;
-            user.getStatTracker().addToCurrScore(currentScore);
-            goToIntermediate(true);
+            if (!practiceMode)
+                user.getStatTracker().addToCurrScore(currentScore);
+            goToIntermediate(true, practiceMode);
+            Log.d("message","2 "+practiceMode);
             HangManGameActivity.this.finish();
         } else if (gameState.remainingBalloons == 0) {
             // loses the game if all lives are used up/balloons have disappeared.
-            goToIntermediate(false);
+            goToIntermediate(false, practiceMode);
+            Log.d("message","3 "+practiceMode);
             HangManGameActivity.this.finish();
         }
     }

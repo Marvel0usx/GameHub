@@ -3,6 +3,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.Window;
@@ -31,6 +32,7 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
     GameView gameView;
     TowerPositions towerPositions;
     Button [] buttonTowers;
+    boolean practiceMode;
     TextView money;
 
 
@@ -42,6 +44,14 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.tower_defense);
         context = this;
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            practiceMode = bundle.getBoolean("practice");
+        }
+        else{
+            practiceMode = false;
+        }
+
         DisplayMetrics metrics = new DisplayMetrics(); // find size of the screen
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         Display display = getWindowManager().getDefaultDisplay();
@@ -172,13 +182,11 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
     }
 
     public void onClick(View v) {
-        System.out.println("hahahahaha");
         switch (v.getId()) {
             case R.id.start: //hit button and towers become visible after pressing startbutton
                 btnHit.setVisibility(View.VISIBLE);
                 btnStart.setVisibility(View.GONE);
                 towerDefense.addEnemy();
-                System.out.println("fsdadfsa");
                 btnTower1.setVisibility(View.VISIBLE);
                 btnTower2.setVisibility(View.VISIBLE);
                 btnTower3.setVisibility(View.VISIBLE);
@@ -198,8 +206,11 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
     public void onVariableChange(boolean gameOver) {
         gameView.setGameOver(true);
         gameView.getThread().setRunning(false);
-        getUser().getStatTracker().addToCurrScore(towerDefense.getGameScore());
-        goToIntermediate(gameOver);
+        if (!practiceMode)
+            if (towerDefense.getWin())
+                getUser().getStatTracker().addToCurrScore(towerDefense.getGameScore());
+        Log.d("message","this is the boolean at to game in td act "+practiceMode);
+        goToIntermediate(towerDefense.getWin(), practiceMode);
         // record score of the level Intermediate page between games
     }
 }

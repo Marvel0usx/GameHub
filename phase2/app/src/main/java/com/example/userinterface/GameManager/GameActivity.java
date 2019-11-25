@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 
 import com.example.userinterface.GameManager.HangMan.HangManActivity;
@@ -25,28 +26,40 @@ public abstract class GameActivity extends AppCompatActivity{
 
     public void toGame(int saved, boolean practiceMode){
         ifLost = false;
-        GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(context);
-        gameBackgroundActivity.execute("quit", user.get());
-        Intent intent = new Intent(context, CLASSES[saved]);
-        intent.putExtra("practice", true);
-        user.get().getStatTracker().setLevel(saved);
-        startActivity(intent);
-    }
+        if (!practiceMode) {
 
-    public void goToIntermediate(boolean won){
-        GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(context);
-
-        if (won){
-            int num = user.get().getStatTracker().getLevel()+1;
-            user.get().getStatTracker().setLevel(num);
-        }else {
-            user.get().getStatTracker().setLevel(0);
-            ifLost = true;
+            GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(context);
+            user.get().getStatTracker().setLevel(saved);
+            gameBackgroundActivity.execute("quit", user.get());
         }
-        gameBackgroundActivity.execute("quit", user.get());
-        Intent intent = new Intent(context, NextGame.class);
+
+        Intent intent = new Intent(context, CLASSES[saved]);
+        Log.d("message","this is the boolean in to game "+practiceMode);
+        intent.putExtra("practice", practiceMode);
         startActivity(intent);
     }
+
+    public void goToIntermediate(boolean won, boolean practiceMode) {
+
+        if (!practiceMode) {
+            GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(context);
+            if (won) {
+                int num = user.get().getStatTracker().getLevel() + 1;
+                user.get().getStatTracker().setLevel(num);
+            } else {
+                user.get().getStatTracker().setLevel(0);
+                ifLost = true;
+            }
+            gameBackgroundActivity.execute("quit", user.get());
+        }
+
+        Intent intent = new Intent(context, NextGame.class);
+        intent.putExtra("practice", practiceMode);
+        Log.d("message","this is the boolean at to game in go to inter "+practiceMode);
+        startActivity(intent);
+
+    }
+
 
     public User getUser(){
         return user.get();

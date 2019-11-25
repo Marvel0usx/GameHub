@@ -17,6 +17,7 @@ public class SpaceActivity extends GameActivity implements VariableChangeListene
     Button btnLeft, btnRight;
     private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
     private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
+    boolean practiceMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +59,18 @@ public class SpaceActivity extends GameActivity implements VariableChangeListene
 
     @Override
     public void onVariableChange(boolean spaceGame){
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null)
+            practiceMode = bundle.getBoolean("practice");
+        else
+            practiceMode = false;
+
         spaceView.getThread().setRunning(false);
-        getUser().getStatTracker().addToCurrScore(Space.getScore());
-        goToIntermediate(spaceGame);
+        if (!practiceMode){
+            if (Space.isWin())
+                getUser().getStatTracker().addToCurrScore(Space.getScore());
+        }
+        goToIntermediate(Space.isWin(), practiceMode);
         System.out.println("good");
 
     }
