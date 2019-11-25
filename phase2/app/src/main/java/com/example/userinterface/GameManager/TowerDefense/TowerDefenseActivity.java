@@ -1,4 +1,5 @@
 package com.example.userinterface.GameManager.TowerDefense;
+import android.annotation.SuppressLint;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -7,13 +8,21 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.userinterface.GameManager.*;
+import com.example.userinterface.GameManager.TowerDefense.DifferentAmmo.Rocket;
+import com.example.userinterface.GameManager.TowerDefense.Towers.BombTower;
+import com.example.userinterface.GameManager.TowerDefense.Towers.GunTower;
+import com.example.userinterface.GameManager.TowerDefense.Towers.RocketTower;
 import com.example.userinterface.GameManager.TowerDefense.Towers.TowerFactory;
 import com.example.userinterface.GameManager.TowerDefense.Towers.Towers;
 import com.example.userinterface.R;
 
-public class TowerDefenseActivity extends GameActivity implements VariableChangeListener {
+import java.util.Observable;
+import java.util.Observer;
+
+public class TowerDefenseActivity extends GameActivity implements VariableChangeListener{
 
     Button btnStart, btnHit, btnTower1, btnTower2, btnTower3;
     TowerDefense towerDefense;
@@ -22,6 +31,7 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
     GameView gameView;
     TowerPositions towerPositions;
     Button [] buttonTowers;
+    TextView money;
 
 
     @Override
@@ -45,6 +55,7 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
         TowerPositions.width = width;
         towerDefense = new TowerDefense(width, height);
         towerDefense.setVariableChangeListener(this); //Activity listens to TowerDefense's variable change
+        money = findViewById(R.id.money);
 
         Button button = findViewById(R.id.button);
         Button button1 = findViewById(R.id.button2);
@@ -70,12 +81,36 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
     }
 
     public void towerClick(View view){
-        for (Button button: buttonTowers){
-            if (button !=  view){
-                button.setEnabled(false);
+        if (enoughMoney(view)){
+            for (Button button: buttonTowers){
+                if (button !=  view){
+                    button.setEnabled(false);
+                }
+            }
+            towerPositions.showAvailable(true);
+        }
+
+    }
+
+    public boolean enoughMoney(View v){
+        int money = towerDefense.getCash();
+        if (v == btnTower1){
+            if (money >= GunTower.COST){
+                towerDefense.costMoney(GunTower.COST);
+                return true;
+            }
+        } else if (v == btnTower2){
+            if (money >= RocketTower.COST){
+                towerDefense.costMoney(RocketTower.COST);
+                return true;
+            }
+        }else{
+            if (money >= BombTower.COST){
+                towerDefense.costMoney(BombTower.COST);
+                return true;
             }
         }
-        towerPositions.showAvailable(true);
+        return false;
     }
 
     public void setTower(View view){
@@ -113,14 +148,12 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
                     towerDefense.addTower(index, temp);
                 }
             }
-
             for (Button button : buttonTowers) {
                 if (button != tower) {
                     button.setEnabled(true);
                 }
             }
             towerPositions.showAvailable(false);
-
         }
     }
 

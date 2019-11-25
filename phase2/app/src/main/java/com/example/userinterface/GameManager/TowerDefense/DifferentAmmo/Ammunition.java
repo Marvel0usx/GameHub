@@ -1,9 +1,7 @@
 package com.example.userinterface.GameManager.TowerDefense.DifferentAmmo;
 
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Typeface;
 
 import com.example.userinterface.GameManager.TowerDefense.Enemy;
 
@@ -14,36 +12,42 @@ public class Ammunition implements Ammo {
     String appearence;
     int speed;
     String direction;
+    int textSize = 50;
+    Enemy target;
 
     @Override
-    public void update(Enemy enemy) {
-        int enemyXPosition = enemy.getX();
-        int enemyYPosition = enemy.getY();
+    public void update() {
+        int enemyXPosition = target.getX();
+        int enemyYPosition = target.getY();
         float slope = (enemyYPosition-y)/(enemyXPosition-x);
         float constant = y-slope*x;
         if (direction.equals("right")){
-            y = Math.round((slope*(x-=2)+constant));
+            y = Math.round((slope*(x-=speed)+constant));
         }else{
-            y = Math.round((slope*(x+=2)+constant));
+            y = Math.round((slope*(x+=speed)+constant));
         }
     }
 
     @Override
-    public boolean ifHit(int x) {
+    public boolean ifHit() {
         if (direction.equals("right")){
-            if (this.x <= x){
+            if (this.x <= target.getX()){
                 return true;
             }else{
                 return false;
             }
         }else{
-            if (this.x >= x){
+            if (this.x >= target.getX()){
                 return true;
             }else{
                 return false;
             }
         }
 
+    }
+
+    public void setTarget(Enemy enemy){
+        this.target = enemy;
     }
 
     @Override
@@ -52,9 +56,14 @@ public class Ammunition implements Ammo {
         this.y = y;
     }
 
+    @Override
+    public int getDamage(){
+        return damage;
+    }
+
     public void draw(Canvas canvas) {
         Paint paint = new Paint();
-        paint.setTextSize(50);
+        paint.setTextSize(textSize);
         canvas.drawText(appearence, x, y, paint);
         // decide each body parts' coordinates
 
