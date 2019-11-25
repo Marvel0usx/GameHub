@@ -70,7 +70,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.02"
-
         android:src="@drawable/ballon2" />
 
     <ImageView
@@ -83,21 +82,80 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.02"
-
         android:src="@drawable/ballon1" />
 
+
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/char1"
         android:layout_width="207dp"
         android:layout_height="165dp"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.379"
-        android:src="@drawable/blackman" />
+        android:src="@drawable/char1" />
+
+    <ImageView
+        android:id="@+id/char2"
+        android:layout_width="207dp"
+        android:layout_height="165dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.379"
+        android:src="@drawable/char2" />
+
+    <ImageView
+        android:id="@+id/char3"
+        android:layout_width="207dp"
+        android:layout_height="165dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.379"
+        android:src="@drawable/char3" />
+
+    <ImageView
+        android:id="@+id/char4"
+        android:layout_width="207dp"
+        android:layout_height="165dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.379"
+        android:src="@drawable/char4" />
+
+    <ImageView
+        android:id="@+id/char5"
+        android:layout_width="207dp"
+        android:layout_height="165dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.379"
+        android:src="@drawable/char5" />
+
+    <ImageView
+        android:id="@+id/char6"
+        android:layout_width="207dp"
+        android:layout_height="165dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.379"
+        android:src="@drawable/char6" />
 
     <Button
         android:id="@+id/buttonA"
@@ -105,7 +163,6 @@
         android:layout_height="48dp"
         android:text="@string/A"
         android:onClick="makeGuess"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.101"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -119,7 +176,6 @@
         android:layout_height="48dp"
         android:text="@string/B"
         android:onClick="makeGuess"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.234"
         app:layout_constraintLeft_toLeftOf="parent"
