@@ -14,30 +14,36 @@ public class Ammunition implements Ammo {
     String direction;
     int textSize = 50;
     Enemy target;
+    double predictX, predictY;
+
 
     @Override
     public void update() {
-        int enemyXPosition = target.getX();
-        int enemyYPosition = target.getY();
-        float slope = (enemyYPosition-y)/(enemyXPosition-x);
-        float constant = y-slope*x;
+        double slope = (predictY-y)/(predictX-x);
+        double constant = y-slope*x;
         if (direction.equals("right")){
-            y = Math.round((slope*(x-=speed)+constant));
+            y = (int)Math.round((slope*(x-=speed)+constant));
         }else{
-            y = Math.round((slope*(x+=speed)+constant));
+            y = (int)Math.round((slope*(x+=speed)+constant));
         }
+    }
+
+    public double getPrey(){
+        return predictY;
     }
 
     @Override
     public boolean ifHit() {
         if (direction.equals("right")){
-            if (this.x <= target.getX()){
+            if (this.x <= predictX){
+                target.decreaseHealth(damage);
                 return true;
             }else{
                 return false;
             }
         }else{
-            if (this.x >= target.getX()){
+            if (this.x >= predictX){
+                target.decreaseHealth(damage);
                 return true;
             }else{
                 return false;
@@ -67,5 +73,19 @@ public class Ammunition implements Ammo {
         canvas.drawText(appearence, x, y, paint);
         // decide each body parts' coordinates
 
+    }
+
+    public void predictYPosition(){
+        float A = (float) Math.sqrt(((y-target.getY())*((y-target.getY()))+((x-target.getX()))*(x-target.getX())));
+        float v1 = target.getSpeed();
+        System.out.println(A);
+        double alpha = Math.sin(Math.abs(x -target.getX())/A);
+        float v2 = speed;
+        System.out.println(Math.sin(alpha));
+        double time =  (A*(-v1*Math.cos(alpha)+Math.sqrt(Math.abs(v1*v1)*Math.abs(Math.sin(alpha)*Math.sin(alpha))+Math.abs(v2*v2))))/(Math.abs(v2*v2)-Math.abs(v1*v1));
+        System.out.println(time);
+        System.out.println(alpha);
+        predictY = time*target.getSpeed()+target.getY();
+        predictX = target.getX();
     }
 }

@@ -4,12 +4,13 @@ import android.app.Activity;
 import android.os.Bundle;
 
 
-import com.example.userinterface.R;
 
 import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+
+import com.example.userinterface.R;
 
 public class HangManActivity extends Activity{
 

@@ -16,4 +16,8 @@ public interface Ammo {
     int getDamage();
 
     void setTarget(Enemy enemy);
+
+    void predictYPosition();
+
+    double getPrey();
 }

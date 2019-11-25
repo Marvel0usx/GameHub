@@ -19,6 +19,10 @@ public abstract class Enemy { //common interface for all Enemies
         return health;
     }
 
+    public void decreaseHealth(int damage){
+        health -= damage;
+    }
+
     abstract void hit(int num);
 
     public int getY() {
@@ -31,6 +35,10 @@ public abstract class Enemy { //common interface for all Enemies
 
     int getScore() {
         return score;
+    }
+
+    public int getSpeed(){
+        return speed;
     }
 
     void setLocation(int x, int y) {

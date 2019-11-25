@@ -41,27 +41,31 @@ public class TowerDefense implements ScoreSystem {
     private void updateBullet(){
         for (Towers towers: towers) {
             if (towers != null) {
-                Enemy temp = getFirstEnemyInRange(
-                        towers.getY() - towers.getRange(),
-                        towers.getY() + towers.getRange());
-                Ammo shoot = towers.generateBullet(temp);
-                if (shoot != null) {
-                    shoot.setTarget(temp);
-                    ammo.add(shoot);
-                    shoot.setLocation(towers.getX(), towers.getY());
+                Enemy temp =getFirstEnemyInRange(
+                        towers.getY()-towers.getRange(),
+                        towers.getY()+towers.getRange());
+                if (temp!=null) {
+                    Ammo shoot = towers.generateBullet(temp);
+                    if (shoot != null) {
+                        ammo.add(shoot);
+                        System.out.println("hella");
+                        shoot.setTarget(temp);
+                        shoot.setLocation(towers.getX(), towers.getY());
+                        shoot.predictYPosition();
+                        System.out.println(shoot.getPrey()+"hello");
+                    }
                 }
             }
         }
         ArrayList<Ammo> temp = new ArrayList<>();
-        for (Ammo ammo: ammo){
+        for (Ammo ammo: ammo) {
             ammo.update();
             if (ammo.ifHit()){
-                getFirstEnemy().health-=ammo.getDamage();
                 temp.add(ammo);
-            }ammo.setTarget(getFirstEnemy());
+            }
         }
-        for (Ammo ammo: temp){
-            this.ammo.remove(ammo);
+        for (Ammo item: temp){
+            ammo.remove(item);
         }
     }
 
