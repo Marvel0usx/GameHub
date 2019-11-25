@@ -1,10 +1,5 @@
 package com.example.userinterface.GameManager.TowerDefense;
-
-import android.annotation.SuppressLint;
-import android.graphics.Bitmap;
 import android.graphics.Point;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.RotateDrawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
@@ -13,9 +8,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import com.example.userinterface.GameManager.*;
+import com.example.userinterface.GameManager.TowerDefense.Towers.TowerFactory;
+import com.example.userinterface.GameManager.TowerDefense.Towers.Towers;
 import com.example.userinterface.R;
 
 public class TowerDefenseActivity extends GameActivity implements VariableChangeListener {
@@ -26,7 +21,7 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
     int height;
     GameView gameView;
     TowerPositions towerPositions;
-    Button [] towers;
+    Button [] buttonTowers;
 
 
     @Override
@@ -75,7 +70,7 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
     }
 
     public void towerClick(View view){
-        for (Button button: towers){
+        for (Button button: buttonTowers){
             if (button !=  view){
                 button.setEnabled(false);
             }
@@ -84,31 +79,48 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
     }
 
     public void setTower(View view){
+        TowerFactory towerFactory = new TowerFactory();
         if (towerPositions.isTowerClicked()) {
             Button tower = null;
-            for (Button button : towers) {
+            for (Button button : buttonTowers) {
                 if (button.isEnabled()) {
                     tower = button;
                 }
             }
             if (tower != null) {
                 view.setEnabled(false);
-
+                int index = towerPositions.getTowerNumber((Button) view);
+                String side;
+                if (index%2==0){
+                    side = "left";
+                }else{
+                    side = "right";
+                }
                 if (tower == btnTower1) {
                     view.setBackgroundResource(R.drawable.towercopy);
+                    Towers temp = towerFactory.buildTower("guntower", side);
+                    temp.setLocation((int)view.getX(), (int)view.getY());
+                    towerDefense.addTower(index, temp);
                 } else if (tower == btnTower2) {
                     view.setBackgroundResource(R.drawable.tower2copy);
+                    Towers temp = towerFactory.buildTower("rockettower", side);
+                    temp.setLocation((int)view.getX(), (int)view.getY());
+                    towerDefense.addTower(index, temp);
                 } else if (tower == btnTower3) {
                     view.setBackgroundResource(R.drawable.tower3copy);
+                    Towers temp = towerFactory.buildTower("bombtower", side);
+                    temp.setLocation((int)view.getX(), (int)view.getY());
+                    towerDefense.addTower(index, temp);
                 }
             }
 
-            for (Button button : towers) {
+            for (Button button : buttonTowers) {
                 if (button != tower) {
                     button.setEnabled(true);
                 }
             }
             towerPositions.showAvailable(false);
+
         }
     }
 
@@ -120,7 +132,7 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
         btnTower1 = findViewById(R.id.tower1);
         btnTower2 = findViewById(R.id.tower2);
         btnTower3 = findViewById(R.id.tower3);
-        towers = new Button[]{btnTower1,btnTower2,btnTower3};
+        buttonTowers = new Button[]{btnTower1,btnTower2,btnTower3};
         if (gameView!=null){
             gameView.setTowerDefense(towerDefense);
         }

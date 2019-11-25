@@ -1,7 +1,15 @@
 package com.example.userinterface.GameManager.TowerDefense.DifferentAmmo;
 
-public interface Ammo {
-    void update(int x, int y);
+import android.graphics.Canvas;
 
-    boolean ifHit(int x, int y);
+import com.example.userinterface.GameManager.TowerDefense.Enemy;
+
+public interface Ammo {
+    void update(Enemy enemy);
+
+    boolean ifHit(int x);
+
+    void setLocation(int x, int y);
+
+    void draw(Canvas canvas);
 }

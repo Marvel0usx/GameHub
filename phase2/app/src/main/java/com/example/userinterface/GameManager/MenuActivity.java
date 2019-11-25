@@ -39,7 +39,7 @@ public class MenuActivity extends GameActivity {
             @Override
             public void onClick(View v) {
                 getUser().getStatTracker().setCurrScore(0);
-                toGame(1);
+                toGame(1, false);
             }
         });
         /**
@@ -48,15 +48,15 @@ public class MenuActivity extends GameActivity {
         btnResume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (getUser().getStatTracker().getLevel()){
+                switch (getUser().getStatTracker().getLevel()) {
                     case 1:
-                        toGame(1);
+                        toGame(1, false);
                         break;
                     case 2:
-                        toGame(2);
+                        toGame(2, false);
                         break;
                     case 3:
-                        toGame(3);
+                        toGame(3, false);
                         break;
                     default:
                         break;
@@ -73,4 +73,9 @@ public class MenuActivity extends GameActivity {
         Intent intent = new Intent(MenuActivity.this, Stats.class);
         startActivity(intent);
     }
+    public void practiceMode(View v) {
+        Intent intent = new Intent(MenuActivity.this, PracticeMode.class);
+        startActivity(intent);
+    }
+
 }

@@ -35,6 +35,7 @@ public class StatTracker implements Serializable {
     public void setHighScoreToCurrent() {
         this.highScore = this.currScore;
     }
+
     public void setHighScore(int highScore) {
         this.highScore = highScore;
     }
