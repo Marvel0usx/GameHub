@@ -26,7 +26,7 @@ public class Enemy extends Ship {
         //fires bullet objects that deductLife player
         // generate new bullet object and add this object's observer
         // to the bullet object's observer. Return the bullet object.
-        this.bullet = new EnemyBullet(getX() + 35, getY(), 100, 4);
+        this.bullet = new EnemyBullet(getX() + 35, getY(), 50, 4);
         for (Observer obs : getObservers())
             this.bullet.registerObserver(obs);
         this.bullet.setUpdated(true);

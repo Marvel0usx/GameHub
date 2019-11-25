@@ -161,7 +161,7 @@ public class SpaceInvaders implements Observer {
         player = new Player((this.width >> 1), 1300, 0, 500);
         player.registerObserver(this);
         subjects.add(player);
-        scoreboard = new Scoreboard();
+        scoreboard = new Scoreboard(this.height, this.width);
 
         for (int x = 50; x < 500; x += 200)
             subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 200));

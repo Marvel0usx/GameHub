@@ -3,23 +3,33 @@ package com.example.userinterface.GameManager.SpaceInvaders;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 
 public class Scoreboard {
     private String appearance;
     private Paint paintText = new Paint();
+    float height, width;
+    int lives = 0;
 
-    Scoreboard() {
+    Scoreboard(float height, float width) {
         this.appearance = "";
-        this.paintText.setColor(Color.CYAN);
-        this.paintText.setTextSize(80);
+        this.paintText.setColor(Color.RED);
+        this.paintText.setTextSize(40);
+        this.paintText.setFakeBoldText(true);
+        this.paintText.setTypeface(Typeface.MONOSPACE);
+        this.height = height;
+        this.width = width;
     }
 
     void setAppearance(int lives, int score) {
-        this.appearance = "Lives: " + lives + " " + "Score: " + score;
+        this.appearance = "Score: " + score + "";
+        this.lives = lives;
     }
 
     public void draw(Canvas canvas) {
-        canvas.drawText(this.appearance, 200, 200, paintText);
+        canvas.drawText(this.appearance, 250, this.height-250, paintText);
+        canvas.drawText("HP", 250, this.height-200,paintText);
+        canvas.drawRect(300,this.height-220, this.lives + 300, this.height-200, paintText);
     }
 
 }
