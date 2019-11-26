@@ -19,7 +19,7 @@ public abstract class Difficulty implements Serializable {
     private Balloon[] balloons; // an array of Balloon objects
     int numLives;
 
-    abstract void setWord();
+    abstract void setWord(); //set the keywordsss
 
     abstract void setNumLives();
 
