@@ -17,12 +17,14 @@ import com.example.userinterface.R;
 
 
 public class HangManGameActivity extends GameActivity {
+    private GameState gameState;
+    private Character character;
+    private int currentScore;
     ImageView[] balloons;
     Difficulty difficulty;
     User user;
     boolean practiceMode;
-    private GameState gameState;
-    private int currentScore;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class HangManGameActivity extends GameActivity {
         user = getUser();
 
         difficulty = (Difficulty) intent.getSerializableExtra("difficulty");
+        character = (Character) intent.getSerializableExtra("character");
         difficulty.setWord();
         difficulty.setNumLives();
 

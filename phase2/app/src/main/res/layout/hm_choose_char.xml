@@ -6,19 +6,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageButton
+    <ImageView
         android:id="@+id/charButton1"
-        android:layout_width="100dp"
-        android:layout_height="250dp"
+        android:layout_width="96dp"
+        android:layout_height="197dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="120dp"
         android:background="#9EE3E8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/char1" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/charButton2"
         android:layout_width="100dp"
         android:layout_height="250dp"
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/char2" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/charButton3"
         android:layout_width="100dp"
         android:layout_height="250dp"
@@ -44,7 +44,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/char3" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/charButton4"
         android:layout_width="100dp"
         android:layout_height="250dp"
@@ -56,7 +56,7 @@
         app:layout_constraintTop_toTopOf="@+id/charButton1"
         app:srcCompat="@drawable/char4" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/charButton5"
         android:layout_width="100dp"
         android:layout_height="250dp"
@@ -68,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/charButton2"
         app:srcCompat="@drawable/char5" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/charButton6"
         android:layout_width="100dp"
         android:layout_height="250dp"
