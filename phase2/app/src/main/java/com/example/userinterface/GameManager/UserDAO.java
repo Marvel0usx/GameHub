@@ -4,7 +4,7 @@ public class UserDAO implements DAO<User> {
 
     User user;
 
-    public UserDAO(User user){
+    public UserDAO(User user) {
         this.user = user;
     }
 

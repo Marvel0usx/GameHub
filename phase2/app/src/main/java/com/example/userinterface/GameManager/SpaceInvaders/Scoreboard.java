@@ -6,10 +6,10 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 
 public class Scoreboard {
-    private String appearance;
-    private Paint paintText = new Paint();
     float height, width;
     int lives = 0;
+    private String appearance;
+    private Paint paintText = new Paint();
 
     Scoreboard(float height, float width) {
         this.appearance = "";
@@ -27,9 +27,9 @@ public class Scoreboard {
     }
 
     public void draw(Canvas canvas) {
-        canvas.drawText(this.appearance, 250, this.height-250, paintText);
-        canvas.drawText("HP", 250, this.height-200,paintText);
-        canvas.drawRect(300,this.height-220, this.lives + 300, this.height-200, paintText);
+        canvas.drawText(this.appearance, 250, this.height - 250, paintText);
+        canvas.drawText("HP", 250, this.height - 200, paintText);
+        canvas.drawRect(300, this.height - 220, this.lives + 300, this.height - 200, paintText);
     }
 
 }

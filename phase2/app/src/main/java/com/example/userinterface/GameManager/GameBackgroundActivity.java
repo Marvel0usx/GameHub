@@ -87,10 +87,9 @@ public class GameBackgroundActivity extends AsyncTask<Object, Void, String> {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-        else if(task.equals("stats")){
+        } else if (task.equals("stats")) {
             URL url = null;
-            User user = (User)objects[1];
+            User user = (User) objects[1];
             try {
                 /**
                  * This is the case where the user finishes a game and we update all the information
@@ -107,11 +106,11 @@ public class GameBackgroundActivity extends AsyncTask<Object, Void, String> {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-                String myData = URLEncoder.encode("email", "UTF-8")+"="+URLEncoder.encode(user.getEmail())+"&"+
-                        URLEncoder.encode("highscore", "UTF-8")+"="+URLEncoder.encode(high+"","UTF-8")+"&"+
-                        URLEncoder.encode("games", "UTF-8")+"="+URLEncoder.encode(gamesplayed+"","UTF-8")+"&"+
-                        URLEncoder.encode("level", "UTF-8")+"="+URLEncoder.encode(level+"","UTF-8")+"&"+
-                        URLEncoder.encode("current", "UTF-8")+"="+URLEncoder.encode(current+"","UTF-8");
+                String myData = URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(user.getEmail()) + "&" +
+                        URLEncoder.encode("highscore", "UTF-8") + "=" + URLEncoder.encode(high + "", "UTF-8") + "&" +
+                        URLEncoder.encode("games", "UTF-8") + "=" + URLEncoder.encode(gamesplayed + "", "UTF-8") + "&" +
+                        URLEncoder.encode("level", "UTF-8") + "=" + URLEncoder.encode(level + "", "UTF-8") + "&" +
+                        URLEncoder.encode("current", "UTF-8") + "=" + URLEncoder.encode(current + "", "UTF-8");
                 bufferedWriter.write(myData);
                 bufferedWriter.flush();
                 bufferedWriter.close();
@@ -121,7 +120,7 @@ public class GameBackgroundActivity extends AsyncTask<Object, Void, String> {
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 String dataResponse = "";
                 String inputLine = "";
-                while((inputLine = bufferedReader.readLine()) != null){
+                while ((inputLine = bufferedReader.readLine()) != null) {
                     dataResponse += inputLine;
                 }
                 bufferedReader.close();

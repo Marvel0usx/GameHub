@@ -1,7 +1,6 @@
 package com.example.userinterface.GameManager.SpaceInvaders;
 
 import android.graphics.Canvas;
-//import android.graphics.SumPathEffect;
 
 import com.example.userinterface.GameManager.VariableChangeListener;
 
@@ -9,6 +8,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+//import android.graphics.SumPathEffect;
 
 public class SpaceInvaders implements Observer {
     // Private attributes

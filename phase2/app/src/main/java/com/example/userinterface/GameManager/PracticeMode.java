@@ -9,7 +9,7 @@ import com.example.userinterface.R;
 public class PracticeMode extends GameActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         context = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.practice_mode);

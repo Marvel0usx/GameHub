@@ -9,7 +9,9 @@ import java.util.List;
 abstract class SpaceObject implements Subject {
     static int WIDTH = 40;
     static int HEIGHT = 40;
-
+    // Public attributes
+    String appearance;
+    Paint paintText = new Paint();
     // Private attributes
     private int x;
     private int y;
@@ -20,10 +22,6 @@ abstract class SpaceObject implements Subject {
     private boolean destroyed;
     private boolean updated = false;
     private List<Observer> observers;
-
-    // Public attributes
-    String appearance;
-    Paint paintText = new Paint();
 
     // Initializer
     SpaceObject(int x, int y, int damage, int ySpeed) {
@@ -44,21 +42,21 @@ abstract class SpaceObject implements Subject {
         observers = new ArrayList<>();
     }
 
+    public int getX() {
+        return x;
+    }
+
     // Setters and getters
     public void setX(int x) {
         this.x = x;
     }
 
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getX() {
-        return x;
-    }
-
     public int getY() {
         return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
     int getDamage() {

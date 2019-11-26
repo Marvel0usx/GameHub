@@ -8,7 +8,7 @@ import com.example.userinterface.GameManager.TowerDefense.Enemy;
 public class Ammunition implements Ammo {
 
     int damage;
-    int x,y;
+    int x, y;
     String appearence;
     int speed;
     String direction;
@@ -19,55 +19,55 @@ public class Ammunition implements Ammo {
 
     @Override
     public void update() {
-        double slope = (predictY-y)/(predictX-x);
-        double constant = y-slope*x;
-        if (direction.equals("right")){
-            y = (int)Math.round((slope*(x-=speed)+constant));
-        }else{
-            y = (int)Math.round((slope*(x+=speed)+constant));
+        double slope = (predictY - y) / (predictX - x);
+        double constant = y - slope * x;
+        if (direction.equals("right")) {
+            y = (int) Math.round((slope * (x -= speed) + constant));
+        } else {
+            y = (int) Math.round((slope * (x += speed) + constant));
         }
     }
 
-    public double getPrey(){
+    public double getPrey() {
         return predictY;
     }
 
     @Override
     public boolean ifHit() {
-        if (direction.equals("right")){
-            if (this.x <= predictX){
-                if (target!=null){
+        if (direction.equals("right")) {
+            if (this.x <= predictX) {
+                if (target != null) {
                     target.decreaseHealth(damage);
                 }
                 return true;
-            }else{
+            } else {
                 return false;
             }
-        }else{
-            if (this.x >= predictX){
-                if (target!=null){
+        } else {
+            if (this.x >= predictX) {
+                if (target != null) {
                     target.decreaseHealth(damage);
                 }
                 return true;
-            }else{
+            } else {
                 return false;
             }
         }
 
     }
 
-    public void setTarget(Enemy enemy){
+    public void setTarget(Enemy enemy) {
         this.target = enemy;
     }
 
     @Override
-    public void setLocation(int x, int y){
+    public void setLocation(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
     @Override
-    public int getDamage(){
+    public int getDamage() {
         return damage;
     }
 
@@ -79,16 +79,16 @@ public class Ammunition implements Ammo {
 
     }
 
-    public void predictYPosition(){
-        float A = (float) Math.sqrt(((y-target.getY())*((y-target.getY()))+((x-target.getX()))*(x-target.getX())));
+    public void predictYPosition() {
+        float A = (float) Math.sqrt(((y - target.getY()) * ((y - target.getY())) + ((x - target.getX())) * (x - target.getX())));
         float v1 = target.getSpeed();
         System.out.println(A);
-        double alpha = Math.sin(Math.abs(x -target.getX())/A);
+        double alpha = Math.sin(Math.abs(x - target.getX()) / A);
         float v2 = speed;
         System.out.println(Math.sin(alpha));
-        double time = (Math.sqrt((A*A)*(v1*v1*Math.cos(alpha)*Math.cos(alpha)+v2*v2-v1*v1))-A*v1*Math.cos(alpha))/(v2*v2-v1*v1);
+        double time = (Math.sqrt((A * A) * (v1 * v1 * Math.cos(alpha) * Math.cos(alpha) + v2 * v2 - v1 * v1)) - A * v1 * Math.cos(alpha)) / (v2 * v2 - v1 * v1);
         System.out.println(alpha);
-        predictY = time*target.getSpeed()+target.getY();
+        predictY = time * target.getSpeed() + target.getY();
         predictX = target.getX();
     }
 }

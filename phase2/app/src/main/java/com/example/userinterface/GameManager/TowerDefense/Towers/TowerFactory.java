@@ -3,9 +3,9 @@ package com.example.userinterface.GameManager.TowerDefense.Towers;
 
 public class TowerFactory {
 
-    public Towers buildTower(String tower, String side){
+    public Towers buildTower(String tower, String side) {
         Towers newTower;
-        switch (tower){
+        switch (tower) {
             case "guntower":
                 newTower = new GunTower(side);
                 break;
@@ -15,9 +15,9 @@ public class TowerFactory {
             case "bombtower":
                 newTower = new BombTower(side);
                 break;
-             default:
-                 newTower = null;
-                 break;
+            default:
+                newTower = null;
+                break;
         }
         return newTower;
     }

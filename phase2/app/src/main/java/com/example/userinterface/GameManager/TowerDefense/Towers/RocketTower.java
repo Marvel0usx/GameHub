@@ -4,7 +4,7 @@ public class RocketTower extends MainTower implements Towers {
     private final int WAITTIME = 100;
     public static final int COST = 50;
 
-    public RocketTower(String side){
+    public RocketTower(String side) {
         type = "rocket";
         waitTime = WAITTIME;
         time = WAITTIME;

@@ -5,9 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 
-import com.example.userinterface.GameManager.*;
+import com.example.userinterface.GameManager.GameActivity;
+import com.example.userinterface.GameManager.VariableChangeListener;
 import com.example.userinterface.R;
 
 public class SpaceActivity extends GameActivity implements VariableChangeListener {
@@ -16,9 +16,9 @@ public class SpaceActivity extends GameActivity implements VariableChangeListene
     SpaceView spaceView;
     View leftSide;
     View rightSide;
+    boolean practiceMode;
     private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
     private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
-    boolean practiceMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +40,9 @@ public class SpaceActivity extends GameActivity implements VariableChangeListene
         leftSide = findViewById(R.id.Leftside);
         rightSide = findViewById(R.id.Rightside);
     }
-    public void onClick(View v){
-        switch (v.getId()){
+
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.Leftside:
                 spaceView.Space.goLeft();
                 System.out.println("getleft hit ");
@@ -55,13 +56,13 @@ public class SpaceActivity extends GameActivity implements VariableChangeListene
         }
     }
 
-    public void onBackPressed(){
+    public void onBackPressed() {
         spaceView.getThread().setRunning(false);
         toMenu();
     }
 
     @Override
-    public void onVariableChange(boolean spaceGame){
+    public void onVariableChange(boolean spaceGame) {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null)
             practiceMode = bundle.getBoolean("practice");
@@ -69,7 +70,7 @@ public class SpaceActivity extends GameActivity implements VariableChangeListene
             practiceMode = false;
 
         spaceView.getThread().setRunning(false);
-        if (!practiceMode){
+        if (!practiceMode) {
             if (Space.isWin())
                 getUser().getStatTracker().addToCurrScore(Space.getScore());
         }

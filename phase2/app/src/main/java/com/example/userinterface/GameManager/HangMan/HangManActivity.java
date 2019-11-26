@@ -1,19 +1,13 @@
 package com.example.userinterface.GameManager.HangMan;
 
 import android.app.Activity;
-import android.os.Bundle;
-
-
-
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
 
 import com.example.userinterface.R;
 
-public class HangManActivity extends Activity{
+public class HangManActivity extends Activity {
 
     GameState gameState;
     Difficulty diff;
@@ -32,8 +26,7 @@ public class HangManActivity extends Activity{
         if (bundle != null) {
             practiceMode = bundle.getBoolean("practice");
             Log.d("message", "0 " + practiceMode);
-        }
-        else
+        } else
             practiceMode = false;
 
         setEasyBtn();
@@ -41,7 +34,7 @@ public class HangManActivity extends Activity{
         setHardBtn();
     }
 
-    private void setEasyBtn(){
+    private void setEasyBtn() {
         findViewById(R.id.easyButton).setOnClickListener(v -> {
             this.diff = new EasyDifficulty();
             Intent intent = new Intent(HangManActivity.this, HangManGameActivity.class);
@@ -51,7 +44,7 @@ public class HangManActivity extends Activity{
         });
     }
 
-    private void setModerateBtn(){
+    private void setModerateBtn() {
         findViewById(R.id.moderateButton).setOnClickListener(v -> {
             this.diff = new ModerateDifficulty();
             Intent intent = new Intent(HangManActivity.this, HangManGameActivity.class);
@@ -61,7 +54,7 @@ public class HangManActivity extends Activity{
         });
     }
 
-    private void setHardBtn(){
+    private void setHardBtn() {
         findViewById(R.id.hardButton).setOnClickListener(v -> {
             this.diff = new HardDifficulty();
             Intent intent = new Intent(HangManActivity.this, HangManGameActivity.class);
@@ -70,9 +63,6 @@ public class HangManActivity extends Activity{
             startActivity(intent);
         });
     }
-
-
-
 
 
 }

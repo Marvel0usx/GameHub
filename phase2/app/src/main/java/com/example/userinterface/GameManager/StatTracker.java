@@ -1,6 +1,7 @@
 package com.example.userinterface.GameManager;
 
 import java.io.Serializable;
+
 /**
  * A tracker of all the game information.
  */
@@ -12,7 +13,7 @@ public class StatTracker implements Serializable {
     private int numOfGames;
     private int level;
 
-    public StatTracker(int level){
+    public StatTracker(int level) {
         this.level = level;
     }
 
@@ -49,7 +50,7 @@ public class StatTracker implements Serializable {
     }
 
     public void addNumOfGames() {
-        this.numOfGames ++;
+        this.numOfGames++;
     }
 
     public int getLevel() {

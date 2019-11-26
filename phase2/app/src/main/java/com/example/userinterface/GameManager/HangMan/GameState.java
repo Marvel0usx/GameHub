@@ -5,11 +5,11 @@ public class GameState {
     int keywordLen; // number of characters in current word
     int remainingBalloons; // number of balloons left, decreases each time a wrong letter is guessed
     int numCorr; // number of letters correctly guessed
+    Difficulty difficulty;
     private String keyword;
     private Balloon[] balloons; // an array of Balloon objects
     private AnswerKeyLetter[] answerKeyLetters; // all of the correct letters in correct order
     private int currentScore;
-    Difficulty difficulty;
 
     /**
      * Constructs a new GameState object
@@ -18,18 +18,19 @@ public class GameState {
         this.difficulty = diffi;
     }
 
-    void setBalloons(Balloon[] balloons){
+    void setBalloons(Balloon[] balloons) {
         this.balloons = balloons;
     }
 
-    void setKeyword(String keyword){
+    void setKeyword(String keyword) {
         this.keyword = keyword;
         this.keywordLen = keyword.length();
     }
 
-    void setRemainingBalloons(int numLives){
+    void setRemainingBalloons(int numLives) {
         this.remainingBalloons = numLives;
     }
+
     /**
      * A setter for the correct letters of the correct word to be guessed
      *

@@ -21,12 +21,12 @@ public class InfromationBoard {
         this.width = width;
     }
 
-    void setAppearance( int money) {
+    void setAppearance(int money) {
         this.money = "Money: " + money + "";
     }
 
     public void draw(Canvas canvas) {
-        canvas.drawText(this.money, width/8, height*12/16, paintText);
+        canvas.drawText(this.money, width / 8, height * 12 / 16, paintText);
     }
 
 }

@@ -43,17 +43,17 @@ public class TowerDefense implements ScoreSystem {
         }
     }
 
-    private void updateInformationBoard(){
+    private void updateInformationBoard() {
         infromationBoard.setAppearance(cash);
     }
 
-    private void updateBullet(){
-        for (Towers towers: towers) {
+    private void updateBullet() {
+        for (Towers towers : towers) {
             if (towers != null) {
-                Enemy temp =getFirstEnemyInRange(
-                        towers.getY()-towers.getRange(),
-                        towers.getY()+towers.getRange());
-                if (temp!=null) {
+                Enemy temp = getFirstEnemyInRange(
+                        towers.getY() - towers.getRange(),
+                        towers.getY() + towers.getRange());
+                if (temp != null) {
                     Ammo shoot = towers.generateBullet(temp);
                     if (shoot != null) {
                         ammo.add(shoot);
@@ -61,25 +61,25 @@ public class TowerDefense implements ScoreSystem {
                         shoot.setTarget(temp);
                         shoot.setLocation(towers.getX(), towers.getY());
                         shoot.predictYPosition();
-                        System.out.println(shoot.getPrey()+"hello");
+                        System.out.println(shoot.getPrey() + "hello");
                     }
                 }
             }
         }
         ArrayList<Ammo> temp = new ArrayList<>();
-        for (Ammo ammo: ammo) {
+        for (Ammo ammo : ammo) {
             ammo.update();
-            if (ammo.ifHit()){
+            if (ammo.ifHit()) {
                 temp.add(ammo);
             }
         }
-        for (Ammo item: temp){
+        for (Ammo item : temp) {
             ammo.remove(item);
         }
     }
 
-    private void updateEnemy(){
-        for (Enemy enemy: wave1){
+    private void updateEnemy() {
+        for (Enemy enemy : wave1) {
             enemy.move();
         }
         removeEnemy();
@@ -112,11 +112,11 @@ public class TowerDefense implements ScoreSystem {
         }
     }
 
-    private Enemy getFirstEnemyInRange(int lowerbound, int upperbound){
+    private Enemy getFirstEnemyInRange(int lowerbound, int upperbound) {
         int temp = lowerbound;
         Enemy first = null;
-        for (Enemy item: wave1){
-            if (item.getY()>lowerbound && item.getY() < upperbound){
+        for (Enemy item : wave1) {
+            if (item.getY() > lowerbound && item.getY() < upperbound) {
                 if (item.getY() > temp) {
                     first = item;
                     temp = item.getY();
@@ -134,16 +134,17 @@ public class TowerDefense implements ScoreSystem {
     private void addMinion() {
         for (int i = 0; i < 5; i++) {
             Minion minion = new Minion();
-            int x = (int) (Math.random() *  (mapWidth/3)) + (mapWidth/3);
+            int x = (int) (Math.random() * (mapWidth / 3)) + (mapWidth / 3);
             int y = -(int) (Math.random() * mapHeight / 2) - 100; // a period of time for enemies to walk
             minion.setLocation(x, y);
             wave1.add(minion);
         }
     }
+
     private void addOrc() {
         for (int i = 0; i < 3; i++) {
-            Orc orc  = new Orc();
-            int x = (int) (Math.random() *  (mapWidth/3)) + (mapWidth/3);
+            Orc orc = new Orc();
+            int x = (int) (Math.random() * (mapWidth / 3)) + (mapWidth / 3);
             int y = -(int) (Math.random() * mapHeight / 2) - 100; // a period of time for enemies to walk
             orc.setLocation(x, y);
             wave1.add(orc);
@@ -154,7 +155,7 @@ public class TowerDefense implements ScoreSystem {
         for (Enemy item : wave1) {
             item.draw(canvas);
         }
-        for (Ammo ammo: ammo){
+        for (Ammo ammo : ammo) {
             ammo.draw(canvas);
         }
         infromationBoard.draw(canvas);
@@ -164,7 +165,7 @@ public class TowerDefense implements ScoreSystem {
         this.listener = variableChangeListener;
     }
 
-    void addTower(int index, Towers tower){
+    void addTower(int index, Towers tower) {
         towers[index] = tower;
     }
 
@@ -183,7 +184,7 @@ public class TowerDefense implements ScoreSystem {
         return cash;
     }
 
-    public void costMoney(int cost){
+    public void costMoney(int cost) {
         cash -= cost;
     }
 

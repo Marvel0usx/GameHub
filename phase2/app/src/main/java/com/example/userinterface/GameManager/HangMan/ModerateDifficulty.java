@@ -3,11 +3,12 @@ package com.example.userinterface.GameManager.HangMan;
 public class ModerateDifficulty extends Difficulty {
 
 
-    void setWord(){
+    void setWord() {
         this.keyword = "ANDROID";
 
     }
-    void setNumLives(){
+
+    void setNumLives() {
         this.numLives = 5;
     }
 

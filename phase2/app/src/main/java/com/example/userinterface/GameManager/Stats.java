@@ -9,6 +9,7 @@ import com.example.userinterface.R;
 public class Stats extends GameActivity {
     TextView userLevel, highScore, gamesPlayed, currentScore;
     User user;
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,14 +17,14 @@ public class Stats extends GameActivity {
         super.onCreate(savedInstanceState);
         user = getUser();
         setContentView(R.layout.activity_stats);
-        userLevel= findViewById(R.id.userlevel);
+        userLevel = findViewById(R.id.userlevel);
         highScore = findViewById(R.id.highscore);
         currentScore = findViewById(R.id.currentScore);
         gamesPlayed = findViewById(R.id.gamesplayed);
-        userLevel.setText(user.getStatTracker().getLevel()+"");
-        highScore.setText(user.getStatTracker().getHighScore()+"");
-        gamesPlayed.setText(user.getStatTracker().getNumOfGames()+"");
-        currentScore.setText(user.getStatTracker().getCurrScore()+"");
+        userLevel.setText(user.getStatTracker().getLevel() + "");
+        highScore.setText(user.getStatTracker().getHighScore() + "");
+        gamesPlayed.setText(user.getStatTracker().getNumOfGames() + "");
+        currentScore.setText(user.getStatTracker().getCurrScore() + "");
     }
 
 }

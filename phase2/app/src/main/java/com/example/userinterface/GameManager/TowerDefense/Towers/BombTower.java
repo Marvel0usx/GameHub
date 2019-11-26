@@ -4,7 +4,7 @@ public class BombTower extends MainTower implements Towers {
     private final int WAITTIME = 100;
     public static final int COST = 60;
 
-    public BombTower(String side){
+    public BombTower(String side) {
         type = "bomb";
         waitTime = WAITTIME;
         time = WAITTIME;

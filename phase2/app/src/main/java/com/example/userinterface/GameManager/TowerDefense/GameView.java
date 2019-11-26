@@ -82,7 +82,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         thread.setRunning(true);
         thread.start();
-        background = new Background(Bitmap.createBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.map)),getWidth(),getHeight()-getHeight()/10);
+        background = new Background(Bitmap.createBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.map)), getWidth(), getHeight() - getHeight() / 10);
 
     }
 

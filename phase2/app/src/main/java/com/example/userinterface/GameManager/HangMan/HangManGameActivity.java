@@ -1,6 +1,5 @@
 package com.example.userinterface.GameManager.HangMan;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,15 +16,13 @@ import com.example.userinterface.GameManager.User;
 import com.example.userinterface.R;
 
 
-
 public class HangManGameActivity extends GameActivity {
-    private GameState gameState;
-    private int currentScore;
     ImageView[] balloons;
     Difficulty difficulty;
     User user;
     boolean practiceMode;
-
+    private GameState gameState;
+    private int currentScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,10 +96,9 @@ public class HangManGameActivity extends GameActivity {
         if (bundle != null) {
             practiceMode = bundle.getBoolean("practice");
             Log.d("message", "0 " + practiceMode);
-        }
-        else
+        } else
             practiceMode = false;
-        Log.d("message","1 "+practiceMode);
+        Log.d("message", "1 " + practiceMode);
 
         if (gameState.numCorr == gameState.keywordLen) {
             // if all letters have been guessed, wins the game
@@ -110,24 +106,24 @@ public class HangManGameActivity extends GameActivity {
             if (!practiceMode)
                 user.getStatTracker().addToCurrScore(currentScore);
             goToIntermediate(true, practiceMode);
-            Log.d("message","2 "+practiceMode);
+            Log.d("message", "2 " + practiceMode);
             HangManGameActivity.this.finish();
         } else if (gameState.remainingBalloons == 0) {
             // loses the game if all lives are used up/balloons have disappeared.
             goToIntermediate(false, practiceMode);
-            Log.d("message","3 "+practiceMode);
+            Log.d("message", "3 " + practiceMode);
             HangManGameActivity.this.finish();
         }
     }
 
-    public Balloon[] loadBalloons(){
+    public Balloon[] loadBalloons() {
         int numLives = difficulty.getNumLives();
         balloons = new ImageView[numLives];
         Balloon[] temp = new Balloon[numLives];
         for (int i = 0; i < numLives; i++) {
             String balloonId = "ballon" + (i + 1);
             int resID = getResources().getIdentifier(balloonId, "id", getPackageName());
-            balloons[i] = ((ImageView) findViewById(resID));
+            balloons[i] = findViewById(resID);
             temp[i] = new Balloon(balloons[i]);
         }
         return temp;
