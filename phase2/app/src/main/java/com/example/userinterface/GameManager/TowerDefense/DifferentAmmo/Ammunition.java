@@ -36,14 +36,18 @@ public class Ammunition implements Ammo {
     public boolean ifHit() {
         if (direction.equals("right")){
             if (this.x <= predictX){
-                target.decreaseHealth(damage);
+                if (target!=null){
+                    target.decreaseHealth(damage);
+                }
                 return true;
             }else{
                 return false;
             }
         }else{
             if (this.x >= predictX){
-                target.decreaseHealth(damage);
+                if (target!=null){
+                    target.decreaseHealth(damage);
+                }
                 return true;
             }else{
                 return false;

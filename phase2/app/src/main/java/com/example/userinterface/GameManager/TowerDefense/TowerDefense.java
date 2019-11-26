@@ -107,6 +107,8 @@ public class TowerDefense implements ScoreSystem {
         }
         for (Enemy item : temp) {
             wave1.remove(item);
+            item = null;
+            System.out.println(item);
         }
     }
 
