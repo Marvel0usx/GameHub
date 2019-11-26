@@ -44,7 +44,7 @@ public class HangManActivity extends Activity{
     private void setEasyBtn(){
         findViewById(R.id.easyButton).setOnClickListener(v -> {
             this.diff = new EasyDifficulty();
-            Intent intent = new Intent(HangManActivity.this, HangManGameActivity.class);
+            Intent intent = new Intent(HangManActivity.this, ChooseCharacterActivity.class);
             intent.putExtra("difficulty", diff);
             intent.putExtra("practice", practiceMode);
             startActivity(intent);
@@ -54,7 +54,7 @@ public class HangManActivity extends Activity{
     private void setModerateBtn(){
         findViewById(R.id.moderateButton).setOnClickListener(v -> {
             this.diff = new ModerateDifficulty();
-            Intent intent = new Intent(HangManActivity.this, HangManGameActivity.class);
+            Intent intent = new Intent(HangManActivity.this, ChooseCharacterActivity.class);
             intent.putExtra("difficulty", diff);
             intent.putExtra("practice", practiceMode);
             startActivity(intent);
@@ -64,7 +64,7 @@ public class HangManActivity extends Activity{
     private void setHardBtn(){
         findViewById(R.id.hardButton).setOnClickListener(v -> {
             this.diff = new HardDifficulty();
-            Intent intent = new Intent(HangManActivity.this, HangManGameActivity.class);
+            Intent intent = new Intent(HangManActivity.this, ChooseCharacterActivity.class);
             intent.putExtra("difficulty", diff);
             intent.putExtra("practice", practiceMode);
             startActivity(intent);

@@ -20,6 +20,7 @@ import com.example.userinterface.R;
 
 public class HangManGameActivity extends GameActivity {
     private GameState gameState;
+    private Character character;
     private int currentScore;
     ImageView[] balloons;
     Difficulty difficulty;
@@ -37,6 +38,7 @@ public class HangManGameActivity extends GameActivity {
         user = getUser();
 
         difficulty = (Difficulty) intent.getSerializableExtra("difficulty");
+        character = (Character) intent.getSerializableExtra("character");
         difficulty.setWord();
         difficulty.setNumLives();
 
