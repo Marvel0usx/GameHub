@@ -36,14 +36,18 @@ public class Ammunition implements Ammo {
     public boolean ifHit() {
         if (direction.equals("right")){
             if (this.x <= predictX){
-                target.decreaseHealth(damage);
+                if (target!=null){
+                    target.decreaseHealth(damage);
+                }
                 return true;
             }else{
                 return false;
             }
         }else{
             if (this.x >= predictX){
-                target.decreaseHealth(damage);
+                if (target!=null){
+                    target.decreaseHealth(damage);
+                }
                 return true;
             }else{
                 return false;
@@ -82,8 +86,7 @@ public class Ammunition implements Ammo {
         double alpha = Math.sin(Math.abs(x -target.getX())/A);
         float v2 = speed;
         System.out.println(Math.sin(alpha));
-        double time =  (A*(-v1*Math.cos(alpha)+Math.sqrt(Math.abs(v1*v1)*Math.abs(Math.sin(alpha)*Math.sin(alpha))+Math.abs(v2*v2))))/(Math.abs(v2*v2)-Math.abs(v1*v1));
-        System.out.println(time);
+        double time = (Math.sqrt((A*A)*(v1*v1*Math.cos(alpha)*Math.cos(alpha)+v2*v2-v1*v1))-A*v1*Math.cos(alpha))/(v2*v2-v1*v1);
         System.out.println(alpha);
         predictY = time*target.getSpeed()+target.getY();
         predictX = target.getX();

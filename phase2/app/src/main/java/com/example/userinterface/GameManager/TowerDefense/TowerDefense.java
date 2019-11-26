@@ -15,15 +15,15 @@ public class TowerDefense implements ScoreSystem {
     private int lives = 5;
     private int mapHeight;
     private int mapWidth;
-    private boolean gameOver;
+    private boolean gameStart = false;
 
     private boolean win;
     private VariableChangeListener listener = null;
     private ArrayList<Enemy> wave1 = new ArrayList<>();
-    private int clicker = 0;
     private ArrayList<Ammo> ammo;
     private Towers[] towers = new Towers[10];
     private int cash;
+    private InfromationBoard infromationBoard;
 
 
     public TowerDefense(int screenWidth, int screenHeight) {
@@ -31,11 +31,20 @@ public class TowerDefense implements ScoreSystem {
         mapWidth = screenWidth;
         ammo = new ArrayList<>();
         cash = 100;
+        infromationBoard = new InfromationBoard(mapHeight, mapWidth);
+        infromationBoard.setAppearance(cash);
     }
 
     void update() {
-        updateEnemy();
-        updateBullet();
+        updateInformationBoard();
+        if (gameStart) {
+            updateEnemy();
+            updateBullet();
+        }
+    }
+
+    private void updateInformationBoard(){
+        infromationBoard.setAppearance(cash);
     }
 
     private void updateBullet(){
@@ -75,7 +84,6 @@ public class TowerDefense implements ScoreSystem {
         }
         removeEnemy();
         if (lives <= 0 || wave1.isEmpty()) { //decide if game is over or not
-            gameOver = true;
             if (lives > 0)
                 currentScore += lives * 100; //each life left adds another 100 pts.
             win = lives > 0;
@@ -89,7 +97,7 @@ public class TowerDefense implements ScoreSystem {
         for (Enemy e : wave1) {
             if (e.getHealth() <= 0) {  //if enemy health is 0 remove it
                 temp.add(e);
-                cash += 20;
+                cash += e.getMoneyGain();
                 currentScore += e.getScore();
             }
             if (e.getY() >= mapHeight) { //if enemy is out of map remove it
@@ -99,6 +107,8 @@ public class TowerDefense implements ScoreSystem {
         }
         for (Enemy item : temp) {
             wave1.remove(item);
+            item = null;
+            System.out.println(item);
         }
     }
 
@@ -147,7 +157,7 @@ public class TowerDefense implements ScoreSystem {
         for (Ammo ammo: ammo){
             ammo.draw(canvas);
         }
-
+        infromationBoard.draw(canvas);
     }
 
     void setVariableChangeListener(VariableChangeListener variableChangeListener) {
@@ -156,10 +166,6 @@ public class TowerDefense implements ScoreSystem {
 
     void addTower(int index, Towers tower){
         towers[index] = tower;
-    }
-
-    void clicked() {
-        clicker += 1;
     }
 
     boolean getWin() {
@@ -180,5 +186,11 @@ public class TowerDefense implements ScoreSystem {
     public void costMoney(int cost){
         cash -= cost;
     }
+
+
+    public void setGameStart(boolean gameStart) {
+        this.gameStart = gameStart;
+    }
+
 
 }
