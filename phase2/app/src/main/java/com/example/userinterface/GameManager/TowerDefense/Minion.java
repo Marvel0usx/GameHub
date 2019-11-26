@@ -13,7 +13,7 @@ public class Minion extends Enemy {
         speed = 4;
         score = 50;
         appearence = "👻";
-
+        moneyGain = 20;
     }
 
     public void move() {

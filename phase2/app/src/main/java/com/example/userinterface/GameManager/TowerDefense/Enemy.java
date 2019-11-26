@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 public abstract class Enemy { //common interface for all Enemies
     int health;
     int speed;
-
+    int moneyGain;
     int score;
     int x;
     int y;
@@ -30,6 +30,10 @@ public abstract class Enemy { //common interface for all Enemies
 
     public int getX() {
         return x;
+    }
+
+    public int getMoneyGain(){
+        return moneyGain;
     }
 
     int getScore() {

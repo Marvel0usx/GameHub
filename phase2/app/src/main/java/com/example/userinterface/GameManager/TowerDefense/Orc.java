@@ -12,7 +12,7 @@ public class Orc extends Enemy {
         speed = 1;
         score = 60;
         appearence = "👹";
-
+        moneyGain = 30;
     }
 
     public void move() {

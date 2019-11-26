@@ -1,5 +1,5 @@
 package com.example.userinterface.GameManager.TowerDefense;
-import android.annotation.SuppressLint;
+
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.userinterface.GameManager.*;
-import com.example.userinterface.GameManager.TowerDefense.DifferentAmmo.Rocket;
 import com.example.userinterface.GameManager.TowerDefense.Towers.BombTower;
 import com.example.userinterface.GameManager.TowerDefense.Towers.GunTower;
 import com.example.userinterface.GameManager.TowerDefense.Towers.RocketTower;
@@ -20,12 +19,9 @@ import com.example.userinterface.GameManager.TowerDefense.Towers.TowerFactory;
 import com.example.userinterface.GameManager.TowerDefense.Towers.Towers;
 import com.example.userinterface.R;
 
-import java.util.Observable;
-import java.util.Observer;
-
 public class TowerDefenseActivity extends GameActivity implements VariableChangeListener{
 
-    Button btnStart, btnHit, btnTower1, btnTower2, btnTower3;
+    Button btnStart, btnTower1, btnTower2, btnTower3;
     TowerDefense towerDefense;
     int width;
     int height;
@@ -171,35 +167,24 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         btnStart = findViewById(R.id.start);
-        btnHit = findViewById(R.id.hit);
         btnTower1 = findViewById(R.id.tower1);
         btnTower2 = findViewById(R.id.tower2);
         btnTower3 = findViewById(R.id.tower3);
         buttonTowers = new Button[]{btnTower1,btnTower2,btnTower3};
         if (gameView!=null){
             gameView.setTowerDefense(towerDefense);
+            gameView.setGameStart(true);
         }
     }
 
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.start: //hit button and towers become visible after pressing startbutton
-                btnHit.setVisibility(View.VISIBLE);
-                btnStart.setVisibility(View.GONE);
-                towerDefense.addEnemy();
-                btnTower1.setVisibility(View.VISIBLE);
-                btnTower2.setVisibility(View.VISIBLE);
-                btnTower3.setVisibility(View.VISIBLE);
-                gameView.setGameStart(true);
-                break;
+        btnStart.setVisibility(View.GONE);
+        towerDefense.addEnemy();
+        btnTower1.setVisibility(View.VISIBLE);
+        btnTower2.setVisibility(View.VISIBLE);
+        btnTower3.setVisibility(View.VISIBLE);
+        towerDefense.setGameStart(true);
 
-            case R.id.hit:
-                towerDefense.clicked(); //record one click to hit the enemy
-                break;
-
-            default:
-                break;
-        }
     }
 
     @Override
