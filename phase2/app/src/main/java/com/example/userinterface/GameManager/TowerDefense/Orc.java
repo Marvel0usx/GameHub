@@ -7,19 +7,27 @@ import android.graphics.Typeface;
 import android.util.Log;
 
 public class Orc extends Enemy {
+
+    private boolean ifSpeedUp = false;
     Orc() {
         health = 60;
         speed = 1;
         score = 60;
         appearence = "👹";
-
+        moneyGain = 30;
     }
 
     public void move() {
         if (health > 20)
             y += speed;
-        else
-            y += 3 * speed;
+        else {
+            if (!ifSpeedUp){
+                speed*=3;
+                ifSpeedUp = true;
+            }
+
+            y += speed;
+        }
 
     }
 
