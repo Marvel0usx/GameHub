@@ -1,6 +1,7 @@
 package com.example.userinterface.GameManager.TowerDefense;
 
 import android.graphics.Canvas;
+import android.util.SparseArray;
 
 import com.example.userinterface.GameManager.ScoreSystem;
 import com.example.userinterface.GameManager.TowerDefense.DifferentAmmo.Ammo;
@@ -19,11 +20,12 @@ public class TowerDefense implements ScoreSystem {
 
     private boolean win;
     private VariableChangeListener listener = null;
-    private ArrayList<Enemy> wave1 = new ArrayList<>();
     private ArrayList<Ammo> ammo;
     private Towers[] towers = new Towers[10];
     private int cash;
     private InfromationBoard infromationBoard;
+    private int currentWave = 0;
+    private SparseArray<ArrayList<Enemy>> waves = new SparseArray<>(3);
 
 
     public TowerDefense(int screenWidth, int screenHeight) {
@@ -33,20 +35,37 @@ public class TowerDefense implements ScoreSystem {
         cash = 100;
         infromationBoard = new InfromationBoard(mapHeight, mapWidth);
         infromationBoard.setAppearance(cash);
+        waves.append(0, new ArrayList<>());
+        waves.append(1, new ArrayList<>());
+        waves.append(2, new ArrayList<>());
+
     }
 
     void update() {
         updateInformationBoard();
         if (gameStart) {
+            checkIfOver();
             updateEnemy();
             updateBullet();
         }
     }
-
+    private void generateNewWave(){
+        if (waves.get(currentWave).isEmpty())
+            currentWave ++;
+    }
     private void updateInformationBoard() {
         infromationBoard.setAppearance(cash);
     }
-
+    private void checkIfOver(){
+        if (lives <= 0 || currentWave == 4) {
+            //decide if game is over or not
+            if (lives > 0)
+                currentScore += lives * 100; //each life left adds another 100 pts.
+            win = lives > 0;
+            if (listener != null)
+                listener.onVariableChange(true);
+        }
+    }
     private void updateBullet() {
         for (Towers towers : towers) {
             if (towers != null) {
@@ -79,22 +98,16 @@ public class TowerDefense implements ScoreSystem {
     }
 
     private void updateEnemy() {
-        for (Enemy enemy : wave1) {
+        for (Enemy enemy : waves.get(currentWave)) {
             enemy.move();
         }
         removeEnemy();
-        if (lives <= 0 || wave1.isEmpty()) { //decide if game is over or not
-            if (lives > 0)
-                currentScore += lives * 100; //each life left adds another 100 pts.
-            win = lives > 0;
-            if (listener != null)
-                listener.onVariableChange(true);
-        }
+
     }
 
     private void removeEnemy() {
         ArrayList<Enemy> temp = new ArrayList<>();
-        for (Enemy e : wave1) {
+        for (Enemy e : waves.get(currentWave)) {
             if (e.getHealth() <= 0) {  //if enemy health is 0 remove it
                 temp.add(e);
                 cash += e.getMoneyGain();
@@ -106,7 +119,7 @@ public class TowerDefense implements ScoreSystem {
             }
         }
         for (Enemy item : temp) {
-            wave1.remove(item);
+            waves.get(currentWave).remove(item);
             item = null;
             System.out.println(item);
         }
@@ -115,7 +128,7 @@ public class TowerDefense implements ScoreSystem {
     private Enemy getFirstEnemyInRange(int lowerbound, int upperbound) {
         int temp = lowerbound;
         Enemy first = null;
-        for (Enemy item : wave1) {
+        for (Enemy item : waves.get(currentWave)) {
             if (item.getY() > lowerbound && item.getY() < upperbound) {
                 if (item.getY() > temp) {
                     first = item;
@@ -127,32 +140,41 @@ public class TowerDefense implements ScoreSystem {
     }
 
     void addEnemy() { // GENERICS OR SOME KIND OF PATTERN??
-        addMinion();
-        addOrc();
+        addMinion(5,0);
+
+        for (int i = 0; i < 2; i++){
+            addMinion(2, 1);
+            addOrc(1, 1);
+        }
+        for (int i = 0; i < 3; i++){
+            addMinion(3, 2);
+            addOrc(2, 2);
+        }
     }
 
-    private void addMinion() {
-        for (int i = 0; i < 5; i++) {
+    private void addMinion(int number, int toBeAdded) {
+        for (int i = 0; i < number; i++) {
             Minion minion = new Minion();
             int x = (int) (Math.random() * (mapWidth / 3)) + (mapWidth / 3);
             int y = -(int) (Math.random() * mapHeight / 2) - 100; // a period of time for enemies to walk
             minion.setLocation(x, y);
-            wave1.add(minion);
+            waves.get(toBeAdded).add(minion);
         }
     }
 
-    private void addOrc() {
-        for (int i = 0; i < 3; i++) {
+    private void addOrc(int number, int toBeAdded) {
+        for (int i = 0; i < number; i++) {
             Orc orc = new Orc();
             int x = (int) (Math.random() * (mapWidth / 3)) + (mapWidth / 3);
             int y = -(int) (Math.random() * mapHeight / 2) - 100; // a period of time for enemies to walk
             orc.setLocation(x, y);
-            wave1.add(orc);
+            waves.get(toBeAdded).add(orc);
+
         }
     }
 
     public void draw(Canvas canvas) {
-        for (Enemy item : wave1) {
+        for (Enemy item : waves.get(currentWave)) {
             item.draw(canvas);
         }
         for (Ammo ammo : ammo) {
@@ -180,16 +202,16 @@ public class TowerDefense implements ScoreSystem {
         return currentScore;
     }
 
-    public int getCash() {
+    int getCash() {
         return cash;
     }
 
-    public void costMoney(int cost) {
+    void costMoney(int cost) {
         cash -= cost;
     }
 
 
-    public void setGameStart(boolean gameStart) {
+    void setGameStart(boolean gameStart) {
         this.gameStart = gameStart;
     }
 

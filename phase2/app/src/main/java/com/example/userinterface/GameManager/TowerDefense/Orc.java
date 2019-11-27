@@ -11,7 +11,7 @@ public class Orc extends Enemy {
     private boolean ifSpeedUp = false;
 
     Orc() {
-        health = 60;
+        health = 10;
         speed = 1;
         score = 60;
         appearence = "👹";
@@ -26,7 +26,6 @@ public class Orc extends Enemy {
                 speed *= 3;
                 ifSpeedUp = true;
             }
-
             y += speed;
         }
 

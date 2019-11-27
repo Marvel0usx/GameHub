@@ -40,7 +40,9 @@ public abstract class GameActivity extends AppCompatActivity {
     }
 
     public void goToIntermediate(boolean won, boolean practiceMode) {
-
+        if (!won){
+            ifLost = true;
+        }
         if (!practiceMode) {
             GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(context);
             if (won) {

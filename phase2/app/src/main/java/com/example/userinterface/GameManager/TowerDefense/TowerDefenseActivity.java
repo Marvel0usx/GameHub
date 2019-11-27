@@ -194,7 +194,9 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
             if (towerDefense.getWin())
                 getUser().getStatTracker().addToCurrScore(towerDefense.getGameScore());
         Log.d("message", "this is the boolean at to game in td act " + practiceMode);
-        goToIntermediate(towerDefense.getWin(), practiceMode);
+        boolean won = towerDefense.getWin();
+        towerDefense = null;
+        goToIntermediate(won, practiceMode);
         // record score of the level Intermediate page between games
     }
 }
