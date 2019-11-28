@@ -22,6 +22,7 @@ public class SpaceInvaders implements Observer {
     private VariableChangeListener var;
     private Scoreboard scoreboard;
     private int wave;
+    private int level;
 
     private boolean gameOver = false;
     private boolean isWin = false;
@@ -66,7 +67,7 @@ public class SpaceInvaders implements Observer {
         // player's shoot count and make it fire bullet
         // even if it's not moving
         this.player.move(0);
-        this.scoreboard.setAppearance(this.player.getLives(), this.score);
+        this.scoreboard.setAppearance(this.player.getLives(), this.score, this.level);
 
         for (SpaceObject obj : subjects) {
             if (obj.isUpdated())
@@ -114,6 +115,7 @@ public class SpaceInvaders implements Observer {
         }
         if (this.noEnemies(subjects)) {
             this.wave++;
+            this.level++;
             spawnWaves();
         }
         if (this.wave == 4) {
@@ -169,6 +171,7 @@ public class SpaceInvaders implements Observer {
         subjects.add(this.player);
         scoreboard = new Scoreboard(this.height, this.width);
         this.wave = this.wave + 1;
+        this.level = 1;
         spawnWaves();
 
         for (Subject sub : subjects)

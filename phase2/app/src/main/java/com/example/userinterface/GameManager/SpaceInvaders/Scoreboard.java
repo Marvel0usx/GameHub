@@ -10,6 +10,7 @@ public class Scoreboard {
     int lives = 0;
     private String appearance;
     private Paint paintText = new Paint();
+    private int level;
 
     Scoreboard(float height, float width) {
         this.appearance = "";
@@ -21,15 +22,17 @@ public class Scoreboard {
         this.width = width;
     }
 
-    void setAppearance(int lives, int score) {
+    void setAppearance(int lives, int score, int level) {
         this.appearance = "Score: " + score + "";
         this.lives = lives;
+        this.level = level;
     }
 
     public void draw(Canvas canvas) {
         canvas.drawText(this.appearance, 250, this.height - 250, paintText);
         canvas.drawText("HP", 250, this.height - 200, paintText);
         canvas.drawRect(300, this.height - 220, this.lives + 300, this.height - 200, paintText);
+        canvas.drawText("Stage: " + this.level, 40, 40, paintText);
     }
 
 }
