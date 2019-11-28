@@ -15,7 +15,7 @@ public class Player extends Ship {
         this.appearance = "🔺";
         this.paintText.setColor(Color.CYAN);
         this.paintText.setTextSize(80);
-        this.mode = 2;
+        this.mode = 1;
     }
 
     // Setter

@@ -22,6 +22,8 @@ public class BulletFactory {
                     System.out.println("this ran!");
                 }
                 if (mode == 2) {
+                    bulletList.add(new EnemyBullet(x + 50, y, 100, 4));
+                    bulletList.add(new EnemyBullet(x - 50, y, 100, 4));
                     bulletList.add(new EnemyBullet(x, y, 100, 4));
                 }
                 break;

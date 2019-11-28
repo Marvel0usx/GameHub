@@ -164,9 +164,9 @@ public class SpaceInvaders implements Observer {
 
     // Utils
     public void layout() {
-        player = new Player((this.width >> 1), 1300, 0, 500);
-        player.registerObserver(this);
-        subjects.add(player);
+        this.player = new Player((this.width >> 1), 1300, 0, 500);
+        this.player.registerObserver(this);
+        subjects.add(this.player);
         scoreboard = new Scoreboard(this.height, this.width);
         this.wave = this.wave + 1;
         spawnWaves();
@@ -184,6 +184,7 @@ public class SpaceInvaders implements Observer {
                 subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 200));
         }
         if(this.wave == 2) {
+            this.player.setMode(2);
             for (int x = 50; x < 500; x += 200)
                 subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 200));
             for (int x = 700; x < 1000; x += 200)
