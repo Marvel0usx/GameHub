@@ -19,10 +19,10 @@ import com.example.userinterface.GameManager.TowerDefense.Towers.TowerFactory;
 import com.example.userinterface.GameManager.TowerDefense.Towers.Towers;
 import com.example.userinterface.R;
 
-public class TowerDefenseActivity extends GameActivity implements VariableChangeListener {
+public class TowerDefenseActivity extends GameActivity implements TowerDefenseView {
 
     Button btnStart, btnTower1, btnTower2, btnTower3;
-    TowerDefense towerDefense;
+    TowerDefensePresenter towerDefensePresenter;
     int width;
     int height;
     GameView gameView;
@@ -40,6 +40,7 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.tower_defense);
         context = this;
+
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             practiceMode = bundle.getBoolean("practice");
@@ -54,29 +55,14 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
         display.getSize(size);
 
         gameView = findViewById(R.id.myView);
+        money = findViewById(R.id.money);
+        TowerDefensePresenter towerDefensePresenter = new TowerDefensePresenter(this);
         width = size.x;
         height = size.y;
         TowerPositions.height = height;
         TowerPositions.width = width;
-        towerDefense = new TowerDefense(width, height);
-        towerDefense.setVariableChangeListener(this); //Activity listens to TowerDefense's variable change
-        money = findViewById(R.id.money);
-
-        Button button = findViewById(R.id.button);
-        Button button1 = findViewById(R.id.button2);
-        Button button2 = findViewById(R.id.button3);
-        Button button3 = findViewById(R.id.button4);
-        Button button4 = findViewById(R.id.button5);
-        Button button5 = findViewById(R.id.button6);
-        Button button6 = findViewById(R.id.button7);
-        Button button7 = findViewById(R.id.button8);
-        Button button8 = findViewById(R.id.button9);
-        Button button9 = findViewById(R.id.button10);
-        Button[] buttons = {button, button1, button2, button3, button4, button5, button6, button7, button8, button9};
-        towerPositions = new TowerPositions(buttons);
-        towerPositions.setXLocation();
-        towerPositions.setYLocation();
-
+        TowerDefense towerDefense = new TowerDefense(width, height, towerDefensePresenter);
+        towerDefensePresenter.setTowerDefense(towerDefense);
     }
 
     public void onBackPressed() {
@@ -170,35 +156,49 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
         btnTower2 = findViewById(R.id.tower2);
         btnTower3 = findViewById(R.id.tower3);
         buttonTowers = new Button[]{btnTower1, btnTower2, btnTower3};
+
+        Button button = findViewById(R.id.button);
+        Button button1 = findViewById(R.id.button2);
+        Button button2 = findViewById(R.id.button3);
+        Button button3 = findViewById(R.id.button4);
+        Button button4 = findViewById(R.id.button5);
+        Button button5 = findViewById(R.id.button6);
+        Button button6 = findViewById(R.id.button7);
+        Button button7 = findViewById(R.id.button8);
+        Button button8 = findViewById(R.id.button9);
+        Button button9 = findViewById(R.id.button10);
+        Button[] buttons = {button, button1, button2, button3, button4, button5, button6, button7, button8, button9};
+        towerPositions = new TowerPositions(buttons);
+        towerPositions.setXLocation();
+        towerPositions.setYLocation();
         if (gameView != null) {
-            gameView.setTowerDefense(towerDefense);
+            gameView.setTowerDefensePresenter(towerDefensePresenter);
             gameView.setGameStart(true);
         }
     }
 
-    public void onClick(View v) {
+    public void onStartClick(View v) {
+        towerDefensePresenter.onStartClicked();
+    }
+
+    public void setButtonVisible(){
         btnStart.setVisibility(View.GONE);
-        towerDefense.addEnemy();
         btnTower1.setVisibility(View.VISIBLE);
         btnTower2.setVisibility(View.VISIBLE);
         btnTower3.setVisibility(View.VISIBLE);
-        towerDefense.setGameStart(true);
-
     }
 
     @Override
-    public void onVariableChange(boolean gameOver) {
+    public void endGame(boolean won, int score) {
         gameView.setGameOver(true);
         gameView.getThread().setRunning(false);
         if (!practiceMode)
-            if (towerDefense.getWin())
-                getUser().getStatTracker().addToCurrScore(towerDefense.getGameScore());
-        Log.d("message", "this is the boolean at to game in td act " + practiceMode);
-        boolean won = towerDefense.getWin();
-        towerDefense = null;
+            if (won)
+                getUser().getStatTracker().addToCurrScore(score);
         goToIntermediate(won, practiceMode);
         // record score of the level Intermediate page between games
     }
+
 }
 
 

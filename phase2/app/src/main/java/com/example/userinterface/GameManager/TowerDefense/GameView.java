@@ -20,7 +20,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     private MainThread thread;
-    public TowerDefense towerDefense;
+    public TowerDefensePresenter towerDefensePresenter;
     boolean gameStart = false, gameOver = false;
     private Background background;
 
@@ -50,8 +50,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         setFocusable(true);
     }
 
-    public void setTowerDefense(TowerDefense towerDefense) {
-        this.towerDefense = towerDefense;
+    public void setTowerDefensePresenter(TowerDefensePresenter towerDefensePresenter) {
+        this.towerDefensePresenter = towerDefensePresenter;
     }
 
     public void setGameStart(boolean gameStart) {
@@ -64,7 +64,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
     public void update() {
         if (gameStart && !gameOver) {
-            towerDefense.update();
+            towerDefensePresenter.update();
         }
     }
 
@@ -72,7 +72,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
         super.draw(canvas);
         if (canvas != null) {
             background.draw(canvas);
-            towerDefense.draw(canvas);
+            towerDefensePresenter.draw(canvas);
 
         }
     }

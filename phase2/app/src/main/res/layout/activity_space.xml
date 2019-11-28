@@ -20,7 +20,7 @@
         android:layout_marginStart="2dp"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="0dp"
-        android:onClick="onClick" />
+        android:onClick="onStartClick" />
 
     <View
         android:id="@+id/Rightside"
@@ -36,7 +36,7 @@
         android:layout_marginRight="0dp"
         android:layout_toEndOf="@+id/Leftside"
         android:layout_toRightOf="@+id/Leftside"
-        android:onClick="onClick" />
+        android:onClick="onStartClick" />
 
 </RelativeLayout>
 

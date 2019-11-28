@@ -20,7 +20,7 @@ public class TowerDefense implements ScoreSystem {
     private boolean gameStart = false;
 
     private boolean win;
-    private VariableChangeListener listener = null;
+    private VariableChangeListener listener;
     private ArrayList<Ammo> ammo;
     private Towers[] towers = new Towers[10];
     private int cash;
@@ -29,7 +29,7 @@ public class TowerDefense implements ScoreSystem {
     private SparseArray<ArrayList<Enemy>> waves = new SparseArray<>(3);
 
 
-    public TowerDefense(int screenWidth, int screenHeight) {
+    public TowerDefense(int screenWidth, int screenHeight, VariableChangeListener listener) {
         mapHeight = screenHeight;
         mapWidth = screenWidth;
         ammo = new ArrayList<>();
@@ -39,6 +39,7 @@ public class TowerDefense implements ScoreSystem {
         waves.append(0, new ArrayList<>());
         waves.append(1, new ArrayList<>());
         waves.append(2, new ArrayList<>());
+        this.listener = listener;
 
     }
 
