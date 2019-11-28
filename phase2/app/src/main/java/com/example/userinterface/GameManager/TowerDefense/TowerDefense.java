@@ -1,6 +1,7 @@
 package com.example.userinterface.GameManager.TowerDefense;
 
 import android.graphics.Canvas;
+import android.util.Log;
 import android.util.SparseArray;
 
 import com.example.userinterface.GameManager.ScoreSystem;
@@ -46,6 +47,8 @@ public class TowerDefense implements ScoreSystem {
         if (gameStart) {
             checkIfOver();
             updateEnemy();
+            Log.d("message", "current wave = " + currentWave);
+            generateNewWave();
             updateBullet();
         }
     }
@@ -57,7 +60,7 @@ public class TowerDefense implements ScoreSystem {
         infromationBoard.setAppearance(cash);
     }
     private void checkIfOver(){
-        if (lives <= 0 || currentWave == 4) {
+        if (lives <= 0 || currentWave == 3) {
             //decide if game is over or not
             if (lives > 0)
                 currentScore += lives * 100; //each life left adds another 100 pts.
@@ -102,6 +105,7 @@ public class TowerDefense implements ScoreSystem {
             enemy.move();
         }
         removeEnemy();
+
 
     }
 
