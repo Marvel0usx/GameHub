@@ -31,7 +31,7 @@ public class Scoreboard {
     public void draw(Canvas canvas) {
         canvas.drawText(this.appearance, 250, this.height - 250, paintText);
         canvas.drawText("HP", 250, this.height - 200, paintText);
-        canvas.drawRect(300, this.height - 220, this.lives + 300, this.height - 200, paintText);
+        canvas.drawRect(320, this.height - 220, this.lives + 300, this.height - 200, paintText);
         canvas.drawText("Stage: " + this.level, 40, 40, paintText);
     }
 

@@ -179,14 +179,14 @@ public class SpaceInvaders implements Observer {
         hardness++;
     }
 
-    public void spawnWaves(){
-        if(this.wave == 1) {
+    public void spawnWaves() {
+        if (this.wave == 1) {
             for (int x = 50; x < 500; x += 200)
                 subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 200));
             for (int x = 700; x < 1000; x += 200)
                 subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 200));
         }
-        if(this.wave == 2) {
+        if (this.wave == 2) {
             this.player.setMode(2);
             for (int x = 50; x < 500; x += 200)
                 subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 200));
@@ -201,9 +201,9 @@ public class SpaceInvaders implements Observer {
         boolean yCollision;
 
         if (x1 >= x2)
-            xCollision = (SpaceObject.WIDTH +30 >= (x1 - x2));
+            xCollision = (SpaceObject.WIDTH + 30 >= (x1 - x2));
         else // (x1 < x2)
-            xCollision = (SpaceObject.WIDTH +30 >= (x2 - x1));
+            xCollision = (SpaceObject.WIDTH + 30 >= (x2 - x1));
 
         if (y2 >= y1)
             yCollision = (SpaceObject.HEIGHT >= (y2 - y1));
