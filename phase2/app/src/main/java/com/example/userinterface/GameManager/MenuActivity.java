@@ -65,6 +65,11 @@ public class MenuActivity extends GameActivity {
         });
     }
 
+    public void toScoreBoard(View view){
+        Intent intent = new Intent(MenuActivity.this, ScoreBoard.class);
+        startActivity(intent);
+    }
+
     /**
      * Go to the stats board
      *
