@@ -23,9 +23,8 @@ public class ScoreBoard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_board);
         layout = findViewById(R.id.linearLayout);
-        constraintLayout = new ConstraintLayout(this);
-        constraintLayout.setId(R.id.constraintlayout);
-        setContentView(constraintLayout);
+//        constraintLayout = new ConstraintLayout(this);
+//        constraintLayout.setId(R.id.constraintlayout);
         show();
     }
 
@@ -46,8 +45,8 @@ public class ScoreBoard extends AppCompatActivity {
         }
         sort(totalInfo,0, totalInfo.length-1);
         for (String[] users: totalInfo){
-            ConstraintSet constraintSet = new ConstraintSet();
-            constraintSet.clone(constraintLayout);
+//            ConstraintSet constraintSet = new ConstraintSet();
+//            constraintSet.clone(constraintLayout);
             String username = users[0];
             String highScore= users[1];
             TextView textView =  new TextView(getApplicationContext());
