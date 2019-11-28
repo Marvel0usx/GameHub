@@ -83,10 +83,10 @@ public class Ammunition implements Ammo {
         float A = (float) Math.sqrt(((y - target.getY()) * ((y - target.getY())) + ((x - target.getX())) * (x - target.getX())));
         float v1 = target.getSpeed();
         System.out.println(A);
-        double alpha = Math.sin(Math.abs(x - target.getX()) / A);
+        float alpha = (float) Math.sin(Math.abs(x - target.getX()) / A);
         float v2 = speed;
         System.out.println(Math.sin(alpha));
-        double time = (Math.sqrt((A * A) * (v1 * v1 * Math.cos(alpha) * Math.cos(alpha) + v2 * v2 - v1 * v1)) - A * v1 * Math.cos(alpha)) / (v2 * v2 - v1 * v1);
+        float time = (float) (Math.sqrt((A * A) * (v1 * v1 * Math.cos(alpha) * Math.cos(alpha) + v2 * v2 - v1 * v1)) - A * v1 * Math.cos(alpha)) / (v2 * v2 - v1 * v1);
         System.out.println(alpha);
         predictY = time * target.getSpeed() + target.getY();
         predictX = target.getX();

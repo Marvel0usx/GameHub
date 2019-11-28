@@ -22,6 +22,7 @@ public class SpaceInvaders implements Observer {
     private VariableChangeListener var;
     private Scoreboard scoreboard;
     private int wave;
+    private int level;
 
     private boolean gameOver = false;
     private boolean isWin = false;
@@ -66,7 +67,7 @@ public class SpaceInvaders implements Observer {
         // player's shoot count and make it fire bullet
         // even if it's not moving
         this.player.move(0);
-        this.scoreboard.setAppearance(this.player.getLives(), this.score);
+        this.scoreboard.setAppearance(this.player.getLives(), this.score, this.level);
 
         for (SpaceObject obj : subjects) {
             if (obj.isUpdated())
@@ -114,6 +115,7 @@ public class SpaceInvaders implements Observer {
         }
         if (this.noEnemies(subjects)) {
             this.wave++;
+            this.level++;
             spawnWaves();
         }
         if (this.wave == 4) {
@@ -164,11 +166,12 @@ public class SpaceInvaders implements Observer {
 
     // Utils
     public void layout() {
-        player = new Player((this.width >> 1), 1300, 0, 500);
-        player.registerObserver(this);
-        subjects.add(player);
+        this.player = new Player((this.width >> 1), 1300, 0, 500);
+        this.player.registerObserver(this);
+        subjects.add(this.player);
         scoreboard = new Scoreboard(this.height, this.width);
         this.wave = this.wave + 1;
+        this.level = 1;
         spawnWaves();
 
         for (Subject sub : subjects)
@@ -176,14 +179,15 @@ public class SpaceInvaders implements Observer {
         hardness++;
     }
 
-    public void spawnWaves(){
-        if(this.wave == 1) {
+    public void spawnWaves() {
+        if (this.wave == 1) {
             for (int x = 50; x < 500; x += 200)
                 subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 200));
             for (int x = 700; x < 1000; x += 200)
                 subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 200));
         }
-        if(this.wave == 2) {
+        if (this.wave == 2) {
+            this.player.setMode(2);
             for (int x = 50; x < 500; x += 200)
                 subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 200));
             for (int x = 700; x < 1000; x += 200)
@@ -197,9 +201,9 @@ public class SpaceInvaders implements Observer {
         boolean yCollision;
 
         if (x1 >= x2)
-            xCollision = (SpaceObject.WIDTH >= (x1 - x2));
+            xCollision = (SpaceObject.WIDTH + 30 >= (x1 - x2));
         else // (x1 < x2)
-            xCollision = (SpaceObject.WIDTH >= (x2 - x1));
+            xCollision = (SpaceObject.WIDTH + 30 >= (x2 - x1));
 
         if (y2 >= y1)
             yCollision = (SpaceObject.HEIGHT >= (y2 - y1));

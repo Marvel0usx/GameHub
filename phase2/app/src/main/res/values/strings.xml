@@ -41,6 +41,9 @@
     <string name="bomb">bomb</string>
     <string name="gun">gun</string>
     <string name="rocket">rocket</string>
+    <string name="mystats">MyStats</string>
+    <string name="practice_mode">Practice mode</string>
+    <string name="scoreboard">Scoreboard</string>
 
 
 </resources>

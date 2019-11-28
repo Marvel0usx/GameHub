@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GameManager.GameActivity"></activity>
+        <activity android:name=".GameManager.ScoreBoard"></activity>
+        <activity android:name=".GameManager.GameActivity" />
         <activity android:name=".GameManager.EndGame" />
         <activity android:name=".GameManager.NextGame" />
         <activity android:name=".GameManager.Stats" />

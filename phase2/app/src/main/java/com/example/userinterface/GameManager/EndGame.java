@@ -20,6 +20,7 @@ public class EndGame extends GameActivity {
             statTracker.setHighScoreToCurrent();
         }
         GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(this);
+        getUser().getStatTracker().setCurrScore(0);
         gameBackgroundActivity.execute("stats", getUser());
         getUser().getStatTracker().setLevel(0);
         toMenu();
