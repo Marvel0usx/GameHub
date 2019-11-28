@@ -1,5 +1,6 @@
 package com.example.userinterface.GameManager.HangMan;
 
+
 public class GameState {
 
     int keywordLen; // number of characters in current word
@@ -14,13 +15,16 @@ public class GameState {
     /**
      * Constructs a new GameState object
      */
-    GameState(Difficulty diffi) {
-        this.difficulty = diffi;
+    GameState(Difficulty difficulty) {
+
+        this.difficulty = difficulty;
+
     }
 
     void setBalloons(Balloon[] balloons) {
         this.balloons = balloons;
     }
+
 
     void setKeyword(String keyword) {
         this.keyword = keyword;
