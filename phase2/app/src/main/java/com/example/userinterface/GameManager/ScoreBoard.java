@@ -54,8 +54,12 @@ public class ScoreBoard extends AppCompatActivity {
             for (int i = 0; i < 15-username.length();i++ ){
                 newUsername+="- ";
             }
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            params.setMargins(10,10,10,10);
+            textView.setLayoutParams(params);
             textView.setText("User"+": " + newUsername+"Score:"+highScore);
-            textView.setTextSize(30);
+            textView.setTextSize(20);
+
 //            constraintSet.connect(textView.getId(), ConstraintSet.LEFT, constraintLayout.getId(), ConstraintSet.LEFT, 18);
 //            constraintSet.connect(textView2.getId(), ConstraintSet.LEFT, textView.getId(), ConstraintSet.RIGHT, 18);
 //            constraintSet.connect(textView2.getId(), ConstraintSet.RIGHT, constraintLayout.getId(), ConstraintSet.RIGHT, 18);

@@ -58,6 +58,8 @@ public class MenuActivity extends GameActivity {
                     case 3:
                         toGame(3, false);
                         break;
+                    case 4:
+                        toGame(4,false);
                     default:
                         break;
                 }

@@ -49,6 +49,7 @@ public abstract class GameActivity extends AppCompatActivity {
                 int num = user.get().getStatTracker().getLevel() + 1;
                 user.get().getStatTracker().setLevel(num);
             } else {
+                user.get().getStatTracker().setCurrScore(0);
                 user.get().getStatTracker().setLevel(0);
                 ifLost = true;
             }
