@@ -3,8 +3,11 @@ package com.example.userinterface.GameManager.SpaceInvaders;
 import android.graphics.Canvas;
 import android.graphics.Color;
 
+import java.util.ArrayList;
+
 public class Enemy extends Ship {
-    private EnemyBullet bullet;
+    private int mode;
+    private ArrayList<Bullet> enemyBullets;
 
     Enemy(int x, int y, int damage, int xSpeed, int ySpeed, int lives) {
         super(x, y, damage, ySpeed, lives);
@@ -12,6 +15,7 @@ public class Enemy extends Ship {
         this.appearance = "💠";
         this.paintText.setColor(Color.GREEN);
         this.paintText.setTextSize(80);
+        this.mode = 1;
     }
 
     // Implements Subject
@@ -26,24 +30,35 @@ public class Enemy extends Ship {
         //fires bullet objects that deductLife player
         // generate new bullet object and add this object's observer
         // to the bullet object's observer. Return the bullet object.
-        this.bullet = new EnemyBullet(getX() + 35, getY(), 50, 4);
-        for (Observer obs : getObservers())
-            this.bullet.registerObserver(obs);
-        this.bullet.setUpdated(true);
+
+        this.enemyBullets = BulletFactory.buildBullet("Enemy", this.mode, this.getX(), this.getY());
+        setChanged();
+        for (Observer obs : getObservers()) {
+            for (Bullet bullet : this.enemyBullets)
+                bullet.registerObserver(obs);
+        }
+        for (Bullet bullet : this.enemyBullets)
+            bullet.setUpdated(true);
     }
 
     void move() {
         setChanged();
         if (Math.random() < 0.005) {
             shoot();
-            for (Observer obs : getObservers())
-                obs.registerSubject(this.bullet);
-            this.bullet = null;
+            for (Observer obs : getObservers()) {
+                for (Bullet bullet: this.enemyBullets)
+                    obs.registerSubject(bullet);
+            }
+            this.enemyBullets = null;
         }
         setX(getX() + getXSpeed());
         setY(getY() + getYSpeed());
         setUpdated(true);
         notifyObservers();
+    }
+
+    void setMode(int mode){
+        this.mode = mode;
     }
 
     public void draw(Canvas canvas) {

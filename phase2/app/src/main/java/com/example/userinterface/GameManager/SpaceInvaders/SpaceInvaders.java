@@ -197,9 +197,9 @@ public class SpaceInvaders implements Observer {
         boolean yCollision;
 
         if (x1 >= x2)
-            xCollision = (SpaceObject.WIDTH >= (x1 - x2));
+            xCollision = (SpaceObject.WIDTH +30 >= (x1 - x2));
         else // (x1 < x2)
-            xCollision = (SpaceObject.WIDTH >= (x2 - x1));
+            xCollision = (SpaceObject.WIDTH +30 >= (x2 - x1));
 
         if (y2 >= y1)
             yCollision = (SpaceObject.HEIGHT >= (y2 - y1));
