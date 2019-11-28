@@ -23,9 +23,9 @@ public class MenuActivity extends GameActivity {
         btnStart = findViewById(R.id.start);
         btnResume = findViewById(R.id.Resume);
         btnStats = findViewById(R.id.Stats);
-        if (getUser().getStatTracker().getLevel()==0){
+        if (getUser().getStatTracker().getLevel() == 0) {
             btnResume.setEnabled(false);
-        }else{
+        } else {
             btnResume.setEnabled(true);
         }
 
@@ -67,12 +67,14 @@ public class MenuActivity extends GameActivity {
 
     /**
      * Go to the stats board
+     *
      * @param view
      */
     public void goToStatsheet(View view) {
         Intent intent = new Intent(MenuActivity.this, Stats.class);
         startActivity(intent);
     }
+
     public void practiceMode(View v) {
         Intent intent = new Intent(MenuActivity.this, PracticeMode.class);
         startActivity(intent);

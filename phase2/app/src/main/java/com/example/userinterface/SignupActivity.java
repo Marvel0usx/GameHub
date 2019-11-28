@@ -33,9 +33,9 @@ public class SignupActivity extends AppCompatActivity {
             public void onClick(View v) {
                 getInfo();
                 //Check if the email is in a valid format and the password is entered the same.
-                if (!password.equals(rePassword) || !isValid(email)){
+                if (!password.equals(rePassword) || !isValid(email)) {
                     errorMessage("Incorrect Info", "Re-enter information.");
-                }else{
+                } else {
                     String task = "register";
                     BackgroundActivity backgroundTask = new BackgroundActivity(SignupActivity.this);
                     getInfo();
@@ -48,7 +48,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     //method used to get the users info on the UI
-    public void getInfo(){
+    public void getInfo() {
         name = etName.getText().toString();
         email = etEmail.getText().toString();
         password = etPassword.getText().toString();
@@ -56,7 +56,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     // Show error message if there was an error that is being handled by.
-    public void errorMessage(String title, String message){
+    public void errorMessage(String title, String message) {
         AlertDialog.Builder wrongInfo = new AlertDialog.Builder(SignupActivity.this);
         wrongInfo.setCancelable(true);
         wrongInfo.setTitle(title);
@@ -69,8 +69,7 @@ public class SignupActivity extends AppCompatActivity {
     }
 
     //Check if the string passed in is in an email format.
-    public static boolean isValid(String email)
-    {
+    public static boolean isValid(String email) {
         String emailRegex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
         return (email).matches(emailRegex);
     }

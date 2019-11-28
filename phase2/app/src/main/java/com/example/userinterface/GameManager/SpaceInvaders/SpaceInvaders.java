@@ -1,7 +1,6 @@
 package com.example.userinterface.GameManager.SpaceInvaders;
 
 import android.graphics.Canvas;
-//import android.graphics.SumPathEffect;
 
 import com.example.userinterface.GameManager.VariableChangeListener;
 
@@ -9,6 +8,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+//import android.graphics.SumPathEffect;
 
 public class SpaceInvaders implements Observer {
     // Private attributes
@@ -20,6 +21,7 @@ public class SpaceInvaders implements Observer {
     private List<SpaceObject> subjects = new ArrayList<>();
     private VariableChangeListener var;
     private Scoreboard scoreboard;
+    private int wave;
 
     private boolean gameOver = false;
     private boolean isWin = false;
@@ -28,6 +30,7 @@ public class SpaceInvaders implements Observer {
     public SpaceInvaders(int width, int height) {
         this.height = height;
         this.width = width;
+        this.wave = 0;
 
     }
 
@@ -109,8 +112,11 @@ public class SpaceInvaders implements Observer {
         for (SpaceObject obj : subjects) {
             obj.setUpdated(false);
         }
-
         if (this.noEnemies(subjects)) {
+            this.wave++;
+            spawnWaves();
+        }
+        if (this.wave == 4) {
             this.gameOver = true;
             unregisterAll();
             if (this.player.getLives() > 0) {
@@ -162,15 +168,27 @@ public class SpaceInvaders implements Observer {
         player.registerObserver(this);
         subjects.add(player);
         scoreboard = new Scoreboard(this.height, this.width);
-
-        for (int x = 50; x < 500; x += 200)
-            subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 200));
-        for (int x = 700; x < 1000; x += 200)
-            subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 200));
+        this.wave = this.wave + 1;
+        spawnWaves();
 
         for (Subject sub : subjects)
             sub.registerObserver(this);
         hardness++;
+    }
+
+    public void spawnWaves(){
+        if(this.wave == 1) {
+            for (int x = 50; x < 500; x += 200)
+                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 200));
+            for (int x = 700; x < 1000; x += 200)
+                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 200));
+        }
+        if(this.wave == 2) {
+            for (int x = 50; x < 500; x += 200)
+                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 200));
+            for (int x = 700; x < 1000; x += 200)
+                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 200));
+        }
     }
 
     private boolean isCollide(int x1, int y1, int x2, int y2) {

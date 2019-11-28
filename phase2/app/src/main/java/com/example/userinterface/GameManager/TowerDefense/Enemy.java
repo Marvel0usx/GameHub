@@ -19,7 +19,7 @@ public abstract class Enemy { //common interface for all Enemies
         return health;
     }
 
-    public void decreaseHealth(int damage){
+    public void decreaseHealth(int damage) {
         health -= damage;
     }
 
@@ -32,7 +32,7 @@ public abstract class Enemy { //common interface for all Enemies
         return x;
     }
 
-    public int getMoneyGain(){
+    public int getMoneyGain() {
         return moneyGain;
     }
 
@@ -40,7 +40,7 @@ public abstract class Enemy { //common interface for all Enemies
         return score;
     }
 
-    public int getSpeed(){
+    public int getSpeed() {
         return speed;
     }
 

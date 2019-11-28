@@ -11,11 +11,11 @@ import com.example.userinterface.GameManager.HangMan.HangManActivity;
 import com.example.userinterface.GameManager.SpaceInvaders.SpaceActivity;
 import com.example.userinterface.GameManager.TowerDefense.TowerDefenseActivity;
 
-public abstract class GameActivity extends AppCompatActivity{
+public abstract class GameActivity extends AppCompatActivity {
     public Context context;
     private static UserDAO user = null;
     private static boolean ifLost = false;
-    private static final Class[] CLASSES =new Class[]{MenuActivity.class, HangManActivity.class, TowerDefenseActivity.class,
+    private static final Class[] CLASSES = new Class[]{MenuActivity.class, HangManActivity.class, TowerDefenseActivity.class,
             SpaceActivity.class, EndGame.class};
 
     @Override
@@ -24,7 +24,7 @@ public abstract class GameActivity extends AppCompatActivity{
         startActivity(intent);
     }
 
-    public void toGame(int saved, boolean practiceMode){
+    public void toGame(int saved, boolean practiceMode) {
         ifLost = false;
         if (!practiceMode) {
 
@@ -34,13 +34,15 @@ public abstract class GameActivity extends AppCompatActivity{
         }
 
         Intent intent = new Intent(context, CLASSES[saved]);
-        Log.d("message","this is the boolean in to game "+practiceMode);
+        Log.d("message", "this is the boolean in to game " + practiceMode);
         intent.putExtra("practice", practiceMode);
         startActivity(intent);
     }
 
     public void goToIntermediate(boolean won, boolean practiceMode) {
-
+        if (!won){
+            ifLost = true;
+        }
         if (!practiceMode) {
             GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(context);
             if (won) {
@@ -55,34 +57,34 @@ public abstract class GameActivity extends AppCompatActivity{
 
         Intent intent = new Intent(context, NextGame.class);
         intent.putExtra("practice", practiceMode);
-        Log.d("message","this is the boolean at to game in go to inter "+practiceMode);
+        Log.d("message", "this is the boolean at to game in go to inter " + practiceMode);
         startActivity(intent);
 
     }
 
 
-    public User getUser(){
+    public User getUser() {
         return user.get();
     }
 
-    public void toMenu(){
+    public void toMenu() {
         ifLost = false;
         Intent intent = new Intent(context, MenuActivity.class);
         startActivity(intent);
     }
 
-    public static void setUser(UserDAO user){
-        if (GameActivity.user == null){
+    public static void setUser(UserDAO user) {
+        if (GameActivity.user == null) {
             GameActivity.user = user;
         }
 
     }
 
-    public void deleteUser(){
+    public void deleteUser() {
         user.delete();
     }
 
-    public void next(View view){
+    public void next(View view) {
         ifLost = false;
         Intent intent = new Intent(context, CLASSES[user.get().getStatTracker().getLevel()]);
         startActivity(intent);

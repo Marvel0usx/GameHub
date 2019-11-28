@@ -9,8 +9,9 @@ import android.util.Log;
 public class Orc extends Enemy {
 
     private boolean ifSpeedUp = false;
+
     Orc() {
-        health = 60;
+        health = 10;
         speed = 1;
         score = 60;
         appearence = "👹";
@@ -21,11 +22,10 @@ public class Orc extends Enemy {
         if (health > 20)
             y += speed;
         else {
-            if (!ifSpeedUp){
-                speed*=3;
+            if (!ifSpeedUp) {
+                speed *= 3;
                 ifSpeedUp = true;
             }
-
             y += speed;
         }
 

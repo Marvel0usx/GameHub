@@ -9,7 +9,7 @@ import android.util.Log;
 public class Minion extends Enemy {
 
     Minion() {
-        health = 10;
+        health = 1;
         speed = 4;
         score = 50;
         appearence = "👻";

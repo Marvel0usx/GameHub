@@ -3,12 +3,12 @@ package com.example.userinterface.GameManager.HangMan;
 public class HardDifficulty extends Difficulty {
 
 
-    void setWord(){
+    void setWord() {
         this.keyword = "BULLETPROOF";
 
     }
 
-    void setNumLives(){
+    void setNumLives() {
         this.numLives = 4;
     }
 }

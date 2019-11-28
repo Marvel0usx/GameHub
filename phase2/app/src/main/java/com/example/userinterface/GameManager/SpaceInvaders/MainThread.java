@@ -4,10 +4,10 @@ import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
 public class MainThread extends Thread {
-    private SpaceView spaceView;
-    private final SurfaceHolder surfaceHolder;
-    private boolean isRunning;
     public static Canvas canvas;
+    private final SurfaceHolder surfaceHolder;
+    private SpaceView spaceView;
+    private boolean isRunning;
 
     MainThread(SurfaceHolder surfaceHolder, SpaceView spaceView) {
         this.surfaceHolder = surfaceHolder;

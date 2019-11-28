@@ -29,14 +29,14 @@ import java.net.URLEncoder;
 
 import static java.lang.Integer.parseInt;
 
-public class BackgroundActivity extends AsyncTask<String,Void,String> {
+public class BackgroundActivity extends AsyncTask<String, Void, String> {
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
 
     @SuppressLint("StaticFieldLeak")
     private Context context;
 
-    BackgroundActivity(Context ctx){
+    BackgroundActivity(Context ctx) {
         this.context = ctx;
     }
 
@@ -45,14 +45,14 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
 
         preferences = context.getSharedPreferences("MYPREFS", Context.MODE_PRIVATE);
         editor = preferences.edit();
-        editor.putString("flag","0");
+        editor.putString("flag", "0");
         editor.apply();
 
         String urlRegistration = "http://159.203.20.150/register.php";
-        String urlLogin  = "http://159.203.20.150/login.php";
+        String urlLogin = "http://159.203.20.150/login.php";
         String task = params[0];
 
-        if(task.equals("register")){
+        if (task.equals("register")) {
             String regName = params[1];
             String regEmail = params[2];
             String regPassword = params[3];
@@ -63,28 +63,28 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 OutputStream outputStream = httpURLConnection.getOutputStream();
-                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-8");
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-                String myData = URLEncoder.encode("username","UTF-8")+"="+URLEncoder.encode(regName,"UTF-8")+"&"
-                        +URLEncoder.encode("email","UTF-8")+"="+URLEncoder.encode(regEmail,"UTF-8")+"&"
-                        +URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(regPassword,"UTF-8");
+                String myData = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(regName, "UTF-8") + "&"
+                        + URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(regEmail, "UTF-8") + "&"
+                        + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(regPassword, "UTF-8");
                 bufferedWriter.write(myData);
                 bufferedWriter.flush();
                 bufferedWriter.close();
 
                 InputStream inputStream = httpURLConnection.getInputStream();
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 String dataResponse = "";
                 String inputLine = "";
-                while((inputLine = bufferedReader.readLine()) != null){
+                while ((inputLine = bufferedReader.readLine()) != null) {
                     dataResponse += inputLine;
                 }
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
 
-                editor.putString("flag","register");
+                editor.putString("flag", "register");
                 editor.commit();
                 return dataResponse;
             } catch (MalformedURLException e) {
@@ -94,7 +94,7 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
             }
 
         }
-        if(task.equals("login")){
+        if (task.equals("login")) {
             String loginEmail = params[1];
             String loginPassword = params[2];
             try {
@@ -105,30 +105,30 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
                 httpURLConnection.setDoInput(true);
 
                 OutputStream outputStream = httpURLConnection.getOutputStream();
-                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream,"UTF-8");
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-8");
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
-                String myData = URLEncoder.encode("email","UTF-8")+"="+URLEncoder.encode(loginEmail,"UTF-8")+"&"
-                        +URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(loginPassword,"UTF-8");
+                String myData = URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(loginEmail, "UTF-8") + "&"
+                        + URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(loginPassword, "UTF-8");
                 bufferedWriter.write(myData);
                 bufferedWriter.flush();
                 bufferedWriter.close();
                 outputStream.close();
 
                 InputStream inputStream = httpURLConnection.getInputStream();
-                InputStreamReader inputStreamReader = new InputStreamReader(inputStream,"UTF-8");
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
                 String dataResponse = "";
                 String inputLine = "";
-                while((inputLine = bufferedReader.readLine()) != null){
+                while ((inputLine = bufferedReader.readLine()) != null) {
                     dataResponse += inputLine;
                 }
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
 
-                editor.putString("flag","login");
+                editor.putString("flag", "login");
                 editor.commit();
-                return  dataResponse;
+                return dataResponse;
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -147,19 +147,18 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String s) {
-        String flag = preferences.getString("flag","0");
-        String [] strings = s.split("[,]");
-        if(flag.equals("register")) {
-            if (strings.length>1){
+        String flag = preferences.getString("flag", "0");
+        String[] strings = s.split("[,]");
+        if (flag.equals("register")) {
+            if (strings.length > 1) {
                 //If the email is already registered, restart the process.
                 Intent intent = new Intent(context, SignupActivity.class);
                 context.startActivity(intent);
             }
             Toast.makeText(context, strings[0], Toast.LENGTH_LONG).show();
 
-        }
-        else if(flag.equals("login")){
-            if(strings[0].equals("true")){
+        } else if (flag.equals("login")) {
+            if (strings[0].equals("true")) {
                 //set up the game with the proper user and his statistics
                 Intent intent = new Intent(context, MenuActivity.class);
                 StatTracker statTracker = new StatTracker(parseInt(strings[5]));
@@ -170,14 +169,14 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
                 statTracker.setHighScore(high);
                 statTracker.setNumOfGames(games);
                 // create a new user instance
-                User user = new User(strings[1],statTracker);
+                User user = new User(strings[1], statTracker);
                 GameActivity.setUser(new UserDAO(user));
                 context.startActivity(intent);
-            }else{
+            } else {
                 display("Login Failed...", "That email and password do not match our records :(.");
             }
-        }else{
-            display("Login Failed...","Something weird happened :(.");
+        } else {
+            display("Login Failed...", "Something weird happened :(.");
         }
     }
 
@@ -185,8 +184,9 @@ public class BackgroundActivity extends AsyncTask<String,Void,String> {
     protected void onProgressUpdate(Void... values) {
         super.onProgressUpdate(values);
     }
+
     // Display some message
-    public void display(String title, String message){
+    public void display(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setCancelable(true);
         builder.setTitle(title);

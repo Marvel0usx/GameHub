@@ -2,11 +2,11 @@ package com.example.userinterface.GameManager.HangMan;
 
 public class EasyDifficulty extends Difficulty {
 
-    void setWord(){
+    void setWord() {
         this.keyword = "APPLE";
     }
 
-    void setNumLives(){
+    void setNumLives() {
         this.numLives = 6;
     }
 

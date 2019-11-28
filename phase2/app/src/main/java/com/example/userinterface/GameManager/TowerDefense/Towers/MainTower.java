@@ -16,22 +16,22 @@ public class MainTower implements Towers {
 
     public Ammo generateBullet(Enemy enemy) {
         AmmoFactory ammoFactory = new AmmoFactory();
-        if (enemy.getY() > y-range && enemy.getY()< y+range){
-            if (time <= 0){
+        if (enemy.getY() > y - range && enemy.getY() < y + range) {
+            if (time <= 0) {
                 time = waitTime;
-                return ammoFactory.buildAmmunition(type,side);
-            }else{
-                time --;
+                return ammoFactory.buildAmmunition(type, side);
+            } else {
+                time--;
                 return null;
             }
-        }else{
+        } else {
             time = 0;
             return null;
         }
     }
 
     @Override
-    public void setLocation(int x, int y){
+    public void setLocation(int x, int y) {
         this.x = x;
         this.y = y;
     }

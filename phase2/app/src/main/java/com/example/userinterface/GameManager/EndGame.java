@@ -13,10 +13,10 @@ public class EndGame extends GameActivity {
         setContentView(R.layout.activity_end_game);
     }
 
-    public void endgame(View view){
+    public void endgame(View view) {
         StatTracker statTracker = getUser().getStatTracker();
         statTracker.addNumOfGames();
-        if (statTracker.getCurrScore()>statTracker.getHighScore()){
+        if (statTracker.getCurrScore() > statTracker.getHighScore()) {
             statTracker.setHighScoreToCurrent();
         }
         GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(this);

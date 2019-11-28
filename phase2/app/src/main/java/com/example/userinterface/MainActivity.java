@@ -36,10 +36,9 @@ public class MainActivity extends AppCompatActivity {
 
                 etEmail.setText("");
                 etPassword.setText("");
-                backgroundTask.execute(task,stringEmail,stringPassword);
+                backgroundTask.execute(task, stringEmail, stringPassword);
             }
         });
-
 
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
