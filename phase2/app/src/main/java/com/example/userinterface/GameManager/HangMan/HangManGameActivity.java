@@ -15,6 +15,8 @@ import com.example.userinterface.GameManager.GameActivity;
 import com.example.userinterface.GameManager.User;
 import com.example.userinterface.R;
 
+import static android.view.View.VISIBLE;
+
 
 public class HangManGameActivity extends GameActivity {
     private GameState gameState;
@@ -39,6 +41,11 @@ public class HangManGameActivity extends GameActivity {
         difficulty = (Difficulty) intent.getSerializableExtra("difficulty");
 
         character = (String) intent.getSerializableExtra("character");
+        int resID = getResources().getIdentifier(character, "id", getPackageName());
+
+        ImageView characterImage = findViewById(resID);
+        characterImage.setVisibility(VISIBLE);
+
 
         difficulty.setWord();
         difficulty.setNumLives();
@@ -134,6 +141,7 @@ public class HangManGameActivity extends GameActivity {
         }
         return temp;
     }
+
 
 
 }
