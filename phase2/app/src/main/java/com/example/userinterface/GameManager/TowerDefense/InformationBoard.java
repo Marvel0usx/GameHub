@@ -5,13 +5,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 
-public class InfromationBoard {
+public class InformationBoard {
     private String money;
     private Paint paintText = new Paint();
     float height, width;
     int lives = 0;
 
-    InfromationBoard(float height, float width) {
+    InformationBoard(float height, float width) {
         this.money = "";
         this.paintText.setColor(Color.BLACK);
         this.paintText.setTextSize(40);

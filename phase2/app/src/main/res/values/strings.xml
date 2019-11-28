@@ -38,6 +38,9 @@
     <string name="Stats">Stats</string>
     <string name="left">left</string>
     <string name="right">right</string>
+    <string name="bomb">bomb</string>
+    <string name="gun">gun</string>
+    <string name="rocket">rocket</string>
 
 
 </resources>

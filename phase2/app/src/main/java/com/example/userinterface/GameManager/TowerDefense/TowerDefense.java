@@ -23,7 +23,7 @@ public class TowerDefense implements ScoreSystem {
     private ArrayList<Ammo> ammo;
     private Towers[] towers = new Towers[10];
     private int cash;
-    private InfromationBoard infromationBoard;
+    private InformationBoard informationBoard;
     private int currentWave = 0;
     private SparseArray<ArrayList<Enemy>> waves = new SparseArray<>(3);
 
@@ -33,11 +33,11 @@ public class TowerDefense implements ScoreSystem {
         mapWidth = screenWidth;
         ammo = new ArrayList<>();
         cash = 100;
-        infromationBoard = new InfromationBoard(mapHeight, mapWidth);
-        infromationBoard.setAppearance(cash);
-        waves.append(0, new ArrayList<>());
-        waves.append(1, new ArrayList<>());
-        waves.append(2, new ArrayList<>());
+        informationBoard = new InformationBoard(mapHeight, mapWidth);
+        informationBoard.setAppearance(cash);
+        waves.append(0, new ArrayList<Enemy>());
+        waves.append(1, new ArrayList<Enemy>());
+        waves.append(2, new ArrayList<Enemy>());
 
     }
 
@@ -54,7 +54,7 @@ public class TowerDefense implements ScoreSystem {
             currentWave ++;
     }
     private void updateInformationBoard() {
-        infromationBoard.setAppearance(cash);
+        informationBoard.setAppearance(cash);
     }
     private void checkIfOver(){
         if (lives <= 0 || currentWave == 4) {
@@ -180,7 +180,7 @@ public class TowerDefense implements ScoreSystem {
         for (Ammo ammo : ammo) {
             ammo.draw(canvas);
         }
-        infromationBoard.draw(canvas);
+        informationBoard.draw(canvas);
     }
 
     void setVariableChangeListener(VariableChangeListener variableChangeListener) {

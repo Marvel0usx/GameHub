@@ -30,6 +30,7 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
     Button[] buttonTowers;
     boolean practiceMode;
     TextView money;
+    Button selectedTower;
 
 
     @Override
@@ -86,11 +87,10 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
     }
 
     public void towerClick(View view) {
+        selectedTower = (Button) view;
         if (enoughMoney(view)) {
             for (Button button : buttonTowers) {
-                if (button != view) {
-                    button.setEnabled(false);
-                }
+                button.setEnabled(false);
             }
             towerPositions.showAvailable(true);
         }
@@ -121,42 +121,28 @@ public class TowerDefenseActivity extends GameActivity implements VariableChange
     public void setTower(View view) {
         TowerFactory towerFactory = new TowerFactory();
         if (towerPositions.isTowerClicked()) {
-            Button tower = null;
-            for (Button button : buttonTowers) {
-                if (button.isEnabled()) {
-                    tower = button;
-                }
+            Button tower = selectedTower;
+            view.setEnabled(false);
+            int index = towerPositions.getTowerNumber((Button) view);
+            String side;
+            if (index % 2 == 0) {
+                side = "left";
+            } else {
+                side = "right";
             }
-            if (tower != null) {
-                view.setEnabled(false);
-                int index = towerPositions.getTowerNumber((Button) view);
-                String side;
-                if (index % 2 == 0) {
-                    side = "left";
-                } else {
-                    side = "right";
-                }
-                if (tower == btnTower1) {
-                    view.setBackgroundResource(R.drawable.towercopy);
-                    Towers temp = towerFactory.buildTower("guntower", side);
-                    temp.setLocation((int) view.getX(), (int) view.getY());
-                    towerDefense.addTower(index, temp);
-                } else if (tower == btnTower2) {
-                    view.setBackgroundResource(R.drawable.tower2copy);
-                    Towers temp = towerFactory.buildTower("rockettower", side);
-                    temp.setLocation((int) view.getX(), (int) view.getY());
-                    towerDefense.addTower(index, temp);
-                } else if (tower == btnTower3) {
-                    view.setBackgroundResource(R.drawable.tower3copy);
-                    Towers temp = towerFactory.buildTower("bombtower", side);
-                    temp.setLocation((int) view.getX(), (int) view.getY());
-                    towerDefense.addTower(index, temp);
-                }
+            if (tower == btnTower1) {
+                view.setBackgroundResource(R.drawable.towercopy);
+            } else if (tower == btnTower2) {
+                view.setBackgroundResource(R.drawable.tower2copy);
+            } else if (tower == btnTower3) {
+                view.setBackgroundResource(R.drawable.tower3copy);
             }
+            Towers temp = towerFactory.buildTower(selectedTower.getContentDescription()+"tower", side);
+            temp.setLocation((int) view.getX(), (int) view.getY());
+            towerDefense.addTower(index, temp);
+
             for (Button button : buttonTowers) {
-                if (button != tower) {
-                    button.setEnabled(true);
-                }
+                button.setEnabled(true);
             }
             towerPositions.showAvailable(false);
         }
