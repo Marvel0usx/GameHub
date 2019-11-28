@@ -47,7 +47,7 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
 
     private void setCharB(){
         findViewById(R.id.charButton2).setOnClickListener(v -> {
-            this.character = "charA";
+            this.character = "charB";
             //this.character = new Character(findViewById(R.id.charB));
             Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
             i.putExtra("character", character);
@@ -58,7 +58,7 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
 
     private void setCharC(){
         findViewById(R.id.charButton3).setOnClickListener(v -> {
-            this.character = "charA";
+            this.character = "charC";
             //this.character = new Character(findViewById(R.id.charC));
             Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
             i.putExtra("character", character);
@@ -69,7 +69,7 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
 
     private void setCharD(){
         findViewById(R.id.charButton4).setOnClickListener(v -> {
-            this.character = "charA";
+            this.character = "charD";
             //ImageView vvv = findViewById(R.id.charD);
             //this.character = new Character(findViewById(R.id.charD));
             Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
@@ -81,7 +81,7 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
 
     private void setCharE(){
         findViewById(R.id.charButton5).setOnClickListener(v -> {
-            this.character = "charA";
+            this.character = "charE";
             //this.character = new Character(findViewById(R.id.charE));
             Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
             i.putExtra("character", character);
@@ -92,7 +92,7 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
 
     private void setCharF(){
         findViewById(R.id.charButton6).setOnClickListener(v -> {
-            this.character = "charA";
+            this.character = "charF";
             //this.character = new Character(findViewById(R.id.charF));
             Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
             i.putExtra("character", character);

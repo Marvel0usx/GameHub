@@ -6,7 +6,6 @@ public abstract class Difficulty implements Serializable {
 
     String keyword;
     int numLives;
-    private Balloon[] balloons; // an array of Balloon objects
 
     abstract void setWord(); //set the keywordsss
 
