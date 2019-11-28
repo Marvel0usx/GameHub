@@ -50,11 +50,12 @@ public class ScoreBoard extends AppCompatActivity {
             String username = users[0];
             String highScore= users[1];
             TextView textView =  new TextView(getApplicationContext());
-            TextView textView2 =  new TextView(getApplicationContext());
-            textView.setText("User"+": " + username+"      Score:"+highScore);
-            textView2.setText("Score:"+highScore);
+            String newUsername = username;
+            for (int i = 0; i < 15-username.length();i++ ){
+                newUsername+="- ";
+            }
+            textView.setText("User"+": " + newUsername+"Score:"+highScore);
             textView.setTextSize(30);
-            textView2.setTextSize(30);
 //            constraintSet.connect(textView.getId(), ConstraintSet.LEFT, constraintLayout.getId(), ConstraintSet.LEFT, 18);
 //            constraintSet.connect(textView2.getId(), ConstraintSet.LEFT, textView.getId(), ConstraintSet.RIGHT, 18);
 //            constraintSet.connect(textView2.getId(), ConstraintSet.RIGHT, constraintLayout.getId(), ConstraintSet.RIGHT, 18);
@@ -80,39 +81,39 @@ public class ScoreBoard extends AppCompatActivity {
         int n1 = m - l + 1;
         int n2 = r - m;
 
-        String[][] L = new String[n1][];
-        String[][] R = new String[n2][];
+        String[][] left = new String[n1][];
+        String[][] right = new String[n2][];
 
         for (int i=0; i<n1; ++i)
-            L[i] = arr[l + i];
+            left[i] = arr[l + i];
         for (int j=0; j<n2; ++j)
-            R[j] = arr[m +1+ j];
+            right[j] = arr[m +1+ j];
         int i = 0, j = 0;
 
         int k = l;
         while (i < n1 && j < n2)
         {
-            if (Integer.parseInt(L[i][1]) >= Integer.parseInt(R[j][1]))
+            if (Integer.parseInt(left[i][1]) >= Integer.parseInt(right[j][1]))
             {
-                arr[k] = L[i];
+                arr[k] = left[i];
                 i++;
             }
             else
             {
-                arr[k] = R[j];
+                arr[k] = right[j];
                 j++;
             }
             k++;
         }
         while (i < n1)
         {
-            arr[k] = L[i];
+            arr[k] = left[i];
             i++;
             k++;
         }
         while (j < n2)
         {
-            arr[k] = R[j];
+            arr[k] = right[j];
             j++;
             k++;
         }
