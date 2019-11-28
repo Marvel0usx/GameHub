@@ -33,7 +33,7 @@ public class HangManGameActivity extends GameActivity {
     protected void onCreate(Bundle savedInstanceState) {
         context = this;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.hm_activity_gameee);
+        setContentView(R.layout.hm_activity_game);
         LinearLayout wordLayout = findViewById(R.id.word);
         Intent intent = getIntent();
         user = getUser();

@@ -558,7 +558,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/buttonA"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7"
         tools:layout_editor_absoluteX="0dp"></LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

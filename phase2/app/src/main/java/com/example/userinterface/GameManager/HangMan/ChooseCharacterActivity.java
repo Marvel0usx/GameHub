@@ -1,17 +1,9 @@
 package com.example.userinterface.GameManager.HangMan;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
 import com.example.userinterface.GameManager.GameActivity;
 import com.example.userinterface.R;
-
 import java.io.Serializable;
 
 public class ChooseCharacterActivity extends GameActivity implements Serializable{
@@ -29,7 +21,6 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
         setCharD();
         setCharE();
         setCharF();
-
         Intent difficultyLevel = getIntent();
         this.difficulty = (Difficulty) difficultyLevel.getSerializableExtra("difficulty");
     }
@@ -37,7 +28,6 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
     private void setCharA(){
         findViewById(R.id.charButton1).setOnClickListener(v -> {
             this.character = "charA";
-            //this.character = new Character(findViewById(R.id.charA));
             Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
             i.putExtra("character", character);
             i.putExtra("difficulty", difficulty);
@@ -48,7 +38,6 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
     private void setCharB(){
         findViewById(R.id.charButton2).setOnClickListener(v -> {
             this.character = "charB";
-            //this.character = new Character(findViewById(R.id.charB));
             Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
             i.putExtra("character", character);
             i.putExtra("difficulty", difficulty);
@@ -59,7 +48,6 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
     private void setCharC(){
         findViewById(R.id.charButton3).setOnClickListener(v -> {
             this.character = "charC";
-            //this.character = new Character(findViewById(R.id.charC));
             Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
             i.putExtra("character", character);
             i.putExtra("difficulty", difficulty);
@@ -70,8 +58,6 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
     private void setCharD(){
         findViewById(R.id.charButton4).setOnClickListener(v -> {
             this.character = "charD";
-            //ImageView vvv = findViewById(R.id.charD);
-            //this.character = new Character(findViewById(R.id.charD));
             Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
             i.putExtra("character", character);
             i.putExtra("difficulty", difficulty);
@@ -82,7 +68,6 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
     private void setCharE(){
         findViewById(R.id.charButton5).setOnClickListener(v -> {
             this.character = "charE";
-            //this.character = new Character(findViewById(R.id.charE));
             Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
             i.putExtra("character", character);
             i.putExtra("difficulty", difficulty);
@@ -93,7 +78,6 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
     private void setCharF(){
         findViewById(R.id.charButton6).setOnClickListener(v -> {
             this.character = "charF";
-            //this.character = new Character(findViewById(R.id.charF));
             Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
             i.putExtra("character", character);
             i.putExtra("difficulty", difficulty);
