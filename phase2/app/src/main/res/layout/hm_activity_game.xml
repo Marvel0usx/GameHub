@@ -169,6 +169,7 @@
         app:layout_constraintVertical_bias="0.379"
         android:src="@drawable/char6" />
 
+
     <Button
         android:id="@+id/buttonA"
         android:layout_width="40dp"
@@ -570,5 +571,17 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"></LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="48dp"
+        android:layout_height="49dp"
+        app:layout_constraintBottom_toBottomOf="@+id/ballon1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.482"
+        app:layout_constraintStart_toEndOf="@+id/ballon1"
+        app:layout_constraintTop_toTopOf="@+id/ballon1"
+        app:layout_constraintVertical_bias="0.824"
+        app:srcCompat="@drawable/coin_icon" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
