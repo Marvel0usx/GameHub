@@ -2,6 +2,8 @@ package com.example.userinterface.GameManager.HangMan;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+
 import com.example.userinterface.GameManager.GameActivity;
 import com.example.userinterface.R;
 import java.io.Serializable;
@@ -10,6 +12,7 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
 
     String character;
     Difficulty difficulty;
+    boolean practiceMode;
 
     protected void onCreate(Bundle savedInstanceState) {
         context = this;
@@ -22,6 +25,13 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
         setCharE();
         setCharF();
         Intent difficultyLevel = getIntent();
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            practiceMode = bundle.getBoolean("practice");
+            Log.d("message", "0 " + practiceMode);
+        } else
+            practiceMode = false;
+
         this.difficulty = (Difficulty) difficultyLevel.getSerializableExtra("difficulty");
     }
 
@@ -31,6 +41,7 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
             Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
             i.putExtra("character", character);
             i.putExtra("difficulty", difficulty);
+            i.putExtra("practice", practiceMode);
             startActivity(i);
         });
     }
@@ -41,6 +52,7 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
             Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
             i.putExtra("character", character);
             i.putExtra("difficulty", difficulty);
+            i.putExtra("practice", practiceMode);
             startActivity(i);
         });
     }
@@ -51,6 +63,7 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
             Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
             i.putExtra("character", character);
             i.putExtra("difficulty", difficulty);
+            i.putExtra("practice", practiceMode);
             startActivity(i);
         });
     }
@@ -61,6 +74,7 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
             Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
             i.putExtra("character", character);
             i.putExtra("difficulty", difficulty);
+            i.putExtra("practice", practiceMode);
             startActivity(i);
         });
     }
@@ -71,6 +85,7 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
             Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
             i.putExtra("character", character);
             i.putExtra("difficulty", difficulty);
+            i.putExtra("practice", practiceMode);
             startActivity(i);
         });
     }
@@ -81,6 +96,7 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
             Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
             i.putExtra("character", character);
             i.putExtra("difficulty", difficulty);
+            i.putExtra("practice", practiceMode);
             startActivity(i);
         });
     }

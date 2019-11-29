@@ -44,6 +44,10 @@
     <string name="mystats">MyStats</string>
     <string name="practice_mode">Practice mode</string>
     <string name="scoreboard">Scoreboard</string>
+    <string name="email">Email</string>
+    <string name="login">Login</string>
+    <string name="signup">SignUp</string>
+    <string name="password">Password</string>
 
 
 </resources>
