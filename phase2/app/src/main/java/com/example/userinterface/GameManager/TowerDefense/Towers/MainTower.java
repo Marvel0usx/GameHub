@@ -17,10 +17,8 @@ public class MainTower implements Towers {
         if (enemy.getY() > y - range && enemy.getY() < y + range) {
             if (time <= 0) {
                 time = waitTime;
-                System.out.println("Fasdfasdfasdfbajskdgfjasdgfhagskfgasifuasgfadagua");
                 Ammo ammo = ammoFactory.buildAmmunition(type);
                 System.out.println(ammo);
-                ammo.setTarget(enemy);
                 return ammo;
             } else {
                 time--;
