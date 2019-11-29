@@ -7,6 +7,9 @@ import android.util.Log;
 
 import com.example.userinterface.R;
 
+import java.io.InputStream;
+import java.util.List;
+
 public class HangManActivity extends Activity {
 
     GameState gameState;
@@ -28,7 +31,6 @@ public class HangManActivity extends Activity {
             Log.d("message", "0 " + practiceMode);
         } else
             practiceMode = false;
-
         setEasyBtn();
         setModerateBtn();
         setHardBtn();
@@ -36,7 +38,8 @@ public class HangManActivity extends Activity {
 
     private void setEasyBtn() {
         findViewById(R.id.easyButton).setOnClickListener(v -> {
-            this.diff = new EasyDifficulty();
+            InputStream inputStream = getResources().openRawResource(R.raw.easy_word);
+            this.diff = new EasyDifficulty(inputStream);
             Intent intent = new Intent(HangManActivity.this, ChooseCharacterActivity.class);
             intent.putExtra("difficulty", diff);
             intent.putExtra("practice", practiceMode);
@@ -46,7 +49,9 @@ public class HangManActivity extends Activity {
 
     private void setModerateBtn() {
         findViewById(R.id.moderateButton).setOnClickListener(v -> {
-            this.diff = new ModerateDifficulty();
+            InputStream inputStream = getResources().openRawResource(R.raw.easy_word);
+            this.diff = new EasyDifficulty(inputStream);
+            this.diff = new ModerateDifficulty(inputStream);
             Intent intent = new Intent(HangManActivity.this, ChooseCharacterActivity.class);
             intent.putExtra("difficulty", diff);
             intent.putExtra("practice", practiceMode);
@@ -56,7 +61,9 @@ public class HangManActivity extends Activity {
 
     private void setHardBtn() {
         findViewById(R.id.hardButton).setOnClickListener(v -> {
-            this.diff = new HardDifficulty();
+            InputStream inputStream = getResources().openRawResource(R.raw.easy_word);
+            this.diff = new EasyDifficulty(inputStream);
+            this.diff = new HardDifficulty(inputStream);
             Intent intent = new Intent(HangManActivity.this, ChooseCharacterActivity.class);
             intent.putExtra("difficulty", diff);
             intent.putExtra("practice", practiceMode);
