@@ -9,11 +9,11 @@ public class BulletFactory {
         switch (owner) {
             case "Player":
                 if (mode == 1) {
-                    bulletList.add(new PlayerBullet(x + 37, y, 50, -8));
+                    bulletList.add(new PlayerBullet(x + 37, y, 25, -8));
                 } else {
-                    bulletList.add(new PlayerBullet(x+37, y, 50, -8));
-                    bulletList.add(new PlayerBullet(x+87, y, 50, -8));
-                    bulletList.add(new PlayerBullet(x-13, y, 50, -8));
+                    bulletList.add(new PlayerBullet(x+37, y, 25, -8));
+                    bulletList.add(new PlayerBullet(x+87, y, 25, -8));
+                    bulletList.add(new PlayerBullet(x-13, y, 25, -8));
                 }
                 break;
             case "Enemy":

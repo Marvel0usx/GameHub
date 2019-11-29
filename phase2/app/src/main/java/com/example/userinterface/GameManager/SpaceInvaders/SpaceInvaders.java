@@ -182,16 +182,23 @@ public class SpaceInvaders implements Observer {
     public void spawnWaves() {
         if (this.wave == 1) {
             for (int x = 50; x < 500; x += 200)
-                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 200));
+                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100));
             for (int x = 700; x < 1000; x += 200)
-                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 200));
+                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100));
         }
         if (this.wave == 2) {
             this.player.setMode(2);
             for (int x = 50; x < 500; x += 200)
-                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 200));
+                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100));
             for (int x = 700; x < 1000; x += 200)
-                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 200));
+                subjects.add(new Enemy(x, 100, 100, -2 * hardness, hardness, 100));
+        }
+        if (this.wave == 3) {
+            this.player.setMode(3);
+            for (int x = 50; x < 500; x += 200)
+                subjects.add(new Enemy(x, 100, 100, 0,hardness * 3  ,100));
+            for (int x = 700; x < 1000; x += 200)
+                subjects.add(new Enemy(x, 100, 100, 0,hardness * 3,100));
         }
     }
 
