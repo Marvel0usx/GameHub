@@ -1,10 +1,11 @@
 package com.example.userinterface.GameManager.HangMan;
 
+import android.widget.TextView;
 
 public class GameState {
 
     int keywordLen; // number of characters in current word
-    int remainingBalloons; // number of balloons left, decreases each time a wrong letter is guessed
+    int remainingBalloons; // number of balloons left, decreases each time a wrong letter is gues【sed
     int numCorr; // number of letters correctly guessed
     Difficulty difficulty;
     private String keyword;
