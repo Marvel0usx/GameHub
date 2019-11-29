@@ -39,22 +39,23 @@ public class SpaceActivity extends GameActivity implements VariableChangeListene
 
         leftSide = findViewById(R.id.Leftside);
         rightSide = findViewById(R.id.Rightside);
+
     }
+
 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.Leftside:
                 spaceView.Space.goLeft();
-                System.out.println("getleft hit ");
                 break;
             case R.id.Rightside:
                 spaceView.Space.goRight();
-                System.out.println("getright hit ");
                 break;
             default:
                 break;
         }
     }
+
 
     public void onBackPressed() {
         spaceView.getThread().setRunning(false);

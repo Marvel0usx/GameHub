@@ -63,5 +63,6 @@ public class Enemy extends Ship {
 
     public void draw(Canvas canvas) {
         canvas.drawText(this.appearance, this.getX(), this.getY(), paintText);
+        canvas.drawRect(this.getX(), this.getY()-100, this.getX()+ this.getLives(), this.getY() -90, paintText);
     }
 }

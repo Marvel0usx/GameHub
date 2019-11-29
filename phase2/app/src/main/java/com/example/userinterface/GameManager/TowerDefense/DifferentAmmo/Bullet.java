@@ -2,11 +2,10 @@ package com.example.userinterface.GameManager.TowerDefense.DifferentAmmo;
 
 public class Bullet extends Ammunition implements Ammo {
 
-    public Bullet(String direction) {
-        damage = 2;
-        appearence = "🌕";
+    public Bullet() {
+        damage = 1;
+        appearance = "🌕";
         speed = 7;
-        this.direction = direction;
         textSize = 20;
     }
 

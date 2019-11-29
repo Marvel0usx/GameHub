@@ -2,14 +2,14 @@ package com.example.userinterface.GameManager.TowerDefense.DifferentAmmo;
 
 public class AmmoFactory {
 
-    public Ammo buildAmmunition(String ammo, String direction) {
+    public Ammo buildAmmunition(String ammo) {
         switch (ammo) {
             case "bullet":
-                return new Bullet(direction);
+                return new Bullet();
             case "bomb":
-                return new Bomb(direction);
+                return new Bomb();
             case "rocket":
-                return new Rocket(direction);
+                return new Rocket();
             default:
                 return null;
         }
