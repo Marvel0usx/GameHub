@@ -58,6 +58,12 @@ public class Ammunition implements Ammo {
 
     public void setTarget(Enemy enemy) {
         this.target = enemy;
+        if (target.getX()>x){
+            direction = "left";
+        }else{
+            direction = "right";
+        }
+
     }
 
     @Override

@@ -40,7 +40,7 @@ public class TowerPositions {
             if (x % 2 == 0) {
                 i += 2;
             }
-            button.setY((float) (i * height / 14.5));
+            button.setY((float) (i * height / 13.5));
             x++;
         }
 

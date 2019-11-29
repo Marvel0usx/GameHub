@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.userinterface.GameManager.*;
+import com.example.userinterface.GameManager.TowerDefense.DifferentAmmo.Rocket;
 import com.example.userinterface.GameManager.TowerDefense.Towers.BombTower;
 import com.example.userinterface.GameManager.TowerDefense.Towers.GunTower;
 import com.example.userinterface.GameManager.TowerDefense.Towers.RocketTower;
@@ -23,6 +24,7 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
 
     Button btnStart, btnTower1, btnTower2, btnTower3;
     TowerDefensePresenter towerDefensePresenter;
+    TowerDefense towerDefense;
     int width;
     int height;
     GameView gameView;
@@ -30,6 +32,7 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
     Button[] buttonTowers;
     boolean practiceMode;
     TextView money;
+    Button selectedTower;
 
 
     @Override
@@ -56,12 +59,14 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
 
         gameView = findViewById(R.id.myView);
         money = findViewById(R.id.money);
-        TowerDefensePresenter towerDefensePresenter = new TowerDefensePresenter(this);
+        towerDefensePresenter = new TowerDefensePresenter(this);
+        Log.d("message", "towerDefensePresenter at line 62 " + towerDefensePresenter);
         width = size.x;
         height = size.y;
         TowerPositions.height = height;
         TowerPositions.width = width;
-        TowerDefense towerDefense = new TowerDefense(width, height, towerDefensePresenter);
+        towerDefense = new TowerDefense(width, height, towerDefensePresenter);
+        Log.d("message", "towerDefensePresenter at line 68" + towerDefensePresenter);
         towerDefensePresenter.setTowerDefense(towerDefense);
     }
 
@@ -72,77 +77,37 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
     }
 
     public void towerClick(View view) {
-        if (enoughMoney(view)) {
+        selectedTower = (Button) view;
+        if (enoughMoney()) {
             for (Button button : buttonTowers) {
-                if (button != view) {
-                    button.setEnabled(false);
-                }
+                button.setEnabled(false);
             }
             towerPositions.showAvailable(true);
         }
 
     }
 
-    public boolean enoughMoney(View v) {
-        int money = towerDefense.getCash();
-        if (v == btnTower1) {
-            if (money >= GunTower.COST) {
-                towerDefense.costMoney(GunTower.COST);
-                return true;
-            }
-        } else if (v == btnTower2) {
-            if (money >= RocketTower.COST) {
-                towerDefense.costMoney(RocketTower.COST);
-                return true;
-            }
-        } else {
-            if (money >= BombTower.COST) {
-                towerDefense.costMoney(BombTower.COST);
-                return true;
-            }
-        }
-        return false;
+    public boolean enoughMoney() {
+        int cost = Integer.parseInt(selectedTower.getContentDescription().toString().split(",")[1]);
+        return towerDefensePresenter.enoughMoney(cost);
     }
 
     public void setTower(View view) {
-        TowerFactory towerFactory = new TowerFactory();
         if (towerPositions.isTowerClicked()) {
-            Button tower = null;
-            for (Button button : buttonTowers) {
-                if (button.isEnabled()) {
-                    tower = button;
-                }
+            Button tower = selectedTower;
+            view.setEnabled(false);
+            int index = towerPositions.getTowerNumber((Button) view);
+            if (tower == btnTower1) {
+                view.setBackgroundResource(R.drawable.towercopy);
+            } else if (tower == btnTower2) {
+                view.setBackgroundResource(R.drawable.tower2copy);
+            } else if (tower == btnTower3) {
+                view.setBackgroundResource(R.drawable.tower3copy);
             }
-            if (tower != null) {
-                view.setEnabled(false);
-                int index = towerPositions.getTowerNumber((Button) view);
-                String side;
-                if (index % 2 == 0) {
-                    side = "left";
-                } else {
-                    side = "right";
-                }
-                if (tower == btnTower1) {
-                    view.setBackgroundResource(R.drawable.towercopy);
-                    Towers temp = towerFactory.buildTower("guntower", side);
-                    temp.setLocation((int) view.getX(), (int) view.getY());
-                    towerDefense.addTower(index, temp);
-                } else if (tower == btnTower2) {
-                    view.setBackgroundResource(R.drawable.tower2copy);
-                    Towers temp = towerFactory.buildTower("rockettower", side);
-                    temp.setLocation((int) view.getX(), (int) view.getY());
-                    towerDefense.addTower(index, temp);
-                } else if (tower == btnTower3) {
-                    view.setBackgroundResource(R.drawable.tower3copy);
-                    Towers temp = towerFactory.buildTower("bombtower", side);
-                    temp.setLocation((int) view.getX(), (int) view.getY());
-                    towerDefense.addTower(index, temp);
-                }
-            }
+            String [] name = selectedTower.getContentDescription().toString().split(",");
+            towerDefensePresenter.setTower((int)view.getX(), (int)view.getY(),name[0],index);
             for (Button button : buttonTowers) {
-                if (button != tower) {
-                    button.setEnabled(true);
-                }
+                button.setEnabled(true);
             }
             towerPositions.showAvailable(false);
         }
@@ -171,6 +136,7 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
         towerPositions = new TowerPositions(buttons);
         towerPositions.setXLocation();
         towerPositions.setYLocation();
+
         if (gameView != null) {
             gameView.setTowerDefensePresenter(towerDefensePresenter);
             gameView.setGameStart(true);
@@ -178,6 +144,7 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
     }
 
     public void onStartClick(View v) {
+        Log.d("message", "towerDefensePresenter at line 170 " + towerDefensePresenter);
         towerDefensePresenter.onStartClicked();
     }
 

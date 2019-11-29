@@ -2,7 +2,10 @@ package com.example.userinterface.GameManager.TowerDefense;
 
 import android.graphics.Canvas;
 import android.util.Log;
+import android.widget.Button;
 
+import com.example.userinterface.GameManager.TowerDefense.Towers.TowerFactory;
+import com.example.userinterface.GameManager.TowerDefense.Towers.Towers;
 import com.example.userinterface.GameManager.VariableChangeListener;
 
 class TowerDefensePresenter implements VariableChangeListener {
@@ -37,4 +40,19 @@ class TowerDefensePresenter implements VariableChangeListener {
         towerDefenseView.endGame(won, score);
     }
 
+    public boolean enoughMoney(int cost){
+        if (cost > towerDefense.getCash()){
+            return false;
+        }else{
+            towerDefense.costMoney(cost);
+            return true;
+        }
+    }
+
+    public void setTower(int x, int y, String name, int index){
+        TowerFactory towerFactory = new TowerFactory();
+        Towers temp = towerFactory.buildTower(name+"tower");
+        temp.setLocation(x, y);
+        towerDefense.addTower(index, temp);
+    }
 }

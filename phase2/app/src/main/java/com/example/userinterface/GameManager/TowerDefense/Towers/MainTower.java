@@ -7,8 +7,6 @@ import com.example.userinterface.GameManager.TowerDefense.Enemy;
 public class MainTower implements Towers {
     public int waitTime, time;
     String type;
-
-    String side;
     int x;
     int y;
 
@@ -19,7 +17,11 @@ public class MainTower implements Towers {
         if (enemy.getY() > y - range && enemy.getY() < y + range) {
             if (time <= 0) {
                 time = waitTime;
-                return ammoFactory.buildAmmunition(type, side);
+                System.out.println("Fasdfasdfasdfbajskdgfjasdgfhagskfgasifuasgfadagua");
+                Ammo ammo = ammoFactory.buildAmmunition(type);
+                System.out.println(ammo);
+                ammo.setTarget(enemy);
+                return ammo;
             } else {
                 time--;
                 return null;
