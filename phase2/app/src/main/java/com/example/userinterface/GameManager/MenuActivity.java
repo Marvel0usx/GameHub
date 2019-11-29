@@ -58,11 +58,18 @@ public class MenuActivity extends GameActivity {
                     case 3:
                         toGame(3, false);
                         break;
+                    case 4:
+                        toGame(4,false);
                     default:
                         break;
                 }
             }
         });
+    }
+
+    public void toScoreBoard(View view){
+        Intent intent = new Intent(MenuActivity.this, ScoreBoard.class);
+        startActivity(intent);
     }
 
     /**

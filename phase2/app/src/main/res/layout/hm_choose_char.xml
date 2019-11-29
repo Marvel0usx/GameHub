@@ -8,12 +8,13 @@
 
     <ImageButton
         android:id="@+id/charButton1"
-        android:layout_width="96dp"
-        android:layout_height="197dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="104dp"
+        android:layout_width="102dp"
+        android:layout_height="204dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="144dp"
         android:background="#9EE3E8"
+        android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/char1" />
@@ -21,11 +22,12 @@
     <ImageButton
         android:id="@+id/charButton2"
         android:layout_width="99dp"
-        android:layout_height="195dp"
+        android:layout_height="204dp"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="144dp"
         android:background="#9EE3E8"
+        android:scaleType="fitCenter"
         app:layout_constraintStart_toEndOf="@+id/charButton1"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/char2" />
@@ -33,37 +35,40 @@
     <ImageButton
         android:id="@+id/charButton3"
         android:layout_width="98dp"
-        android:layout_height="198dp"
+        android:layout_height="206dp"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="140dp"
         android:background="#9EE3E8"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.184"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:scaleType="fitCenter"
         app:layout_constraintStart_toEndOf="@+id/charButton2"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/char3" />
 
     <ImageButton
         android:id="@+id/charButton4"
-        android:layout_width="99dp"
-        android:layout_height="221dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="296dp"
+        android:layout_width="101dp"
+        android:layout_height="223dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="272dp"
         android:background="#9EE3E8"
+        android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/charButton1"
         app:srcCompat="@drawable/char4" />
 
     <ImageButton
         android:id="@+id/charButton5"
-        android:layout_width="103dp"
-        android:layout_height="216dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="104dp"
+        android:layout_width="106dp"
+        android:layout_height="220dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="72dp"
         android:background="#9EE3E8"
+        android:scaleType="fitCenter"
         app:layout_constraintStart_toEndOf="@+id/charButton4"
         app:layout_constraintTop_toBottomOf="@+id/charButton2"
         app:srcCompat="@drawable/char5" />
@@ -74,12 +79,28 @@
         android:layout_height="221dp"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="72dp"
         android:background="#9EE3E8"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.162"
+        app:layout_constraintHorizontal_bias="0.146"
         app:layout_constraintStart_toEndOf="@+id/charButton5"
         app:layout_constraintTop_toBottomOf="@+id/charButton3"
         app:srcCompat="@drawable/char6" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="328dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="60dp"
+        android:text="Choose your character:"
+        android:textColor="#030303"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/charButton2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.142" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

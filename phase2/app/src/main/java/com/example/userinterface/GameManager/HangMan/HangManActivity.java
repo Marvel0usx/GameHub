@@ -7,11 +7,15 @@ import android.util.Log;
 
 import com.example.userinterface.R;
 
+import java.io.InputStream;
+import java.util.List;
+
 public class HangManActivity extends Activity {
 
     GameState gameState;
     Difficulty diff;
     boolean practiceMode;
+    CSVReader csvReader;
 
 
     @Override
@@ -28,7 +32,6 @@ public class HangManActivity extends Activity {
             Log.d("message", "0 " + practiceMode);
         } else
             practiceMode = false;
-
         setEasyBtn();
         setModerateBtn();
         setHardBtn();
@@ -36,7 +39,10 @@ public class HangManActivity extends Activity {
 
     private void setEasyBtn() {
         findViewById(R.id.easyButton).setOnClickListener(v -> {
-            this.diff = new EasyDifficulty();
+            InputStream inputStream = getResources().openRawResource(R.raw.easy_word);
+            csvReader = new CSVReader(inputStream);
+            List<String[]> result = csvReader.read();
+            this.diff = new EasyDifficulty(result);
             Intent intent = new Intent(HangManActivity.this, ChooseCharacterActivity.class);
             intent.putExtra("difficulty", diff);
             intent.putExtra("practice", practiceMode);
@@ -46,7 +52,10 @@ public class HangManActivity extends Activity {
 
     private void setModerateBtn() {
         findViewById(R.id.moderateButton).setOnClickListener(v -> {
-            this.diff = new ModerateDifficulty();
+            InputStream inputStream = getResources().openRawResource(R.raw.easy_word);
+            csvReader = new CSVReader(inputStream);
+            List<String[]> result = csvReader.read();
+            this.diff = new ModerateDifficulty(result);
             Intent intent = new Intent(HangManActivity.this, ChooseCharacterActivity.class);
             intent.putExtra("difficulty", diff);
             intent.putExtra("practice", practiceMode);
@@ -56,7 +65,10 @@ public class HangManActivity extends Activity {
 
     private void setHardBtn() {
         findViewById(R.id.hardButton).setOnClickListener(v -> {
-            this.diff = new HardDifficulty();
+            InputStream inputStream = getResources().openRawResource(R.raw.easy_word);
+            csvReader = new CSVReader(inputStream);
+            List<String[]> result = csvReader.read();
+            diff = new HardDifficulty(result);
             Intent intent = new Intent(HangManActivity.this, ChooseCharacterActivity.class);
             intent.putExtra("difficulty", diff);
             intent.putExtra("practice", practiceMode);

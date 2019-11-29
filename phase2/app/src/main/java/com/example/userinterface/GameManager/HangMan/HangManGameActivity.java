@@ -33,7 +33,7 @@ public class HangManGameActivity extends GameActivity {
     protected void onCreate(Bundle savedInstanceState) {
         context = this;
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.hm_activity_gameee);
+        setContentView(R.layout.hm_activity_game);
         LinearLayout wordLayout = findViewById(R.id.word);
         Intent intent = getIntent();
         user = getUser();
@@ -46,19 +46,18 @@ public class HangManGameActivity extends GameActivity {
         ImageView characterImage = findViewById(resID);
         characterImage.setVisibility(VISIBLE);
 
-
         difficulty.setWord();
         difficulty.setNumLives();
 
-        // creates an array list of ImageView objects, each associated with a balloon image
-        // that gets displayed
         // initialize each Balloon object
         Balloon[] tempBalloons = loadBalloons();
 
         // initialize a new GameState object for this round
         gameState = new GameState(difficulty);
-        gameState.setBalloons(tempBalloons);
+
         gameState.setKeyword(difficulty.keyword);
+
+        gameState.setBalloons(tempBalloons);
         gameState.setRemainingBalloons(difficulty.numLives);
         wordLayout.removeAllViews();
         String keyword = gameState.getKeyWord();
@@ -97,6 +96,8 @@ public class HangManGameActivity extends GameActivity {
         // updates the gameState by calling the updateState method
         this.gameState.updateState(charGuessed);
         this.currentScore = gameState.getCurrentScore();
+        TextView scoreNumberDisplay = findViewById(R.id.scoreNumberDisplay);
+        scoreNumberDisplay.setText(Integer.toString(this.currentScore));
         endGame();
     }
 

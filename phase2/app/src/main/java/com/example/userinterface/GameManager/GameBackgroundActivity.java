@@ -23,7 +23,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-import static java.lang.Integer.parseInt;
 
 public class GameBackgroundActivity extends AsyncTask<Object, Void, String> {
 
@@ -44,6 +43,7 @@ public class GameBackgroundActivity extends AsyncTask<Object, Void, String> {
          */
         String urlUpdate = "http://159.203.20.150/save.php";
         String urlStat = "http://159.203.20.150/single_stat.php";
+        String urlScoreBoard =  "http://159.203.20.150/score_board.php";
         String task = (String) objects[0];
         if (task.equals("quit")) {
             //This is the case where the user quits the game in the middle and we save the level
@@ -112,6 +112,44 @@ public class GameBackgroundActivity extends AsyncTask<Object, Void, String> {
                         URLEncoder.encode("level", "UTF-8") + "=" + URLEncoder.encode(level + "", "UTF-8") + "&" +
                         URLEncoder.encode("current", "UTF-8") + "=" + URLEncoder.encode(current + "", "UTF-8");
                 bufferedWriter.write(myData);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+
+                InputStream inputStream = httpURLConnection.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+                String dataResponse = "";
+                String inputLine = "";
+                while ((inputLine = bufferedReader.readLine()) != null) {
+                    dataResponse += inputLine;
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                return dataResponse;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (ProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }else if (task.equals("scoreboard")) {
+            URL url = null;
+            try {
+                /**
+                 * This is the case where the user finishes a game and we update all the information
+                 * that is needed to update.
+                 */
+                url = new URL(urlScoreBoard);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
+                BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
                 bufferedWriter.flush();
                 bufferedWriter.close();
 
