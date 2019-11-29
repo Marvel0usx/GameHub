@@ -1,5 +1,6 @@
 package com.example.userinterface.GameManager.HangMan;
 
+import android.widget.TextView;
 
 public class GameState {
 

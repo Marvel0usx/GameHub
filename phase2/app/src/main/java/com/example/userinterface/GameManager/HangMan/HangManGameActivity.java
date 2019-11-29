@@ -97,6 +97,8 @@ public class HangManGameActivity extends GameActivity {
         // updates the gameState by calling the updateState method
         this.gameState.updateState(charGuessed);
         this.currentScore = gameState.getCurrentScore();
+        TextView scoreNumberDisplay = findViewById(R.id.scoreNumberDisplay);
+        scoreNumberDisplay.setText(Integer.toString(this.currentScore));
         endGame();
     }
 
