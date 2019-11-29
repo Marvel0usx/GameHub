@@ -9,7 +9,7 @@ public class Ammunition implements Ammo {
 
     int damage;
     int x, y;
-    String appearence;
+    String appearance;
     int speed;
     String direction;
     int textSize = 50;
@@ -60,7 +60,11 @@ public class Ammunition implements Ammo {
         this.target = enemy;
         if (target.getX()>x){
             direction = "left";
+            x+=130;
+            y+=100;
         }else{
+            x-=10;
+            y+=100;
             direction = "right";
         }
 
@@ -80,7 +84,7 @@ public class Ammunition implements Ammo {
     public void draw(Canvas canvas) {
         Paint paint = new Paint();
         paint.setTextSize(textSize);
-        canvas.drawText(appearence, x, y, paint);
+        canvas.drawText(appearance, x, y, paint);
         // decide each body parts' coordinates
 
     }

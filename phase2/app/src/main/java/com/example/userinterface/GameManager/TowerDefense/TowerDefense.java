@@ -81,6 +81,7 @@ public class TowerDefense implements ScoreSystem {
                     if (shoot != null) {
                         ammo.add(shoot);
                         shoot.setLocation(towers.getX(), towers.getY());
+                        shoot.setTarget(temp);
                         shoot.predictYPosition();
                     }
                 }
