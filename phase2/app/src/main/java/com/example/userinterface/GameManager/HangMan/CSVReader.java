@@ -6,10 +6,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CSVReader {
+public class CSVReader implements Serializable {
     InputStream inputStream;
 
     public CSVReader(InputStream inputStream) {

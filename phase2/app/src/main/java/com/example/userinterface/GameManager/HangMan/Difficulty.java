@@ -2,16 +2,16 @@ package com.example.userinterface.GameManager.HangMan;
 
 import java.io.InputStream;
 import java.io.Serializable;
+import java.util.List;
 
 public abstract class Difficulty implements Serializable {
 
     String keyword;
     int numLives;
-    CSVReader csvReader;
-    InputStream inputStream;
+    List<String[]> words;
 
-    public Difficulty(InputStream inputStream) {
-        this.inputStream = inputStream;
+    public Difficulty(List<String[]> words) {
+        this.words = words;
     }
 
     abstract void setWord(); //set the keywordsss
