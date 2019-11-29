@@ -82,9 +82,12 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
             for (Button button : buttonTowers) {
                 button.setEnabled(false);
             }
-            towerPositions.showAvailable(true);
+            towerDefensePresenter.towerClick();
         }
 
+    }
+    public void showTowerPositions(){
+        towerPositions.showAvailable(true);
     }
 
     public boolean enoughMoney() {

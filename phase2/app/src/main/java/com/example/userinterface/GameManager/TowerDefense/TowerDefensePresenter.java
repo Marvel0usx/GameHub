@@ -16,7 +16,11 @@ class TowerDefensePresenter implements VariableChangeListener {
         this.towerDefenseView = towerDefenseView;
     }
 
-   void onStartClicked(){
+    void towerClick() {
+        towerDefenseView.showTowerPositions();
+    }
+
+    void onStartClicked(){
        towerDefense.addEnemy();
        towerDefense.setGameStart(true);
        towerDefenseView.setButtonVisible();
@@ -40,7 +44,7 @@ class TowerDefensePresenter implements VariableChangeListener {
         towerDefenseView.endGame(won, score);
     }
 
-    public boolean enoughMoney(int cost){
+    boolean enoughMoney(int cost){
         if (cost > towerDefense.getCash()){
             return false;
         }else{
@@ -49,7 +53,7 @@ class TowerDefensePresenter implements VariableChangeListener {
         }
     }
 
-    public void setTower(int x, int y, String name, int index){
+    void setTower(int x, int y, String name, int index){
         TowerFactory towerFactory = new TowerFactory();
         Towers temp = towerFactory.buildTower(name+"tower");
         temp.setLocation(x, y);
