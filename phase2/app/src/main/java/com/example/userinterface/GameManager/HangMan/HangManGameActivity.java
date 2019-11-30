@@ -2,6 +2,7 @@ package com.example.userinterface.GameManager.HangMan;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -23,7 +24,7 @@ import static android.view.View.VISIBLE;
 
 public class HangManGameActivity extends GameActivity {
     private GameState gameState;
-
+    MediaPlayer mediaPlayer;
     private int currentScore;
     ImageView[] balloons;
     Difficulty difficulty;
@@ -37,6 +38,9 @@ public class HangManGameActivity extends GameActivity {
         context = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hm_activity_game);
+        mediaPlayer = MediaPlayer.create(this, R.raw.hm_background_music);
+        mediaPlayer.start();
+        mediaPlayer.setLooping(true);
         LinearLayout wordLayout = findViewById(R.id.word);
 
         Intent intent = getIntent();
@@ -130,6 +134,7 @@ public class HangManGameActivity extends GameActivity {
             HangManGameActivity.this.finish();
         } else if (gameState.remainingBalloons == 0) {
             // loses the game if all lives are used up/balloons have disappeared.
+            mediaPlayer.stop();
             goToIntermediate(false, practiceMode);
             Log.d("message", "3 " + practiceMode);
             HangManGameActivity.this.finish();
