@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/hm_backgroud">
@@ -15,9 +14,8 @@
         android:layout_marginStart="160dp"
         android:layout_marginLeft="160dp"
         android:layout_marginBottom="68dp"
-        android:text="Easy"
-        android:textSize="24sp"
-        app:fontFamily="@font/sketch_3d"
+        android:text="@string/Easy"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/moderateButton"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -25,12 +23,11 @@
         android:id="@+id/moderateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginLeft="128dp"
+        android:layout_marginStart="144dp"
+        android:layout_marginLeft="144dp"
         android:layout_marginBottom="72dp"
-        android:text="Moderate"
-        android:textSize="24sp"
-        app:fontFamily="@font/sketch_3d"
+        android:text="@string/Moderate"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/hardButton"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -41,9 +38,8 @@
         android:layout_marginStart="160dp"
         android:layout_marginLeft="160dp"
         android:layout_marginBottom="188dp"
-        android:text="Hard"
-        android:textSize="24sp"
-        app:fontFamily="@font/sketch_3d"
+        android:text="@string/Hard"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -54,7 +50,7 @@
         android:layout_marginStart="80dp"
         android:layout_marginLeft="80dp"
         android:layout_marginBottom="88dp"
-        android:text="Welcome to Hang Man! Please choose the desired level of difficulty:"
+        android:text="@string/welcome_to_hang_man_please_choose_the_desired_level_of_difficulty"
         app:layout_constraintBottom_toTopOf="@+id/easyButton"
         app:layout_constraintStart_toStartOf="parent" />
 
