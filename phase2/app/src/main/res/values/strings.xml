@@ -48,6 +48,28 @@
     <string name="login">Login</string>
     <string name="signup">SignUp</string>
     <string name="password">Password</string>
+    <string name="Easy">Easy</string>
+    <string name="Moderate">Moderate</string>
+    <string name="Hard">Hard</string>
+    <string name="welcome_to_hang_man_please_choose_the_desired_level_of_difficulty">Welcome to Hang Man! Please choose the desired level of difficulty:</string>
+    <string name="the_image_of_six_balloons">the image of six balloons</string>
+    <string name="the_image_of_five_balloons">the image of five balloons</string>
+    <string name="the_image_of_four_balloons">the image of four balloons</string>
+    <string name="the_image_of_three_balloons">the image of three balloons</string>
+    <string name="the_image_of_two_balloons">the image of two balloons</string>
+    <string name="the_image_of_one_balloon">the image of one balloon</string>
+    <string name="character_a">character A</string>
+    <string name="character_b">character B</string>
+    <string name="character_c">character C</string>
+    <string name="character_d">character D</string>
+    <string name="character_e">character E</string>
+    <string name="character_f">character F</string>
+    <string name="the_coin_icon">the coin icon</string>
+    <string name="the_hint_icon">the hint icon</string>
+    <string name="_0">0</string>
+    <string name="score">Score:</string>
+    <string name="hint">Hint</string>
+    <string name="choose_your_character">Choose your character:</string>
 
 
 </resources>

@@ -65,7 +65,7 @@ public class HangManActivity extends Activity {
 
     private void setHardBtn() {
         findViewById(R.id.hardButton).setOnClickListener(v -> {
-            InputStream inputStream = getResources().openRawResource(R.raw.easy_word);
+            InputStream inputStream = getResources().openRawResource(R.raw.hard_word);
             csvReader = new CSVReader(inputStream);
             List<String[]> result = csvReader.read();
             diff = new HardDifficulty(result);
