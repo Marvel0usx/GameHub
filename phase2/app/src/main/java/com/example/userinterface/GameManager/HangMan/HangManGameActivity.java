@@ -6,10 +6,13 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.userinterface.GameManager.GameActivity;
@@ -39,6 +42,7 @@ public class HangManGameActivity extends GameActivity {
         mediaPlayer.start();
         mediaPlayer.setLooping(true);
         LinearLayout wordLayout = findViewById(R.id.word);
+
         Intent intent = getIntent();
         user = getUser();
 
@@ -52,6 +56,8 @@ public class HangManGameActivity extends GameActivity {
 
         difficulty.setWord();
         difficulty.setNumLives();
+
+
 
         // initialize each Balloon object
         Balloon[] tempBalloons = loadBalloons();
@@ -146,6 +152,28 @@ public class HangManGameActivity extends GameActivity {
             temp[i] = new Balloon(balloons[i]);
         }
         return temp;
+    }
+
+    public void showHint(View view){
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.hm_hint_popup, null);
+
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+        ((TextView)popupWindow.getContentView().findViewById(R.id.hintPopUp)).setText("Category: " + difficulty.category);
+
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
     }
 
 

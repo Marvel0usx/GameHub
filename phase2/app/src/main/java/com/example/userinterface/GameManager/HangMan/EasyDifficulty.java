@@ -1,6 +1,10 @@
 package com.example.userinterface.GameManager.HangMan;
 
 
+import android.widget.TextView;
+
+import com.example.userinterface.R;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -21,7 +25,10 @@ public class EasyDifficulty extends Difficulty implements Serializable {
         Random random = new Random();
         int i = random.nextInt(words.size());
         String word = words.get(i)[0];
+        String category = words.get(i)[1];
         this.keyword = word;
+        this.category = category;
+
     }
 
     void setNumLives() {
