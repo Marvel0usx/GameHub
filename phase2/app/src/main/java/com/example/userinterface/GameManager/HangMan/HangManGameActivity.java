@@ -32,7 +32,6 @@ public class HangManGameActivity extends GameActivity {
     User user;
     boolean practiceMode;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         context = this;
