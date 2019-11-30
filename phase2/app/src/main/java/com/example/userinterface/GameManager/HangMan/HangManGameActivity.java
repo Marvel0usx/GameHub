@@ -126,6 +126,7 @@ public class HangManGameActivity extends GameActivity {
 
         if (gameState.numCorr == gameState.keywordLen) {
             // if all letters have been guessed, wins the game
+            mediaPlayer.stop();
             this.currentScore += 100;
             if (!practiceMode)
                 user.getStatTracker().addToCurrScore(currentScore);
