@@ -163,7 +163,7 @@ public class HangManGameActivity extends GameActivity {
 
         boolean focusable = true; // lets taps outside the popup also dismiss it
         PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-        ((TextView)popupWindow.getContentView().findViewById(R.id.hintPopUp)).setText("Category: " + difficulty.category);
+        ((TextView)popupWindow.getContentView().findViewById(R.id.hintPopUp)).setText("HINT: " + difficulty.hint);
 
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
