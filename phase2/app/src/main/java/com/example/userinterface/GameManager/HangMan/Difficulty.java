@@ -9,6 +9,7 @@ public abstract class Difficulty implements Serializable {
     String keyword;
     int numLives;
     List<String[]> words;
+    String category;
 
     public Difficulty(List<String[]> words) {
         this.words = words;
@@ -21,5 +22,6 @@ public abstract class Difficulty implements Serializable {
     int getNumLives() {
         return numLives;
     }
+
 
 }
