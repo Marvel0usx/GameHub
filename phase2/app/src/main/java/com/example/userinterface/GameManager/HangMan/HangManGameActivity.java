@@ -154,7 +154,7 @@ public class HangManGameActivity extends GameActivity {
         return temp;
     }
 
-    public void onButtonShowPopupWindow(View view){
+    public void showHint(View view){
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.hm_hint_popup, null);
 
@@ -163,7 +163,7 @@ public class HangManGameActivity extends GameActivity {
 
         boolean focusable = true; // lets taps outside the popup also dismiss it
         PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-        ((TextView)popupWindow.getContentView().findViewById(R.id.hintPopUp)).setText(difficulty.category);
+        ((TextView)popupWindow.getContentView().findViewById(R.id.hintPopUp)).setText("Category: " + difficulty.category);
 
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 

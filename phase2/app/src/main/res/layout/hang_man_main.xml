@@ -51,4 +51,5 @@
         android:text="Welcome to Hang Man! Please choose the desired level of difficulty:"
         app:layout_constraintBottom_toTopOf="@+id/easyButton"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
