@@ -12,7 +12,7 @@ import java.util.List;
 
 public class HangManActivity extends Activity {
 
-    HangManPresentor hangManPresentor;
+    GameState gameState;
     Difficulty diff;
     boolean practiceMode;
     CSVReader csvReader;

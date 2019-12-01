@@ -2,7 +2,7 @@ package com.example.userinterface.GameManager.HangMan;
 
 import android.widget.TextView;
 
-public class HangManPresentor {
+public class GameState {
 
     int keywordLen; // number of characters in current word
     int remainingBalloons; // number of balloons left, decreases each time a wrong letter is gues【sed
@@ -16,7 +16,7 @@ public class HangManPresentor {
     /**
      * Constructs a new GameState object
      */
-    HangManPresentor(Difficulty difficulty) {
+    GameState(Difficulty difficulty) {
 
         this.difficulty = difficulty;
 
