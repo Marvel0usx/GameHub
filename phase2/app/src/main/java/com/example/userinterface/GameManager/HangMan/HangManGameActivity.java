@@ -38,53 +38,17 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         context = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hm_activity_game);
-        mediaPlayer = MediaPlayer.create(this, R.raw.hm_background_music);
-        mediaPlayer.start();
-        mediaPlayer.setLooping(true);
-        LinearLayout wordLayout = findViewById(R.id.word);
-
+        setMediaPlayer();
         Intent intent = getIntent();
         user = getUser();
-
         difficulty = (Difficulty) intent.getSerializableExtra("difficulty");
-
+        setDifficulty();
         character = (String) intent.getSerializableExtra("character");
         int resID = getResources().getIdentifier(character, "id", getPackageName());
-
         ImageView characterImage = findViewById(resID);
         characterImage.setVisibility(VISIBLE);
-
-        difficulty.setWord();
-        difficulty.setNumLives();
-        // initialize each Balloon object
-        Balloon[] tempBalloons = showBalloons();
-        // initialize a new GameState object for this round
-        gameState = new GameState(difficulty);
-        gameState.setKeyword(difficulty.keyword);
-        gameState.setBalloons(tempBalloons);
-        gameState.setRemainingBalloons(difficulty.numLives);
-        wordLayout.removeAllViews();
-        String keyword = gameState.getKeyWord();
-        // an array that stores all letters of the correct word
-        AnswerKeyLetter[] answerKey = new AnswerKeyLetter[keyword.length()];
-        // each letter of the correct word is represented as a TextView object
-        this.hangManPresenter = new HangManPresenter(this, gameState);
-        TextView[] characterViews = new TextView[keyword.length()];
-        for (int c = 0; c < keyword.length(); c++) {
-            answerKey[c] = new AnswerKeyLetter(keyword.charAt(c)); // makes a new AnswerKeyLetter
-            characterViews[c] = new TextView(this); // creates a TextView object
-            characterViews[c].setText("" + keyword.charAt(c));
-            characterViews[c].setLayoutParams(new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            characterViews[c].setGravity(Gravity.CENTER);
-            // set it to be white so it does not show up against the white background
-            characterViews[c].setTextColor(Color.WHITE);
-            characterViews[c].setBackgroundResource(R.drawable.hm_letter_background);
-            answerKey[c].addTextView(characterViews[c]);
-            wordLayout.addView(answerKey[c].getTextView());
-        }
-
-        gameState.setAnswerKeys(answerKey);
+        setGameState();
+        setAnswerKey();
     }
 
     @Override
@@ -172,6 +136,50 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         });
     }
 
+    void setDifficulty(){
+        difficulty.setWord();
+        difficulty.setNumLives();
+    }
 
+    void setGameState(){
+        // initialize each Balloon object
+        Balloon[] tempBalloons = showBalloons();
+        // initialize a new GameState object for this round
+        gameState = new GameState(difficulty);
+        gameState.setKeyword(difficulty.keyword);
+        gameState.setBalloons(tempBalloons);
+        gameState.setRemainingBalloons(difficulty.numLives);
+    }
 
+    void setMediaPlayer(){
+        mediaPlayer = MediaPlayer.create(this, R.raw.hm_background_music);
+        mediaPlayer.start();
+        mediaPlayer.setLooping(true);
+    }
+
+    void setAnswerKey(){
+        LinearLayout wordLayout = findViewById(R.id.word);
+        wordLayout.removeAllViews();
+        String keyword = gameState.getKeyWord();
+        // an array that stores all letters of the correct word
+        AnswerKeyLetter[] answerKey = new AnswerKeyLetter[keyword.length()];
+        // each letter of the correct word is represented as a TextView object
+        this.hangManPresenter = new HangManPresenter(this, gameState);
+        TextView[] characterViews = new TextView[keyword.length()];
+        for (int c = 0; c < keyword.length(); c++) {
+            answerKey[c] = new AnswerKeyLetter(keyword.charAt(c)); // makes a new AnswerKeyLetter
+            characterViews[c] = new TextView(this); // creates a TextView object
+            characterViews[c].setText("" + keyword.charAt(c));
+            characterViews[c].setLayoutParams(new ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            characterViews[c].setGravity(Gravity.CENTER);
+            // set it to be white so it does not show up against the white background
+            characterViews[c].setTextColor(Color.WHITE);
+            characterViews[c].setBackgroundResource(R.drawable.hm_letter_background);
+            answerKey[c].addTextView(characterViews[c]);
+            wordLayout.addView(answerKey[c].getTextView());
+        }
+
+        gameState.setAnswerKeys(answerKey);
+    }
 }
