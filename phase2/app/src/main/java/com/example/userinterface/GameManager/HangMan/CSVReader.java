@@ -1,6 +1,5 @@
 package com.example.userinterface.GameManager.HangMan;
 
-import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,14 +9,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CSVReader implements Serializable {
-    InputStream inputStream;
+class CSVReader implements Serializable {
+    private InputStream inputStream;
 
-    public CSVReader(InputStream inputStream) {
+    CSVReader(InputStream inputStream) {
         this.inputStream = inputStream;
     }
 
-    public List<String[]> read(){
+    List<String[]> read(){
         List<String[]> result = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         try {

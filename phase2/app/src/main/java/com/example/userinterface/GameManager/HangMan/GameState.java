@@ -1,29 +1,18 @@
 package com.example.userinterface.GameManager.HangMan;
 
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.TextView;
 
 import com.example.userinterface.GameManager.BadgeCollector;
-import com.example.userinterface.R;
-
-import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class GameState implements BadgeCollector {
 
     int keywordLen; // number of characters in current word
     int remainingBalloons; // number of balloons left, decreases each time a wrong letter is gues【sed
     int numCorr; // number of letters correctly guessed
-    Difficulty difficulty;
+    private Difficulty difficulty;
     private String keyword;
     private Balloon[] balloons; // an array of Balloon objects
     private AnswerKeyLetter[] answerKeyLetters; // all of the correct letters in correct order
     private int currentScore;
-    boolean fortunateBadgeCollected;
 
     /**
      * Constructs a new GameState object

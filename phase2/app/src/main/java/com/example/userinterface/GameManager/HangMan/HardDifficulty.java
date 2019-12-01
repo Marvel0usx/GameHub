@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Random;
 
-public class HardDifficulty extends Difficulty implements Serializable {
+class HardDifficulty extends Difficulty implements Serializable {
 
-    public HardDifficulty(List<String[]> words) {
+    HardDifficulty(List<String[]> words) {
         super(words);
         this.correctGuessPoints = 40;
         this.wrongGuessPoints = -20;
