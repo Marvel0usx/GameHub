@@ -23,9 +23,9 @@ import static android.view.View.VISIBLE;
 
 
 public class HangManGameActivity extends GameActivity implements HangManView{
-    private GameState gameState;
+    HangManPresentor hangManPresentor;
     MediaPlayer mediaPlayer;
-    private int currentScore;
+    int currentScore;
     ImageView[] balloons;
     Difficulty difficulty;
     String character;
@@ -56,18 +56,16 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         difficulty.setWord();
         difficulty.setNumLives();
 
-
-
         // initialize each Balloon object
         Balloon[] tempBalloons = showBalloons();
 
         // initialize a new GameState object for this round
-        gameState = new GameState(difficulty);
-        gameState.setKeyword(difficulty.keyword);
-        gameState.setBalloons(tempBalloons);
-        gameState.setRemainingBalloons(difficulty.numLives);
+        hangManPresentor = new HangManPresentor(difficulty);
+        hangManPresentor.setKeyword(difficulty.keyword);
+        hangManPresentor.setBalloons(tempBalloons);
+        hangManPresentor.setRemainingBalloons(difficulty.numLives);
         wordLayout.removeAllViews();
-        String keyword = gameState.getKeyWord();
+        String keyword = hangManPresentor.getKeyWord();
         // an array that stores all letters of the correct word
         AnswerKeyLetter[] answerKey = new AnswerKeyLetter[keyword.length()];
         // each letter of the correct word is represented as a TextView object
@@ -87,7 +85,7 @@ public class HangManGameActivity extends GameActivity implements HangManView{
             wordLayout.addView(answerKey[c].getTextView());
         }
 
-        gameState.setAnswerKeys(answerKey);
+        hangManPresentor.setAnswerKeys(answerKey);
     }
 
     /**
@@ -101,8 +99,8 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         v.setEnabled(false);
         v.setBackgroundResource(R.drawable.hm_letter_clicked);
         // updates the gameState by calling the updateState method
-        this.gameState.updateState(charGuessed);
-        this.currentScore = gameState.getCurrentScore();
+        this.hangManPresentor.updateState(charGuessed);
+        this.currentScore = hangManPresentor.getCurrentScore();
         TextView scoreNumberDisplay = findViewById(R.id.scoreNumberDisplay);
         scoreNumberDisplay.setText(Integer.toString(this.currentScore));
         endGame();
@@ -121,7 +119,7 @@ public class HangManGameActivity extends GameActivity implements HangManView{
             practiceMode = false;
         Log.d("message", "1 " + practiceMode);
 
-        if (gameState.numCorr == gameState.keywordLen) {
+        if (hangManPresentor.numCorr == hangManPresentor.keywordLen) {
             // if all letters have been guessed, wins the game
             this.currentScore += 100;
             if (!practiceMode)
@@ -129,7 +127,7 @@ public class HangManGameActivity extends GameActivity implements HangManView{
             goToIntermediate(true, practiceMode);
             Log.d("message", "2 " + practiceMode);
             HangManGameActivity.this.finish();
-        } else if (gameState.remainingBalloons == 0) {
+        } else if (hangManPresentor.remainingBalloons == 0) {
             // loses the game if all lives are used up/balloons have disappeared.
             mediaPlayer.stop();
             goToIntermediate(false, practiceMode);

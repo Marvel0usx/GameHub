@@ -30,7 +30,6 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
         this.difficulty = (Difficulty) difficultyLevel.getSerializableExtra("difficulty");
     }
 
-
     public void showCharButtons(){
         String[] characters = {"charButton1", "charButton2", "charButton3", "charButton4",
                 "charButton5", "charButton6"};
@@ -47,12 +46,5 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
                 startActivity(intent);
             });
         }
-
-
     }
-
-
-
-
-
 }
