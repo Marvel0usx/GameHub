@@ -81,7 +81,7 @@ public class GameState implements BadgeCollector {
         // only if hard level is selected
         if (this.difficulty.type.equals("Hard")){
             double randomDouble = Math.random();
-            return (randomDouble < 0.3);
+            return (randomDouble < 0.2);
         }
         return false;
     }

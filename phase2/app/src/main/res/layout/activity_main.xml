@@ -8,12 +8,11 @@
     android:background="@drawable/mainbackground">
 
 
-
     <EditText
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="192dp"
+        android:layout_marginTop="124dp"
         android:layout_marginEnd="88dp"
         android:layout_marginRight="88dp"
         android:ems="10"
@@ -27,22 +26,28 @@
 
     <Button
         android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_width="144dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="152dp"
         android:layout_marginEnd="80dp"
         android:layout_marginRight="80dp"
+        android:background="@drawable/menu_button_background"
         android:text="@string/login"
+        android:textSize="20sp"
+        app:fontFamily="@font/bubblegum_sans"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <Button
         android:id="@+id/register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="136dp"
+        android:layout_height="41dp"
         android:layout_marginEnd="80dp"
         android:layout_marginRight="80dp"
+        android:background="@drawable/menu_button_background"
         android:text="@string/signup"
+        android:textSize="20sp"
+        app:fontFamily="@font/bubblegum_sans"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login"
@@ -52,7 +57,7 @@
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="84dp"
         android:layout_marginEnd="96dp"
         android:layout_marginRight="96dp"
         android:ems="10"
