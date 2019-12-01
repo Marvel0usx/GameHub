@@ -65,7 +65,6 @@ public class ScoreBoard extends AppCompatActivity implements AdapterView.OnItemS
             textView.setLayoutParams(params);
             textView.setText("User" + ": " + newUsername + "Score:" + highScore);
             textView.setTextSize(20);
-            textView.setTextColor(0);
             layout.addView(textView);
             textViews.add(textView);
 
