@@ -10,23 +10,35 @@ public class BulletFactory {
             case "Player":
                 if (mode == 1) {
                     bulletList.add(new PlayerBullet(x + 37, y, 25, -8));
-                } else {
+                }
+                if (mode == 2){
                     bulletList.add(new PlayerBullet(x+37, y, 25, -8));
                     bulletList.add(new PlayerBullet(x+87, y, 25, -8));
                     bulletList.add(new PlayerBullet(x-13, y, 25, -8));
+                }
+                if (mode == 3){
+
+                    bulletList.add(new PlayerBullet(x+117, y, 25, -8));
+                    bulletList.add(new PlayerBullet(x+37, y, 25, -8));
+                    bulletList.add(new PlayerBullet(x+77, y, 25, -8));
+                    bulletList.add(new PlayerBullet(x+37-40, y, 25, -8));
+                    bulletList.add(new PlayerBullet(x+37-80, y, 25, -8));
                 }
                 break;
             case "Enemy":
                 if (mode == 1) {
                     bulletList.add(new EnemyBullet(x, y, 100, 4));
-                    System.out.println("this ran!");
                 }
                 if (mode == 2) {
-                    bulletList.add(new EnemyBullet(x + 50, y, 100, 4));
-                    bulletList.add(new EnemyBullet(x - 50, y, 100, 4));
-                    bulletList.add(new EnemyBullet(x, y, 100, 4));
+                    bulletList.add(new EnemyBullet(x + 50, y, 100, 10));
+                    bulletList.add(new EnemyBullet(x - 50, y, 100, 10));
+                    bulletList.add(new EnemyBullet(x, y, 100, 10));
                 }
                 break;
+            case "Boss":
+                bulletList.add(new EnemyBullet(x + 50, y, 100, 20));
+                bulletList.add(new EnemyBullet(x - 50, y, 100, 20));
+                bulletList.add(new EnemyBullet(x, y, 100, 20));
         }
         return bulletList;
     }

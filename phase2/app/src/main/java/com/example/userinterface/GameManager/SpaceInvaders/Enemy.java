@@ -7,12 +7,12 @@ import java.util.ArrayList;
 
 public class Enemy extends Ship {
     private int mode;
-    private ArrayList<Bullet> enemyBullets;
+    public ArrayList<Bullet> enemyBullets;
 
     Enemy(int x, int y, int damage, int xSpeed, int ySpeed, int lives) {
         super(x, y, damage, ySpeed, lives);
         setXSpeed(xSpeed);
-        this.appearance = "💠";
+        this.appearance = "\uD83D\uDC19";
         this.paintText.setColor(Color.GREEN);
         this.paintText.setTextSize(80);
         this.mode = 1;
