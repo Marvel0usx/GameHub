@@ -18,10 +18,10 @@ public class Stats extends GameActivity {
         super.onCreate(savedInstanceState);
         user = getUser();
         setContentView(R.layout.activity_stats);
-        userLevel = findViewById(R.id.userlevel);
-        highScore = findViewById(R.id.highscore);
+        userLevel = findViewById(R.id.userLevel);
+        highScore = findViewById(R.id.highScore);
         currentScore = findViewById(R.id.currentScore);
-        gamesPlayed = findViewById(R.id.gamesplayed);
+        gamesPlayed = findViewById(R.id.gamesPlayed);
         userLevel.setText(user.getStatTracker().getLevel() + "");
         highScore.setText(user.getStatTracker().getHighScore() + "");
         gamesPlayed.setText(user.getStatTracker().getNumOfGames() + "");

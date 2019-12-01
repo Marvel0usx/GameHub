@@ -2,10 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/hm_backgroud">
+    android:background="@drawable/hm_background">
 
 
     <Button
@@ -48,7 +47,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/welcometext"
+        android:id="@+id/welcome_text"
         android:layout_width="341dp"
         android:layout_height="117dp"
         android:layout_marginStart="32dp"
@@ -70,7 +69,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.961"
-        app:srcCompat="@drawable/char1" />
+        app:srcCompat="@drawable/char1"
+        android:contentDescription="@string/the_image_of_char_a" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -82,7 +82,8 @@
         app:layout_constraintStart_toEndOf="@+id/imageView5"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.984"
-        app:srcCompat="@drawable/char2" />
+        app:srcCompat="@drawable/char2"
+        android:contentDescription="@string/the_image_of_char_b" />
 
     <ImageView
         android:id="@+id/imageView7"
@@ -93,7 +94,8 @@
         android:layout_marginTop="568dp"
         app:layout_constraintStart_toEndOf="@+id/imageView5"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/char3" />
+        app:srcCompat="@drawable/char3"
+        android:contentDescription="@string/the_image_of_char_c" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -102,7 +104,8 @@
         android:layout_marginTop="572dp"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/char4" />
+        app:srcCompat="@drawable/char4"
+        android:contentDescription="@string/the_image_of_char_d" />
 
     <ImageView
         android:id="@+id/imageView10"
@@ -113,7 +116,8 @@
         android:layout_marginTop="556dp"
         app:layout_constraintStart_toStartOf="@+id/imageView8"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/char5" />
+        app:srcCompat="@drawable/char5"
+        android:contentDescription="@string/the_image_of_char_e" />
 
     <ImageView
         android:id="@+id/imageView11"
@@ -122,6 +126,7 @@
         android:layout_marginTop="548dp"
         app:layout_constraintStart_toEndOf="@+id/imageView10"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/char6" />
+        app:srcCompat="@drawable/char6"
+        android:contentDescription="@string/the_image_of_char_f" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
