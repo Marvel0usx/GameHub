@@ -22,7 +22,7 @@ import com.example.userinterface.R;
 import static android.view.View.VISIBLE;
 
 
-public class HangManGameActivity extends GameActivity {
+public class HangManGameActivity extends GameActivity implements HangManView{
     private GameState gameState;
     MediaPlayer mediaPlayer;
     private int currentScore;
@@ -59,13 +59,11 @@ public class HangManGameActivity extends GameActivity {
 
 
         // initialize each Balloon object
-        Balloon[] tempBalloons = loadBalloons();
+        Balloon[] tempBalloons = showBalloons();
 
         // initialize a new GameState object for this round
         gameState = new GameState(difficulty);
-
         gameState.setKeyword(difficulty.keyword);
-
         gameState.setBalloons(tempBalloons);
         gameState.setRemainingBalloons(difficulty.numLives);
         wordLayout.removeAllViews();
@@ -140,7 +138,7 @@ public class HangManGameActivity extends GameActivity {
         }
     }
 
-    public Balloon[] loadBalloons() {
+    public Balloon[] showBalloons() {
         int numLives = difficulty.getNumLives();
         balloons = new ImageView[numLives];
         Balloon[] temp = new Balloon[numLives];
