@@ -14,6 +14,7 @@
         android:layout_marginTop="200dp"
         android:gravity="center"
         android:textSize="40sp"
+        app:fontFamily="@font/breadcrumbs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,6 +26,7 @@
         android:layout_marginTop="44dp"
         android:onClick="next"
         android:text="next"
+        app:fontFamily="@font/breadcrumbs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/winOrLose" />
@@ -36,6 +38,7 @@
         android:layout_marginTop="60dp"
         android:onClick="quit"
         android:text="quit"
+        app:fontFamily="@font/breadcrumbs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
