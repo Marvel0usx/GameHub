@@ -85,7 +85,7 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
     }
 
     public boolean enoughMoney() {
-        int cost = Integer.parseInt(selectedTower.getContentDescription().toString().split(",")[1]);
+        int cost = Integer.parseInt(selectedTower.getContentDescription().toString().split(" ")[1]);
         return towerDefensePresenter.enoughMoney(cost);
     }
 
@@ -101,7 +101,7 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
             } else if (tower == btnTower3) {
                 view.setBackgroundResource(R.drawable.tower3copy);
             }
-            String [] name = selectedTower.getContentDescription().toString().split(",");
+            String [] name = selectedTower.getContentDescription().toString().split(" ");
             towerDefensePresenter.setTower((int)view.getX(), (int)view.getY(),name[0],index);
             for (Button button : buttonTowers) {
                 button.setEnabled(true);

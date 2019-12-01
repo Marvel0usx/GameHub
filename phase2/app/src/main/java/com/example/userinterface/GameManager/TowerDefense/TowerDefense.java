@@ -4,7 +4,6 @@ import android.graphics.Canvas;
 import android.util.Log;
 import android.util.SparseArray;
 
-import com.example.userinterface.GameManager.ScoreSystem;
 import com.example.userinterface.GameManager.TowerDefense.DifferentAmmo.Ammo;
 import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Dragon;
 import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Enemies;
@@ -15,7 +14,10 @@ import com.example.userinterface.GameManager.VariableChangeListener;
 
 import java.util.ArrayList;
 
-public class TowerDefense implements ScoreSystem {
+/**
+ * This is the tower defense class that controls most of the functions of the game.
+ */
+public class TowerDefense{
 
     private int currentScore;
     private int lives = 5;
@@ -47,6 +49,10 @@ public class TowerDefense implements ScoreSystem {
         this.listener = listener;
     }
 
+    /**
+     * updating the information board and all the enemies and bullets.
+     * While checking if the game is over or not.
+     */
     void update() {
         updateInformationBoard();
         if (gameStart) {
@@ -58,11 +64,17 @@ public class TowerDefense implements ScoreSystem {
         }
     }
 
+    /**
+     * Generate a new wave of enemy
+     */
     private void generateNewWave() {
         if (waves.get(currentWave).isEmpty())
             currentWave++;
     }
 
+    /**
+     * Update
+     */
     private void updateInformationBoard() {
         informationBoard.setAppearance(cash);
         informationBoard.setLivesAppearance(lives);
@@ -221,7 +233,6 @@ public class TowerDefense implements ScoreSystem {
         return win;
     }
 
-    @Override
     public int getGameScore() {
         if (lives > 0)
             currentScore += lives * 100; //each life left adds another 100 pts.
