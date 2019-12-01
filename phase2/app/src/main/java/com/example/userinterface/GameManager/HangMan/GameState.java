@@ -1,8 +1,19 @@
 package com.example.userinterface.GameManager.HangMan;
 
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
-public class HangManPresentor {
+import com.example.userinterface.GameManager.BadgeCollector;
+import com.example.userinterface.R;
+
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+
+public class GameState implements BadgeCollector {
 
     int keywordLen; // number of characters in current word
     int remainingBalloons; // number of balloons left, decreases each time a wrong letter is gues【sed
@@ -12,11 +23,12 @@ public class HangManPresentor {
     private Balloon[] balloons; // an array of Balloon objects
     private AnswerKeyLetter[] answerKeyLetters; // all of the correct letters in correct order
     private int currentScore;
+    boolean fortunateBadgeCollected;
 
     /**
      * Constructs a new GameState object
      */
-    HangManPresentor(Difficulty difficulty) {
+    GameState(Difficulty difficulty) {
 
         this.difficulty = difficulty;
 
@@ -64,6 +76,33 @@ public class HangManPresentor {
         return this.currentScore;
     }
 
+    @Override
+    public boolean collectAdventurousBadge(){
+        // only if hard level is selected
+        if (this.difficulty.type.equals("Hard")){
+            double randomDouble = Math.random();
+            return (randomDouble < 0.3);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean collectFortunateBadge(){
+        // randomly collected
+        double randomDouble = Math.random();
+        return (randomDouble < 0.1);
+    }
+
+    @Override
+    public boolean collectStrategicBadge(){
+        // randomly collected if there are more than 2 lives left with only 1 letter yet to be guessed
+        if (this.currentScore > 30){
+            double randomDouble = Math.random();
+            return (randomDouble < 0.5);
+        }
+        return false;
+    }
+
 
     /**
      * Based on the character guessed, correctness of this letter will be evaluated, and if correct
@@ -73,18 +112,23 @@ public class HangManPresentor {
      */
     void updateState(char charGuessed) { // updates the correct letters guessed (if any)
         boolean correct = false;
+        //if ((remainingBalloons > 2) && numCorr > (keywordLen - 2)){
+         //   fortunateBadgeCollected = collectFortunateBadge();
+        //}
         for (int i = 0; i < this.keyword.length(); i++) {
             if (this.answerKeyLetters[i].letter == (charGuessed)) { // a correct letter being guessed
                 correct = true;
                 this.answerKeyLetters[i].turnBlack(); // shows the letter on screen
                 numCorr += 1;
-                currentScore += 10;
+                currentScore += difficulty.correctGuessPoints;
             }
         }
         if (!correct) {
             remainingBalloons -= 1;
-            currentScore -= 20;
+            currentScore += difficulty.wrongGuessPoints;
             this.balloons[remainingBalloons].disappear();
         }
+
     }
+
 }

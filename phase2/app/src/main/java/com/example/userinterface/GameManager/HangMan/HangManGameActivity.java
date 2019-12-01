@@ -23,86 +23,65 @@ import static android.view.View.VISIBLE;
 
 
 public class HangManGameActivity extends GameActivity implements HangManView{
-    HangManPresentor hangManPresentor;
+    GameState gameState;
     MediaPlayer mediaPlayer;
     int currentScore;
     ImageView[] balloons;
     Difficulty difficulty;
     String character;
     User user;
+    View rootView;
+    View view;
     boolean practiceMode;
+    boolean adventurousBadgeCollected;
+    HangManPresenter hangManPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        rootView = findViewById(android.R.id.content).getRootView();
         context = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hm_activity_game);
-        mediaPlayer = MediaPlayer.create(this, R.raw.hm_background_music);
-        mediaPlayer.start();
-        mediaPlayer.setLooping(true);
-        LinearLayout wordLayout = findViewById(R.id.word);
-
+        setMediaPlayer();
         Intent intent = getIntent();
         user = getUser();
-
         difficulty = (Difficulty) intent.getSerializableExtra("difficulty");
-
+        setDifficulty();
         character = (String) intent.getSerializableExtra("character");
         int resID = getResources().getIdentifier(character, "id", getPackageName());
-
         ImageView characterImage = findViewById(resID);
         characterImage.setVisibility(VISIBLE);
-
-        difficulty.setWord();
-        difficulty.setNumLives();
-
-        // initialize each Balloon object
-        Balloon[] tempBalloons = showBalloons();
-
-        // initialize a new GameState object for this round
-        hangManPresentor = new HangManPresentor(difficulty);
-        hangManPresentor.setKeyword(difficulty.keyword);
-        hangManPresentor.setBalloons(tempBalloons);
-        hangManPresentor.setRemainingBalloons(difficulty.numLives);
-        wordLayout.removeAllViews();
-        String keyword = hangManPresentor.getKeyWord();
-        // an array that stores all letters of the correct word
-        AnswerKeyLetter[] answerKey = new AnswerKeyLetter[keyword.length()];
-        // each letter of the correct word is represented as a TextView object
-
-        TextView[] characterViews = new TextView[keyword.length()];
-        for (int c = 0; c < keyword.length(); c++) {
-            answerKey[c] = new AnswerKeyLetter(keyword.charAt(c)); // makes a new AnswerKeyLetter
-            characterViews[c] = new TextView(this); // creates a TextView object
-            characterViews[c].setText("" + keyword.charAt(c));
-            characterViews[c].setLayoutParams(new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            characterViews[c].setGravity(Gravity.CENTER);
-            // set it to be white so it does not show up against the white background
-            characterViews[c].setTextColor(Color.WHITE);
-            characterViews[c].setBackgroundResource(R.drawable.hm_letter_background);
-            answerKey[c].addTextView(characterViews[c]);
-            wordLayout.addView(answerKey[c].getTextView());
-        }
-
-        hangManPresentor.setAnswerKeys(answerKey);
+        setGameState();
+        setAnswerKey();
     }
 
+    @Override
     /**
      * Guesses a new letter
      *
      * @param v View object
      */
     public void makeGuess(View v) {
+        Boolean adventurous = gameState.collectAdventurousBadge();
+        if (adventurous && !adventurousBadgeCollected){
+            showAdventurousBadge(rootView);
+            adventurousBadgeCollected = true;
+        }
+        Boolean fortunate = gameState.collectFortunateBadge();
+        if (fortunate){
+            showFortunateBadge(rootView);
+        }
         String letterGuessed = ((TextView) v).getText().toString();
         char charGuessed = letterGuessed.charAt(0);
         v.setEnabled(false);
         v.setBackgroundResource(R.drawable.hm_letter_clicked);
         // updates the gameState by calling the updateState method
-        this.hangManPresentor.updateState(charGuessed);
-        this.currentScore = hangManPresentor.getCurrentScore();
+        this.hangManPresenter.makeGuess(charGuessed);
+        this.currentScore = gameState.getCurrentScore();
         TextView scoreNumberDisplay = findViewById(R.id.scoreNumberDisplay);
         scoreNumberDisplay.setText(Integer.toString(this.currentScore));
+        Boolean strategic = gameState.collectStrategicBadge();
+        if (strategic) {showStrategicBadge(rootView);}
         endGame();
     }
 
@@ -119,15 +98,16 @@ public class HangManGameActivity extends GameActivity implements HangManView{
             practiceMode = false;
         Log.d("message", "1 " + practiceMode);
 
-        if (hangManPresentor.numCorr == hangManPresentor.keywordLen) {
+        if (gameState.numCorr == gameState.keywordLen) {
             // if all letters have been guessed, wins the game
+            mediaPlayer.stop();
             this.currentScore += 100;
             if (!practiceMode)
                 user.getStatTracker().addToCurrScore(currentScore);
             goToIntermediate(true, practiceMode);
             Log.d("message", "2 " + practiceMode);
             HangManGameActivity.this.finish();
-        } else if (hangManPresentor.remainingBalloons == 0) {
+        } else if (gameState.remainingBalloons == 0) {
             // loses the game if all lives are used up/balloons have disappeared.
             mediaPlayer.stop();
             goToIntermediate(false, practiceMode);
@@ -171,6 +151,117 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         });
     }
 
+    public void showStrategicBadge(View view){
+            LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+            View popupView = inflater.inflate(R.layout.badge_popup_window, null);
+
+            int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+            int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+            boolean focusable = true; // lets taps outside the popup also dismiss it
+            PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+            popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+            ((TextView)popupWindow.getContentView().findViewById(R.id.badge)).setText("A Strategic Badge has been earned!");
 
 
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    popupWindow.dismiss();
+                    return true;
+                }
+            });
+        }
+
+    public void showAdventurousBadge(View view){
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.badge_popup_window, null);
+
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        ((TextView)popupWindow.getContentView().findViewById(R.id.badge)).setText("An Adventurous Badge has been earned!");
+
+
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
+    }
+
+    public void showFortunateBadge(View view){
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.badge_popup_window, null);
+
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        ((TextView)popupWindow.getContentView().findViewById(R.id.badge)).setText("A Fortunate Badge has been earned!");
+
+
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
+    }
+
+
+    void setDifficulty(){
+        difficulty.setWord();
+        difficulty.setNumLives();
+    }
+
+    void setGameState(){
+        // initialize each Balloon object
+        Balloon[] tempBalloons = showBalloons();
+        // initialize a new GameState object for this round
+        gameState = new GameState(difficulty);
+        gameState.setKeyword(difficulty.keyword);
+        gameState.setBalloons(tempBalloons);
+        gameState.setRemainingBalloons(difficulty.numLives);
+    }
+
+    void setMediaPlayer(){
+        mediaPlayer = MediaPlayer.create(this, R.raw.hm_background_music);
+        mediaPlayer.start();
+        mediaPlayer.setLooping(true);
+    }
+
+    void setAnswerKey(){
+        LinearLayout wordLayout = findViewById(R.id.word);
+        wordLayout.removeAllViews();
+        String keyword = gameState.getKeyWord();
+        // an array that stores all letters of the correct word
+        AnswerKeyLetter[] answerKey = new AnswerKeyLetter[keyword.length()];
+        // each letter of the correct word is represented as a TextView object
+        this.hangManPresenter = new HangManPresenter(this, gameState);
+        TextView[] characterViews = new TextView[keyword.length()];
+        for (int c = 0; c < keyword.length(); c++) {
+            answerKey[c] = new AnswerKeyLetter(keyword.charAt(c)); // makes a new AnswerKeyLetter
+            characterViews[c] = new TextView(this); // creates a TextView object
+            characterViews[c].setText("" + keyword.charAt(c));
+            characterViews[c].setLayoutParams(new ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            characterViews[c].setGravity(Gravity.CENTER);
+            // set it to be white so it does not show up against the white background
+            characterViews[c].setTextColor(Color.WHITE);
+            characterViews[c].setBackgroundResource(R.drawable.hm_letter_background);
+            answerKey[c].addTextView(characterViews[c]);
+            wordLayout.addView(answerKey[c].getTextView());
+        }
+
+        gameState.setAnswerKeys(answerKey);
+    }
 }

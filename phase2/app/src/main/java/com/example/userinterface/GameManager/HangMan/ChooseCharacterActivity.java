@@ -8,7 +8,7 @@ import com.example.userinterface.GameManager.GameActivity;
 import com.example.userinterface.R;
 import java.io.Serializable;
 
-public class ChooseCharacterActivity extends GameActivity implements Serializable, ChooseCharacterView{
+public class ChooseCharacterActivity extends GameActivity implements Serializable{
 
     String character;
     Difficulty difficulty;
