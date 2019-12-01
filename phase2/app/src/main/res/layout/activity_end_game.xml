@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="180dp"
         android:text="You Win"
+        android:textColor="#000000"
         android:textSize="50sp"
         app:fontFamily="@font/breadcrumbs"
         app:layout_constraintEnd_toEndOf="parent"
