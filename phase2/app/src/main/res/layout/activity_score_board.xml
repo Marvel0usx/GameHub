@@ -16,7 +16,8 @@
         android:text="HIGHSCORE"
         android:textColor="#000000"
         android:textSize="40sp"
-        app:fontFamily="@font/breadcrumbs" />
+        app:fontFamily="@font/breadcrumbs"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:layout_width="0dp"
