@@ -71,6 +71,8 @@
     <string name="hint">Hint</string>
     <string name="choose_your_character">Choose your character:</string>
     <string name="LOGOUT">logout</string>
+    <string name="you_win">you_win</string>
+    <string name="save_and_go_to_menu">save_and_go_to_menu</string>
 
 
 </resources>
