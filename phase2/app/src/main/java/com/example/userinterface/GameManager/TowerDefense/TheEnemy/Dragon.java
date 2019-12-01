@@ -1,20 +1,20 @@
-package com.example.userinterface.GameManager.TowerDefense;
+package com.example.userinterface.GameManager.TowerDefense.TheEnemy;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
-import android.text.TextPaint;
 
 
-class Dragon extends Enemy {
+public class Dragon extends Enemy {
     private int waveSpecifications;
-    Dragon(int waveNumber){
+    public Dragon(int waveNumber){
         waveSpecifications = waveNumber+1;
         health = 80*waveSpecifications;
         speed = 1;
         score = 100 * waveSpecifications;
         appearence = "🐉";
         moneyGain = 50;
-        damage = waveSpecifications;
+        damage = waveSpecifications + 2;
 
     }
 
@@ -24,11 +24,19 @@ class Dragon extends Enemy {
 
     public void draw(Canvas canvas) {
         Paint paint = new Paint();
-        if (waveSpecifications == 1)
+        int size;
+        if (waveSpecifications == 1) {
             paint.setTextSize(150);
-        else
+            size = 150;
+        }else {
             paint.setTextSize(250);
+            size = 250;
+        }
         canvas.drawText(appearence, x, y, paint);
+        Paint paintText = new Paint();
+        paintText.setColor(Color.RED);
+        paintText.setTextSize(80);
+        canvas.drawRect(this.getX(), this.getY()-size, this.getX()+ (float)(health*2), this.getY() -size+10, paintText);
         // decide each body parts' coordinates
 
     }

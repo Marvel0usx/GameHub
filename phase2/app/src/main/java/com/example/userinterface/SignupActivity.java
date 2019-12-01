@@ -12,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.regex.Pattern;
 
+/**
+ * This is the sign up activity, it is used for signing up a new user.
+ */
 public class SignupActivity extends AppCompatActivity {
 
     EditText etName, etEmail, etPassword, etRePassword;
@@ -28,6 +31,10 @@ public class SignupActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.register);
         etRePassword = findViewById(R.id.rePassword);
 
+        /**
+         * The register button, takes in all the information and check if they are valid.
+         * If so, register this user as a new user and store the information to the server.
+         */
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,7 +54,9 @@ public class SignupActivity extends AppCompatActivity {
         });
     }
 
-    //method used to get the users info on the UI
+    /**
+     * Method used to get the users info on the UI
+     */
     public void getInfo() {
         name = etName.getText().toString();
         email = etEmail.getText().toString();
@@ -55,7 +64,9 @@ public class SignupActivity extends AppCompatActivity {
         rePassword = etRePassword.getText().toString();
     }
 
-    // Show error message if there was an error that is being handled by.
+    /**
+     * Show error message if there was an error that is being handled by.
+     */
     public void errorMessage(String title, String message) {
         AlertDialog.Builder wrongInfo = new AlertDialog.Builder(SignupActivity.this);
         wrongInfo.setCancelable(true);

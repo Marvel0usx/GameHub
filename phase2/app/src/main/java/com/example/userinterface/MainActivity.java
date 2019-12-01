@@ -8,6 +8,9 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * The Main activity, the activity that the program starts with.
+ */
 public class MainActivity extends AppCompatActivity {
 
     EditText etPassword;
@@ -20,12 +23,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         btnRegister = findViewById(R.id.register);
         etPassword = findViewById(R.id.password);
         etEmail = findViewById(R.id.email);
         btnLogin = findViewById(R.id.login);
 
+        /**
+         * This is the button listener that will login the user if the user had the correct user
+         * information
+         */
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,7 +46,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        /**
+         * This is a button listener that directs the button to the register page.
+         */
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

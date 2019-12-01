@@ -7,11 +7,12 @@ import android.widget.Button;
 
 import com.example.userinterface.R;
 
-public class MenuActivity extends GameActivity {
     /**
      * This is the main menu for the game, with a few buttons that enable the user to start a game
      * or resume a game or see his or her scoreboard.
      */
+public class MenuActivity extends GameActivity {
+
     Button btnStart;
     Button btnResume;
     Button btnStats;
@@ -32,8 +33,8 @@ public class MenuActivity extends GameActivity {
         super.onCreate(savedInstanceState);
 
 
-        /**
-         * Starting a new game
+        /*
+         * The onclick listener that starts a new game
          */
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,8 +43,8 @@ public class MenuActivity extends GameActivity {
                 toGame(1, false);
             }
         });
-        /**
-         * Resuming a game if possible
+        /*
+         * The onClick listener that resumes a game if possible
          */
         btnResume.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,13 +76,17 @@ public class MenuActivity extends GameActivity {
     /**
      * Go to the stats board
      *
-     * @param view
+     * @param view the button that is clicked.
      */
     public void goToStatsheet(View view) {
         Intent intent = new Intent(MenuActivity.this, Stats.class);
         startActivity(intent);
     }
 
+    /**
+     * This is the practice mode on click, where it leads to the practice mode activity.
+     * @param v  The practice button
+     */
     public void practiceMode(View v) {
         Intent intent = new Intent(MenuActivity.this, PracticeMode.class);
         startActivity(intent);

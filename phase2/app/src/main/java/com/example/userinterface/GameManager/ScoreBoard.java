@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,38 +17,35 @@ import android.widget.TextView;
 
 import com.example.userinterface.R;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 public class ScoreBoard extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     LinearLayout layout;
+    ArrayList<View> textViews;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_board);
         layout = findViewById(R.id.linearLayout);
-        show();
-        Spinner dropdown = findViewById(R.id.spinner);
-        String[] items = new String[]{"1", "2", "three"};
+        Spinner spinner = findViewById(R.id.spinner);
+        String[] items = new String[]{"HIGHSCORE", "GAMESPLAYED"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-        dropdown.setAdapter(adapter);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+        textViews = new ArrayList<>();
     }
 
-    public void onItemSelected(AdapterView<?> parent, View view,
-                               int pos, long id) {
-        System.out.println(parent.getItemAtPosition(pos).toString());
-    }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
 
-    }
-
-    public void show(){
+    @SuppressLint("SetTextI18n")
+    public void show(String type){
         String info = "";
         GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(this);
         try {
-            info = gameBackgroundActivity.execute("scoreboard").get();
+            info = gameBackgroundActivity.execute("scoreboard", type).get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -59,8 +58,6 @@ public class ScoreBoard extends AppCompatActivity implements AdapterView.OnItemS
         }
         sort(totalInfo,0, totalInfo.length-1);
         for (String[] users: totalInfo){
-//            ConstraintSet constraintSet = new ConstraintSet();
-//            constraintSet.clone(constraintLayout);
             String username = users[0];
             String highScore= users[1];
             TextView textView =  new TextView(getApplicationContext());
@@ -74,6 +71,7 @@ public class ScoreBoard extends AppCompatActivity implements AdapterView.OnItemS
             textView.setText("User"+": " + newUsername+"Score:"+highScore);
             textView.setTextSize(20);
             layout.addView(textView);
+            textViews.add(textView);
 
         }
     }
@@ -130,5 +128,31 @@ public class ScoreBoard extends AppCompatActivity implements AdapterView.OnItemS
             j++;
             k++;
         }
+    }
+
+    public void removeViews(){
+        for (View item: textViews){
+            layout.removeView(item);
+        }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch (position){
+            case 0:
+                removeViews();
+                show("highscore");
+                break;
+            case 1:
+                removeViews();
+                show("gamesplayed");
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
     }
 }

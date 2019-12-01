@@ -18,7 +18,6 @@ public class EasyDifficulty extends Difficulty implements Serializable {
         String category = words.get(i)[1];
         this.keyword = word;
         this.hint = category;
-
     }
 
     void setNumLives() {

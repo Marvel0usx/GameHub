@@ -6,6 +6,10 @@ import android.util.SparseArray;
 
 import com.example.userinterface.GameManager.ScoreSystem;
 import com.example.userinterface.GameManager.TowerDefense.DifferentAmmo.Ammo;
+import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Dragon;
+import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Enemies;
+import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Minion;
+import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Orc;
 import com.example.userinterface.GameManager.TowerDefense.Towers.Towers;
 import com.example.userinterface.GameManager.VariableChangeListener;
 
@@ -18,6 +22,7 @@ public class TowerDefense implements ScoreSystem {
     private int mapHeight;
     private int mapWidth;
     private boolean gameStart = false;
+    boolean adventurous = false;
 
     private boolean win;
     private VariableChangeListener listener;
@@ -26,7 +31,7 @@ public class TowerDefense implements ScoreSystem {
     private int cash;
     private InformationBoard informationBoard;
     private int currentWave = 0;
-    private SparseArray<ArrayList<Enemy>> waves = new SparseArray<>(3);
+    private SparseArray<ArrayList<Enemies>> waves = new SparseArray<>(3);
 
 
     public TowerDefense(int screenWidth, int screenHeight, VariableChangeListener listener) {
@@ -60,6 +65,7 @@ public class TowerDefense implements ScoreSystem {
 
     private void updateInformationBoard() {
         informationBoard.setAppearance(cash);
+        informationBoard.setLivesAppearance(lives);
     }
 
     private void checkIfOver() {
@@ -76,7 +82,7 @@ public class TowerDefense implements ScoreSystem {
     private void updateBullet() {
         for (Towers towers : towers) {
             if (towers != null) {
-                Enemy temp = getFirstEnemyInRange(
+                Enemies temp = getFirstEnemyInRange(
                         towers.getY() - towers.getRange(),
                         towers.getY() + towers.getRange());
                 if (temp != null) {
@@ -104,7 +110,7 @@ public class TowerDefense implements ScoreSystem {
     }
 
     private void updateEnemy() {
-        for (Enemy enemy : waves.get(currentWave)) {
+        for (Enemies enemy : waves.get(currentWave)) {
             enemy.move();
         }
         removeEnemy();
@@ -113,8 +119,8 @@ public class TowerDefense implements ScoreSystem {
     }
 
     private void removeEnemy() {
-        ArrayList<Enemy> temp = new ArrayList<>();
-        for (Enemy e : waves.get(currentWave)) {
+        ArrayList<Enemies> temp = new ArrayList<>();
+        for (Enemies e : waves.get(currentWave)) {
             if (e.getHealth() <= 0) {  //if enemy health is 0 remove it
                 temp.add(e);
                 cash += e.getMoneyGain();
@@ -125,16 +131,16 @@ public class TowerDefense implements ScoreSystem {
                 lives -= e.getDamage();
             }
         }
-        for (Enemy item : temp) {
+        for (Enemies item : temp) {
             waves.get(currentWave).remove(item);
             item = null;
         }
     }
 
-    private Enemy getFirstEnemyInRange(int lowerbound, int upperbound) {
+    private Enemies getFirstEnemyInRange(int lowerbound, int upperbound) {
         int temp = lowerbound;
-        Enemy first = null;
-        for (Enemy item : waves.get(currentWave)) {
+        Enemies first = null;
+        for (Enemies item : waves.get(currentWave)) {
             if (item.getY() > lowerbound && item.getY() < upperbound) {
                 if (item.getY() > temp) {
                     first = item;
@@ -155,6 +161,8 @@ public class TowerDefense implements ScoreSystem {
             addMinion(3, 2);
             addOrc(2, 2);
         }
+        if (hiddenEnemy0 && hiddenEnemy1 && hiddenEnemy2)
+            adventurous = true;
         if (hiddenEnemy0)
             addHiddenBoss(0);
         if (hiddenEnemy1)
@@ -193,7 +201,7 @@ public class TowerDefense implements ScoreSystem {
     }
 
     public void draw(Canvas canvas) {
-        for (Enemy item : waves.get(currentWave)) {
+        for (Enemies item : waves.get(currentWave)) {
             item.draw(canvas);
         }
         for (Ammo ammo : ammo) {
@@ -232,4 +240,7 @@ public class TowerDefense implements ScoreSystem {
     }
 
 
+    boolean getAdventurous() {
+        return adventurous;
+    }
 }

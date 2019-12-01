@@ -2,9 +2,10 @@ package com.example.userinterface.GameManager.TowerDefense.Towers;
 
 import com.example.userinterface.GameManager.TowerDefense.DifferentAmmo.Ammo;
 import com.example.userinterface.GameManager.TowerDefense.DifferentAmmo.AmmoFactory;
-import com.example.userinterface.GameManager.TowerDefense.Enemy;
+import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Enemies;
+import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Enemy;
 
-public class MainTower implements Towers {
+public abstract class MainTower implements Towers {
     public int waitTime, time;
     String type;
     int x;
@@ -12,7 +13,7 @@ public class MainTower implements Towers {
 
     int range;
 
-    public Ammo generateBullet(Enemy enemy) {
+    public Ammo generateBullet(Enemies enemy) {
         AmmoFactory ammoFactory = new AmmoFactory();
         if (enemy.getY() > y - range && enemy.getY() < y + range) {
             if (time <= 0) {

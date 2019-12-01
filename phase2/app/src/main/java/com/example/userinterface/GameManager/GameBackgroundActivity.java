@@ -139,6 +139,7 @@ public class GameBackgroundActivity extends AsyncTask<Object, Void, String> {
         }else if (task.equals("scoreboard")) {
             URL url = null;
             try {
+                String type = (String) objects[1];
                 /**
                  * This is the case where the user finishes a game and we update all the information
                  * that is needed to update.
@@ -150,6 +151,8 @@ public class GameBackgroundActivity extends AsyncTask<Object, Void, String> {
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
                 BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+                String myData = URLEncoder.encode("type", "UTF-8") + "=" + URLEncoder.encode(type);
+                bufferedWriter.write(myData);
                 bufferedWriter.flush();
                 bufferedWriter.close();
 

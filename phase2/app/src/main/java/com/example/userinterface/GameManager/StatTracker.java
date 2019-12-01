@@ -1,17 +1,18 @@
 package com.example.userinterface.GameManager;
 
-import java.io.Serializable;
 
 /**
  * A tracker of all the game information.
  */
-public class StatTracker implements Serializable {
+public class StatTracker {
 
 
     private int currScore;
     private int highScore;
     private int numOfGames;
     private int level;
+
+
 
     public StatTracker(int level) {
         this.level = level;
@@ -59,5 +60,9 @@ public class StatTracker implements Serializable {
 
     public void setLevel(int level) {
         this.level = level;
+    }
+
+    public void addToBadges(boolean fortune, boolean strategy, boolean adventure){
+
     }
 }

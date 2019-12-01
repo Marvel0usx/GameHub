@@ -1,8 +1,8 @@
-package com.example.userinterface.GameManager.TowerDefense;
+package com.example.userinterface.GameManager.TowerDefense.TheEnemy;
 
 import android.graphics.Canvas;
 
-public abstract class Enemy { //common interface for all Enemies
+public abstract class Enemy implements Enemies { //common interface for all Enemies
     int health;
     int speed;
     int moneyGain;
@@ -16,7 +16,7 @@ public abstract class Enemy { //common interface for all Enemies
 
     public abstract void draw(Canvas canvas);
 
-    int getHealth() {
+    public int getHealth() {
         return health;
     }
 
@@ -37,11 +37,11 @@ public abstract class Enemy { //common interface for all Enemies
         return moneyGain;
     }
 
-    int getScore() {
+    public int getScore() {
         return score;
     }
 
-    int getDamage(){
+    public int getDamage(){
         return damage;
     }
 
@@ -49,7 +49,7 @@ public abstract class Enemy { //common interface for all Enemies
         return speed;
     }
 
-    void setLocation(int x, int y) {
+    public void setLocation(int x, int y) {
         this.x = x;
         this.y = y;
     }

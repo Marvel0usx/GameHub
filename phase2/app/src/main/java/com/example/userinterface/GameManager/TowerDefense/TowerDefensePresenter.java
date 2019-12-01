@@ -1,14 +1,9 @@
 package com.example.userinterface.GameManager.TowerDefense;
 
 import android.graphics.Canvas;
-import android.util.Log;
-import android.widget.Button;
-
 import com.example.userinterface.GameManager.TowerDefense.Towers.TowerFactory;
 import com.example.userinterface.GameManager.TowerDefense.Towers.Towers;
 import com.example.userinterface.GameManager.VariableChangeListener;
-
-import java.util.Arrays;
 
 class TowerDefensePresenter implements VariableChangeListener {
     private TowerDefenseView towerDefenseView;
@@ -68,5 +63,9 @@ class TowerDefensePresenter implements VariableChangeListener {
         Towers temp = towerFactory.buildTower(name+"tower");
         temp.setLocation(x, y);
         towerDefense.addTower(index, temp);
+    }
+
+    boolean getAdventurous(){
+        return towerDefense.getAdventurous();
     }
 }

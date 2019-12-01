@@ -8,7 +8,7 @@ import com.example.userinterface.GameManager.GameActivity;
 import com.example.userinterface.R;
 import java.io.Serializable;
 
-public class ChooseCharacterActivity extends GameActivity implements Serializable{
+public class ChooseCharacterActivity extends GameActivity implements Serializable, ChooseCharacterView{
 
     String character;
     Difficulty difficulty;
@@ -18,12 +18,7 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
         context = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hm_choose_char);
-        setCharA();
-        setCharB();
-        setCharC();
-        setCharD();
-        setCharE();
-        setCharF();
+        showCharButtons();
         Intent difficultyLevel = getIntent();
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -35,74 +30,21 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
         this.difficulty = (Difficulty) difficultyLevel.getSerializableExtra("difficulty");
     }
 
-    private void setCharA(){
-        findViewById(R.id.charButton1).setOnClickListener(v -> {
-            this.character = "charA";
-            Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
-            i.putExtra("character", character);
-            i.putExtra("difficulty", difficulty);
-            i.putExtra("practice", practiceMode);
-            startActivity(i);
-        });
+    public void showCharButtons(){
+        String[] characters = {"charButton1", "charButton2", "charButton3", "charButton4",
+                "charButton5", "charButton6"};
+        String[] characterImages = {"charA", "charB", "charC", "charD", "charE", "charF"};
+        for (int i = 0; i < characters.length; i++){
+            int resID = getResources().getIdentifier(characters[i], "id", getPackageName());
+            int finalI = i;
+            findViewById(resID).setOnClickListener(v -> {
+                this.character = characterImages[finalI];
+                Intent intent = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
+                intent.putExtra("character", character);
+                intent.putExtra("difficulty", difficulty);
+                intent.putExtra("practice", practiceMode);
+                startActivity(intent);
+            });
+        }
     }
-
-    private void setCharB(){
-        findViewById(R.id.charButton2).setOnClickListener(v -> {
-            this.character = "charB";
-            Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
-            i.putExtra("character", character);
-            i.putExtra("difficulty", difficulty);
-            i.putExtra("practice", practiceMode);
-            startActivity(i);
-        });
-    }
-
-    private void setCharC(){
-        findViewById(R.id.charButton3).setOnClickListener(v -> {
-            this.character = "charC";
-            Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
-            i.putExtra("character", character);
-            i.putExtra("difficulty", difficulty);
-            i.putExtra("practice", practiceMode);
-            startActivity(i);
-        });
-    }
-
-    private void setCharD(){
-        findViewById(R.id.charButton4).setOnClickListener(v -> {
-            this.character = "charD";
-            Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
-            i.putExtra("character", character);
-            i.putExtra("difficulty", difficulty);
-            i.putExtra("practice", practiceMode);
-            startActivity(i);
-        });
-    }
-
-    private void setCharE(){
-        findViewById(R.id.charButton5).setOnClickListener(v -> {
-            this.character = "charE";
-            Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
-            i.putExtra("character", character);
-            i.putExtra("difficulty", difficulty);
-            i.putExtra("practice", practiceMode);
-            startActivity(i);
-        });
-    }
-
-    private void setCharF(){
-        findViewById(R.id.charButton6).setOnClickListener(v -> {
-            this.character = "charF";
-            Intent i = new Intent(ChooseCharacterActivity.this, HangManGameActivity.class);
-            i.putExtra("character", character);
-            i.putExtra("difficulty", difficulty);
-            i.putExtra("practice", practiceMode);
-            startActivity(i);
-        });
-    }
-
-
-
-
-
 }
