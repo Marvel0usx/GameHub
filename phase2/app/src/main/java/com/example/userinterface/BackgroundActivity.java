@@ -191,6 +191,8 @@ public class BackgroundActivity extends AsyncTask<String, Void, String> {
                 // create a new user instance
                 User user = new User(strings[1], statTracker);
                 GameActivity.setUser(new UserDAO(user));
+                System.out.println(user);
+                System.out.println(statTracker);
                 context.startActivity(intent);
             } else {
                 display("That email and password do not match our records :(.");

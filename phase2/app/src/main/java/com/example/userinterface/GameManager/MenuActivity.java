@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.userinterface.MainActivity;
 import com.example.userinterface.R;
 
 /**
@@ -85,6 +86,13 @@ public class MenuActivity extends GameActivity {
     public void practiceMode(View v) {
         Intent intent = new Intent(MenuActivity.this, PracticeMode.class);
         startActivity(intent);
+    }
+
+    public void logout(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        deleteUser();
+        startActivity(intent);
+        this.finish();
     }
 
 }

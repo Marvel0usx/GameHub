@@ -85,7 +85,7 @@ public abstract class GameActivity extends AppCompatActivity {
     }
 
     public void deleteUser() {
-        user.delete();
+        user = null;
     }
 
     public void next(View view) {
