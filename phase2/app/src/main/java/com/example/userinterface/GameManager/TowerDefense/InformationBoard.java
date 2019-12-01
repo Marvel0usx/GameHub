@@ -9,7 +9,7 @@ public class InformationBoard {
     private String money;
     private Paint paintText = new Paint();
     float height, width;
-    int lives = 0;
+    String lives;
 
     InformationBoard(float height, float width) {
         this.money = "";
@@ -25,8 +25,13 @@ public class InformationBoard {
         this.money = "Money: " + money + "";
     }
 
+    void setLivesAppearance(int lives){
+        this.lives = "Lives: "+lives;
+    }
+
     public void draw(Canvas canvas) {
-        canvas.drawText(this.money, width / 8, height * 12 / 16, paintText);
+        canvas.drawText(this.money, width / 8, height * 13/ 16, paintText);
+        canvas.drawText(this.lives,width / 8, height * 13 / 16+45, paintText);
     }
 
 }

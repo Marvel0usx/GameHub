@@ -12,15 +12,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.userinterface.GameManager.*;
-import com.example.userinterface.GameManager.TowerDefense.DifferentAmmo.Rocket;
-import com.example.userinterface.GameManager.TowerDefense.Towers.BombTower;
-import com.example.userinterface.GameManager.TowerDefense.Towers.GunTower;
-import com.example.userinterface.GameManager.TowerDefense.Towers.RocketTower;
-import com.example.userinterface.GameManager.TowerDefense.Towers.TowerFactory;
-import com.example.userinterface.GameManager.TowerDefense.Towers.Towers;
 import com.example.userinterface.R;
 
-public class TowerDefenseActivity extends GameActivity implements TowerDefenseView {
+public class TowerDefenseActivity extends GameActivity implements TowerDefenseView, BadgeCollector {
 
     Button btnStart, btnTower1, btnTower2, btnTower3;
     TowerDefensePresenter towerDefensePresenter;
@@ -63,8 +57,8 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
         Log.d("message", "towerDefensePresenter at line 62 " + towerDefensePresenter);
         width = size.x;
         height = size.y;
-        TowerPositions.height = height;
-        TowerPositions.width = width;
+        TowerPositions.setHeight(height);
+        TowerPositions.setWidth(width);
         towerDefense = new TowerDefense(width, height, towerDefensePresenter);
         Log.d("message", "towerDefensePresenter at line 68" + towerDefensePresenter);
         towerDefensePresenter.setTowerDefense(towerDefense);
@@ -82,9 +76,12 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
             for (Button button : buttonTowers) {
                 button.setEnabled(false);
             }
-            towerPositions.showAvailable(true);
+            towerDefensePresenter.towerClick();
         }
 
+    }
+    public void showTowerPositions(){
+        towerPositions.showAvailable(true);
     }
 
     public boolean enoughMoney() {
@@ -145,7 +142,8 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
 
     public void onStartClick(View v) {
         Log.d("message", "towerDefensePresenter at line 170 " + towerDefensePresenter);
-        towerDefensePresenter.onStartClicked();
+        int gamePlayed = getUser().getStatTracker().getNumOfGames();
+        towerDefensePresenter.onStartClicked(gamePlayed);
     }
 
     public void setButtonVisible(){
@@ -162,10 +160,27 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
         if (!practiceMode)
             if (won)
                 getUser().getStatTracker().addToCurrScore(score);
+                getUser().getStatTracker().addToBadges(collectFortunateBadge(),
+                                                        collectStrategicBadge(),
+                                                        collectAdventurousBadge());
         goToIntermediate(won, practiceMode);
         // record score of the level Intermediate page between games
     }
 
+    @Override
+    public boolean collectFortunateBadge() {
+        return true;
+    }
+
+    @Override
+    public boolean collectStrategicBadge() {
+        return true;
+    }
+
+    @Override
+    public boolean collectAdventurousBadge() {
+        return towerDefensePresenter.getAdventurous();
+    }
 }
 
 

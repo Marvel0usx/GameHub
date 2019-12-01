@@ -31,7 +31,7 @@ public class ScoreBoard extends AppCompatActivity implements AdapterView.OnItemS
         setContentView(R.layout.activity_score_board);
         layout = findViewById(R.id.linearLayout);
         Spinner spinner = findViewById(R.id.spinner);
-        String[] items = new String[]{"highscore", "gamesplayed"};
+        String[] items = new String[]{"HIGHSCORE", "GAMESPLAYED"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);

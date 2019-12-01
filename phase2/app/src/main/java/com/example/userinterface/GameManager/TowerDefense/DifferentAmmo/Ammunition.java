@@ -3,9 +3,10 @@ package com.example.userinterface.GameManager.TowerDefense.DifferentAmmo;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-import com.example.userinterface.GameManager.TowerDefense.Enemy;
+import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Enemies;
+import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Enemy;
 
-public class Ammunition implements Ammo {
+public abstract class Ammunition implements Ammo {
 
     int damage;
     int x, y;
@@ -13,7 +14,7 @@ public class Ammunition implements Ammo {
     int speed;
     String direction;
     int textSize = 50;
-    Enemy target;
+    Enemies target;
     double predictX, predictY;
 
 
@@ -56,7 +57,7 @@ public class Ammunition implements Ammo {
 
     }
 
-    public void setTarget(Enemy enemy) {
+    public void setTarget(Enemies enemy) {
         this.target = enemy;
         if (target.getX()>x){
             direction = "left";

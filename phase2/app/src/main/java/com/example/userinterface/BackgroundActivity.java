@@ -29,6 +29,9 @@ import java.net.URLEncoder;
 
 import static java.lang.Integer.parseInt;
 
+/**
+ * This is the backend code, to retrieve and store information to the server.
+ */
 public class BackgroundActivity extends AsyncTask<String, Void, String> {
     private SharedPreferences preferences;
     private SharedPreferences.Editor editor;
@@ -52,6 +55,10 @@ public class BackgroundActivity extends AsyncTask<String, Void, String> {
         String urlLogin = "http://159.203.20.150/login.php";
         String task = params[0];
 
+        /*
+          This is the register part of the backend, where userinfo will be passed on to the server
+          and stored in the proper order.
+         */
         if (task.equals("register")) {
             String regName = params[1];
             String regEmail = params[2];
@@ -94,6 +101,11 @@ public class BackgroundActivity extends AsyncTask<String, Void, String> {
             }
 
         }
+        /*
+        This is the part of the backend for user login.
+        the info entered by the user will be passed to the server to check if the user exists and
+        if the user entered the correct information.
+         */
         if (task.equals("login")) {
             String loginEmail = params[1];
             String loginPassword = params[2];
@@ -145,6 +157,10 @@ public class BackgroundActivity extends AsyncTask<String, Void, String> {
         super.onPreExecute();
     }
 
+    /**
+     * This deal with after the program has connected to the server and passed information.
+     * @param s is the String passed to the method by the server.
+     */
     @Override
     protected void onPostExecute(String s) {
         String flag = preferences.getString("flag", "0");

@@ -1,19 +1,17 @@
-package com.example.userinterface.GameManager.TowerDefense;
+package com.example.userinterface.GameManager.TowerDefense.TheEnemy;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Typeface;
-import android.util.Log;
 
 public class Minion extends Enemy {
 
-    Minion() {
-        health = 1;
+    public Minion() {
+        health = 5;
         speed = 4;
         score = 50;
         appearence = "👻";
-        moneyGain = 20;
+        moneyGain = 10;
     }
 
     public void move() {
@@ -23,9 +21,11 @@ public class Minion extends Enemy {
     public void draw(Canvas canvas) {
         Paint paint = new Paint();
         paint.setTextSize(50);
-        paint.setTypeface(Typeface.DEFAULT_BOLD);
-        paint.setColor(Color.RED);
         canvas.drawText(appearence, x, y, paint);
+        Paint paintText = new Paint();
+        paintText.setColor(Color.RED);
+        paintText.setTextSize(80);
+        canvas.drawRect(this.getX(), this.getY()-60, this.getX()+ health*12, this.getY() -50, paintText);
         // decide each body parts' coordinates
 
     }

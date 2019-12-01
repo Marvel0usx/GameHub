@@ -1,9 +1,6 @@
 package com.example.userinterface.GameManager.TowerDefense;
 
 import android.graphics.Canvas;
-import android.util.Log;
-import android.widget.Button;
-
 import com.example.userinterface.GameManager.TowerDefense.Towers.TowerFactory;
 import com.example.userinterface.GameManager.TowerDefense.Towers.Towers;
 import com.example.userinterface.GameManager.VariableChangeListener;
@@ -16,8 +13,20 @@ class TowerDefensePresenter implements VariableChangeListener {
         this.towerDefenseView = towerDefenseView;
     }
 
-   void onStartClicked(){
-       towerDefense.addEnemy();
+    void towerClick() {
+        towerDefenseView.showTowerPositions();
+    }
+
+    void onStartClicked(int gamePlayed){
+        boolean addBoss0 = false;
+        boolean addBoss1 = false;
+        boolean addBoss2 = false;
+        if (gamePlayed > 5){
+            addBoss0 = Math.random() < 1;
+            addBoss1 = Math.random() < 1;
+            addBoss2 = Math.random() < 1;
+        }
+       towerDefense.addEnemy(addBoss0, addBoss1, addBoss2);
        towerDefense.setGameStart(true);
        towerDefenseView.setButtonVisible();
    }
@@ -40,7 +49,7 @@ class TowerDefensePresenter implements VariableChangeListener {
         towerDefenseView.endGame(won, score);
     }
 
-    public boolean enoughMoney(int cost){
+    boolean enoughMoney(int cost){
         if (cost > towerDefense.getCash()){
             return false;
         }else{
@@ -49,10 +58,14 @@ class TowerDefensePresenter implements VariableChangeListener {
         }
     }
 
-    public void setTower(int x, int y, String name, int index){
+    void setTower(int x, int y, String name, int index){
         TowerFactory towerFactory = new TowerFactory();
         Towers temp = towerFactory.buildTower(name+"tower");
         temp.setLocation(x, y);
         towerDefense.addTower(index, temp);
+    }
+
+    boolean getAdventurous(){
+        return towerDefense.getAdventurous();
     }
 }

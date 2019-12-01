@@ -1,21 +1,19 @@
-package com.example.userinterface.GameManager.TowerDefense;
+package com.example.userinterface.GameManager.TowerDefense.TheEnemy;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Typeface;
-import android.util.Log;
 
 public class Orc extends Enemy {
 
     private boolean ifSpeedUp = false;
 
-    Orc() {
-        health = 10;
+    public Orc() {
+        health = 30;
         speed = 1;
         score = 60;
         appearence = "👹";
-        moneyGain = 30;
+        moneyGain = 20;
     }
 
     public void move() {
@@ -34,9 +32,12 @@ public class Orc extends Enemy {
     public void draw(Canvas canvas) {
         Paint paint = new Paint();
         paint.setTextSize(50);
-        paint.setTypeface(Typeface.DEFAULT_BOLD);
-        paint.setColor(Color.RED);
         canvas.drawText(appearence, x, y, paint);
+        Paint paintText = new Paint();
+        paintText.setColor(Color.RED);
+        paintText.setTextSize(80);
+        float x  = (float) ((50*0.25)/health);
+        canvas.drawRect(this.getX(), this.getY()-60, this.getX()+ health*12, this.getY() -50, paintText);
         // decide each body parts' coordinates
 
     }
