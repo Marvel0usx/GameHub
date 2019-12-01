@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/hm_backgroud">
@@ -48,12 +49,16 @@
 
     <TextView
         android:id="@+id/welcometext"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginBottom="88dp"
+        android:layout_width="341dp"
+        android:layout_height="117dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginBottom="36dp"
+        android:scaleType="fitCenter"
         android:text="@string/welcome_to_hang_man_please_choose_the_desired_level_of_difficulty"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="24sp"
+        app:fontFamily="@font/breadcrumbs"
         app:layout_constraintBottom_toTopOf="@+id/easyButton"
         app:layout_constraintStart_toStartOf="parent" />
 
