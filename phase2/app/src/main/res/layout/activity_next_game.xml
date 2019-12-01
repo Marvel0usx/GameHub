@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".GameManager.NextGame">
 
     <TextView
@@ -19,25 +20,24 @@
 
     <Button
         android:id="@+id/next"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="100dp"
-        android:text="next"
+        android:layout_width="269dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="44dp"
         android:onClick="next"
+        android:text="next"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/winOrLose" />
 
     <Button
         android:id="@+id/quit"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="52dp"
-        android:text="quit"
+        android:layout_width="264dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="60dp"
         android:onClick="quit"
+        android:text="quit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/next" />
 </androidx.constraintlayout.widget.ConstraintLayout>

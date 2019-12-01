@@ -1,7 +1,5 @@
 package com.example.userinterface.GameManager.HangMan;
 
-import android.view.View;
-
 public class HangManPresenter {
 
     HangManView view;
