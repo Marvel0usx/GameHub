@@ -1,6 +1,5 @@
 package com.example.userinterface.GameManager.HangMan;
 
-
 import com.example.userinterface.GameManager.BadgeCollector;
 
 public class GameState implements BadgeCollector {
@@ -8,11 +7,12 @@ public class GameState implements BadgeCollector {
     int keywordLen; // number of characters in current word
     int remainingBalloons; // number of balloons left, decreases each time a wrong letter is gues【sed
     int numCorr; // number of letters correctly guessed
-    private Difficulty difficulty;
+    Difficulty difficulty;
     private String keyword;
     private Balloon[] balloons; // an array of Balloon objects
     private AnswerKeyLetter[] answerKeyLetters; // all of the correct letters in correct order
     private int currentScore;
+    boolean fortunateBadgeCollected;
 
     /**
      * Constructs a new GameState object
