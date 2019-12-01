@@ -52,7 +52,7 @@ public class HangManActivity extends Activity {
 
     private void setModerateBtn() {
         findViewById(R.id.moderateButton).setOnClickListener(v -> {
-            InputStream inputStream = getResources().openRawResource(R.raw.easy_word);
+            InputStream inputStream = getResources().openRawResource(R.raw.moderate_word);
             csvReader = new CSVReader(inputStream);
             List<String[]> result = csvReader.read();
             this.diff = new ModerateDifficulty(result);
