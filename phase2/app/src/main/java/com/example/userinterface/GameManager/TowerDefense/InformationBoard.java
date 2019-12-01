@@ -30,8 +30,8 @@ public class InformationBoard {
     }
 
     public void draw(Canvas canvas) {
-        canvas.drawText(this.money, width / 8, height * 13/ 16, paintText);
-        canvas.drawText(this.lives,width / 8, height * 13 / 16+45, paintText);
+        canvas.drawText(this.money, width / 8, height * 13/ 16-20, paintText);
+        canvas.drawText(this.lives,width / 8, height * 13 / 16+25, paintText);
     }
 
 }

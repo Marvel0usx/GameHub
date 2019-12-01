@@ -4,7 +4,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Enemies;
-import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Enemy;
 
 public abstract class Ammunition implements Ammo {
 
@@ -116,10 +115,16 @@ public abstract class Ammunition implements Ammo {
         paint.setTextSize(textSize);
         canvas.drawText(appearance, x, y, paint);
         // decide each body parts' coordinates
+        System.out.println(textSize);
+        System.out.println("hello????");
+        System.out.println(appearance+"coooooola");
 
     }
 
     public void predictYPosition() {
+        if (target.getSpeed()>=this.speed){
+            this.speed += target.getSpeed()-this.speed+1;
+        }
         float A = (float) Math.sqrt(((y - target.getY()) * ((y - target.getY())) + ((x - target.getX())) * (x - target.getX())));
         float v1 = target.getSpeed();
         System.out.println(A);

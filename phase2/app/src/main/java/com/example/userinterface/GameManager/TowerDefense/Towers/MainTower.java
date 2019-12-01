@@ -10,7 +10,6 @@ public abstract class MainTower implements Towers {
     private String type;
     private int x;
     private int y;
-
     private int range;
 
     public Ammo generateBullet(Enemies enemy) {
@@ -50,7 +49,7 @@ public abstract class MainTower implements Towers {
     public int getRange() {
         return range;
     }
-
+//
     public int getWaitTime() {
         return waitTime;
     }

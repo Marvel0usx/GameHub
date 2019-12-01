@@ -9,22 +9,22 @@ public class Orc extends Enemy {
     private boolean ifSpeedUp = false;
 
     public Orc() {
-        setHealth(30);
-        setAppearence("👹");
-        setSpeed(1);
-        setMoneyGain(20);
-        setScore(60);
+        this.setHealth(30);
+        this.setAppearence("👹");
+        this.setSpeed(1);
+        this.setMoneyGain(20);
+        this.setScore(60);
     }
 
     public void move() {
-        if (getHealth() > 20)
-            setY(getY()+getSpeed());
+        if (this.getHealth() > 20)
+            this.setY(this.getY()+this.getSpeed());
         else {
             if (!ifSpeedUp) {
-                setSpeed(getSpeed()*3);
+                setSpeed(this.getSpeed()*3);
                 ifSpeedUp = true;
             }
-            setY(getY()+getSpeed());
+            this.setY(this.getY()+this.getSpeed());
         }
 
     }
@@ -32,11 +32,11 @@ public class Orc extends Enemy {
     public void draw(Canvas canvas) {
         Paint paint = new Paint();
         paint.setTextSize(50);
-        canvas.drawText(getAppearence(), getX(), getY(), paint);
+        canvas.drawText(this.getAppearence(), this.getX(), this.getY(), paint);
         Paint paintText = new Paint();
         paintText.setColor(Color.RED);
         paintText.setTextSize(80);
-        canvas.drawRect(this.getX(), this.getY()-60, this.getX()+ getHealth()*3, this.getY() -50, paintText);
+        canvas.drawRect(this.getX(), this.getY()-60, this.getX()+ this.getHealth()*3, this.getY() -50, paintText);
         // decide each body parts' coordinates
 
     }

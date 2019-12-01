@@ -4,10 +4,10 @@ public class RocketTower extends MainTower implements Towers {
     private final int WAITTIME = 70;
 
     public RocketTower() {
-        setType("rocket");
-        setWaitTime(WAITTIME);
-        setTime(WAITTIME);
-        setRange(400);
+        this.setType("rocket");
+        this.setWaitTime(WAITTIME);
+        this.setTime(WAITTIME);
+        this.setRange(400);
     }
 }
 

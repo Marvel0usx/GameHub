@@ -7,25 +7,25 @@ import android.graphics.Paint;
 public class Minion extends Enemy {
 
     public Minion() {
-        setHealth(5);
-        setSpeed(5);
-        setScore(50);
-        setAppearence("👻");
-        setMoneyGain(10);
+        this.setHealth(5);
+        this.setSpeed(5);
+        this.setScore(50);
+        this.setAppearence("👻");
+        this.setMoneyGain(10);
     }
 
     public void move() {
-        setY(getY()+getSpeed());
+        this.setY(this.getY()+this.getSpeed());
     }
 
     public void draw(Canvas canvas) {
         Paint paint = new Paint();
         paint.setTextSize(50);
-        canvas.drawText(getAppearence(), getX(), getY(), paint);
+        canvas.drawText(this.getAppearence(), this.getX(), this.getY(), paint);
         Paint paintText = new Paint();
         paintText.setColor(Color.RED);
         paintText.setTextSize(80);
-        canvas.drawRect(this.getX(), this.getY()-60, this.getX()+ getHealth()*12, this.getY() -50, paintText);
+        canvas.drawRect(this.getX(), this.getY()-60, this.getX()+ this.getHealth()*12, this.getY() -50, paintText);
         // decide each body parts' coordinates
 
     }

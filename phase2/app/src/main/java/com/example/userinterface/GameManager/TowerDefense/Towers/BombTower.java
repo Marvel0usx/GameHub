@@ -5,9 +5,9 @@ public class BombTower extends MainTower implements Towers {
     private final int WAITTIME = 100;
 
     public BombTower() {
-        setType("bomb");
-        setWaitTime(WAITTIME);
-        setRange(300);
-        setTime(WAITTIME);
+        this.setType("bomb");
+        this.setWaitTime(WAITTIME);
+        this.setRange(300);
+        this.setTime(WAITTIME);
     }
 }

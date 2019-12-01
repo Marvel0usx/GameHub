@@ -9,13 +9,12 @@ public class Dragon extends Enemy {
     private int waveSpecifications;
     public Dragon(int waveNumber){
         waveSpecifications = waveNumber+1;
-        setHealth(80*waveSpecifications);
-        setDamage(waveSpecifications+2);
-        setSpeed(1);
-        setAppearence("🐉");
-        setScore(100*waveSpecifications);
-        setMoneyGain(50);
-
+        this.setHealth(80*waveSpecifications);
+        this.setDamage(waveSpecifications+2);
+        this.setSpeed(1);
+        this.setAppearence("🐉");
+        this.setScore(100*waveSpecifications);
+        this.setMoneyGain(50);
     }
 
     public void move() {
@@ -32,7 +31,7 @@ public class Dragon extends Enemy {
             paint.setTextSize(250);
             size = 250;
         }
-        canvas.drawText(getAppearence(), getX(), getY(), paint);
+        canvas.drawText(this.getAppearence(), this.getX(), this.getY(), paint);
         Paint paintText = new Paint();
         paintText.setColor(Color.RED);
         paintText.setTextSize(80);
