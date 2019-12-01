@@ -11,11 +11,11 @@ public class Orc extends Enemy {
     private boolean ifSpeedUp = false;
 
     Orc() {
-        health = 10;
+        health = 30;
         speed = 1;
         score = 60;
         appearence = "👹";
-        moneyGain = 30;
+        moneyGain = 20;
     }
 
     public void move() {
@@ -34,8 +34,6 @@ public class Orc extends Enemy {
     public void draw(Canvas canvas) {
         Paint paint = new Paint();
         paint.setTextSize(50);
-        paint.setTypeface(Typeface.DEFAULT_BOLD);
-        paint.setColor(Color.RED);
         canvas.drawText(appearence, x, y, paint);
         // decide each body parts' coordinates
 

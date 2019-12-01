@@ -9,11 +9,11 @@ import android.util.Log;
 public class Minion extends Enemy {
 
     Minion() {
-        health = 1;
+        health = 5;
         speed = 4;
         score = 50;
         appearence = "👻";
-        moneyGain = 20;
+        moneyGain = 10;
     }
 
     public void move() {
@@ -23,8 +23,6 @@ public class Minion extends Enemy {
     public void draw(Canvas canvas) {
         Paint paint = new Paint();
         paint.setTextSize(50);
-        paint.setTypeface(Typeface.DEFAULT_BOLD);
-        paint.setColor(Color.RED);
         canvas.drawText(appearence, x, y, paint);
         // decide each body parts' coordinates
 

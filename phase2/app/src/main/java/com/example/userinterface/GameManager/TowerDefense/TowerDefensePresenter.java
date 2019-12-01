@@ -8,6 +8,8 @@ import com.example.userinterface.GameManager.TowerDefense.Towers.TowerFactory;
 import com.example.userinterface.GameManager.TowerDefense.Towers.Towers;
 import com.example.userinterface.GameManager.VariableChangeListener;
 
+import java.util.Arrays;
+
 class TowerDefensePresenter implements VariableChangeListener {
     private TowerDefenseView towerDefenseView;
     private TowerDefense towerDefense;
@@ -20,8 +22,16 @@ class TowerDefensePresenter implements VariableChangeListener {
         towerDefenseView.showTowerPositions();
     }
 
-    void onStartClicked(){
-       towerDefense.addEnemy();
+    void onStartClicked(int gamePlayed){
+        boolean addBoss0 = false;
+        boolean addBoss1 = false;
+        boolean addBoss2 = false;
+        if (gamePlayed > 5){
+            addBoss0 = Math.random() < 1;
+            addBoss1 = Math.random() < 1;
+            addBoss2 = Math.random() < 1;
+        }
+       towerDefense.addEnemy(addBoss0, addBoss1, addBoss2);
        towerDefense.setGameStart(true);
        towerDefenseView.setButtonVisible();
    }

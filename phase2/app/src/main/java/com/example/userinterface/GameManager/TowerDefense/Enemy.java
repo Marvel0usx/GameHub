@@ -9,6 +9,7 @@ public abstract class Enemy { //common interface for all Enemies
     int score;
     int x;
     int y;
+    int damage = 1;
     String appearence;
 
     public abstract void move();
@@ -38,6 +39,10 @@ public abstract class Enemy { //common interface for all Enemies
 
     int getScore() {
         return score;
+    }
+
+    int getDamage(){
+        return damage;
     }
 
     public int getSpeed() {

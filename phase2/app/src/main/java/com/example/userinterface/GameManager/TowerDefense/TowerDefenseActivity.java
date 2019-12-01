@@ -12,12 +12,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.userinterface.GameManager.*;
-import com.example.userinterface.GameManager.TowerDefense.DifferentAmmo.Rocket;
-import com.example.userinterface.GameManager.TowerDefense.Towers.BombTower;
-import com.example.userinterface.GameManager.TowerDefense.Towers.GunTower;
-import com.example.userinterface.GameManager.TowerDefense.Towers.RocketTower;
-import com.example.userinterface.GameManager.TowerDefense.Towers.TowerFactory;
-import com.example.userinterface.GameManager.TowerDefense.Towers.Towers;
 import com.example.userinterface.R;
 
 public class TowerDefenseActivity extends GameActivity implements TowerDefenseView {
@@ -148,7 +142,8 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
 
     public void onStartClick(View v) {
         Log.d("message", "towerDefensePresenter at line 170 " + towerDefensePresenter);
-        towerDefensePresenter.onStartClicked();
+        int gamePlayed = getUser().getStatTracker().getNumOfGames();
+        towerDefensePresenter.onStartClicked(gamePlayed);
     }
 
     public void setButtonVisible(){

@@ -36,9 +36,9 @@ public class TowerDefense implements ScoreSystem {
         cash = 100;
         informationBoard = new InformationBoard(mapHeight, mapWidth);
         informationBoard.setAppearance(cash);
-        waves.append(0, new ArrayList<Enemy>());
-        waves.append(1, new ArrayList<Enemy>());
-        waves.append(2, new ArrayList<Enemy>());
+        waves.append(0, new ArrayList<>());
+        waves.append(1, new ArrayList<>());
+        waves.append(2, new ArrayList<>());
         this.listener = listener;
     }
 
@@ -52,14 +52,17 @@ public class TowerDefense implements ScoreSystem {
             updateBullet();
         }
     }
-    private void generateNewWave(){
+
+    private void generateNewWave() {
         if (waves.get(currentWave).isEmpty())
-            currentWave ++;
+            currentWave++;
     }
+
     private void updateInformationBoard() {
         informationBoard.setAppearance(cash);
     }
-    private void checkIfOver(){
+
+    private void checkIfOver() {
         if (lives <= 0 || currentWave == 3) {
             //decide if game is over or not
             if (lives > 0)
@@ -69,6 +72,7 @@ public class TowerDefense implements ScoreSystem {
                 listener.onVariableChange(true);
         }
     }
+
     private void updateBullet() {
         for (Towers towers : towers) {
             if (towers != null) {
@@ -118,13 +122,12 @@ public class TowerDefense implements ScoreSystem {
             }
             if (e.getY() >= mapHeight) { //if enemy is out of map remove it
                 temp.add(e);
-                lives -= 1;
+                lives -= e.getDamage();
             }
         }
         for (Enemy item : temp) {
             waves.get(currentWave).remove(item);
             item = null;
-            System.out.println(item);
         }
     }
 
@@ -142,17 +145,30 @@ public class TowerDefense implements ScoreSystem {
         return first;
     }
 
-    void addEnemy() { // GENERICS OR SOME KIND OF PATTERN??
-        addMinion(5,0);
-
-        for (int i = 0; i < 2; i++){
+    void addEnemy(boolean hiddenEnemy0, boolean hiddenEnemy1, boolean hiddenEnemy2) { // GENERICS OR SOME KIND OF PATTERN??
+        addMinion(5, 0);
+        for (int i = 0; i < 2; i++) {
             addMinion(2, 1);
             addOrc(1, 1);
         }
-        for (int i = 0; i < 3; i++){
+        for (int i = 0; i < 3; i++) {
             addMinion(3, 2);
             addOrc(2, 2);
         }
+        if (hiddenEnemy0)
+            addHiddenBoss(0);
+        if (hiddenEnemy1)
+            addHiddenBoss(1);
+        if (hiddenEnemy2)
+            addHiddenBoss(2);
+    }
+
+    private void addHiddenBoss(int waveNumber) {
+        Dragon dragon = new Dragon(waveNumber);
+        int x = 50 + mapWidth / 3;
+        int y = -(int) (Math.random() * mapHeight / 2) - 100; // a period of time for enemies to walk
+        dragon.setLocation(x, y);
+        waves.get(waveNumber).add(dragon);
     }
 
     private void addMinion(int number, int toBeAdded) {
@@ -186,9 +202,6 @@ public class TowerDefense implements ScoreSystem {
         informationBoard.draw(canvas);
     }
 
-    void setVariableChangeListener(VariableChangeListener variableChangeListener) {
-        this.listener = variableChangeListener;
-    }
 
     void addTower(int index, Towers tower) {
         towers[index] = tower;
