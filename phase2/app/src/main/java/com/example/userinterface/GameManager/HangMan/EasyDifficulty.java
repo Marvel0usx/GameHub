@@ -11,6 +11,7 @@ public class EasyDifficulty extends Difficulty implements Serializable {
         super(words);
         this.correctGuessPoints = 20;
         this.wrongGuessPoints = -20;
+        this.type = "Easy";
     }
 
     void setWord() {

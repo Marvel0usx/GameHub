@@ -10,6 +10,7 @@ public class ModerateDifficulty extends Difficulty implements Serializable {
         super(words);
         this.correctGuessPoints = 30;
         this.wrongGuessPoints = -15;
+        this.type = "Moderate";
     }
 
     void setWord() {

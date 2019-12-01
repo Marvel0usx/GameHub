@@ -12,6 +12,7 @@ public abstract class Difficulty implements Serializable {
     String hint;
     Integer correctGuessPoints;
     Integer wrongGuessPoints;
+    String type;
 
     public Difficulty(List<String[]> words) {
         this.words = words;

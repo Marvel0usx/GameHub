@@ -2,7 +2,9 @@ package com.example.userinterface.GameManager.HangMan;
 
 import android.widget.TextView;
 
-public class GameState {
+import com.example.userinterface.GameManager.BadgeCollector;
+
+public class GameState implements BadgeCollector {
 
     int keywordLen; // number of characters in current word
     int remainingBalloons; // number of balloons left, decreases each time a wrong letter is gues【sed
@@ -62,6 +64,30 @@ public class GameState {
      */
     int getCurrentScore() {
         return this.currentScore;
+    }
+
+    @Override
+    public boolean collectAdventurousBadge(){
+        // only if hard level is selected
+        if (this.difficulty.type.equals("Hard")){
+            double randomDouble = Math.random();
+            return (randomDouble < 0.5);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean collectFortunateBadge(){
+        // randomly collected
+        double randomDouble = Math.random();
+        return (randomDouble < 0.3);
+    }
+
+    @Override
+    public boolean collectStrategicBadge(){
+        // randomly collected if there are more than 2 lives left with only 1 letter yet to be guessed
+        double randomDouble = Math.random();
+        return (randomDouble < 0.7);
     }
 
 

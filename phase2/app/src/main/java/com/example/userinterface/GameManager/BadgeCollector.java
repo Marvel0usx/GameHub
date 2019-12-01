@@ -2,9 +2,9 @@ package com.example.userinterface.GameManager;
 
 public interface BadgeCollector {
 
-    void collectFortunateBadge();
+    boolean collectFortunateBadge();
 
-    void collectStrategicBadge();
+    boolean collectStrategicBadge();
 
-    void collectAdventurousBadge();
+    boolean collectAdventurousBadge();
 }

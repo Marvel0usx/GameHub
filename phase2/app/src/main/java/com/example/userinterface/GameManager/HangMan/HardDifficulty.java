@@ -10,6 +10,7 @@ public class HardDifficulty extends Difficulty implements Serializable {
         super(words);
         this.correctGuessPoints = 40;
         this.wrongGuessPoints = -20;
+        this.type = "Hard";
     }
 
     void setWord() {
