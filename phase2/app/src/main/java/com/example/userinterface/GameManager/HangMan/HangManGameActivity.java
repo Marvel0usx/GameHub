@@ -30,11 +30,14 @@ public class HangManGameActivity extends GameActivity implements HangManView{
     Difficulty difficulty;
     String character;
     User user;
+    View rootView;
+    View view;
     boolean practiceMode;
     HangManPresenter hangManPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        rootView = findViewById(android.R.id.content).getRootView();
         context = this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.hm_activity_game);
@@ -67,6 +70,8 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         this.currentScore = gameState.getCurrentScore();
         TextView scoreNumberDisplay = findViewById(R.id.scoreNumberDisplay);
         scoreNumberDisplay.setText(Integer.toString(this.currentScore));
+        Boolean fortunate = gameState.collectFortunateBadge();
+        if (fortunate) {showFortunateBadge(rootView);}
         endGame();
     }
 
@@ -135,6 +140,29 @@ public class HangManGameActivity extends GameActivity implements HangManView{
             }
         });
     }
+
+    public void showFortunateBadge(View view){
+            LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+            View popupView = inflater.inflate(R.layout.fortunate_badge, null);
+
+            int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+            int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+            boolean focusable = true; // lets taps outside the popup also dismiss it
+            PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+            popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+            ((TextView)popupWindow.getContentView().findViewById(R.id.fortunateBadge)).setText("A Fortunate Badge has been earned!");
+
+
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    popupWindow.dismiss();
+                    return true;
+                }
+            });
+        }
+
 
     void setDifficulty(){
         difficulty.setWord();
