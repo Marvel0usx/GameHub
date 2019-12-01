@@ -10,7 +10,7 @@ public class ModerateDifficulty extends Difficulty implements Serializable {
         super(words);
     }
     void setWord() {
-        this.keyword = "ANDROID";
+        this.keyword = "ANDROID PLAY";
 
     }
 
