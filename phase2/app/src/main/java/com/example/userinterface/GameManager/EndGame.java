@@ -19,7 +19,7 @@ public class EndGame extends GameActivity {
         if (statTracker.getCurrScore() > statTracker.getHighScore()) {
             statTracker.setHighScoreToCurrent();
         }
-        GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(this);
+        GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity();
         getUser().getStatTracker().setCurrScore(0);
         gameBackgroundActivity.execute("stats", getUser());
         getUser().getStatTracker().setLevel(0);

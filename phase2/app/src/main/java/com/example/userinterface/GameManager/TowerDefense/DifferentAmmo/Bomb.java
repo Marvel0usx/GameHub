@@ -1,10 +1,10 @@
 package com.example.userinterface.GameManager.TowerDefense.DifferentAmmo;
 
-public class Bomb extends Ammunition implements Ammo {
+class Bomb extends Ammunition implements Ammo {
 
-    public Bomb() {
+    Bomb() {
         this.setDamage(15);
-        this.setAppearance( "💣");
+        this.setAppearance("💣");
         this.setSpeed(6);
     }
 }

@@ -8,8 +8,8 @@ import android.graphics.Typeface;
 public class InformationBoard {
     private String money;
     private Paint paintText = new Paint();
-    float height, width;
-    String lives;
+    private float height, width;
+    private String lives;
 
     InformationBoard(float height, float width) {
         this.money = "";

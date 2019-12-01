@@ -15,7 +15,7 @@ public class Minion extends Enemy {
     }
 
     public void move() {
-        this.setY(this.getY()+this.getSpeed());
+        this.setY(this.getY() + this.getSpeed());
     }
 
     public void draw(Canvas canvas) {
@@ -25,7 +25,7 @@ public class Minion extends Enemy {
         Paint paintText = new Paint();
         paintText.setColor(Color.RED);
         paintText.setTextSize(80);
-        canvas.drawRect(this.getX(), this.getY()-60, this.getX()+ this.getHealth()*12, this.getY() -50, paintText);
+        canvas.drawRect(this.getX(), this.getY() - 60, this.getX() + this.getHealth() * 12, this.getY() - 50, paintText);
         // decide each body parts' coordinates
 
     }

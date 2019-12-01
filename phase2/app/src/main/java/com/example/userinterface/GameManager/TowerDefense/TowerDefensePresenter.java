@@ -27,7 +27,7 @@ class TowerDefensePresenter implements VariableChangeListener {
             addBoss2 = Math.random() < 1;
         }
        towerDefense.addEnemy(addBoss0, addBoss1, addBoss2);
-       towerDefense.setGameStart(true);
+       towerDefense.setGameStart();
        towerDefenseView.setButtonVisible();
    }
 

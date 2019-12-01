@@ -1,14 +1,12 @@
 package com.example.userinterface.GameManager;
 
-import android.content.Intent;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
-import com.example.userinterface.GameManager.HangMan.Difficulty;
 import com.example.userinterface.R;
 
-public class DisplayBadgesActivity extends GameActivity{
+public class DisplayBadgesActivity extends GameActivity {
 
     TextView numFortune, numStrategy, numAdventurous;
     User user;
@@ -24,7 +22,8 @@ public class DisplayBadgesActivity extends GameActivity{
         showBadgesCount();
     }
 
-    protected void showBadgesCount(){
+    @SuppressLint("SetTextI18n")
+    protected void showBadgesCount() {
         numFortune.setText(user.getStatTracker().getFortuneNum() + "");
         numStrategy.setText(user.getStatTracker().getStrategicNum() + "");
         numAdventurous.setText(user.getStatTracker().getAdventurousNum() + "");

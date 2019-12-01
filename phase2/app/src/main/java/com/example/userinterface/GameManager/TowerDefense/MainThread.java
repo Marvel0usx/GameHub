@@ -28,7 +28,7 @@ public class MainThread extends Thread {
                     this.gameView.update();
                     this.gameView.draw(canvas);
                 }
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             } finally {
                 if (canvas != null) {
                     try {
@@ -41,7 +41,7 @@ public class MainThread extends Thread {
         }
     }
 
-    public void setRunning(boolean isRunning) {
+    void setRunning(boolean isRunning) {
         running = isRunning;
     }
 }

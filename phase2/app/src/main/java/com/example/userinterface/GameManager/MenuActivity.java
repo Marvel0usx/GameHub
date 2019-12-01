@@ -7,10 +7,10 @@ import android.widget.Button;
 
 import com.example.userinterface.R;
 
-    /**
-     * This is the main menu for the game, with a few buttons that enable the user to start a game
-     * or resume a game or see his or her scoreboard.
-     */
+/**
+ * This is the main menu for the game, with a few buttons that enable the user to start a game
+ * or resume a game or see his or her scoreboard.
+ */
 public class MenuActivity extends GameActivity {
 
     Button btnStart;
@@ -36,39 +36,33 @@ public class MenuActivity extends GameActivity {
         /*
          * The onclick listener that starts a new game
          */
-        btnStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getUser().getStatTracker().setCurrScore(0);
-                toGame(1, false);
-            }
+        btnStart.setOnClickListener(v -> {
+            getUser().getStatTracker().setCurrScore(0);
+            toGame(1, false);
         });
         /*
          * The onClick listener that resumes a game if possible
          */
-        btnResume.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (getUser().getStatTracker().getLevel()) {
-                    case 1:
-                        toGame(1, false);
-                        break;
-                    case 2:
-                        toGame(2, false);
-                        break;
-                    case 3:
-                        toGame(3, false);
-                        break;
-                    case 4:
-                        toGame(4,false);
-                    default:
-                        break;
-                }
+        btnResume.setOnClickListener(v -> {
+            switch (getUser().getStatTracker().getLevel()) {
+                case 1:
+                    toGame(1, false);
+                    break;
+                case 2:
+                    toGame(2, false);
+                    break;
+                case 3:
+                    toGame(3, false);
+                    break;
+                case 4:
+                    toGame(4, false);
+                default:
+                    break;
             }
         });
     }
 
-    public void toScoreBoard(View view){
+    public void toScoreBoard(View view) {
         Intent intent = new Intent(MenuActivity.this, ScoreBoard.class);
         startActivity(intent);
     }
@@ -85,7 +79,8 @@ public class MenuActivity extends GameActivity {
 
     /**
      * This is the practice mode on click, where it leads to the practice mode activity.
-     * @param v  The practice button
+     *
+     * @param v The practice button
      */
     public void practiceMode(View v) {
         Intent intent = new Intent(MenuActivity.this, PracticeMode.class);

@@ -58,13 +58,13 @@ public abstract class Ammunition implements Ammo {
 
     public void setTarget(Enemies enemy) {
         this.target = enemy;
-        if (target.getX()>x){
+        if (target.getX() > x) {
             direction = "left";
-            x+=130;
-            y+=100;
-        }else{
-            x-=10;
-            y+=100;
+            x += 130;
+            y += 100;
+        } else {
+            x -= 10;
+            y += 100;
             direction = "right";
         }
 
@@ -85,19 +85,11 @@ public abstract class Ammunition implements Ammo {
         this.damage = damage;
     }
 
-    public String getAppearance() {
-        return appearance;
-    }
-
-    public void setAppearance(String appearance) {
+    void setAppearance(String appearance) {
         this.appearance = appearance;
     }
 
-    public int getSpeed() {
-        return speed;
-    }
-
-    public void setSpeed(int speed) {
+    void setSpeed(int speed) {
         this.speed = speed;
     }
 
@@ -117,13 +109,13 @@ public abstract class Ammunition implements Ammo {
         // decide each body parts' coordinates
         System.out.println(textSize);
         System.out.println("hello????");
-        System.out.println(appearance+"coooooola");
+        System.out.println(appearance + "coooooola");
 
     }
 
     public void predictYPosition() {
-        if (target.getSpeed()>=this.speed){
-            this.speed += target.getSpeed()-this.speed+1;
+        if (target.getSpeed() >= this.speed) {
+            this.speed += target.getSpeed() - this.speed + 1;
         }
         float A = (float) Math.sqrt(((y - target.getY()) * ((y - target.getY())) + ((x - target.getX())) * (x - target.getX())));
         float v1 = target.getSpeed();

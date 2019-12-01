@@ -18,13 +18,13 @@ public class Orc extends Enemy {
 
     public void move() {
         if (this.getHealth() > 20)
-            this.setY(this.getY()+this.getSpeed());
+            this.setY(this.getY() + this.getSpeed());
         else {
             if (!ifSpeedUp) {
-                setSpeed(this.getSpeed()*3);
+                setSpeed(this.getSpeed() * 3);
                 ifSpeedUp = true;
             }
-            this.setY(this.getY()+this.getSpeed());
+            this.setY(this.getY() + this.getSpeed());
         }
 
     }
@@ -36,7 +36,7 @@ public class Orc extends Enemy {
         Paint paintText = new Paint();
         paintText.setColor(Color.RED);
         paintText.setTextSize(80);
-        canvas.drawRect(this.getX(), this.getY()-60, this.getX()+ this.getHealth()*3, this.getY() -50, paintText);
+        canvas.drawRect(this.getX(), this.getY() - 60, this.getX() + this.getHealth() * 3, this.getY() - 50, paintText);
         // decide each body parts' coordinates
 
     }
