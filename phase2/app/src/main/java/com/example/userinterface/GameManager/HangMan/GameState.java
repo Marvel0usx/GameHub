@@ -1,17 +1,6 @@
 package com.example.userinterface.GameManager.HangMan;
 
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.TextView;
-
 import com.example.userinterface.GameManager.BadgeCollector;
-import com.example.userinterface.R;
-
-import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class GameState implements BadgeCollector {
 

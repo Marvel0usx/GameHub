@@ -31,7 +31,6 @@ public class HangManGameActivity extends GameActivity implements HangManView{
     String character;
     User user;
     View rootView;
-    View view;
     boolean practiceMode;
     boolean adventurousBadgeCollected;
     HangManPresenter hangManPresenter;
