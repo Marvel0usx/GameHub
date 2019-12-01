@@ -21,7 +21,12 @@ public abstract class Enemy implements Enemies { //common interface for all Enem
     }
 
     public void decreaseHealth(int damage) {
-        health -= damage;
+        if (damage >= health){
+            health = 0;
+        }else{
+            health -= damage;
+        }
+
     }
 
 
