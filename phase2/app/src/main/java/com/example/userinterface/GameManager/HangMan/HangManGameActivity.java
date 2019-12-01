@@ -68,7 +68,7 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         // an array that stores all letters of the correct word
         AnswerKeyLetter[] answerKey = new AnswerKeyLetter[keyword.length()];
         // each letter of the correct word is represented as a TextView object
-
+        this.hangManPresenter = new HangManPresenter(this, gameState);
         TextView[] characterViews = new TextView[keyword.length()];
         for (int c = 0; c < keyword.length(); c++) {
             answerKey[c] = new AnswerKeyLetter(keyword.charAt(c)); // makes a new AnswerKeyLetter
@@ -87,6 +87,7 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         gameState.setAnswerKeys(answerKey);
     }
 
+    @Override
     /**
      * Guesses a new letter
      *
@@ -98,7 +99,7 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         v.setEnabled(false);
         v.setBackgroundResource(R.drawable.hm_letter_clicked);
         // updates the gameState by calling the updateState method
-        this.gameState.updateState(charGuessed);
+        this.hangManPresenter.makeGuess(charGuessed);
         this.currentScore = gameState.getCurrentScore();
         TextView scoreNumberDisplay = findViewById(R.id.scoreNumberDisplay);
         scoreNumberDisplay.setText(Integer.toString(this.currentScore));

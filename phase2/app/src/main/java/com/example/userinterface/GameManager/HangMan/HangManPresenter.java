@@ -4,15 +4,16 @@ import android.view.View;
 
 public class HangManPresenter {
 
-    HangManView hangManView;
+    HangManView view;
     GameState gameState;
 
-    HangManPresenter(HangManView hangManView){
-        this.hangManView = hangManView;
+    HangManPresenter(HangManView view, GameState gameState){
+        this.gameState = gameState;
+        this.view = view;
     }
 
-    void makeGuess(View v){
-
-
+    void makeGuess(Character charGuessed){
+        this.gameState.updateState(charGuessed);
     }
+
 }
