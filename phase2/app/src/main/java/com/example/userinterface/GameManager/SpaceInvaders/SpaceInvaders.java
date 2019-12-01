@@ -118,6 +118,8 @@ public class SpaceInvaders implements Observer {
             this.wave++;
             this.level++;
             spawnWaves();
+            for (Subject sub : subjects)
+                sub.registerObserver(this);
         }
         if (this.wave == 5) {
             this.gameOver = true;
@@ -180,8 +182,13 @@ public class SpaceInvaders implements Observer {
         hardness++;
     }
 
+    public List<SpaceObject> getUpdate(){
+        return subjects;
+    }
+
     public void spawnWaves() {
         if (this.wave == 1) {
+            this.player.setMode(1);
             for (int x = 50; x < 500; x += 200)
                 subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100));
             for (int x = 700; x < 1000; x += 200)

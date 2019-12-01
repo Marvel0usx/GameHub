@@ -22,6 +22,7 @@ abstract class SpaceObject implements Subject {
     private boolean destroyed;
     private boolean updated = false;
     private List<Observer> observers;
+    private int size;
 
     // Initializer
     SpaceObject(int x, int y, int damage, int ySpeed) {
@@ -101,6 +102,14 @@ abstract class SpaceObject implements Subject {
 
     void setDestroyed() {
         this.destroyed = true;
+    }
+
+    int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 
     // Implements Subject
