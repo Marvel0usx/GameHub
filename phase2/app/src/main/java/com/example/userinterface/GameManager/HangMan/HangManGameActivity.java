@@ -33,6 +33,7 @@ public class HangManGameActivity extends GameActivity implements HangManView{
     View rootView;
     View view;
     boolean practiceMode;
+    boolean adventurousBadgeCollected;
     HangManPresenter hangManPresenter;
 
     @Override
@@ -61,6 +62,15 @@ public class HangManGameActivity extends GameActivity implements HangManView{
      * @param v View object
      */
     public void makeGuess(View v) {
+        Boolean adventurous = gameState.collectAdventurousBadge();
+        if (adventurous && !adventurousBadgeCollected){
+            showAdventurousBadge(rootView);
+            adventurousBadgeCollected = true;
+        }
+        Boolean fortunate = gameState.collectFortunateBadge();
+        if (fortunate){
+            showFortunateBadge(rootView);
+        }
         String letterGuessed = ((TextView) v).getText().toString();
         char charGuessed = letterGuessed.charAt(0);
         v.setEnabled(false);
@@ -70,8 +80,8 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         this.currentScore = gameState.getCurrentScore();
         TextView scoreNumberDisplay = findViewById(R.id.scoreNumberDisplay);
         scoreNumberDisplay.setText(Integer.toString(this.currentScore));
-        Boolean fortunate = gameState.collectFortunateBadge();
-        if (fortunate) {showFortunateBadge(rootView);}
+        Boolean strategic = gameState.collectStrategicBadge();
+        if (strategic) {showStrategicBadge(rootView);}
         endGame();
     }
 
@@ -141,9 +151,9 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         });
     }
 
-    public void showFortunateBadge(View view){
+    public void showStrategicBadge(View view){
             LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-            View popupView = inflater.inflate(R.layout.fortunate_badge, null);
+            View popupView = inflater.inflate(R.layout.badge_popup_window, null);
 
             int width = LinearLayout.LayoutParams.WRAP_CONTENT;
             int height = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -151,7 +161,7 @@ public class HangManGameActivity extends GameActivity implements HangManView{
             boolean focusable = true; // lets taps outside the popup also dismiss it
             PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
             popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-            ((TextView)popupWindow.getContentView().findViewById(R.id.fortunateBadge)).setText("A Fortunate Badge has been earned!");
+            ((TextView)popupWindow.getContentView().findViewById(R.id.badge)).setText("A Strategic Badge has been earned!");
 
 
         popupView.setOnTouchListener(new View.OnTouchListener() {
@@ -162,6 +172,50 @@ public class HangManGameActivity extends GameActivity implements HangManView{
                 }
             });
         }
+
+    public void showAdventurousBadge(View view){
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.badge_popup_window, null);
+
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        ((TextView)popupWindow.getContentView().findViewById(R.id.badge)).setText("An Adventurous Badge has been earned!");
+
+
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
+    }
+
+    public void showFortunateBadge(View view){
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.badge_popup_window, null);
+
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        ((TextView)popupWindow.getContentView().findViewById(R.id.badge)).setText("A Fortunate Badge has been earned!");
+
+
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
+            }
+        });
+    }
 
 
     void setDifficulty(){

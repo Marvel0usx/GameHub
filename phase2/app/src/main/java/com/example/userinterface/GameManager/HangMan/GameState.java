@@ -81,20 +81,20 @@ public class GameState implements BadgeCollector {
         // only if hard level is selected
         if (this.difficulty.type.equals("Hard")){
             double randomDouble = Math.random();
-            return (randomDouble < 0.5);
+            return (randomDouble < 0.3);
         }
         return false;
     }
 
     @Override
-    public boolean collectStrategicBadge(){
+    public boolean collectFortunateBadge(){
         // randomly collected
         double randomDouble = Math.random();
-        return (randomDouble < 1);
+        return (randomDouble < 0.1);
     }
 
     @Override
-    public boolean collectFortunateBadge(){
+    public boolean collectStrategicBadge(){
         // randomly collected if there are more than 2 lives left with only 1 letter yet to be guessed
         if (this.currentScore > 30){
             double randomDouble = Math.random();
