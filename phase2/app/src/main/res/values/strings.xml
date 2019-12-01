@@ -70,6 +70,7 @@
     <string name="score">Score:</string>
     <string name="hint">Hint</string>
     <string name="choose_your_character">Choose your character:</string>
+    <string name="LOGOUT">logout</string>
 
 
 </resources>

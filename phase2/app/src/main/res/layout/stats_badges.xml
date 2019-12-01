@@ -73,7 +73,7 @@
         android:layout_marginEnd="17dp"
         android:layout_marginRight="17dp"
         android:layout_marginBottom="535dp"
-        android:text="Adventurous Badges"
+        android:text="@string/adventurous_badges"
         android:textColor="#000000"
         android:textSize="24sp"
         app:fontFamily="@font/bubblegum_sans" />
@@ -92,7 +92,7 @@
         android:layout_marginEnd="19dp"
         android:layout_marginRight="19dp"
         android:layout_marginBottom="355dp"
-        android:text="Strategic Badges"
+        android:text="@string/strategic_badges"
         android:textColor="#000000"
         android:textSize="24sp"
         app:fontFamily="@font/bubblegum_sans" />
@@ -103,10 +103,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="90dp"
         android:layout_marginTop="40dp"
-        android:text="YOUR BADGES"
+        android:text="@string/your_badges"
         android:textColor="#090808"
         android:textSize="36sp"
-        app:fontFamily="@font/bubblegum_sans" />
+        app:fontFamily="@font/bubblegum_sans"
+        android:layout_marginStart="90dp" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -124,7 +125,8 @@
         android:layout_marginEnd="249dp"
         android:layout_marginRight="249dp"
         android:layout_marginBottom="452dp"
-        app:srcCompat="@drawable/adventurous" />
+        app:srcCompat="@drawable/adventurous"
+        android:contentDescription="@string/the_image_of_adventurous_badge" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -142,7 +144,8 @@
         android:layout_marginEnd="253dp"
         android:layout_marginRight="253dp"
         android:layout_marginBottom="262dp"
-        app:srcCompat="@drawable/strategic" />
+        app:srcCompat="@drawable/strategic"
+        android:contentDescription="@string/the_image_of_strategic_badge" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -158,7 +161,8 @@
         android:layout_marginEnd="223dp"
         android:layout_marginRight="223dp"
         android:layout_marginBottom="46dp"
-        app:srcCompat="@drawable/fortune" />
+        app:srcCompat="@drawable/fortune"
+        android:contentDescription="@string/the_image_of_fortune_badge" />
 
     <TextView
         android:id="@+id/textView9"
@@ -174,7 +178,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginBottom="150dp"
-        android:text="Fortune Badges"
+        android:text="@string/fortune_badges"
         android:textColor="#000000"
         android:textSize="24sp"
         app:fontFamily="@font/bubblegum_sans" />

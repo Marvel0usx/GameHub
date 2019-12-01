@@ -3,7 +3,6 @@ package com.example.userinterface.GameManager.TowerDefense.DifferentAmmo;
 import android.graphics.Canvas;
 
 import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Enemies;
-import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Enemy;
 
 public interface Ammo {
     void update();
@@ -19,6 +18,4 @@ public interface Ammo {
     void setTarget(Enemies enemy);
 
     void predictYPosition();
-
-    double getPrey();
 }

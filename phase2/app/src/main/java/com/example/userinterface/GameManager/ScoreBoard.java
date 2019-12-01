@@ -1,19 +1,15 @@
 package com.example.userinterface.GameManager;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
-
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.userinterface.R;
 
@@ -39,11 +35,10 @@ public class ScoreBoard extends AppCompatActivity implements AdapterView.OnItemS
     }
 
 
-
     @SuppressLint("SetTextI18n")
-    public void show(String type){
+    public void show(String type) {
         String info = "";
-        GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(this);
+        GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity();
         try {
             info = gameBackgroundActivity.execute("scoreboard", type).get();
         } catch (ExecutionException e) {
@@ -51,24 +46,24 @@ public class ScoreBoard extends AppCompatActivity implements AdapterView.OnItemS
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        String [] infoList = info.split(";");
-        String [][] totalInfo = new String[infoList.length][2];
-        for (int i = 0; i< infoList.length;i++){
+        String[] infoList = info.split(";");
+        String[][] totalInfo = new String[infoList.length][2];
+        for (int i = 0; i < infoList.length; i++) {
             totalInfo[i] = infoList[i].split(",");
         }
-        sort(totalInfo,0, totalInfo.length-1);
-        for (String[] users: totalInfo){
+        sort(totalInfo, 0, totalInfo.length - 1);
+        for (String[] users : totalInfo) {
             String username = users[0];
-            String highScore= users[1];
-            TextView textView =  new TextView(getApplicationContext());
-            String newUsername = username;
-            for (int i = 0; i < 15-username.length();i++ ){
-                newUsername+="- ";
+            String highScore = users[1];
+            TextView textView = new TextView(getApplicationContext());
+            StringBuilder newUsername = new StringBuilder(username);
+            for (int i = 0; i < 15 - username.length(); i++) {
+                newUsername.append("- ");
             }
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.setMargins(10,10,10,10);
+            params.setMargins(10, 10, 10, 10);
             textView.setLayoutParams(params);
-            textView.setText("User"+": " + newUsername+"Score:"+highScore);
+            textView.setText("User" + ": " + newUsername + "Score:" + highScore);
             textView.setTextSize(20);
             layout.addView(textView);
             textViews.add(textView);
@@ -76,69 +71,59 @@ public class ScoreBoard extends AppCompatActivity implements AdapterView.OnItemS
         }
     }
 
-    void sort(String[][] arr, int l, int r)
-    {
-        if (l < r)
-        {
-            int m = (l+r)/2;
+    void sort(String[][] arr, int l, int r) {
+        if (l < r) {
+            int m = (l + r) / 2;
             sort(arr, l, m);
-            sort(arr , m+1, r);
+            sort(arr, m + 1, r);
             merge(arr, l, m, r);
         }
     }
 
-    void merge(String [][] arr, int l, int m, int r)
-    {
+    void merge(String[][] arr, int l, int m, int r) {
         int n1 = m - l + 1;
         int n2 = r - m;
 
         String[][] left = new String[n1][];
         String[][] right = new String[n2][];
 
-        for (int i=0; i<n1; ++i)
-            left[i] = arr[l + i];
-        for (int j=0; j<n2; ++j)
-            right[j] = arr[m +1+ j];
+        System.arraycopy(arr, l, left, 0, n1);
+        for (int j = 0; j < n2; ++j)
+            right[j] = arr[m + 1 + j];
         int i = 0, j = 0;
 
         int k = l;
-        while (i < n1 && j < n2)
-        {
-            if (Integer.parseInt(left[i][1]) >= Integer.parseInt(right[j][1]))
-            {
+        while (i < n1 && j < n2) {
+            if (Integer.parseInt(left[i][1]) >= Integer.parseInt(right[j][1])) {
                 arr[k] = left[i];
                 i++;
-            }
-            else
-            {
+            } else {
                 arr[k] = right[j];
                 j++;
             }
             k++;
         }
-        while (i < n1)
-        {
+        while (i < n1) {
             arr[k] = left[i];
             i++;
             k++;
         }
-        while (j < n2)
-        {
+        while (j < n2) {
             arr[k] = right[j];
             j++;
             k++;
         }
     }
 
-    public void removeViews(){
-        for (View item: textViews){
+    public void removeViews() {
+        for (View item : textViews) {
             layout.removeView(item);
         }
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        switch (position){
+        switch (position) {
             case 0:
                 removeViews();
                 show("highscore");

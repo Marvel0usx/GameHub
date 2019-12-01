@@ -22,7 +22,7 @@ public class TowerDefense implements ScoreSystem {
     private int mapHeight;
     private int mapWidth;
     private boolean gameStart = false;
-    boolean adventurous = false;
+    private boolean adventurous = false;
 
     private boolean win;
     private VariableChangeListener listener;
@@ -136,7 +136,6 @@ public class TowerDefense implements ScoreSystem {
         }
         for (Enemies item : temp) {
             waves.get(currentWave).remove(item);
-            item = null;
         }
     }
 
@@ -238,8 +237,8 @@ public class TowerDefense implements ScoreSystem {
     }
 
 
-    void setGameStart(boolean gameStart) {
-        this.gameStart = gameStart;
+    void setGameStart() {
+        this.gameStart = true;
     }
 
 

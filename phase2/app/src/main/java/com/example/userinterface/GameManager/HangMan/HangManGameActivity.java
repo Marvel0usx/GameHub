@@ -1,5 +1,6 @@
 package com.example.userinterface.GameManager.HangMan;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.MediaPlayer;
@@ -31,7 +32,6 @@ public class HangManGameActivity extends GameActivity implements HangManView{
     String character;
     User user;
     View rootView;
-    View view;
     boolean practiceMode;
     boolean adventurousBadgeCollected;
     HangManPresenter hangManPresenter;
@@ -55,19 +55,20 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         setAnswerKey();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    /**
+    /*
      * Guesses a new letter
      *
      * @param v View object
      */
     public void makeGuess(View v) {
-        Boolean adventurous = gameState.collectAdventurousBadge();
+        boolean adventurous = gameState.collectAdventurousBadge();
         if (adventurous && !adventurousBadgeCollected){
             showAdventurousBadge(rootView);
             adventurousBadgeCollected = true;
         }
-        Boolean fortunate = gameState.collectFortunateBadge();
+        boolean fortunate = gameState.collectFortunateBadge();
         if (fortunate){
             showFortunateBadge(rootView);
         }
@@ -80,7 +81,7 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         this.currentScore = gameState.getCurrentScore();
         TextView scoreNumberDisplay = findViewById(R.id.scoreNumberDisplay);
         scoreNumberDisplay.setText(Integer.toString(this.currentScore));
-        Boolean strategic = gameState.collectStrategicBadge();
+        boolean strategic = gameState.collectStrategicBadge();
         if (strategic) {showStrategicBadge(rootView);}
         endGame();
     }
@@ -241,6 +242,7 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         mediaPlayer.setLooping(true);
     }
 
+    @SuppressLint("SetTextI18n")
     void setAnswerKey(){
         LinearLayout wordLayout = findViewById(R.id.word);
         wordLayout.removeAllViews();
@@ -265,5 +267,11 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         }
 
         gameState.setAnswerKeys(answerKey);
+    }
+
+    @Override
+    public void onBackPressed() {
+        mediaPlayer.stop();
+        super.onBackPressed();
     }
 }

@@ -1,22 +1,26 @@
 package com.example.userinterface.GameManager;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.userinterface.GameManager.HangMan.HangManActivity;
 import com.example.userinterface.GameManager.SpaceInvaders.SpaceActivity;
 import com.example.userinterface.GameManager.TowerDefense.TowerDefenseActivity;
 
 public abstract class GameActivity extends AppCompatActivity {
-    public Context context;
-    private static UserDAO user = null;
-    private static boolean ifLost = false;
     private static final Class[] CLASSES = new Class[]{MenuActivity.class, HangManActivity.class, TowerDefenseActivity.class,
             SpaceActivity.class, EndGame.class};
+    private static UserDAO user = null;
+    private static boolean ifLost = false;
+    public Context context;
+
+    public static boolean isIfLost() {
+        return ifLost;
+    }
 
     @Override
     public void onBackPressed() {
@@ -28,7 +32,7 @@ public abstract class GameActivity extends AppCompatActivity {
         ifLost = false;
         if (!practiceMode) {
 
-            GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(context);
+            GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity();
             user.get().getStatTracker().setLevel(saved);
             gameBackgroundActivity.execute("quit", user.get());
         }
@@ -40,11 +44,11 @@ public abstract class GameActivity extends AppCompatActivity {
     }
 
     public void goToIntermediate(boolean won, boolean practiceMode) {
-        if (!won){
+        if (!won) {
             ifLost = true;
         }
         if (!practiceMode) {
-            GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(context);
+            GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity();
             if (won) {
                 int num = user.get().getStatTracker().getLevel() + 1;
                 user.get().getStatTracker().setLevel(num);
@@ -63,15 +67,8 @@ public abstract class GameActivity extends AppCompatActivity {
 
     }
 
-
     public User getUser() {
         return user.get();
-    }
-
-    public void toMenu() {
-        ifLost = false;
-        Intent intent = new Intent(context, MenuActivity.class);
-        startActivity(intent);
     }
 
     public static void setUser(UserDAO user) {
@@ -81,17 +78,19 @@ public abstract class GameActivity extends AppCompatActivity {
 
     }
 
+    public void toMenu() {
+        ifLost = false;
+        Intent intent = new Intent(context, MenuActivity.class);
+        startActivity(intent);
+    }
+
     public void deleteUser() {
-        user.delete();
+        user = null;
     }
 
     public void next(View view) {
         ifLost = false;
         Intent intent = new Intent(context, CLASSES[user.get().getStatTracker().getLevel()]);
         startActivity(intent);
-    }
-
-    public static boolean isIfLost() {
-        return ifLost;
     }
 }

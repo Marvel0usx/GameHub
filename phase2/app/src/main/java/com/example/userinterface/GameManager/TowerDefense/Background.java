@@ -8,7 +8,7 @@ public class Background {
     private Bitmap image;
     private int width, height;
 
-    public Background(Bitmap res, int width, int height) {
+    Background(Bitmap res, int width, int height) {
         image = res;
         this.height = height;
         this.width = width;

@@ -1,10 +1,9 @@
 package com.example.userinterface.GameManager.HangMan;
 
-import java.io.InputStream;
 import java.io.Serializable;
 import java.util.List;
 
-public abstract class Difficulty implements Serializable {
+abstract class Difficulty implements Serializable {
 
     String keyword;
     int numLives;
@@ -14,11 +13,11 @@ public abstract class Difficulty implements Serializable {
     Integer wrongGuessPoints;
     String type;
 
-    public Difficulty(List<String[]> words) {
+    Difficulty(List<String[]> words) {
         this.words = words;
     }
 
-    abstract void setWord(); //set the keywordsss
+    abstract void setWord(); //set the keyword
 
     abstract void setNumLives();
 

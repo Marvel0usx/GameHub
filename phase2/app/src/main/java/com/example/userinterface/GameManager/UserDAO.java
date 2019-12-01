@@ -2,7 +2,7 @@ package com.example.userinterface.GameManager;
 
 public class UserDAO implements DAO<User> {
 
-    User user;
+    private User user;
 
     public UserDAO(User user) {
         this.user = user;

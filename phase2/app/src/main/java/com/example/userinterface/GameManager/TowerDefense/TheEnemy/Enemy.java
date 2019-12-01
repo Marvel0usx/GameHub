@@ -20,38 +20,65 @@ public abstract class Enemy implements Enemies { //common interface for all Enem
         return health;
     }
 
+    void setHealth(int health) {
+        this.health = health;
+    }
+
     public void decreaseHealth(int damage) {
-        if (damage >= health){
+        if (damage >= health) {
             health = 0;
-        }else{
+        } else {
             health -= damage;
         }
 
     }
 
-
     public int getY() {
         return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
     public int getX() {
         return x;
     }
 
+    public void setX(int x) {
+        this.x = x;
+    }
+
     public int getMoneyGain() {
         return moneyGain;
+    }
+
+    void setMoneyGain(int moneyGain) {
+        this.moneyGain = moneyGain;
     }
 
     public int getScore() {
         return score;
     }
 
-    public int getDamage(){
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int getDamage() {
         return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 
     public int getSpeed() {
         return speed;
+    }
+
+    void setSpeed(int speed) {
+        this.speed = speed;
     }
 
     public void setLocation(int x, int y) {
@@ -59,39 +86,11 @@ public abstract class Enemy implements Enemies { //common interface for all Enem
         this.y = y;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
-
-    public void setMoneyGain(int moneyGain) {
-        this.moneyGain = moneyGain;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public void setDamage(int damage) {
-        this.damage = damage;
-    }
-
-    public String getAppearence() {
+    String getAppearence() {
         return appearence;
     }
 
-    public void setAppearence(String appearence) {
+    void setAppearence(String appearence) {
         this.appearence = appearence;
     }
 }
