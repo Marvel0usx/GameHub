@@ -14,8 +14,9 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="HIGHSCORE"
-        app:fontFamily="@font/breadcrumbs"
-        android:textSize="40sp" />
+        android:textColor="#000000"
+        android:textSize="40sp"
+        app:fontFamily="@font/breadcrumbs" />
 
     <ScrollView
         android:layout_width="0dp"
