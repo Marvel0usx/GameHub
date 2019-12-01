@@ -152,16 +152,17 @@ public class HangManGameActivity extends GameActivity implements HangManView{
     }
 
     public void showStrategicBadge(View view){
-            LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-            View popupView = inflater.inflate(R.layout.badge_popup_window, null);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.badge_popup_window, null);
 
-            int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-            int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
 
-            boolean focusable = true; // lets taps outside the popup also dismiss it
-            PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-            popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-            ((TextView)popupWindow.getContentView().findViewById(R.id.badge)).setText("A Strategic Badge has been earned!");
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        ((TextView)popupWindow.getContentView().findViewById(R.id.badge)).setText("A Strategic Badge has been earned!");
+        user.getStatTracker().addToBadges(false, true, false);
 
 
         popupView.setOnTouchListener(new View.OnTouchListener() {
@@ -184,6 +185,7 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
         ((TextView)popupWindow.getContentView().findViewById(R.id.badge)).setText("An Adventurous Badge has been earned!");
+        user.getStatTracker().addToBadges(false, false, true);
 
 
         popupView.setOnTouchListener(new View.OnTouchListener() {
@@ -206,7 +208,7 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
         ((TextView)popupWindow.getContentView().findViewById(R.id.badge)).setText("A Fortunate Badge has been earned!");
-
+        user.getStatTracker().addToBadges(true, false, false);
 
         popupView.setOnTouchListener(new View.OnTouchListener() {
             @Override

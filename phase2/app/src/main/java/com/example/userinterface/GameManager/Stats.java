@@ -1,6 +1,7 @@
 package com.example.userinterface.GameManager;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -25,6 +26,15 @@ public class Stats extends GameActivity {
         highScore.setText(user.getStatTracker().getHighScore() + "");
         gamesPlayed.setText(user.getStatTracker().getNumOfGames() + "");
         currentScore.setText(user.getStatTracker().getCurrScore() + "");
+        setBadgesButton();
+    }
+
+    protected void setBadgesButton(){
+        findViewById(R.id.BadgesButton).setOnClickListener(v -> {
+            Intent intent = new Intent(Stats.this, DisplayBadgesActivity.class);
+            startActivity(intent);
+                }
+        );
     }
 
 }

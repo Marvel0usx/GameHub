@@ -18,6 +18,7 @@
         <activity android:name=".GameManager.EndGame" />
         <activity android:name=".GameManager.NextGame" />
         <activity android:name=".GameManager.Stats" />
+        <activity android:name=".GameManager.DisplayBadgesActivity" />
         <activity android:name=".GameManager.MenuActivity" />
         <activity android:name=".GameManager.TowerDefense.TowerDefenseActivity" />
         <activity android:name=".GameManager.SpaceInvaders.SpaceActivity" />
