@@ -9,10 +9,13 @@
 
     <Button
         android:id="@+id/practice"
-        android:layout_width="250dp"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/menu_button_background"
         android:onClick="practiceMode"
         android:text="@string/practice_mode"
+        android:textSize="24sp"
+        app:fontFamily="@font/breadcrumbs"
         app:layout_constraintBottom_toTopOf="@+id/scoreBoard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,9 +23,12 @@
 
     <Button
         android:id="@+id/Resume"
-        android:layout_width="250dp"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/menu_button_background"
         android:text="@string/Resume"
+        android:textSize="24sp"
+        app:fontFamily="@font/breadcrumbs"
         app:layout_constraintBottom_toTopOf="@+id/Stats"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -31,10 +37,13 @@
 
     <Button
         android:id="@+id/Stats"
-        android:layout_width="250dp"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/menu_button_background"
         android:onClick="goToStatsheet"
         android:text="@string/mystats"
+        android:textSize="24sp"
+        app:fontFamily="@font/breadcrumbs"
         app:layout_constraintBottom_toTopOf="@+id/practice"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -43,9 +52,12 @@
 
     <Button
         android:id="@+id/start"
-        android:layout_width="250dp"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/menu_button_background"
         android:text="@string/start"
+        android:textSize="24sp"
+        app:fontFamily="@font/breadcrumbs"
         app:layout_constraintBottom_toTopOf="@+id/Resume"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -54,10 +66,13 @@
 
     <Button
         android:id="@+id/scoreBoard"
-        android:layout_width="250dp"
+        android:layout_width="230dp"
         android:layout_height="wrap_content"
+        android:background="@drawable/menu_button_background"
         android:onClick="toScoreBoard"
         android:text="@string/scoreboard"
+        android:textSize="24sp"
+        app:fontFamily="@font/breadcrumbs"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
