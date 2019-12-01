@@ -78,12 +78,12 @@ public class GameState {
                 correct = true;
                 this.answerKeyLetters[i].turnBlack(); // shows the letter on screen
                 numCorr += 1;
-                currentScore += 10;
+                currentScore += difficulty.correctGuessPoints;
             }
         }
         if (!correct) {
             remainingBalloons -= 1;
-            currentScore -= 20;
+            currentScore += difficulty.wrongGuessPoints;
             this.balloons[remainingBalloons].disappear();
         }
     }

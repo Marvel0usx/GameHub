@@ -8,6 +8,8 @@ public class HardDifficulty extends Difficulty implements Serializable {
 
     public HardDifficulty(List<String[]> words) {
         super(words);
+        this.correctGuessPoints = 40;
+        this.wrongGuessPoints = -20;
     }
 
     void setWord() {
