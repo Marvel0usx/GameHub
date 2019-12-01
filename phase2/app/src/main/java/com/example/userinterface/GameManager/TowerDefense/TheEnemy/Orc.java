@@ -37,7 +37,7 @@ public class Orc extends Enemy {
         paintText.setColor(Color.RED);
         paintText.setTextSize(80);
         float x  = (float) ((50*0.25)/health);
-        canvas.drawRect(this.getX(), this.getY()-60, this.getX()+ health*12, this.getY() -50, paintText);
+        canvas.drawRect(this.getX(), this.getY()-60, this.getX()+ health*3, this.getY() -50, paintText);
         // decide each body parts' coordinates
 
     }

@@ -45,8 +45,9 @@ class TowerDefensePresenter implements VariableChangeListener {
     public void onVariableChange(boolean var) {
         boolean won = towerDefense.getWin();
         int score = towerDefense.getGameScore();
-        towerDefense = null;
         towerDefenseView.endGame(won, score);
+        towerDefense = null;
+
     }
 
     boolean enoughMoney(int cost){

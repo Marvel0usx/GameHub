@@ -74,8 +74,11 @@ public class TowerDefense implements ScoreSystem {
             if (lives > 0)
                 currentScore += lives * 100; //each life left adds another 100 pts.
             win = lives > 0;
-            if (listener != null)
+            if (listener != null){
                 listener.onVariableChange(true);
+            }
+
+
         }
     }
 
@@ -126,7 +129,7 @@ public class TowerDefense implements ScoreSystem {
                 cash += e.getMoneyGain();
                 currentScore += e.getScore();
             }
-            if (e.getY() >= mapHeight) { //if enemy is out of map remove it
+            if (e.getY() >= mapHeight-300) { //if enemy is out of map remove it
                 temp.add(e);
                 lives -= e.getDamage();
             }
