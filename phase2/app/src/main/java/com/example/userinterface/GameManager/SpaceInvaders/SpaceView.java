@@ -1,6 +1,8 @@
 package com.example.userinterface.GameManager.SpaceInvaders;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
@@ -9,6 +11,9 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import androidx.annotation.Nullable;
+
+import com.example.userinterface.GameManager.TowerDefense.Background;
+import com.example.userinterface.R;
 
 
 public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
@@ -53,7 +58,6 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
 
         thread.setRunning(true);
         thread.start();
-
     }
 
     public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int width, int height) {

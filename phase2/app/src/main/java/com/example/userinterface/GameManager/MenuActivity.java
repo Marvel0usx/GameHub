@@ -19,6 +19,7 @@ public class MenuActivity extends GameActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         context = this;
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         btnStart = findViewById(R.id.start);
         btnResume = findViewById(R.id.Resume);
@@ -29,7 +30,6 @@ public class MenuActivity extends GameActivity {
             btnResume.setEnabled(true);
         }
 
-        super.onCreate(savedInstanceState);
 
 
         /**

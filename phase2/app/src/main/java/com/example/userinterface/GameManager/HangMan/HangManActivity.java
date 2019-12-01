@@ -5,12 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.userinterface.GameManager.GameActivity;
 import com.example.userinterface.R;
 
 import java.io.InputStream;
 import java.util.List;
 
-public class HangManActivity extends Activity {
+public class HangManActivity extends GameActivity {
 
     GameState gameState;
     Difficulty diff;
@@ -20,6 +21,7 @@ public class HangManActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        context = this;
         super.onCreate(savedInstanceState);
         // refer to the hang_man_main layout
         setContentView(R.layout.hang_man_main);

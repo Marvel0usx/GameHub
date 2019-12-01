@@ -16,6 +16,7 @@
         android:layout_marginBottom="68dp"
         android:text="@string/Easy"
         android:textSize="18sp"
+        app:fontFamily="@font/breadcrumbs"
         app:layout_constraintBottom_toTopOf="@+id/moderateButton"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -28,6 +29,7 @@
         android:layout_marginBottom="72dp"
         android:text="@string/Moderate"
         android:textSize="18sp"
+        app:fontFamily="@font/breadcrumbs"
         app:layout_constraintBottom_toTopOf="@+id/hardButton"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -40,6 +42,7 @@
         android:layout_marginBottom="188dp"
         android:text="@string/Hard"
         android:textSize="18sp"
+        app:fontFamily="@font/breadcrumbs"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

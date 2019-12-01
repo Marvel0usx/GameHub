@@ -86,8 +86,9 @@ public class SpaceInvaders implements Observer {
                     subjectsToMove.add(obj);
             } else if (obj instanceof Enemy) {
                 if (isAtBorder(obj)) {
-                    ((Subject) obj).unregisterAllObservers();
-                    subjectsToRemove.add(obj);
+                    //((Subject) obj).unregisterAllObservers();
+                    //subjectsToRemove.add(obj);
+                    obj.setY(10);
                 } else if (isAboutBounceBack(obj))
                     // reverse the heading of enemy
                     obj.setXSpeed(-obj.getXSpeed());
@@ -118,7 +119,7 @@ public class SpaceInvaders implements Observer {
             this.level++;
             spawnWaves();
         }
-        if (this.wave == 4) {
+        if (this.wave == 5) {
             this.gameOver = true;
             unregisterAll();
             if (this.player.getLives() > 0) {
@@ -166,7 +167,7 @@ public class SpaceInvaders implements Observer {
 
     // Utils
     public void layout() {
-        this.player = new Player((this.width >> 1), 1300, 0, 500);
+        this.player = new Player((this.width >> 1), 1500, 0, 500);
         this.player.registerObserver(this);
         subjects.add(this.player);
         scoreboard = new Scoreboard(this.height, this.width);
@@ -200,6 +201,9 @@ public class SpaceInvaders implements Observer {
             for (int x = 700; x < 1000; x += 200)
                 subjects.add(new Enemy(x, 100, 100, 0,hardness * 3,100));
         }
+        if (this.wave == 4) {
+            subjects.add(new Boss(400, 100, 100, 0, hardness, 300));
+        }
     }
 
     private boolean isCollide(int x1, int y1, int x2, int y2) {
@@ -208,9 +212,9 @@ public class SpaceInvaders implements Observer {
         boolean yCollision;
 
         if (x1 >= x2)
-            xCollision = (SpaceObject.WIDTH + 30 >= (x1 - x2));
+            xCollision = (SpaceObject.WIDTH + 40 >= (x1 - x2));
         else // (x1 < x2)
-            xCollision = (SpaceObject.WIDTH + 30 >= (x2 - x1));
+            xCollision = (SpaceObject.WIDTH + 40 >= (x2 - x1));
 
         if (y2 >= y1)
             yCollision = (SpaceObject.HEIGHT >= (y2 - y1));
