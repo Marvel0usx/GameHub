@@ -182,6 +182,10 @@ public class SpaceInvaders implements Observer {
         hardness++;
     }
 
+    public List<SpaceObject> getUpdate(){
+        return subjects;
+    }
+
     public void spawnWaves() {
         if (this.wave == 1) {
             this.player.setMode(1);
