@@ -92,7 +92,7 @@
         android:layout_marginBottom="676dp"
         android:background="@drawable/menu_button_background"
         android:onClick="logout"
-        android:text="LOGOUT"
+        android:text="@string/LOGOUT"
         android:textSize="18sp"
         app:fontFamily="@font/breadcrumbs"
         app:layout_constraintBottom_toBottomOf="parent"
