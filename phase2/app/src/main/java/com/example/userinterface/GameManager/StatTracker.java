@@ -11,7 +11,9 @@ public class StatTracker {
     private int highScore;
     private int numOfGames;
     private int level;
-
+    private int numFortuneBadges;
+    private int numAdventurousBadges;
+    private int numStrategicBadges;
 
 
     public StatTracker(int level) {
@@ -62,7 +64,22 @@ public class StatTracker {
         this.level = level;
     }
 
+    public int getFortuneNum(){ return this.numFortuneBadges; }
+
+    public int getStrategicNum(){ return this.numStrategicBadges; }
+
+    public int getAdventurousNum(){ return this.numAdventurousBadges; }
+
     public void addToBadges(boolean fortune, boolean strategy, boolean adventure){
+        if (fortune){
+            this.numFortuneBadges += 1;
+        }
+        if (strategy){
+            this.numStrategicBadges += 1;
+        }
+        if (adventure){
+            this.numAdventurousBadges += 1;
+        }
 
     }
 }

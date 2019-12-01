@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".SignupActivity">
 
     <EditText
@@ -66,6 +67,7 @@
         android:layout_marginEnd="64dp"
         android:layout_marginRight="64dp"
         android:text="Register"
+        app:fontFamily="@font/breadcrumbs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rePassword" />
 </androidx.constraintlayout.widget.ConstraintLayout>
