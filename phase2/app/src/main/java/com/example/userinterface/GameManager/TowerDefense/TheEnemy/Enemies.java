@@ -3,25 +3,25 @@ package com.example.userinterface.GameManager.TowerDefense.TheEnemy;
 import android.graphics.Canvas;
 
 public interface Enemies {
-    public abstract void move();
+    void move();
 
-    public abstract void draw(Canvas canvas);
+    void draw(Canvas canvas);
 
-    public int getHealth();
+    int getHealth();
 
-    public void decreaseHealth(int damage);
+    void decreaseHealth(int damage);
 
-    public int getY();
+    int getY();
 
-    public int getX();
+    int getX();
 
-    public int getMoneyGain();
+    int getMoneyGain();
 
-    public int getScore();
+    int getScore();
 
-    public int getDamage();
+    int getDamage();
 
-    public int getSpeed();
+    int getSpeed();
 
-    public void setLocation(int x, int y);
+    void setLocation(int x, int y);
 }
