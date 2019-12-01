@@ -266,4 +266,10 @@ public class HangManGameActivity extends GameActivity implements HangManView{
 
         gameState.setAnswerKeys(answerKey);
     }
+
+    @Override
+    public void onBackPressed() {
+        mediaPlayer.stop();
+        super.onBackPressed();
+    }
 }
