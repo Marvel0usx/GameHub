@@ -4,35 +4,48 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.userinterface.R;
 
+import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
-public class ScoreBoard extends AppCompatActivity {
+public class ScoreBoard extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     LinearLayout layout;
-    ConstraintLayout constraintLayout;
+    ArrayList<View> textViews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_board);
         layout = findViewById(R.id.linearLayout);
-//        constraintLayout = new ConstraintLayout(this);
-//        constraintLayout.setId(R.id.constraintlayout);
-        show();
+        Spinner spinner = findViewById(R.id.spinner);
+        String[] items = new String[]{"highscore", "gamesplayed"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
+        textViews = new ArrayList<>();
     }
 
-    public void show(){
+
+
+    @SuppressLint("SetTextI18n")
+    public void show(String type){
         String info = "";
         GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity(this);
         try {
-            info = gameBackgroundActivity.execute("scoreboard").get();
+            info = gameBackgroundActivity.execute("scoreboard", type).get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -45,8 +58,6 @@ public class ScoreBoard extends AppCompatActivity {
         }
         sort(totalInfo,0, totalInfo.length-1);
         for (String[] users: totalInfo){
-//            ConstraintSet constraintSet = new ConstraintSet();
-//            constraintSet.clone(constraintLayout);
             String username = users[0];
             String highScore= users[1];
             TextView textView =  new TextView(getApplicationContext());
@@ -59,12 +70,8 @@ public class ScoreBoard extends AppCompatActivity {
             textView.setLayoutParams(params);
             textView.setText("User"+": " + newUsername+"Score:"+highScore);
             textView.setTextSize(20);
-
-//            constraintSet.connect(textView.getId(), ConstraintSet.LEFT, constraintLayout.getId(), ConstraintSet.LEFT, 18);
-//            constraintSet.connect(textView2.getId(), ConstraintSet.LEFT, textView.getId(), ConstraintSet.RIGHT, 18);
-//            constraintSet.connect(textView2.getId(), ConstraintSet.RIGHT, constraintLayout.getId(), ConstraintSet.RIGHT, 18);
-//            constraintSet.applyTo(constraintLayout);
             layout.addView(textView);
+            textViews.add(textView);
 
         }
     }
@@ -121,5 +128,31 @@ public class ScoreBoard extends AppCompatActivity {
             j++;
             k++;
         }
+    }
+
+    public void removeViews(){
+        for (View item: textViews){
+            layout.removeView(item);
+        }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        switch (position){
+            case 0:
+                removeViews();
+                show("highscore");
+                break;
+            case 1:
+                removeViews();
+                show("gamesplayed");
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
     }
 }
