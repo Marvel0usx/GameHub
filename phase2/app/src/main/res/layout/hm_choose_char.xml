@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/hm_backgroud">
@@ -40,15 +41,15 @@
         android:layout_height="206dp"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="144dp"
         android:background="#9EE3E8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:contentDescription="@string/character_c"
         android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.035"
         app:layout_constraintStart_toEndOf="@+id/charButton2"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/char3"
-        android:contentDescription="@string/character_c" />
+        app:srcCompat="@drawable/char3" />
 
     <ImageButton
         android:id="@+id/charButton4"
@@ -56,13 +57,13 @@
         android:layout_height="223dp"
         android:layout_marginStart="28dp"
         android:layout_marginLeft="28dp"
-        android:layout_marginTop="272dp"
+        android:layout_marginTop="276dp"
         android:background="#9EE3E8"
+        android:contentDescription="@string/character_d"
         android:scaleType="fitCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/charButton1"
-        app:srcCompat="@drawable/char4"
-        android:contentDescription="@string/character_d" />
+        app:srcCompat="@drawable/char4" />
 
     <ImageButton
         android:id="@+id/charButton5"
@@ -86,13 +87,13 @@
         android:layout_marginLeft="24dp"
         android:layout_marginTop="72dp"
         android:background="#9EE3E8"
+        android:contentDescription="@string/character_f"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.146"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/charButton5"
         app:layout_constraintTop_toBottomOf="@+id/charButton3"
-        app:srcCompat="@drawable/char6"
-        android:contentDescription="@string/character_f" />
+        app:srcCompat="@drawable/char6" />
 
     <TextView
         android:id="@+id/textView4"
