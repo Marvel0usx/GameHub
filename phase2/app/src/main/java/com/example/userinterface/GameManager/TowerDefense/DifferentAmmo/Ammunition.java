@@ -8,14 +8,14 @@ import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Enemy;
 
 public abstract class Ammunition implements Ammo {
 
-    int damage;
-    int x, y;
-    String appearance;
-    int speed;
-    String direction;
-    int textSize = 50;
-    Enemies target;
-    double predictX, predictY;
+    private int damage;
+    private int x, y;
+    private String appearance;
+    private int speed;
+    private String direction;
+    private int textSize = 50;
+    private Enemies target;
+    private double predictX, predictY;
 
 
     @Override
@@ -80,6 +80,35 @@ public abstract class Ammunition implements Ammo {
     @Override
     public int getDamage() {
         return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public String getAppearance() {
+        return appearance;
+    }
+
+    public void setAppearance(String appearance) {
+        this.appearance = appearance;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+
+    public int getTextSize() {
+        return textSize;
+    }
+
+    public void setTextSize(int textSize) {
+        this.textSize = textSize;
     }
 
     public void draw(Canvas canvas) {

@@ -9,17 +9,17 @@ public class Dragon extends Enemy {
     private int waveSpecifications;
     public Dragon(int waveNumber){
         waveSpecifications = waveNumber+1;
-        health = 80*waveSpecifications;
-        speed = 1;
-        score = 100 * waveSpecifications;
-        appearence = "🐉";
-        moneyGain = 50;
-        damage = waveSpecifications + 2;
+        setHealth(80*waveSpecifications);
+        setDamage(waveSpecifications+2);
+        setSpeed(1);
+        setAppearence("🐉");
+        setScore(100*waveSpecifications);
+        setMoneyGain(50);
 
     }
 
     public void move() {
-        y += speed;
+        setY(getY()+getSpeed());
     }
 
     public void draw(Canvas canvas) {
@@ -32,11 +32,11 @@ public class Dragon extends Enemy {
             paint.setTextSize(250);
             size = 250;
         }
-        canvas.drawText(appearence, x, y, paint);
+        canvas.drawText(getAppearence(), getX(), getY(), paint);
         Paint paintText = new Paint();
         paintText.setColor(Color.RED);
         paintText.setTextSize(80);
-        canvas.drawRect(this.getX(), this.getY()-size, this.getX()+ (float)(health*2), this.getY() -size+10, paintText);
+        canvas.drawRect(this.getX(), this.getY()-size, this.getX()+ (float)(getHealth()*2), this.getY() -size+10, paintText);
         // decide each body parts' coordinates
 
     }

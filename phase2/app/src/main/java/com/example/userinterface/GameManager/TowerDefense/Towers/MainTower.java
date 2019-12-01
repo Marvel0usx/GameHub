@@ -6,12 +6,12 @@ import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Enemies;
 import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Enemy;
 
 public abstract class MainTower implements Towers {
-    public int waitTime, time;
-    String type;
-    int x;
-    int y;
+    private int waitTime, time;
+    private String type;
+    private int x;
+    private int y;
 
-    int range;
+    private int range;
 
     public Ammo generateBullet(Enemies enemy) {
         AmmoFactory ammoFactory = new AmmoFactory();
@@ -49,5 +49,41 @@ public abstract class MainTower implements Towers {
 
     public int getRange() {
         return range;
+    }
+
+    public int getWaitTime() {
+        return waitTime;
+    }
+
+    public void setWaitTime(int waitTime) {
+        this.waitTime = waitTime;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public void setRange(int range) {
+        this.range = range;
     }
 }
