@@ -1,11 +1,9 @@
 package com.example.userinterface.GameManager.HangMan;
 
-import android.view.View;
+import java.util.List;
 
 interface HangManView {
 
-    void makeGuess(View v);
-
-    void showHint(View v);
+    void displayGuess(List<Integer> correctIndex);
 
 }

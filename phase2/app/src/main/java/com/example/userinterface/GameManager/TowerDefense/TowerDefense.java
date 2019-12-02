@@ -26,7 +26,7 @@ public class TowerDefense {
     private int mapWidth;
     private boolean gameStart = false;
     private boolean adventurous = false;
-    private boolean strategetic = false;
+    private boolean strategic = false;
     private boolean fortunate = false;
 
 
@@ -38,9 +38,14 @@ public class TowerDefense {
     private InformationBoard informationBoard;
     private int currentWave = 0;
     private SparseArray<ArrayList<Enemies>> waves = new SparseArray<>(3);
-    int counter = 0;
 
-
+    /**
+     * TowerDefense Constructor
+     *
+     * @param listener     listener that will listen to variable changes
+     * @param screenHeight the height of the screen
+     * @param screenWidth  the width of the screen
+     */
     public TowerDefense(int screenWidth, int screenHeight, VariableListenerTowerDefense listener) {
         mapHeight = screenHeight;
         mapWidth = screenWidth;
@@ -62,7 +67,7 @@ public class TowerDefense {
         updateInformationBoard();
         if (gameStart) {
             checkIfOver();
-            if (!fortunate || !strategetic)
+            if (!fortunate || !strategic)
                 checkBadge();
             updateEnemy();
             generateNewWave();
@@ -70,8 +75,11 @@ public class TowerDefense {
         }
     }
 
+    /**
+     * Check if the user has earned a badge.
+     */
     private void checkBadge() {
-        if (cash < 70) {
+        if (cash >= 200) {
             fortunate = true;
         }
         int i = 0;
@@ -80,7 +88,7 @@ public class TowerDefense {
                 i++;
         }
         if (i == 3) {
-            strategetic = true;
+            strategic = true;
         }
     }
 
@@ -102,7 +110,7 @@ public class TowerDefense {
 
     /**
      * Check if the game is over
-     * if so then set th variable change to true
+     * if so then set the variable change to true
      */
     private void checkIfOver() {
         if (lives <= 0 || currentWave == 3) {
@@ -163,7 +171,8 @@ public class TowerDefense {
     }
 
     /**
-     * Removes any enemy that has health lower or equal to 0.
+     * Removes any enemy that has health lower or equal to 0, or has entered base. Lives will decrease
+     * based on the enemy's damage
      */
     private void removeEnemy() {
         ArrayList<Enemies> temp = new ArrayList<>();
@@ -205,19 +214,21 @@ public class TowerDefense {
     }
 
     /**
-     * Add enemy to the game
+     * Add enemy to the game. The first wave will have five minions. The second wave will have
+     * 5 orcs and 10 minions. The third wave will have 15 minions and 10 orcs.
+     * At the end of each wave a boss will be added if the the boolean for that wave is true.
      *
      * @param hiddenEnemy0 a boolean telling the game whether it should add a hidden enemy.
      * @param hiddenEnemy1 a boolean telling the game whether it should add a hidden enemy.
      * @param hiddenEnemy2 a boolean telling the game whether it should add a hidden enemy.
      */
-    void addEnemy(boolean hiddenEnemy0, boolean hiddenEnemy1, boolean hiddenEnemy2) { // GENERICS OR SOME KIND OF PATTERN??
+    void addEnemy(boolean hiddenEnemy0, boolean hiddenEnemy1, boolean hiddenEnemy2) {
         addMinion(5, 0);
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 5; i++) {
             addMinion(2, 1);
             addOrc(1, 1);
         }
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 5; i++) {
             addMinion(3, 2);
             addOrc(2, 2);
         }
@@ -279,7 +290,7 @@ public class TowerDefense {
     }
 
     /**
-     * draw everything
+     * Draw enemies and ammunition.
      *
      * @param canvas The canvas that should be drawn on.
      */
@@ -295,7 +306,7 @@ public class TowerDefense {
 
 
     /**
-     * Add a tower
+     * Add a tower by assigning tower to the slot at index
      *
      * @param index the index it should be added to.
      * @param tower The tower that should be added
@@ -346,17 +357,23 @@ public class TowerDefense {
 
 
     /**
-     * @return a boolean if you have got the badge or not.
+     * @return if earned adventurous badge
      */
     boolean isAdventurous() {
         return adventurous;
     }
 
-    boolean isStrategetic() {
-        return strategetic;
+    /**
+     * @return if earned strategic badge
+     */
+    boolean isStrategic() {
+        return strategic;
 
     }
 
+    /**
+     * @return if earned fortunate badge
+     */
     boolean isFortunate() {
         return fortunate;
     }

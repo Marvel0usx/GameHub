@@ -12,9 +12,6 @@ public class Player extends Ship {
 
     Player(int x, int y, int ySpeed, int lives, int size) {
         super(x, y, 0, 40, ySpeed, lives, size);
-//        this.appearance = "🔺";
-//        this.paintText.setColor(Color.CYAN);
-//        this.paintText.setTextSize(80);
         this.mode = 1;
     }
 
@@ -68,7 +65,7 @@ public class Player extends Ship {
         setChanged();
         if (this.shootCount <= 0) {
             shoot();
-            this.shootCount = 50;
+            this.shootCount = 20;
             for (Observer obs : getObservers()) {
                 for (Bullet bullet: this.playerBullets)
                     obs.registerSubject(bullet);
@@ -87,9 +84,4 @@ public class Player extends Ship {
     void setMode(int mode) {
         this.mode = mode;
     }
-
-
-//    public void draw(Canvas canvas) {
-//        canvas.drawText(this.appearance, this.getX(), this.getY(), paintText);
-//    }
 }

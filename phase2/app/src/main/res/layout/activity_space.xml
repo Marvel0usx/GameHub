@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.userinterface.GameManager.SpaceInvaders.SpaceView
+    <com.example.userinterface.GameManager.SpaceInvaders.SpacePresenter
         android:id="@+id/spaceView"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

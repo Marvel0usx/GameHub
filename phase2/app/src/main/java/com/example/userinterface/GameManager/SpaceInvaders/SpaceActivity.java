@@ -12,7 +12,7 @@ import com.example.userinterface.R;
 public class SpaceActivity extends GameActivity implements VariableChangeListener {
 
     SpaceInvaders Space;
-    SpaceView spaceView;
+    SpacePresenter spacePresenter;
     View leftSide;
     View rightSide;
     boolean practiceMode;
@@ -29,11 +29,11 @@ public class SpaceActivity extends GameActivity implements VariableChangeListene
 
         Space = new SpaceInvaders(screenWidth, screenHeight);
         setContentView(R.layout.activity_space);
-        spaceView = findViewById(R.id.spaceView);
-        spaceView.setSpace(Space);
+        spacePresenter = findViewById(R.id.spaceView);
+        spacePresenter.setSpace(Space);
         Space.setVariableChangeListener(this);
-        if (spaceView != null) {
-            spaceView.setSpace(Space);
+        if (spacePresenter != null) {
+            spacePresenter.setSpace(Space);
         }
 
         leftSide = findViewById(R.id.Leftside);
@@ -45,19 +45,18 @@ public class SpaceActivity extends GameActivity implements VariableChangeListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.Leftside:
-                spaceView.Space.goLeft();
+                spacePresenter.Space.goLeft();
                 break;
             case R.id.Rightside:
-                spaceView.Space.goRight();
+                spacePresenter.Space.goRight();
                 break;
             default:
                 break;
         }
     }
 
-
     public void onBackPressed() {
-        spaceView.getThread().setRunning(false);
+        spacePresenter.getThread().setRunning(false);
         toMenu();
     }
 
@@ -69,10 +68,12 @@ public class SpaceActivity extends GameActivity implements VariableChangeListene
         else
             practiceMode = false;
 
-        spaceView.getThread().setRunning(false);
+        spacePresenter.getThread().setRunning(false);
         if (!practiceMode) {
             if (Space.isWin())
                 getUser().getStatTracker().addToCurrScore(Space.getScore());
+                getUser().getStatTracker().addToBadges(Space.getBadges(0), Space.getBadges(1),
+                        Space.getBadges(2));
         }
         goToIntermediate(Space.isWin(), practiceMode);
 

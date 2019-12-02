@@ -6,8 +6,8 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 
 public class Scoreboard {
-    float height, width;
-    int lives = 0;
+    private float height, width;
+    private int lives = 0;
     private String appearance;
     private Paint paintText = new Paint();
     private int level;
@@ -28,11 +28,29 @@ public class Scoreboard {
         this.level = level;
     }
 
-    public void draw(Canvas canvas) {
-        canvas.drawText(this.appearance, 250, this.height - 250, paintText);
-        canvas.drawText("HP", 250, this.height - 200, paintText);
-        canvas.drawRect(320, this.height - 220, this.lives + 300, this.height - 200, paintText);
-        canvas.drawText("Stage: " + this.level, 40, 40, paintText);
+    public float getHeight() {
+        return height;
     }
+
+    public float getWidth() {
+        return width;
+    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public String getAppearance() {
+        return appearance;
+    }
+
+    public Paint getPaintText() {
+        return paintText;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
 
 }

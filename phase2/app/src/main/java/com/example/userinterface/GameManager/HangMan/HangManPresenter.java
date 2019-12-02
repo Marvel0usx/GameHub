@@ -1,5 +1,7 @@
 package com.example.userinterface.GameManager.HangMan;
 
+import java.util.List;
+
 class HangManPresenter {
 
     private HangManView view;
@@ -11,7 +13,8 @@ class HangManPresenter {
     }
 
     void makeGuess(Character charGuessed){
-        this.gameState.updateState(charGuessed);
+        List<Integer> correctIndex = this.gameState.updateState(charGuessed);
+        this.view.displayGuess(correctIndex);
     }
 
 }
