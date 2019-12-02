@@ -1,8 +1,8 @@
 package com.example.userinterface.GameManager.SpaceInvaders;
 
 class Boss extends Enemy {
-    Boss(int x, int y, int damage, int xSpeed, int ySpeed, int lives, int size){
-        super(x,y,damage, xSpeed, ySpeed, lives, size);
+    Boss(int x, int y, int damage, int xSpeed, int ySpeed, int lives, int size) {
+        super(x, y, damage, xSpeed, ySpeed, lives, size);
     }
 
     /**
@@ -11,10 +11,6 @@ class Boss extends Enemy {
      */
     @Override
     void shoot() {
-        //fires bullet objects that deductLife player
-        // generate new bullet object and add this object's observer
-        // to the bullet object's observer. Return the bullet object.
-
         this.enemyBullets = BulletFactory.buildBullet("Boss", 1, this.getX(), this.getY());
         setChanged();
         for (Observer obs : getObservers()) {

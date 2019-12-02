@@ -23,6 +23,7 @@ public class Scoreboard {
 
     /**
      * the collective setter of all variables that should show up
+     *
      * @param lives lives of the player
      * @param score current game score
      * @param level current enemy wave count

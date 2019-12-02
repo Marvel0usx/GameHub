@@ -73,7 +73,7 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
         thread.start();
     }
 
-    private void initializingAppearanceMap(){
+    private void initializingAppearanceMap() {
         Bitmap blueBullet = BitmapFactory.decodeResource(getResources(), R.drawable.bluebullet);
         Bitmap redBullet = BitmapFactory.decodeResource(getResources(), R.drawable.redbullet);
         Bitmap player = BitmapFactory.decodeResource(getResources(), R.drawable.space_player);
@@ -87,7 +87,8 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
         appearance.put(Boss.class, boss);
     }
 
-    public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int width, int height) {}
+    public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int width, int height) {
+    }
 
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         boolean retry = true;
@@ -132,13 +133,14 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
     /**
      * Parses from a list of SpaceObjects to create a list of Bitmap and Coordinate pairs to send
      * to the View, allowing an image to be drawn
+     *
      * @param spaceObjectList a list of spaceObjects
      * @return a list of organized Bitmap Rect pairs
      */
-    private List<Pair<Bitmap, Rect>> parse(List<SpaceObject> spaceObjectList){
+    private List<Pair<Bitmap, Rect>> parse(List<SpaceObject> spaceObjectList) {
         List<Pair<Bitmap, Rect>> parsed = new ArrayList<>();
         Bitmap bmp;
-        for (SpaceObject item : spaceObjectList){
+        for (SpaceObject item : spaceObjectList) {
             Rect rect = new Rect(item.getX(), item.getY(), item.getX() + item.getSize(),
                     item.getY() + item.getSize());
             bmp = appearance.get(item.getClass());

@@ -72,8 +72,8 @@ public class SpaceActivity extends GameActivity implements VariableChangeListene
         if (!practiceMode) {
             if (Space.isWin())
                 getUser().getStatTracker().addToCurrScore(Space.getScore());
-                getUser().getStatTracker().addToBadges(Space.getBadges(0), Space.getBadges(1),
-                        Space.getBadges(2));
+            getUser().getStatTracker().addToBadges(Space.getBadges(0), Space.getBadges(1),
+                    Space.getBadges(2));
         }
         goToIntermediate(Space.isWin(), practiceMode);
 

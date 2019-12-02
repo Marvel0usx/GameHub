@@ -24,6 +24,7 @@ public class Player extends Ship {
 
     /**
      * reflects changes
+     *
      * @param obs
      * @return
      */
@@ -31,7 +32,6 @@ public class Player extends Ship {
     public int[] getUpdate(Observer obs) {
         return new int[]{getX(), getY()};
     }
-
 
 
     /**
@@ -64,7 +64,7 @@ public class Player extends Ship {
             shoot();
             this.shootCount = 20;
             for (Observer obs : getObservers()) {
-                for (Bullet bullet: this.playerBullets)
+                for (Bullet bullet : this.playerBullets)
                     obs.registerSubject(bullet);
             }
             this.playerBullets = null;
@@ -76,6 +76,7 @@ public class Player extends Ship {
 
     /**
      * Sets the current power level of the player
+     *
      * @param mode to-be power level of the player
      */
     void setMode(int mode) {

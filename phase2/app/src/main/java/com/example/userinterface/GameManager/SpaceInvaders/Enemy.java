@@ -43,7 +43,7 @@ public class Enemy extends Ship {
         if (Math.random() < 0.005) {
             shoot();
             for (Observer obs : getObservers()) {
-                for (Bullet bullet: this.enemyBullets) {
+                for (Bullet bullet : this.enemyBullets) {
                     obs.registerSubject(bullet);
                 }
             }

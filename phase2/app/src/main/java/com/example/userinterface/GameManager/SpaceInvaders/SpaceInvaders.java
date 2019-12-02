@@ -37,6 +37,7 @@ public class SpaceInvaders implements Observer {
 
     /**
      * An observer implementation, that registers a subject to a list of observers
+     *
      * @param subject subject to register into observer list
      */
     public void registerSubject(Subject subject) {
@@ -49,6 +50,7 @@ public class SpaceInvaders implements Observer {
 
     /**
      * Removes an object from observer list
+     *
      * @param subject object to remove from observer list
      */
     public void unregisterSubject(Subject subject) {
@@ -156,7 +158,6 @@ public class SpaceInvaders implements Observer {
      * returns true if there are no more enemies in a list
      *
      * @param list a list of spaceObjects
-     *
      * @return returns true if there are no instances of Enemy in list
      */
     private boolean noEnemies(List<SpaceObject> list) {
@@ -205,7 +206,7 @@ public class SpaceInvaders implements Observer {
         hardness++;
     }
 
-    public List<SpaceObject> getUpdate(){
+    public List<SpaceObject> getUpdate() {
         return subjects;
     }
 
@@ -216,23 +217,23 @@ public class SpaceInvaders implements Observer {
         if (this.wave == 1) {
             this.player.setMode(1);
             for (int x = 50; x < 500; x += 200)
-                subjects.add(new Enemy(x, 100, 100, 2 * hardness, 2*hardness, 100, 80));
+                subjects.add(new Enemy(x, 100, 100, 2 * hardness, 2 * hardness, 100, 80));
             for (int x = 700; x < 1000; x += 200)
-                subjects.add(new Enemy(x, 100, 100, 2 * hardness, 2*hardness, 100, 80));
+                subjects.add(new Enemy(x, 100, 100, 2 * hardness, 2 * hardness, 100, 80));
         }
         if (this.wave == 2) {
             this.player.setMode(2);
             for (int x = 50; x < 500; x += 200)
-                subjects.add(new Enemy(x, 100, 100, 2 * hardness, 3*hardness, 100, 80));
+                subjects.add(new Enemy(x, 100, 100, 2 * hardness, 3 * hardness, 100, 80));
             for (int x = 700; x < 1000; x += 200)
-                subjects.add(new Enemy(x, 100, 100, -2 * hardness, 3*hardness, 100, 80));
+                subjects.add(new Enemy(x, 100, 100, -2 * hardness, 3 * hardness, 100, 80));
         }
         if (this.wave == 3) {
             this.player.setMode(3);
             for (int x = 50; x < 500; x += 200)
-                subjects.add(new Enemy(x, 100, 100, 0,hardness * 4  ,100, 80));
+                subjects.add(new Enemy(x, 100, 100, 0, hardness * 4, 100, 80));
             for (int x = 700; x < 1000; x += 200)
-                subjects.add(new Enemy(x, 100, 100, 0,hardness * 4,100, 80));
+                subjects.add(new Enemy(x, 100, 100, 0, hardness * 4, 100, 80));
             this.addBadges(1);
         }
         if (this.wave == 4) {
@@ -247,7 +248,6 @@ public class SpaceInvaders implements Observer {
      * @param y1 y coordinate of the first object
      * @param x2 x coordinate of the second object
      * @param y2 y coordinate of the second object
-     *
      * @return true if x1, y1, are within collision range of x2, y2
      */
     private boolean isCollide(int x1, int y1, int x2, int y2) {
@@ -305,7 +305,6 @@ public class SpaceInvaders implements Observer {
      * returns true if an object is about to hit a left or right border
      *
      * @param obj SpaceObject to check
-     *
      * @return returns true if obj is at left or right edge of screen
      */
     private boolean isAboutBounceBack(@NotNull SpaceObject obj) {
@@ -324,7 +323,6 @@ public class SpaceInvaders implements Observer {
      * returns true if object is at top or bottom border
      *
      * @param obj SpaceObject to check
-     *
      * @return returns true if obj is at top or bottom of screen
      */
     private boolean isAtBorder(@NotNull SpaceObject obj) {
@@ -361,6 +359,7 @@ public class SpaceInvaders implements Observer {
 
     /**
      * returns the current condition of the game
+     *
      * @return returns true if the game is won
      */
     boolean isWin() {
@@ -369,6 +368,7 @@ public class SpaceInvaders implements Observer {
 
     /**
      * returns true if the game is over, but not necessarily won
+     *
      * @return returns true if the game is over
      */
     boolean isGameOver() {
@@ -377,20 +377,22 @@ public class SpaceInvaders implements Observer {
 
     /**
      * returns score
+     *
      * @return returns score
      */
     int getScore() {
         return this.score;
     }
 
-    Scoreboard getScoreboard(){
+    Scoreboard getScoreboard() {
         return this.scoreboard;
     }
 
     boolean getBadges(int i) {
         return this.badges.get(i);
     }
-    private void addBadges(int i){
+
+    private void addBadges(int i) {
         this.badges.set(i, true);
     }
 
