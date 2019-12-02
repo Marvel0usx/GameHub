@@ -2,15 +2,18 @@ package com.example.userinterface.GameManager.HangMan;
 
 import com.example.userinterface.GameManager.BadgeCollector;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class GameState implements BadgeCollector {
 
     int keywordLen; // number of characters in current word
     int remainingBalloons; // number of balloons left, decreases each time a wrong letter is gues【sed
     int numCorr; // number of letters correctly guessed
     Difficulty difficulty;
-    private String keyword;
-    private Balloon[] balloons; // an array of Balloon objects
-    private AnswerKeyLetter[] answerKeyLetters; // all of the correct letters in correct order
+    public String keyword;
+    public Balloon[] balloons; // an array of Balloon objects
+    public AnswerKeyLetter[] answerKeyLetters; // all of the correct letters in correct order
     private int currentScore;
     boolean fortunateBadgeCollected;
 
@@ -92,22 +95,23 @@ public class GameState implements BadgeCollector {
         return false;
     }
 
-
     /**
      * Based on the character guessed, correctness of this letter will be evaluated, and if correct
      * the corresponding letter will be displayed on the screen
      *
      * @param charGuessed the character that is guessed by user by pressing corresponding button
      */
-    void updateState(char charGuessed) { // updates the correct letters guessed (if any)
+    List<Integer> updateState(char charGuessed) { // updates the correct letters guessed (if any)
         boolean correct = false;
         //if ((remainingBalloons > 2) && numCorr > (keywordLen - 2)){
-         //   fortunateBadgeCollected = collectFortunateBadge();
+        //   fortunateBadgeCollected = collectFortunateBadge();
         //}
+        List<Integer> correctIndex = new ArrayList<>();
         for (int i = 0; i < this.keyword.length(); i++) {
             if (this.answerKeyLetters[i].letter == (charGuessed)) { // a correct letter being guessed
                 correct = true;
-                this.answerKeyLetters[i].turnBlack(); // shows the letter on screen
+                //this.answerKeyLetters[i].turnBlack(); // shows the letter on screen
+                correctIndex.add(i);
                 numCorr += 1;
                 currentScore += difficulty.correctGuessPoints;
             }
@@ -115,9 +119,13 @@ public class GameState implements BadgeCollector {
         if (!correct) {
             remainingBalloons -= 1;
             currentScore += difficulty.wrongGuessPoints;
-            this.balloons[remainingBalloons].disappear();
+            //this.balloons[remainingBalloons].disappear();
+            return null;
         }
-
+        return correctIndex;
     }
+
+
+
 
 }

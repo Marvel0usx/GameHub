@@ -7,7 +7,7 @@ import android.widget.ImageView;
  * A balloon.
  */
 
-public class Balloon {
+class Balloon {
 
     private ImageView balloonImage; //the image view of the balloon.
 
