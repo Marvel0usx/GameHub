@@ -145,6 +145,9 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
             towerPositions.showAvailable(false);
             sellBtn.setEnabled(true);
         }else if(sellBtnClicked){
+            /*
+            Selling the tower selected and return some money
+             */
             int index = towerPositions.getTowerNumber((Button) view);
             view.setBackgroundResource(R.drawable.spot);
             int type = towerDefensePresenter.sellTower(index);
@@ -278,6 +281,10 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
         });
     }
 
+    /**
+     * sell the tower that is selected
+     * @param view
+     */
     public void sell(View view){
         if (!towerPositions.isTowerClicked()) {
             towerPositions.sellAvailable();
