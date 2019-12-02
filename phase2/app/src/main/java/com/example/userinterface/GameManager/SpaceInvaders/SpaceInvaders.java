@@ -330,11 +330,11 @@ public class SpaceInvaders implements Observer {
         return (nextY <= 0) || (nextY >= height);
     }
 
-    public void draw(Canvas canvas) {
-        for (SpaceObject item : subjects) item.draw(canvas);
-        this.player.draw(canvas);
-        this.scoreboard.draw(canvas);
-    }
+//    public void draw(Canvas canvas) {
+//        for (SpaceObject item : subjects) item.draw(canvas);
+//        this.player.draw(canvas);
+//        this.scoreboard.draw(canvas);
+//    }
 
     /**
      * instructs the player to go left

@@ -155,7 +155,7 @@ abstract class SpaceObject implements Subject {
         }
     }
 
-    // Utils
-    public void draw(Canvas canvas) {
-    }
+//    // Utils
+//    public void draw(Canvas canvas) {
+//    }
 }

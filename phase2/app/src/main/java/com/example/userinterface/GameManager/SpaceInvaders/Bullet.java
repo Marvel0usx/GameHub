@@ -5,9 +5,9 @@ import android.graphics.Canvas;
 abstract class Bullet extends SpaceObject {
     Bullet(int x, int y, int damage, int ySpeed) {
         super(x, y, damage, ySpeed);
-        this.appearance = "*";
-        this.paintText.setTextSize(50);
-        this.setSize(10);
+//        this.appearance = "*";
+//        this.paintText.setTextSize(50);
+//        this.setSize(10);
     }
 
     // Implements Subject Interface
@@ -26,7 +26,7 @@ abstract class Bullet extends SpaceObject {
         notifyObservers();
     }
 
-    public void draw(Canvas canvas) {
-        canvas.drawText(this.appearance, this.getX(), this.getY(), paintText);
-    }
+//    public void draw(Canvas canvas) {
+//        canvas.drawText(this.appearance, this.getX(), this.getY(), paintText);
+//    }
 }

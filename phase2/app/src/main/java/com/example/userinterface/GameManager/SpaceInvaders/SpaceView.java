@@ -37,6 +37,7 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
         getHolder().addCallback(this);
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
+        vSpace = new SpaceTrueView();
     }
 
     public SpaceView(Context context, @Nullable AttributeSet attrs) {
@@ -45,6 +46,7 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
 
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
+        vSpace = new SpaceTrueView();
     }
 
     public SpaceView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -53,6 +55,7 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
 
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
+        vSpace = new SpaceTrueView();
     }
 
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
@@ -108,7 +111,8 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas) {
         if (canvas != null) {
             super.draw(canvas);
-            Space.draw(canvas);
+//            Space.draw(canvas);
+
             vSpace.draw(canvas, processedObjs);
         }
     }
@@ -127,11 +131,11 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
             else if (item instanceof EnemyBullet)
                 bmp = BitmapFactory.decodeResource(getResources(), R.drawable.redbullet);
             else if (item instanceof Player)
-                BitmapFactory.decodeResource(getResources(), R.drawable.space_player);
+                bmp = BitmapFactory.decodeResource(getResources(), R.drawable.space_player);
             else if (item instanceof Boss)
-                BitmapFactory.decodeResource(getResources(), R.drawable.space_boss);
+                bmp = BitmapFactory.decodeResource(getResources(), R.drawable.space_boss);
             else if (item instanceof Enemy)
-                BitmapFactory.decodeResource(getResources(), R.drawable.space_troop);
+                bmp = BitmapFactory.decodeResource(getResources(), R.drawable.space_troop);
 
             Pair<Bitmap, Rect> pair = new Pair<>(bmp, rect);
             parsed.add(pair);
