@@ -77,6 +77,12 @@ class TowerPositions {
         }
     }
 
+    void sellAvailable(){
+        for (Button button : spots) {
+            button.setEnabled(!button.isEnabled());
+        }
+    }
+
     /**
      * @return if there was a tower selected by the user.
      */

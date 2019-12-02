@@ -116,6 +116,10 @@ class TowerDefensePresenter implements VariableListenerTowerDefense {
         towerDefense.addTower(index, temp);
     }
 
+    int sellTower(int index){
+        return towerDefense.sellTower(index);
+    }
+
     /**
      * Determine if this game of TowerDefense has earned an adventurous badge.
      */
