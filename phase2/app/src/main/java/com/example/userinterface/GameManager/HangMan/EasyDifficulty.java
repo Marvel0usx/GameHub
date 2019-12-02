@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.Random;
 
 class EasyDifficulty extends Difficulty implements Serializable {
-
+    /**
+     * constructs a new EasyDifficulty
+     * @param words
+     */
     EasyDifficulty(List<String[]> words) {
         super(words);
         this.correctGuessPoints = 20;

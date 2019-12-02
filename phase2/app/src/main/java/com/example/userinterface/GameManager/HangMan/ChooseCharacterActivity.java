@@ -30,6 +30,9 @@ public class ChooseCharacterActivity extends GameActivity implements Serializabl
         this.difficulty = (Difficulty) difficultyLevel.getSerializableExtra("difficulty");
     }
 
+    /**
+     * displays the buttons for choosing characters
+     */
     public void showCharButtons(){
         String[] characters = {"charButton1", "charButton2", "charButton3", "charButton4",
                 "charButton5", "charButton6"};

@@ -16,16 +16,11 @@ public class HangManActivity extends GameActivity {
     boolean practiceMode;
     CSVReader csvReader;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         context = this;
         super.onCreate(savedInstanceState);
-        // refer to the hang_man_main layout
         setContentView(R.layout.hang_man_main);
-
-        // the play button that controls if the game will start
-
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             practiceMode = bundle.getBoolean("practice");
@@ -75,6 +70,4 @@ public class HangManActivity extends GameActivity {
             startActivity(intent);
         });
     }
-
-
 }
