@@ -20,13 +20,12 @@ abstract class Ship extends SpaceObject {
         return lives;
     }
 
-    // Setters and getters
     void setLives(int lives) {
         this.lives = lives;
         if (this.lives <= 0)
             setDestroyed();
     }
 
-    // Utils
+
     abstract void shoot();
 }

@@ -6,12 +6,12 @@ import android.view.SurfaceHolder;
 public class MainThread extends Thread {
     public static Canvas canvas;
     private final SurfaceHolder surfaceHolder;
-    private SpaceView spaceView;
+    private SpacePresenter spacePresenter;
     private boolean isRunning;
 
-    MainThread(SurfaceHolder surfaceHolder, SpaceView spaceView) {
+    MainThread(SurfaceHolder surfaceHolder, SpacePresenter spacePresenter) {
         this.surfaceHolder = surfaceHolder;
-        this.spaceView = spaceView;
+        this.spacePresenter = spacePresenter;
     }
 
     @Override
@@ -22,8 +22,8 @@ public class MainThread extends Thread {
             try {
                 canvas = this.surfaceHolder.lockCanvas();
                 synchronized (surfaceHolder) {
-                    this.spaceView.update();
-                    this.spaceView.draw(canvas);
+                    this.spacePresenter.update();
+                    this.spacePresenter.draw(canvas);
                 }
             } catch (Exception e) {
                 e.printStackTrace();

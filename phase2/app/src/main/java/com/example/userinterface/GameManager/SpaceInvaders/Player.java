@@ -12,30 +12,37 @@ public class Player extends Ship {
 
     Player(int x, int y, int ySpeed, int lives, int size) {
         super(x, y, 0, 40, ySpeed, lives, size);
-        this.appearance = "🔺";
-        this.paintText.setColor(Color.CYAN);
-        this.paintText.setTextSize(80);
         this.mode = 1;
     }
 
     // Setter
+
+    /**
+     * subtracts shootcount, for sake of timing shoot()
+     */
     void updateShootCount() {
         this.shootCount--;
     }
 
-    // Implements Subject
+
+    /**
+     * reflects changes
+     * @param obs
+     * @return
+     */
     @Override
     public int[] getUpdate(Observer obs) {
         return new int[]{getX(), getY()};
     }
 
-    // Utils
+
+
+    /**
+     * shoots a bullet by generating a list of bullets based on current mode, and adds them to
+     * an observer list
+     */
     @Override
     void shoot() {
-        //fires bullet objects that deductLife player
-        // generate new bullet object and add this object's observer
-        // to the bullet object's observer. Return the bullet object.
-
         this.playerBullets = BulletFactory.buildBullet("Player", this.mode, this.getX(), this.getY());
         setChanged();
         for (Observer obs : getObservers()) {
@@ -47,12 +54,18 @@ public class Player extends Ship {
 
     }
 
-    // update the subject and subsequently update the observers
+
+    /**
+     * controls the movement of the player, as well as the shooting frequency. Also notifies
+     * observers about the changes.
+     *
+     * @param directionVector the direction towards which the player moves
+     */
     void move(int directionVector) {
         setChanged();
         if (this.shootCount <= 0) {
             shoot();
-            this.shootCount = 50;
+            this.shootCount = 20;
             for (Observer obs : getObservers()) {
                 for (Bullet bullet: this.playerBullets)
                     obs.registerSubject(bullet);
@@ -64,12 +77,11 @@ public class Player extends Ship {
         notifyObservers();
     }
 
+    /**
+     * Sets the current power level of the player
+     * @param mode to-be power level of the player
+     */
     void setMode(int mode) {
         this.mode = mode;
-    }
-
-
-    public void draw(Canvas canvas) {
-        canvas.drawText(this.appearance, this.getX(), this.getY(), paintText);
     }
 }

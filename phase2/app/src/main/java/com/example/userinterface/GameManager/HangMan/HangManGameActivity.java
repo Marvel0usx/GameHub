@@ -167,12 +167,9 @@ public class HangManGameActivity extends GameActivity implements HangManView{
 
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
-        popupView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                popupWindow.dismiss();
-                return true;
-            }
+        popupView.setOnTouchListener((v, event) -> {
+            popupWindow.dismiss();
+            return true;
         });
     }
 
@@ -187,7 +184,8 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
         ((TextView)popupWindow.getContentView().findViewById(R.id.badge)).setText("A Strategic Badge has been earned!");
-        user.getStatTracker().addToBadges(false, true, false);
+        if (!practiceMode)
+            user.getStatTracker().addToBadges(false, true, false);
 
         popupView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
@@ -209,7 +207,8 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
         ((TextView)popupWindow.getContentView().findViewById(R.id.badge)).setText("An Adventurous Badge has been earned!");
-        user.getStatTracker().addToBadges(false, false, true);
+        if (!practiceMode)
+            user.getStatTracker().addToBadges(false, false, true);
 
 
         popupView.setOnTouchListener(new View.OnTouchListener() {
@@ -232,7 +231,8 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
         ((TextView)popupWindow.getContentView().findViewById(R.id.badge)).setText("A Fortunate Badge has been earned!");
-        user.getStatTracker().addToBadges(true, false, false);
+        if(!practiceMode)
+            user.getStatTracker().addToBadges(true, false, false);
 
         popupView.setOnTouchListener(new View.OnTouchListener() {
             @Override

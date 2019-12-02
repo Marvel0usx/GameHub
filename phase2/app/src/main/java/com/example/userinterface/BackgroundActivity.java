@@ -15,7 +15,6 @@ import com.example.userinterface.GameManager.GameActivity;
 import com.example.userinterface.GameManager.MenuActivity;
 import com.example.userinterface.GameManager.StatTracker;
 import com.example.userinterface.GameManager.User;
-import com.example.userinterface.GameManager.UserDAO;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -190,7 +189,7 @@ public class BackgroundActivity extends AsyncTask<String, Void, String> {
                 statTracker.setNumOfGames(games);
                 // create a new user instance
                 User user = new User(strings[1], statTracker);
-                GameActivity.setUser(new UserDAO(user));
+                GameActivity.setUser(user);
                 System.out.println(user);
                 System.out.println(statTracker);
                 context.startActivity(intent);

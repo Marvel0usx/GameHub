@@ -3,20 +3,27 @@ package com.example.userinterface.GameManager.TowerDefense;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.userinterface.GameManager.*;
 import com.example.userinterface.R;
 
+/**
+ * This is the view object in MVP in a game of tower defense.
+ */
 public class TowerDefenseActivity extends GameActivity implements TowerDefenseView, BadgeCollector {
 
-    Button btnStart, btnTower1, btnTower2, btnTower3;
+    Button btnTower1, btnTower2, btnTower3;
     TowerDefensePresenter towerDefensePresenter;
     TowerDefense towerDefense;
     int width;
@@ -28,6 +35,11 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
     TextView money;
     Button selectedTower;
 
+    /**
+     * This is the OnCreate method for this activity.
+     * It is responsible for initializing tower defense presenter and tower defense.
+     * It will get a boolean from intent deciding if the game is in practice mode.
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,22 +66,30 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
         gameView = findViewById(R.id.myView);
         money = findViewById(R.id.money);
         towerDefensePresenter = new TowerDefensePresenter(this);
-        Log.d("message", "towerDefensePresenter at line 62 " + towerDefensePresenter);
         width = size.x;
         height = size.y;
         TowerPositions.setHeight(height);
         TowerPositions.setWidth(width);
         towerDefense = new TowerDefense(width, height, towerDefensePresenter);
-        Log.d("message", "towerDefensePresenter at line 68" + towerDefensePresenter);
         towerDefensePresenter.setTowerDefense(towerDefense);
+
     }
 
+    /**
+     * This method responds to a back press. It will stop the game and redirect to menu.
+     */
     public void onBackPressed() {
         gameView.setGameOver(true);
         gameView.getThread().setRunning(false);
         toMenu();
     }
 
+    /**
+     * This method will respond to click on tower.
+     * It checks if there is enough money, if there is, it will disable the button for further clicking.
+     *
+     * @param view the button that is clicked
+     */
     public void towerClick(View view) {
         selectedTower = (Button) view;
         if (enoughMoney()) {
@@ -80,15 +100,28 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
         }
 
     }
-    public void showTowerPositions(){
+
+    /**
+     * This method will tell tower position to show all its available positions.
+     */
+    public void showTowerPositions() {
         towerPositions.showAvailable(true);
     }
 
+    /**
+     * This method parse the cost from the name of the tower and calls the presenter to calculate
+     * if there is enough money to build the tower.
+     */
     public boolean enoughMoney() {
         int cost = Integer.parseInt(selectedTower.getContentDescription().toString().split(" ")[1]);
         return towerDefensePresenter.enoughMoney(cost);
     }
 
+    /**
+     * This method determines which tower had been clicked and calls the presenter to set the tower
+     *
+     * @param view the button that is clicked
+     */
     public void setTower(View view) {
         if (towerPositions.isTowerClicked()) {
             Button tower = selectedTower;
@@ -101,8 +134,8 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
             } else if (tower == btnTower3) {
                 view.setBackgroundResource(R.drawable.tower3copy);
             }
-            String [] name = selectedTower.getContentDescription().toString().split(" ");
-            towerDefensePresenter.setTower((int)view.getX(), (int)view.getY(),name[0],index);
+            String[] name = selectedTower.getContentDescription().toString().split(" ");
+            towerDefensePresenter.setTower((int) view.getX(), (int) view.getY(), name[0], index);
             for (Button button : buttonTowers) {
                 button.setEnabled(true);
             }
@@ -110,10 +143,13 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
         }
     }
 
+    /**
+     * This method finds all the buttons in the UI after the creation of this activity.
+     * It connects game view to tower defense and tells the game view a tower defense game has started.
+     */
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        btnStart = findViewById(R.id.start);
         btnTower1 = findViewById(R.id.tower1);
         btnTower2 = findViewById(R.id.tower2);
         btnTower3 = findViewById(R.id.tower3);
@@ -133,26 +169,42 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
         towerPositions = new TowerPositions(buttons);
         towerPositions.setXLocation();
         towerPositions.setYLocation();
-
         if (gameView != null) {
             gameView.setTowerDefensePresenter(towerDefensePresenter);
             gameView.setGameStart(true);
+            gameView.post(() -> setInstructionVisible());
         }
+
     }
 
-    public void onStartClick(View v) {
-        Log.d("message", "towerDefensePresenter at line 170 " + towerDefensePresenter);
+    /**
+     * This is an on click method for a start button. It responds to a click and call the on Click
+     * method in the presenter.
+     *
+     * @param v the start button
+     */
+    public void onPopupDismissal(View v) {
         int gamePlayed = getUser().getStatTracker().getNumOfGames();
-        towerDefensePresenter.onStartClicked(gamePlayed);
+        towerDefensePresenter.onPopupDismissal(gamePlayed);
     }
 
-    public void setButtonVisible(){
-        btnStart.setVisibility(View.GONE);
+    /**
+     * This method will set visible buttons that are going to be used in a game.
+     */
+    public void setButtonVisible() {
         btnTower1.setVisibility(View.VISIBLE);
         btnTower2.setVisibility(View.VISIBLE);
         btnTower3.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * This method specifies what to do once an game ends. It is responsible for communicating to
+     * game view and updating the user if the game is not in practice mode.
+     * It redirects to intermediate page once the game ends.
+     *
+     * @param won   if the game is won
+     * @param score the score earned
+     */
     @Override
     public void endGame(boolean won, int score) {
         gameView.setGameOver(true);
@@ -160,23 +212,55 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
         if (!practiceMode)
             if (won)
                 getUser().getStatTracker().addToCurrScore(score);
-                getUser().getStatTracker().addToBadges(collectFortunateBadge(),
-                                                        collectStrategicBadge(),
-                                                        collectAdventurousBadge());
+        getUser().getStatTracker().addToBadges(collectFortunateBadge(),
+                collectStrategicBadge(),
+                collectAdventurousBadge());
+        towerDefensePresenter = null;
         goToIntermediate(won, practiceMode);
+        this.finish();
         // record score of the level Intermediate page between games
     }
 
+    /**
+     * Set the instruction popup window visible. Upon dismissal the game will start.
+     */
+    public void setInstructionVisible() {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.tower_defense_instruction, null);
+
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+        boolean focusable = false;
+        PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+        popupWindow.showAtLocation(gameView, Gravity.CENTER, 0, 0);
+        ((TextView) popupWindow.getContentView().findViewById(R.id.td_instruction)).setText(getString(R.string.instruction));
+        popupView.setOnTouchListener((v, event) -> {
+            popupWindow.dismiss();
+            onPopupDismissal(v);
+            return true;
+        });
+    }
+
+    /**
+     * @return if user has collected fortunate badge
+     */
     @Override
     public boolean collectFortunateBadge() {
-        return true;
+        return towerDefensePresenter.getFortunate();
     }
 
+    /**
+     * @return if user has collected strategic badge
+     */
     @Override
     public boolean collectStrategicBadge() {
-        return true;
+        return towerDefensePresenter.getStratgetic();
     }
 
+    /**
+     * @return if user has collected adventurous badge
+     */
     @Override
     public boolean collectAdventurousBadge() {
         return towerDefensePresenter.getAdventurous();

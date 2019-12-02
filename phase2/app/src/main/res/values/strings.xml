@@ -70,6 +70,12 @@
     <string name="score">Score:</string>
     <string name="hint">Hint</string>
     <string name="choose_your_character">Choose your character:</string>
+    <string name="instruction">Welcome to Tower Defense!\n In this game, you will have the opportunity
+    to earn three badges: adventurous badge, fortunate badge and strategic badge.\n
+    If you have played more than 5 games and encountered the final dragon, you might win the adventurous badge.\n
+    If you have accumulated more than 200 in cash, you will win the fortunate badge.\n
+    The strategic badge we leave to you to explore!\n\n
+    Click on me to start the game!</string>
     <string name="LOGOUT">LOGOUT</string>
     <string name="you_win">You Win</string>
     <string name="save_and_go_to_menu">Save and Go To Menu</string>

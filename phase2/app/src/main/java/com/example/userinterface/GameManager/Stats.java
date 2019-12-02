@@ -7,10 +7,17 @@ import android.widget.TextView;
 
 import com.example.userinterface.R;
 
+/**
+ * The users stat
+ */
 public class Stats extends GameActivity {
     TextView userLevel, highScore, gamesPlayed, currentScore;
     User user;
 
+    /**
+     * Get all the user statistics and set it on the screen.
+     * @param savedInstanceState
+     */
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +36,9 @@ public class Stats extends GameActivity {
         setBadgesButton();
     }
 
+    /**
+     * The badge button that goes to the badges page.
+     */
     protected void setBadgesButton() {
         findViewById(R.id.BadgesButton).setOnClickListener(v -> {
                     Intent intent = new Intent(Stats.this, DisplayBadgesActivity.class);

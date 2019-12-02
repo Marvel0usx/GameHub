@@ -1,7 +1,6 @@
 package com.example.userinterface.GameManager.TowerDefense;
 
 import android.graphics.Canvas;
-import android.util.Log;
 import android.util.SparseArray;
 
 import com.example.userinterface.GameManager.TowerDefense.DifferentAmmo.Ammo;
@@ -9,15 +8,15 @@ import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Dragon;
 import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Enemies;
 import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Minion;
 import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Orc;
+import com.example.userinterface.GameManager.TowerDefense.Towers.RocketTower;
 import com.example.userinterface.GameManager.TowerDefense.Towers.Towers;
-import com.example.userinterface.GameManager.VariableChangeListener;
 
 import java.util.ArrayList;
 
 /**
  * This is the tower defense class that controls most of the functions of the game.
  */
-public class TowerDefense{
+public class TowerDefense {
 
     private int currentScore;
     private int lives = 5;
@@ -25,9 +24,12 @@ public class TowerDefense{
     private int mapWidth;
     private boolean gameStart = false;
     private boolean adventurous = false;
+    private boolean strategic = false;
+    private boolean fortunate = false;
+
 
     private boolean win;
-    private VariableChangeListener listener;
+    private VariableListenerTowerDefense listener;
     private ArrayList<Ammo> ammo;
     private Towers[] towers = new Towers[10];
     private int cash;
@@ -35,14 +37,20 @@ public class TowerDefense{
     private int currentWave = 0;
     private SparseArray<ArrayList<Enemies>> waves = new SparseArray<>(3);
 
-
-    public TowerDefense(int screenWidth, int screenHeight, VariableChangeListener listener) {
+    /**
+     * TowerDefense Constructor
+     *
+     * @param listener     listener that will listen to variable changes
+     * @param screenHeight the height of the screen
+     * @param screenWidth  the width of the screen
+     */
+    public TowerDefense(int screenWidth, int screenHeight, VariableListenerTowerDefense listener) {
         mapHeight = screenHeight;
         mapWidth = screenWidth;
         ammo = new ArrayList<>();
         cash = 100;
         informationBoard = new InformationBoard(mapHeight, mapWidth);
-        informationBoard.setAppearance(cash);
+        informationBoard.setMoneyAppearance(cash);
         waves.append(0, new ArrayList<>());
         waves.append(1, new ArrayList<>());
         waves.append(2, new ArrayList<>());
@@ -57,10 +65,28 @@ public class TowerDefense{
         updateInformationBoard();
         if (gameStart) {
             checkIfOver();
+            if (!fortunate || !strategic)
+                checkBadge();
             updateEnemy();
-            Log.d("message", "current wave = " + currentWave);
             generateNewWave();
             updateBullet();
+        }
+    }
+
+    /**
+     * Check if the user has earned a badge.
+     */
+    private void checkBadge() {
+        if (cash >= 200) {
+            fortunate = true;
+        }
+        int i = 0;
+        for (Towers tower : towers) {
+            if (tower instanceof RocketTower)
+                i++;
+        }
+        if (i == 3) {
+            strategic = true;
         }
     }
 
@@ -73,27 +99,33 @@ public class TowerDefense{
     }
 
     /**
-     * Update
+     * Update information shown on the canvas
      */
     private void updateInformationBoard() {
-        informationBoard.setAppearance(cash);
+        informationBoard.setMoneyAppearance(cash);
         informationBoard.setLivesAppearance(lives);
     }
 
+    /**
+     * Check if the game is over
+     * if so then set the variable change to true
+     */
     private void checkIfOver() {
         if (lives <= 0 || currentWave == 3) {
-            //decide if game is over or not
             if (lives > 0)
                 currentScore += lives * 100; //each life left adds another 100 pts.
             win = lives > 0;
-            if (listener != null){
-                listener.onVariableChange(true);
+            if (listener != null) {
+                listener.onGameOver(true);
             }
 
 
         }
     }
 
+    /**
+     * Update the position and if the towers should generate any bullet.
+     */
     private void updateBullet() {
         for (Towers towers : towers) {
             if (towers != null) {
@@ -124,6 +156,9 @@ public class TowerDefense{
         }
     }
 
+    /**
+     * Update the positions and call remove enemy.
+     */
     private void updateEnemy() {
         for (Enemies enemy : waves.get(currentWave)) {
             enemy.move();
@@ -133,6 +168,10 @@ public class TowerDefense{
 
     }
 
+    /**
+     * Removes any enemy that has health lower or equal to 0, or has entered base. Lives will decrease
+     * based on the enemy's damage
+     */
     private void removeEnemy() {
         ArrayList<Enemies> temp = new ArrayList<>();
         for (Enemies e : waves.get(currentWave)) {
@@ -141,7 +180,7 @@ public class TowerDefense{
                 cash += e.getMoneyGain();
                 currentScore += e.getScore();
             }
-            if (e.getY() >= mapHeight-300) { //if enemy is out of map remove it
+            if (e.getY() >= mapHeight - 300) { //if enemy is out of map remove it
                 temp.add(e);
                 lives -= e.getDamage();
             }
@@ -151,6 +190,13 @@ public class TowerDefense{
         }
     }
 
+    /**
+     * Get the first enemy in a particular range.
+     *
+     * @param lowerbound the lowerbound of the range
+     * @param upperbound the upper bound of the range.
+     * @return the first enemy in the range provided.
+     */
     private Enemies getFirstEnemyInRange(int lowerbound, int upperbound) {
         int temp = lowerbound;
         Enemies first = null;
@@ -165,26 +211,41 @@ public class TowerDefense{
         return first;
     }
 
-    void addEnemy(boolean hiddenEnemy0, boolean hiddenEnemy1, boolean hiddenEnemy2) { // GENERICS OR SOME KIND OF PATTERN??
+    /**
+     * Add enemy to the game. The first wave will have five minions. The second wave will have
+     * 5 orcs and 10 minions. The third wave will have 15 minions and 10 orcs.
+     * At the end of each wave a boss will be added if the the boolean for that wave is true.
+     *
+     * @param hiddenEnemy0 a boolean telling the game whether it should add a hidden enemy.
+     * @param hiddenEnemy1 a boolean telling the game whether it should add a hidden enemy.
+     * @param hiddenEnemy2 a boolean telling the game whether it should add a hidden enemy.
+     */
+    void addEnemy(boolean hiddenEnemy0, boolean hiddenEnemy1, boolean hiddenEnemy2) {
         addMinion(5, 0);
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 5; i++) {
             addMinion(2, 1);
             addOrc(1, 1);
         }
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 5; i++) {
             addMinion(3, 2);
             addOrc(2, 2);
         }
-        if (hiddenEnemy0 && hiddenEnemy1 && hiddenEnemy2)
-            adventurous = true;
         if (hiddenEnemy0)
             addHiddenBoss(0);
         if (hiddenEnemy1)
             addHiddenBoss(1);
-        if (hiddenEnemy2)
+        if (hiddenEnemy2) {
+            adventurous = true;
             addHiddenBoss(2);
+        }
+
     }
 
+    /**
+     * add hidden boss to the game.
+     *
+     * @param waveNumber on what wave.
+     */
     private void addHiddenBoss(int waveNumber) {
         Dragon dragon = new Dragon(waveNumber);
         int x = 50 + mapWidth / 3;
@@ -193,6 +254,12 @@ public class TowerDefense{
         waves.get(waveNumber).add(dragon);
     }
 
+    /**
+     * add minions to the game.
+     *
+     * @param number    The amount of minions to be add to the game
+     * @param toBeAdded The wave that should be added to.
+     */
     private void addMinion(int number, int toBeAdded) {
         for (int i = 0; i < number; i++) {
             Minion minion = new Minion();
@@ -203,6 +270,12 @@ public class TowerDefense{
         }
     }
 
+    /**
+     * Adding orcs to the game.
+     *
+     * @param number    The number of orcs
+     * @param toBeAdded The wave that they should be added to.
+     */
     private void addOrc(int number, int toBeAdded) {
         for (int i = 0; i < number; i++) {
             Orc orc = new Orc();
@@ -214,6 +287,11 @@ public class TowerDefense{
         }
     }
 
+    /**
+     * Draw enemies and ammunition.
+     *
+     * @param canvas The canvas that should be drawn on.
+     */
     public void draw(Canvas canvas) {
         for (Enemies item : waves.get(currentWave)) {
             item.draw(canvas);
@@ -225,35 +303,77 @@ public class TowerDefense{
     }
 
 
+    /**
+     * Add a tower by assigning tower to the slot at index
+     *
+     * @param index the index it should be added to.
+     * @param tower The tower that should be added
+     */
     void addTower(int index, Towers tower) {
         towers[index] = tower;
     }
 
+    /**
+     * return whether the game is won or not.
+     */
     boolean getWin() {
         return win;
     }
 
-    public int getGameScore() {
+    /**
+     * @return return thr game score.
+     */
+    int getGameScore() {
         if (lives > 0)
             currentScore += lives * 100; //each life left adds another 100 pts.
         return currentScore;
     }
 
+    /**
+     * @return get the amount of cash of the game
+     */
     int getCash() {
         return cash;
     }
 
+    /**
+     * cost the user a amount of money.
+     *
+     * @param cost how much it costs
+     */
     void costMoney(int cost) {
         cash -= cost;
     }
 
 
+    /**
+     * set the game to start.
+     */
     void setGameStart() {
         this.gameStart = true;
     }
 
 
-    boolean getAdventurous() {
+    /**
+     * @return if earned adventurous badge
+     */
+    boolean isAdventurous() {
         return adventurous;
     }
+
+    /**
+     * @return if earned strategic badge
+     */
+    boolean isStrategic() {
+        return strategic;
+
+    }
+
+    /**
+     * @return if earned fortunate badge
+     */
+    boolean isFortunate() {
+        return fortunate;
+    }
 }
+
