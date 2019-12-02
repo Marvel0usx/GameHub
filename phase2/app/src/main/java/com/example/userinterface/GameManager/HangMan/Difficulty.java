@@ -20,8 +20,14 @@ abstract class Difficulty implements Serializable {
         this.words = words;
     }
 
-    abstract void setWord(); //set the keyword
+    /**
+     * sets the correct keyword
+     */
+    abstract void setWord();
 
+    /**
+     * sets number of lives
+     */
     abstract void setNumLives(); //set the number of lives
 
     /**
