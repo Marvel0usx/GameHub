@@ -5,10 +5,10 @@ import android.view.SurfaceHolder;
 
 
 public class MainThread extends Thread {
+    public static Canvas canvas;
     private final SurfaceHolder surfaceHolder;
     private GameView gameView;
     private boolean running;
-    public static Canvas canvas;
 
 
     MainThread(SurfaceHolder surfaceHolder, GameView gameView) {

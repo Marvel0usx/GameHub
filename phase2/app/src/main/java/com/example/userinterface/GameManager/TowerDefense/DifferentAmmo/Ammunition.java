@@ -28,10 +28,6 @@ public abstract class Ammunition implements Ammo {
         }
     }
 
-    public double getPrey() {
-        return predictY;
-    }
-
     @Override
     public boolean ifHit() {
         if (direction.equals("right")) {

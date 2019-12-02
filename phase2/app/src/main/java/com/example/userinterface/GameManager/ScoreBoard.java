@@ -41,7 +41,8 @@ public class ScoreBoard extends AppCompatActivity implements AdapterView.OnItemS
 
     /**
      * Show the information the user wants.
-     * @param type
+     *
+     * @param type the type of the score wanted
      */
     @SuppressLint("SetTextI18n")
     public void show(String type) {

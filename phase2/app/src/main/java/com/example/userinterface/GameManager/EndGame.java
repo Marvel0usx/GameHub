@@ -18,7 +18,8 @@ public class EndGame extends GameActivity {
 
     /**
      * ending the game and saving the users score and level to the server.
-     * @param view
+     *
+     * @param view the button to end the game
      */
     public void endgame(View view) {
         StatTracker statTracker = getUser().getStatTracker();

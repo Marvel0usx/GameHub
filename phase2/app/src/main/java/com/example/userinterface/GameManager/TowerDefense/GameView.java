@@ -14,15 +14,10 @@ import com.example.userinterface.R;
 
 public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
-    public MainThread getThread() {
-        return thread;
-    }
-
-    private MainThread thread;
     public TowerDefensePresenter towerDefensePresenter;
     boolean gameStart = false, gameOver = false;
+    private MainThread thread;
     private Background background;
-
     public GameView(Context context) {
         super(context);
 
@@ -47,6 +42,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
+    }
+
+    public MainThread getThread() {
+        return thread;
     }
 
     public void setTowerDefensePresenter(TowerDefensePresenter towerDefensePresenter) {

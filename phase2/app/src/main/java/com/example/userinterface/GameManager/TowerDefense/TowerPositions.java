@@ -11,12 +11,13 @@ import com.example.userinterface.R;
  * This is a class that holds all the possible locations that a tower can be put at.
  */
 class TowerPositions {
-    private Button[] spots;
     private static int width = 0, height = 0;
+    private Button[] spots;
     private boolean towerClicked;
 
     /**
      * create a new TowerPositions where the buttons are given as a parameter
+     *
      * @param spots the buttons that can be clicked on for users to put down towers.
      */
     TowerPositions(Button[] spots) {
@@ -25,6 +26,22 @@ class TowerPositions {
             button.setLayoutParams(new ConstraintLayout.LayoutParams(width / 7,
                     height / 13));
         }
+    }
+
+    public static int getWidth() {
+        return width;
+    }
+
+    public static void setWidth(int width) {
+        TowerPositions.width = width;
+    }
+
+    public static int getHeight() {
+        return height;
+    }
+
+    public static void setHeight(int height) {
+        TowerPositions.height = height;
     }
 
     /**
@@ -78,7 +95,7 @@ class TowerPositions {
         }
     }
 
-    void sellAvailable(){
+    void sellAvailable() {
         for (Button button : spots) {
             button.setEnabled(!button.isEnabled());
         }
@@ -93,6 +110,7 @@ class TowerPositions {
 
     /**
      * Ger the index of the button in spot.
+     *
      * @param button the button that is clicked
      * @return the index
      */
@@ -103,20 +121,5 @@ class TowerPositions {
             }
         }
         return 0;
-    }
-    public static int getWidth() {
-        return width;
-    }
-
-    public static int getHeight() {
-        return height;
-    }
-
-    public static void setWidth(int width) {
-        TowerPositions.width = width;
-    }
-
-    public static void setHeight(int height) {
-        TowerPositions.height = height;
     }
 }

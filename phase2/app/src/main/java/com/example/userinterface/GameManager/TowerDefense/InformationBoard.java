@@ -27,6 +27,7 @@ public class InformationBoard {
 
     /**
      * set the money appearance to what is passed in.
+     *
      * @param money the amount of money the user has
      */
     void setMoneyAppearance(int money) {
@@ -35,19 +36,21 @@ public class InformationBoard {
 
     /**
      * set the amount of lives of the user
+     *
      * @param lives the amount of lives the user has left
      */
-    void setLivesAppearance(int lives){
-        this.lives = "Lives: "+lives;
+    void setLivesAppearance(int lives) {
+        this.lives = "Lives: " + lives;
     }
 
     /**
      * draw the appearances used to the screen
-     * @param canvas
+     *
+     * @param canvas the canvas to draw on
      */
     public void draw(Canvas canvas) {
-        canvas.drawText(this.money, width / 8, height * 13/ 16-10, paintText);
-        canvas.drawText(this.lives,width / 8, height * 13 / 16+15, paintText);
+        canvas.drawText(this.money, width / 8, height * 13 / 16 - 10, paintText);
+        canvas.drawText(this.lives, width / 8, height * 13 / 16 + 15, paintText);
     }
 
 }

@@ -16,7 +16,8 @@ public class Stats extends GameActivity {
 
     /**
      * Get all the user statistics and set it on the screen.
-     * @param savedInstanceState
+     *
+     * @param savedInstanceState saved instance state
      */
     @SuppressLint("SetTextI18n")
     @Override

@@ -15,7 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import com.example.userinterface.GameManager.*;
+import com.example.userinterface.GameManager.BadgeCollector;
+import com.example.userinterface.GameManager.GameActivity;
 import com.example.userinterface.R;
 
 /**
@@ -144,32 +145,32 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
             }
             towerPositions.showAvailable(false);
             sellBtn.setEnabled(true);
-        }else if(sellBtnClicked){
+        } else if (sellBtnClicked) {
             /*
             Selling the tower selected and return some money
              */
             int index = towerPositions.getTowerNumber((Button) view);
             view.setBackgroundResource(R.drawable.spot);
             int type = towerDefensePresenter.sellTower(index);
-            switch (type){
+            switch (type) {
                 case 0:
                     towerDefense.addMoney(Integer.parseInt(btnTower1.getContentDescription().
-                            toString().split(" ")[1])-10);
+                            toString().split(" ")[1]) - 10);
                     break;
                 case 1:
                     towerDefense.addMoney(Integer.parseInt(btnTower2.getContentDescription().
-                            toString().split(" ")[1])-15);
+                            toString().split(" ")[1]) - 15);
                     break;
                 case 2:
                     towerDefense.addMoney(Integer.parseInt(btnTower3.getContentDescription().
-                            toString().split(" ")[1])-20);
+                            toString().split(" ")[1]) - 20);
                     break;
                 default:
                     break;
             }
             view.setEnabled(false);
             towerPositions.sellAvailable();
-            for (Button item: buttonTowers){
+            for (Button item : buttonTowers) {
                 item.setEnabled(true);
             }
             sellBtnClicked = false;
@@ -207,7 +208,7 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
         if (gameView != null) {
             gameView.setTowerDefensePresenter(towerDefensePresenter);
             gameView.setGameStart(true);
-            gameView.post(() -> setInstructionVisible());
+            gameView.post(this::setInstructionVisible);
         }
 
     }
@@ -260,7 +261,7 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
      * Set the instruction popup window visible. Upon dismissal the game will start.
      */
     @SuppressLint("ClickableViewAccessibility")
-    public void  setInstructionVisible(){
+    public void setInstructionVisible() {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         assert inflater != null;
         @SuppressLint("InflateParams") View popupView = inflater.inflate(R.layout.
@@ -268,9 +269,7 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
 
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-
-        boolean focusable = false;
-        PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+        PopupWindow popupWindow = new PopupWindow(popupView, width, height, false);
         popupWindow.showAtLocation(gameView, Gravity.CENTER, 0, 0);
         ((TextView) popupWindow.getContentView().findViewById(R.id.td_instruction)).
                 setText(getString(R.string.instruction));
@@ -283,12 +282,13 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
 
     /**
      * sell the tower that is selected
-     * @param view
+     *
+     * @param view the sell button
      */
-    public void sell(View view){
+    public void sell(View view) {
         if (!towerPositions.isTowerClicked()) {
             towerPositions.sellAvailable();
-            for (Button item: buttonTowers){
+            for (Button item : buttonTowers) {
                 item.setEnabled(false);
             }
         }

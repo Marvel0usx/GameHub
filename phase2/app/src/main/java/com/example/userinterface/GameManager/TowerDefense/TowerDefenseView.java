@@ -1,15 +1,5 @@
 package com.example.userinterface.GameManager.TowerDefense;
 
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.TextView;
-
-import com.example.userinterface.R;
-
 /**
  * This is an interface for the view object in tower defense.
  */
