@@ -21,7 +21,7 @@ public abstract class GameActivity extends AppCompatActivity {
 
     private static final Class[] CLASSES = new Class[]{MenuActivity.class, HangManActivity.class, TowerDefenseActivity.class,
             SpaceActivity.class, EndGame.class};
-    private static UserDAO user = null;
+    private static User user = null;
     private static boolean ifLost = false;
     public Context context;
 
@@ -53,8 +53,8 @@ public abstract class GameActivity extends AppCompatActivity {
         if (!practiceMode) {
 
             GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity();
-            user.get().getStatTracker().setLevel(saved);
-            gameBackgroundActivity.execute("quit", user.get());
+            user.getStatTracker().setLevel(saved);
+            gameBackgroundActivity.execute("quit", user);
         }
 
         Intent intent = new Intent(context, CLASSES[saved]);
@@ -75,14 +75,14 @@ public abstract class GameActivity extends AppCompatActivity {
         if (!practiceMode) {
             GameBackgroundActivity gameBackgroundActivity = new GameBackgroundActivity();
             if (won) {
-                int num = user.get().getStatTracker().getLevel() + 1;
-                user.get().getStatTracker().setLevel(num);
+                int num = user.getStatTracker().getLevel() + 1;
+                user.getStatTracker().setLevel(num);
             } else {
-                user.get().getStatTracker().setCurrScore(0);
-                user.get().getStatTracker().setLevel(0);
+                user.getStatTracker().setCurrScore(0);
+                user.getStatTracker().setLevel(0);
                 ifLost = true;
             }
-            gameBackgroundActivity.execute("quit", user.get());
+            gameBackgroundActivity.execute("quit", user);
         }
 
         Intent intent = new Intent(context, NextGame.class);
@@ -96,14 +96,14 @@ public abstract class GameActivity extends AppCompatActivity {
      * @return the user of the game
      */
     public User getUser() {
-        return user.get();
+        return user;
     }
 
     /**
      * set the user for the game
      * @param user the user that is going to be set.
      */
-    public static void setUser(UserDAO user) {
+    public static void setUser(User user) {
         if (GameActivity.user == null) {
             GameActivity.user = user;
         }
@@ -132,7 +132,7 @@ public abstract class GameActivity extends AppCompatActivity {
      */
     public void next(View view) {
         ifLost = false;
-        Intent intent = new Intent(context, CLASSES[user.get().getStatTracker().getLevel()]);
+        Intent intent = new Intent(context, CLASSES[user.getStatTracker().getLevel()]);
         startActivity(intent);
     }
 }

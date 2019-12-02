@@ -100,6 +100,7 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
         }
 
     }
+
     /**
      * This method will tell tower position to show all its available positions.
      */
@@ -133,8 +134,8 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
             } else if (tower == btnTower3) {
                 view.setBackgroundResource(R.drawable.tower3copy);
             }
-            String [] name = selectedTower.getContentDescription().toString().split(" ");
-            towerDefensePresenter.setTower((int)view.getX(), (int)view.getY(),name[0],index);
+            String[] name = selectedTower.getContentDescription().toString().split(" ");
+            towerDefensePresenter.setTower((int) view.getX(), (int) view.getY(), name[0], index);
             for (Button button : buttonTowers) {
                 button.setEnabled(true);
             }
@@ -201,7 +202,7 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
      * game view and updating the user if the game is not in practice mode.
      * It redirects to intermediate page once the game ends.
      *
-     * @param won if the game is won
+     * @param won   if the game is won
      * @param score the score earned
      */
     @Override
@@ -220,17 +221,20 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
         // record score of the level Intermediate page between games
     }
 
-    public void  setInstructionVisible(){
+    /**
+     * Set the instruction popup window visible. Upon dismissal the game will start.
+     */
+    public void setInstructionVisible() {
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.tower_defense_instruction, null);
 
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
 
-        boolean focusable = false; // lets taps outside the popup also dismiss it
+        boolean focusable = false;
         PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
         popupWindow.showAtLocation(gameView, Gravity.CENTER, 0, 0);
-        ((TextView)popupWindow.getContentView().findViewById(R.id.td_instruction)).setText(getString(R.string.instruction));
+        ((TextView) popupWindow.getContentView().findViewById(R.id.td_instruction)).setText(getString(R.string.instruction));
         popupView.setOnTouchListener((v, event) -> {
             popupWindow.dismiss();
             onPopupDismissal(v);
@@ -238,16 +242,25 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
         });
     }
 
+    /**
+     * @return if user has collected fortunate badge
+     */
     @Override
     public boolean collectFortunateBadge() {
         return towerDefensePresenter.getFortunate();
     }
 
+    /**
+     * @return if user has collected strategic badge
+     */
     @Override
     public boolean collectStrategicBadge() {
         return towerDefensePresenter.getStratgetic();
     }
 
+    /**
+     * @return if user has collected adventurous badge
+     */
     @Override
     public boolean collectAdventurousBadge() {
         return towerDefensePresenter.getAdventurous();
