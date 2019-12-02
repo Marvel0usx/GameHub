@@ -129,6 +129,12 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
         }
     }
 
+    /**
+     * Parses from a list of SpaceObjects to create a list of Bitmap and Coordinate pairs to send
+     * to the View, allowing an image to be drawn
+     * @param spaceObjectList a list of spaceObjects
+     * @return a list of organized Bitmap Rect pairs
+     */
     private List<Pair<Bitmap, Rect>> parse(List<SpaceObject> spaceObjectList){
         List<Pair<Bitmap, Rect>> parsed = new ArrayList<>();
         Bitmap bmp;

@@ -3,6 +3,11 @@ package com.example.userinterface.GameManager.SpaceInvaders;
 import android.graphics.Canvas;
 
 class ScoreBoardView {
+    /**
+     * Draws the scoreboard
+     * @param canvas the canvas to be drawn on
+     * @param scoreboard the scoreboard to be drawn
+     */
     public void draw(Canvas canvas, Scoreboard scoreboard){
         canvas.drawText(scoreboard.getAppearance(), 250, scoreboard.getHeight() - 250, scoreboard.getPaintText());
         canvas.drawText("HP", 250, scoreboard.getHeight() - 200, scoreboard.getPaintText());

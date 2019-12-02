@@ -21,6 +21,12 @@ public class Scoreboard {
         this.width = width;
     }
 
+    /**
+     * the collective setter of all variables that should show up
+     * @param lives lives of the player
+     * @param score current game score
+     * @param level current enemy wave count
+     */
     void setAppearance(int lives, int score, int level) {
         this.appearance = "Score: " + score + "";
         this.lives = lives;

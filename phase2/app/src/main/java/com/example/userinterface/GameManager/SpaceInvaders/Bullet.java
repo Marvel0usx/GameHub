@@ -13,7 +13,10 @@ abstract class Bullet extends SpaceObject {
         return new int[]{getX(), getY()};
     }
 
-    // Utils
+    /**
+     * Changes the x and y coordinates of the bullet by a fixed pattern, as well as informing
+     * observers of the change
+     */
     void move() {
         setChanged();
         setUpdated(true);

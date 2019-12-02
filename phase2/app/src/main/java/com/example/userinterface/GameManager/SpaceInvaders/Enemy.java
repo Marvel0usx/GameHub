@@ -18,13 +18,12 @@ public class Enemy extends Ship {
         return new int[]{getX(), getY()};
     }
 
-    // Utils
+    /**
+     * directs the bulletFactory to produce enemyBullets, and registers them to the observer class
+     * to allow for collision detection
+     */
     @Override
     void shoot() {
-        //fires bullet objects that deductLife player
-        // generate new bullet object and add this object's observer
-        // to the bullet object's observer. Return the bullet object.
-
         this.enemyBullets = BulletFactory.buildBullet("Enemy", this.mode, this.getX(), this.getY());
         setChanged();
         for (Observer obs : getObservers()) {
@@ -35,6 +34,10 @@ public class Enemy extends Ship {
             bullet.setUpdated(true);
     }
 
+    /**
+     * handles the movement as well as shoot() timings of this ship, as well as notify observers of
+     * movement
+     */
     void move() {
         setChanged();
         if (Math.random() < 0.005) {
