@@ -58,7 +58,7 @@ public class SpaceInvaders implements Observer {
     }
 
     /**
-     * Removes all objects from 
+     * Removes all objects from
      */
     public void unregisterAll() {
         subjects.clear();
@@ -191,7 +191,7 @@ public class SpaceInvaders implements Observer {
      * generates the first layout for the game, instantiating the player, and setting basic variables
      */
     public void layout() {
-        this.player = new Player((this.width >> 1), 1500, 0, 500, 40);
+        this.player = new Player((this.width >> 1), 1500, 0, 500, 150);
         this.player.registerObserver(this);
         subjects.add(this.player);
         scoreboard = new Scoreboard(this.height, this.width);
@@ -215,16 +215,16 @@ public class SpaceInvaders implements Observer {
         if (this.wave == 1) {
             this.player.setMode(1);
             for (int x = 50; x < 500; x += 200)
-                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100, 40));
+                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100, 100));
             for (int x = 700; x < 1000; x += 200)
-                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100, 40));
+                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100, 100));
         }
         if (this.wave == 2) {
             this.player.setMode(2);
             for (int x = 50; x < 500; x += 200)
-                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100, 40));
+                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100, 100));
             for (int x = 700; x < 1000; x += 200)
-                subjects.add(new Enemy(x, 100, 100, -2 * hardness, hardness, 100, 40));
+                subjects.add(new Enemy(x, 100, 100, -2 * hardness, hardness, 100, 100));
         }
         if (this.wave == 3) {
             this.player.setMode(3);
@@ -234,7 +234,7 @@ public class SpaceInvaders implements Observer {
                 subjects.add(new Enemy(x, 100, 100, 0,hardness * 3,100, 80));
         }
         if (this.wave == 4) {
-            subjects.add(new Boss(400, 100, 100, 0, hardness, 300, 80));
+            subjects.add(new Boss(400, 100, 100, 0, hardness, 300, 200));
         }
     }
 
@@ -330,11 +330,11 @@ public class SpaceInvaders implements Observer {
         return (nextY <= 0) || (nextY >= height);
     }
 
-    public void draw(Canvas canvas) {
-        for (SpaceObject item : subjects) item.draw(canvas);
-        this.player.draw(canvas);
-        this.scoreboard.draw(canvas);
-    }
+//    public void draw(Canvas canvas) {
+//        for (SpaceObject item : subjects) item.draw(canvas);
+//        this.player.draw(canvas);
+//        this.scoreboard.draw(canvas);
+//    }
 
     /**
      * instructs the player to go left

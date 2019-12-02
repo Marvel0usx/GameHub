@@ -12,9 +12,9 @@ public class Enemy extends Ship {
     Enemy(int x, int y, int damage, int xSpeed, int ySpeed, int lives, int size) {
         super(x, y, damage, ySpeed, lives, size);
         setXSpeed(xSpeed);
-        this.appearance = "\uD83D\uDC19";
-        this.paintText.setColor(Color.GREEN);
-        this.paintText.setTextSize(80);
+//        this.appearance = "\uD83D\uDC19";
+//        this.paintText.setColor(Color.GREEN);
+//        this.paintText.setTextSize(80);
         this.mode = 1;
     }
 
@@ -62,8 +62,8 @@ public class Enemy extends Ship {
         this.mode = mode;
     }
 
-    public void draw(Canvas canvas) {
-        canvas.drawText(this.appearance, this.getX(), this.getY(), paintText);
-        canvas.drawRect(this.getX(), this.getY()-100, this.getX()+ this.getLives(), this.getY() -90, paintText);
-    }
+//    public void draw(Canvas canvas) {
+//        canvas.drawText(this.appearance, this.getX(), this.getY(), paintText);
+//        canvas.drawRect(this.getX(), this.getY()-100, this.getX()+ this.getLives(), this.getY() -90, paintText);
+//    }
 }
