@@ -109,6 +109,7 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
 //            Space.draw(canvas);
 
             vSpace.draw(canvas, processedObjs);
+            vSpace.draw(canvas, Space.getScoreboard());
         }
     }
 
