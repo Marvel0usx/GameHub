@@ -73,6 +73,9 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
         thread.start();
     }
 
+    /**
+     * Helper method that creates a dictionary for matching Model with its View
+     */
     private void initializingAppearanceMap() {
         Bitmap blueBullet = BitmapFactory.decodeResource(getResources(), R.drawable.bluebullet);
         Bitmap redBullet = BitmapFactory.decodeResource(getResources(), R.drawable.redbullet);

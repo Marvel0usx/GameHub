@@ -37,12 +37,11 @@ public class SpaceInvaders implements Observer {
 
     /**
      * An observer implementation, that registers a subject to a list of observers
+     * if this is an enemy ship, it's subject will be player and player's bullet;
      *
      * @param subject subject to register into observer list
      */
     public void registerSubject(Subject subject) {
-        // if this is an enemy ship, it's subject will be player and player's bullet;
-        // player, enemy and their bullets.
         // noinspection SuspiciousMethodCalls
         if (!subjects.contains(subject))
             subjects.add((SpaceObject) subject);
@@ -68,7 +67,8 @@ public class SpaceInvaders implements Observer {
 
     /**
      * Checks responsibilities and dependencies, determines logic within each cycle. Checks if game
-     * ends, and advances waves
+     * ends, and advances waves. This method traverses trough all objects in the subjects list and
+     * update their states.
      */
     void run() {
         // create temporary lists to fix concurrent modify error
@@ -206,6 +206,10 @@ public class SpaceInvaders implements Observer {
         hardness++;
     }
 
+    /**
+     * Method that allows SpacePresenter to get all SpaceObjects
+     * @return list of SpaceObject for SpacePresenter to render on canvas
+     */
     public List<SpaceObject> getUpdate() {
         return subjects;
     }

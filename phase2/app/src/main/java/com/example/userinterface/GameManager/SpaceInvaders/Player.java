@@ -25,8 +25,8 @@ public class Player extends Ship {
     /**
      * reflects changes
      *
-     * @param obs
-     * @return
+     * @param obs injection to the observer and let the observer to fetch data
+     * @return the updated coordinates of the player
      */
     @Override
     public int[] getUpdate(Observer obs) {
