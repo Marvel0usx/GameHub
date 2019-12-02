@@ -20,11 +20,14 @@ import com.example.userinterface.GameManager.GameActivity;
 import com.example.userinterface.GameManager.User;
 import com.example.userinterface.R;
 
+import java.util.List;
+
 import static android.view.View.VISIBLE;
 
 
 public class HangManGameActivity extends GameActivity implements HangManView{
     GameState gameState;
+    Integer remainingBalloons;
     MediaPlayer mediaPlayer;
     int currentScore;
     ImageView[] balloons;
@@ -38,6 +41,7 @@ public class HangManGameActivity extends GameActivity implements HangManView{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         rootView = findViewById(android.R.id.content).getRootView();
         context = this;
         super.onCreate(savedInstanceState);
@@ -52,14 +56,14 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         ImageView characterImage = findViewById(resID);
         characterImage.setVisibility(VISIBLE);
         setGameState();
+        remainingBalloons = this.gameState.remainingBalloons;
         setAnswerKey();
     }
 
     @SuppressLint("SetTextI18n")
-    @Override
+
     /*
      * Guesses a new letter
-     *
      * @param v View object
      */
     public void makeGuess(View v) {
@@ -76,7 +80,6 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         char charGuessed = letterGuessed.charAt(0);
         v.setEnabled(false);
         v.setBackgroundResource(R.drawable.hm_letter_clicked);
-        // updates the gameState by calling the updateState method
         this.hangManPresenter.makeGuess(charGuessed);
         this.currentScore = gameState.getCurrentScore();
         TextView scoreNumberDisplay = findViewById(R.id.scoreNumberDisplay);
@@ -87,7 +90,26 @@ public class HangManGameActivity extends GameActivity implements HangManView{
     }
 
     /**
-     * Based on whether all letters habve been guessed, decides whether the game is won. If won,
+     * displays all letters that were guessed correctly from the most recent guess
+     * @param correctIndex list of integers representing all indexes of the word that have been
+     *                     correctly guessed
+     */
+    @Override
+    public void displayGuess(List<Integer> correctIndex) { // updates the correct letters guessed (if any)
+        if (correctIndex != null){
+            for (int i = 0; i < correctIndex.size(); i++) {
+                int index = correctIndex.get(i);
+                this.gameState.answerKeyLetters[index].turnBlack(); // shows the letter on screen
+            }
+        }
+        else {
+            gameState.balloons[gameState.remainingBalloons].disappear();
+        }
+
+    }
+
+    /**
+     * Based on whether all letters have been guessed, decides whether the game is won. If won,
      * currentScore is updated. This game is finished.
      */
     public void endGame() {
@@ -117,6 +139,10 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         }
     }
 
+    /**
+     * shoows all balloons before any letters have been guessed
+     * @return list of Balloon objects
+     */
     public Balloon[] showBalloons() {
         int numLives = difficulty.getNumLives();
         balloons = new ImageView[numLives];
@@ -130,6 +156,10 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         return temp;
     }
 
+    /**
+     * shows the Hint on the screen
+     * @param view a vew object
+     */
     public void showHint(View view){
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.hm_hint_popup, null);
@@ -149,6 +179,10 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         });
     }
 
+    /**
+     * notifies the user that a strategic badge has been collected
+     * @param view the view object of the game
+     */
     public void showStrategicBadge(View view){
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.badge_popup_window, null);
@@ -163,7 +197,6 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         if (!practiceMode)
             user.getStatTracker().addToBadges(false, true, false);
 
-
         popupView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
@@ -173,6 +206,10 @@ public class HangManGameActivity extends GameActivity implements HangManView{
             });
         }
 
+    /**
+     * notifies the user that an adventurous badge has been collected
+     * @param view the view object of the game
+     */
     public void showAdventurousBadge(View view){
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.badge_popup_window, null);
@@ -197,6 +234,10 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         });
     }
 
+    /**
+     * notifies the user that a fortunate badge has been collected
+     * @param view the view object of the game
+     */
     public void showFortunateBadge(View view){
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.badge_popup_window, null);
@@ -220,12 +261,17 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         });
     }
 
-
+    /**
+     * set the difficulty level and corresponding number of lives
+     */
     void setDifficulty(){
         difficulty.setWord();
         difficulty.setNumLives();
     }
 
+    /**
+     * set the attributes of game state
+     */
     void setGameState(){
         // initialize each Balloon object
         Balloon[] tempBalloons = showBalloons();
@@ -236,12 +282,18 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         gameState.setRemainingBalloons(difficulty.numLives);
     }
 
+    /**
+     * Set the media player
+     */
     void setMediaPlayer(){
         mediaPlayer = MediaPlayer.create(this, R.raw.hm_background_music);
         mediaPlayer.start();
         mediaPlayer.setLooping(true);
     }
 
+    /**
+     * set all answer keys (correct letters)
+     */
     @SuppressLint("SetTextI18n")
     void setAnswerKey(){
         LinearLayout wordLayout = findViewById(R.id.word);
@@ -269,6 +321,9 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         gameState.setAnswerKeys(answerKey);
     }
 
+    /**
+     * goes back menu page
+     */
     @Override
     public void onBackPressed() {
         mediaPlayer.stop();

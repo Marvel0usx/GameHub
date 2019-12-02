@@ -16,16 +16,11 @@ public class HangManActivity extends GameActivity {
     boolean practiceMode;
     CSVReader csvReader;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         context = this;
         super.onCreate(savedInstanceState);
-        // refer to the hang_man_main layout
         setContentView(R.layout.hang_man_main);
-
-        // the play button that controls if the game will start
-
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             practiceMode = bundle.getBoolean("practice");
@@ -37,6 +32,9 @@ public class HangManActivity extends GameActivity {
         setHardBtn();
     }
 
+    /**
+     * sets the button responsible for choosing easy level
+     */
     private void setEasyBtn() {
         findViewById(R.id.easyButton).setOnClickListener(v -> {
             InputStream inputStream = getResources().openRawResource(R.raw.easy_word);
@@ -50,6 +48,9 @@ public class HangManActivity extends GameActivity {
         });
     }
 
+    /**
+     * sets the button responsible for choosing moderate level
+     */
     private void setModerateBtn() {
         findViewById(R.id.moderateButton).setOnClickListener(v -> {
             InputStream inputStream = getResources().openRawResource(R.raw.moderate_word);
@@ -63,6 +64,9 @@ public class HangManActivity extends GameActivity {
         });
     }
 
+    /**
+     * sets the button responsible for choosing hard level
+     */
     private void setHardBtn() {
         findViewById(R.id.hardButton).setOnClickListener(v -> {
             InputStream inputStream = getResources().openRawResource(R.raw.hard_word);
@@ -75,6 +79,4 @@ public class HangManActivity extends GameActivity {
             startActivity(intent);
         });
     }
-
-
 }

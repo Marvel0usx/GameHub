@@ -28,7 +28,7 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
     public MainThread thread;
     public boolean gameOver;
     private SpaceView vSpace;
-    private List<SpaceObject> spaceObjs;
+    private ScoreBoardView vScore;
     private List<Pair<Bitmap, Rect>> processedObjs;
     private Map<Class, Bitmap> appearance = new Hashtable<>();
 
@@ -38,6 +38,7 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
         vSpace = new SpaceView();
+        vScore = new ScoreBoardView();
     }
 
     public SpacePresenter(Context context, @Nullable AttributeSet attrs) {
@@ -47,6 +48,7 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
         vSpace = new SpaceView();
+        vScore = new ScoreBoardView();
     }
 
     public SpacePresenter(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -56,6 +58,7 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
         vSpace = new SpaceView();
+        vScore = new ScoreBoardView();
     }
 
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
@@ -111,9 +114,7 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
     public void update() {
         if (!Space.isGameOver()) {
             Space.run();
-            spaceObjs = Space.getUpdate();
-            processedObjs = parse(spaceObjs);
-
+            processedObjs = parse(Space.getUpdate());
         } else {
             this.gameOver = true;
         }
@@ -124,13 +125,13 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
         if (canvas != null) {
             super.draw(canvas);
             vSpace.draw(canvas, processedObjs);
-            vSpace.draw(canvas, Space.getScoreboard());
+            vScore.draw(canvas, Space.getScoreboard());
         }
     }
 
     private List<Pair<Bitmap, Rect>> parse(List<SpaceObject> spaceObjectList){
         List<Pair<Bitmap, Rect>> parsed = new ArrayList<>();
-        Bitmap bmp = null;
+        Bitmap bmp;
         for (SpaceObject item : spaceObjectList){
             Rect rect = new Rect(item.getX(), item.getY(), item.getX() + item.getSize(),
                     item.getY() + item.getSize());

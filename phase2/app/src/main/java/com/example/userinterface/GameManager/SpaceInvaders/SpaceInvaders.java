@@ -8,6 +8,7 @@ import java.util.List;
 //import android.graphics.SumPathEffect;
 
 public class SpaceInvaders implements Observer {
+
     // Private attributes
     private int height;
     private int width;
@@ -22,13 +23,16 @@ public class SpaceInvaders implements Observer {
 
     private boolean gameOver = false;
     private boolean isWin = false;
+    private List<Boolean> badges = new ArrayList<>();
 
     // Initializer
     public SpaceInvaders(int width, int height) {
         this.height = height;
         this.width = width;
         this.wave = 0;
-
+        this.badges.add(false);
+        this.badges.add(false);
+        this.badges.add(false);
     }
 
     /**
@@ -133,6 +137,7 @@ public class SpaceInvaders implements Observer {
             unregisterAll();
             if (this.player.getLives() > 0) {
                 this.isWin = true;
+                this.addBadges(2);
             }
             if (this.var != null)
                 this.var.onVariableChange(true);
@@ -187,7 +192,7 @@ public class SpaceInvaders implements Observer {
      * generates the first layout for the game, instantiating the player, and setting basic variables
      */
     public void layout() {
-        this.player = new Player((this.width >> 1), 1500, 0, 500, 100);
+        this.player = new Player((this.width >> 1), 1500, 0, 1000, 100);
         this.player.registerObserver(this);
         subjects.add(this.player);
         scoreboard = new Scoreboard(this.height, this.width);
@@ -207,7 +212,7 @@ public class SpaceInvaders implements Observer {
     /**
      * Changes the wave count, by adding enemies and upgrading the player.
      */
-    public void spawnWaves() {
+    private void spawnWaves() {
         if (this.wave == 1) {
             this.player.setMode(1);
             for (int x = 50; x < 500; x += 200)
@@ -228,6 +233,7 @@ public class SpaceInvaders implements Observer {
                 subjects.add(new Enemy(x, 100, 100, 0,hardness * 4  ,100, 80));
             for (int x = 700; x < 1000; x += 200)
                 subjects.add(new Enemy(x, 100, 100, 0,hardness * 4,100, 80));
+            this.addBadges(1);
         }
         if (this.wave == 4) {
             subjects.add(new Boss(400, 100, 100, 0, hardness, 2000, 200));
@@ -304,6 +310,7 @@ public class SpaceInvaders implements Observer {
      */
     private boolean isAboutBounceBack(@NotNull SpaceObject obj) {
         int nextX;
+        this.addBadges(0);
         if (obj.getXSpeed() < 0)
             // going to the left
             nextX = obj.getX() + obj.getXSpeed();
@@ -379,4 +386,12 @@ public class SpaceInvaders implements Observer {
     Scoreboard getScoreboard(){
         return this.scoreboard;
     }
+
+    public boolean getBadges(int i) {
+        return this.badges.get(i);
+    }
+    public void addBadges(int i){
+        this.badges.set(i, true);
+    }
+
 }
