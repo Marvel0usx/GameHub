@@ -169,7 +169,7 @@ public class SpaceInvaders implements Observer {
 
     // Utils
     public void layout() {
-        this.player = new Player((this.width >> 1), 1500, 0, 500);
+        this.player = new Player((this.width >> 1), 1500, 0, 500, 40);
         this.player.registerObserver(this);
         subjects.add(this.player);
         scoreboard = new Scoreboard(this.height, this.width);
@@ -190,26 +190,26 @@ public class SpaceInvaders implements Observer {
         if (this.wave == 1) {
             this.player.setMode(1);
             for (int x = 50; x < 500; x += 200)
-                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100));
+                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100, 40));
             for (int x = 700; x < 1000; x += 200)
-                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100));
+                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100, 40));
         }
         if (this.wave == 2) {
             this.player.setMode(2);
             for (int x = 50; x < 500; x += 200)
-                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100));
+                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100, 40));
             for (int x = 700; x < 1000; x += 200)
-                subjects.add(new Enemy(x, 100, 100, -2 * hardness, hardness, 100));
+                subjects.add(new Enemy(x, 100, 100, -2 * hardness, hardness, 100, 40));
         }
         if (this.wave == 3) {
             this.player.setMode(3);
             for (int x = 50; x < 500; x += 200)
-                subjects.add(new Enemy(x, 100, 100, 0,hardness * 3  ,100));
+                subjects.add(new Enemy(x, 100, 100, 0,hardness * 3  ,100, 80));
             for (int x = 700; x < 1000; x += 200)
-                subjects.add(new Enemy(x, 100, 100, 0,hardness * 3,100));
+                subjects.add(new Enemy(x, 100, 100, 0,hardness * 3,100, 80));
         }
         if (this.wave == 4) {
-            subjects.add(new Boss(400, 100, 100, 0, hardness, 300));
+            subjects.add(new Boss(400, 100, 100, 0, hardness, 300, 80));
         }
     }
 
@@ -219,14 +219,14 @@ public class SpaceInvaders implements Observer {
         boolean yCollision;
 
         if (x1 >= x2)
-            xCollision = (SpaceObject.WIDTH + 40 >= (x1 - x2));
+            xCollision = (80 >= (x1 - x2));
         else // (x1 < x2)
-            xCollision = (SpaceObject.WIDTH + 40 >= (x2 - x1));
+            xCollision = (80 + 40 >= (x2 - x1));
 
         if (y2 >= y1)
-            yCollision = (SpaceObject.HEIGHT >= (y2 - y1));
+            yCollision = (40 >= (y2 - y1));
         else // (y2 < y1)
-            yCollision = (SpaceObject.HEIGHT >= (y1 - y2));
+            yCollision = (40 >= (y1 - y2));
 
         return xCollision & yCollision;
         // End of Jan endorsed algorithm

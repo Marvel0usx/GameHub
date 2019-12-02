@@ -10,8 +10,8 @@ public class Player extends Ship {
     private int mode;
     private ArrayList<Bullet> playerBullets;
 
-    Player(int x, int y, int ySpeed, int lives) {
-        super(x, y, 0, 40, ySpeed, lives);
+    Player(int x, int y, int ySpeed, int lives, int size) {
+        super(x, y, 0, 40, ySpeed, lives, size);
         this.appearance = "🔺";
         this.paintText.setColor(Color.CYAN);
         this.paintText.setTextSize(80);

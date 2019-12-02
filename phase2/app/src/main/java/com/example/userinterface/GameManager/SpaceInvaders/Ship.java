@@ -4,14 +4,16 @@ abstract class Ship extends SpaceObject {
     private int lives;
 
     // Initializer
-    Ship(int x, int y, int damage, int ySpeed, int lives) {
+    Ship(int x, int y, int damage, int ySpeed, int lives, int size) {
         super(x, y, damage, ySpeed);
         this.setLives(lives);
+        this.setSize(size);
     }
 
-    Ship(int x, int y, int damage, int xSpeed, int ySpeed, int lives) {
+    Ship(int x, int y, int damage, int xSpeed, int ySpeed, int lives, int size) {
         super(x, y, damage, xSpeed, ySpeed);
         this.setLives(lives);
+        this.setSize(size);
     }
 
     int getLives() {
