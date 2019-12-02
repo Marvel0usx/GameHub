@@ -12,9 +12,9 @@ public class Player extends Ship {
 
     Player(int x, int y, int ySpeed, int lives, int size) {
         super(x, y, 0, 40, ySpeed, lives, size);
-        this.appearance = "🔺";
-        this.paintText.setColor(Color.CYAN);
-        this.paintText.setTextSize(80);
+//        this.appearance = "🔺";
+//        this.paintText.setColor(Color.CYAN);
+//        this.paintText.setTextSize(80);
         this.mode = 1;
     }
 
@@ -69,7 +69,7 @@ public class Player extends Ship {
     }
 
 
-    public void draw(Canvas canvas) {
-        canvas.drawText(this.appearance, this.getX(), this.getY(), paintText);
-    }
+//    public void draw(Canvas canvas) {
+//        canvas.drawText(this.appearance, this.getX(), this.getY(), paintText);
+//    }
 }
