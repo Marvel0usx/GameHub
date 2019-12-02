@@ -1,8 +1,5 @@
 package com.example.userinterface.GameManager.SpaceInvaders;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-
 import java.util.ArrayList;
 
 public class Player extends Ship {
