@@ -9,8 +9,8 @@ public class Enemy extends Ship {
     private int mode;
     public ArrayList<Bullet> enemyBullets;
 
-    Enemy(int x, int y, int damage, int xSpeed, int ySpeed, int lives) {
-        super(x, y, damage, ySpeed, lives);
+    Enemy(int x, int y, int damage, int xSpeed, int ySpeed, int lives, int size) {
+        super(x, y, damage, ySpeed, lives, size);
         setXSpeed(xSpeed);
         this.appearance = "\uD83D\uDC19";
         this.paintText.setColor(Color.GREEN);

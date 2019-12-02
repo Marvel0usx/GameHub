@@ -3,8 +3,8 @@ package com.example.userinterface.GameManager.SpaceInvaders;
 import android.graphics.Canvas;
 
 public class Boss extends Enemy {
-    public Boss(int x, int y, int damage, int xSpeed, int ySpeed, int lives){
-        super(x,y,damage, xSpeed, ySpeed, lives);
+    public Boss(int x, int y, int damage, int xSpeed, int ySpeed, int lives, int size){
+        super(x,y,damage, xSpeed, ySpeed, lives, size);
         this.appearance = "\uD83D\uDC7E";
         this.paintText.setTextSize(80);
     }
