@@ -1,13 +1,10 @@
 package com.example.userinterface.GameManager.SpaceInvaders;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-
 import java.util.ArrayList;
 
 public class Enemy extends Ship {
     private int mode;
-    public ArrayList<Bullet> enemyBullets;
+    ArrayList<Bullet> enemyBullets;
 
     Enemy(int x, int y, int damage, int xSpeed, int ySpeed, int lives, int size) {
         super(x, y, damage, ySpeed, lives, size);
@@ -53,9 +50,5 @@ public class Enemy extends Ship {
         setY(getY() + getYSpeed());
         setUpdated(true);
         notifyObservers();
-    }
-
-    void setMode(int mode){
-        this.mode = mode;
     }
 }

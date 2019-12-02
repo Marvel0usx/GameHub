@@ -114,11 +114,6 @@ abstract class SpaceObject implements Subject {
     }
 
     @Override
-    public void unregisterObserver(Observer observer) {
-        observers.remove(observer);
-    }
-
-    @Override
     public void unregisterAllObservers() {
         observers.clear();
     }
