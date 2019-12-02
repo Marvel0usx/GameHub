@@ -5,6 +5,9 @@ import android.view.View;
 
 import com.example.userinterface.R;
 
+/**
+ * The end of the game screen.
+ */
 public class EndGame extends GameActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,6 +16,10 @@ public class EndGame extends GameActivity {
         setContentView(R.layout.activity_end_game);
     }
 
+    /**
+     * ending the game and saving the users score and level to the server.
+     * @param view
+     */
     public void endgame(View view) {
         StatTracker statTracker = getUser().getStatTracker();
         statTracker.addNumOfGames();

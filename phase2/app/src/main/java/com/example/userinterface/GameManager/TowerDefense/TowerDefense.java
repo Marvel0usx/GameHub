@@ -13,11 +13,10 @@ import com.example.userinterface.GameManager.TowerDefense.Towers.Towers;
 
 import java.util.ArrayList;
 
-public class TowerDefense{
 /**
  * This is the tower defense class that controls most of the functions of the game.
  */
-public class TowerDefense{
+public class TowerDefense {
 
     private int currentScore;
     private int lives = 5;
@@ -37,7 +36,7 @@ public class TowerDefense{
     private InformationBoard informationBoard;
     private int currentWave = 0;
     private SparseArray<ArrayList<Enemies>> waves = new SparseArray<>(3);
-    int counter= 0;
+    int counter = 0;
 
 
     public TowerDefense(int screenWidth, int screenHeight, VariableListenerTowerDefense listener) {
@@ -62,20 +61,21 @@ public class TowerDefense{
         if (gameStart) {
             checkIfOver();
             if (!fortunate || !strategetic)
-            checkBadge();
+                checkBadge();
             updateEnemy();
             generateNewWave();
             updateBullet();
         }
     }
+
     private void checkBadge() {
-        if (cash <70) {
+        if (cash < 70) {
             fortunate = true;
         }
         int i = 0;
-        for(Towers tower: towers){
+        for (Towers tower : towers) {
             if (tower instanceof RocketTower)
-                i ++;
+                i++;
         }
         if (i == 3) {
             strategetic = true;
@@ -107,7 +107,7 @@ public class TowerDefense{
             if (lives > 0)
                 currentScore += lives * 100; //each life left adds another 100 pts.
             win = lives > 0;
-            if (listener != null){
+            if (listener != null) {
                 listener.onGameOver(true);
             }
 
@@ -161,7 +161,7 @@ public class TowerDefense{
     }
 
     /**
-     *Removes any enemy that has health lower or equal to 0.
+     * Removes any enemy that has health lower or equal to 0.
      */
     private void removeEnemy() {
         ArrayList<Enemies> temp = new ArrayList<>();
@@ -171,7 +171,7 @@ public class TowerDefense{
                 cash += e.getMoneyGain();
                 currentScore += e.getScore();
             }
-            if (e.getY() >= mapHeight-300) { //if enemy is out of map remove it
+            if (e.getY() >= mapHeight - 300) { //if enemy is out of map remove it
                 temp.add(e);
                 lives -= e.getDamage();
             }
@@ -183,6 +183,7 @@ public class TowerDefense{
 
     /**
      * Get the first enemy in a particular range.
+     *
      * @param lowerbound the lowerbound of the range
      * @param upperbound the upper bound of the range.
      * @return the first enemy in the range provided.
@@ -203,6 +204,7 @@ public class TowerDefense{
 
     /**
      * Add enemy to the game
+     *
      * @param hiddenEnemy0 a boolean telling the game whether it should add a hidden enemy.
      * @param hiddenEnemy1 a boolean telling the game whether it should add a hidden enemy.
      * @param hiddenEnemy2 a boolean telling the game whether it should add a hidden enemy.
@@ -230,6 +232,7 @@ public class TowerDefense{
 
     /**
      * add hidden boss to the game.
+     *
      * @param waveNumber on what wave.
      */
     private void addHiddenBoss(int waveNumber) {
@@ -242,7 +245,8 @@ public class TowerDefense{
 
     /**
      * add minions to the game.
-     * @param number The amount of minions to be add to the game
+     *
+     * @param number    The amount of minions to be add to the game
      * @param toBeAdded The wave that should be added to.
      */
     private void addMinion(int number, int toBeAdded) {
@@ -257,7 +261,8 @@ public class TowerDefense{
 
     /**
      * Adding orcs to the game.
-     * @param number The number of orcs
+     *
+     * @param number    The number of orcs
      * @param toBeAdded The wave that they should be added to.
      */
     private void addOrc(int number, int toBeAdded) {
@@ -273,6 +278,7 @@ public class TowerDefense{
 
     /**
      * draw everything
+     *
      * @param canvas The canvas that should be drawn on.
      */
     public void draw(Canvas canvas) {
@@ -288,6 +294,7 @@ public class TowerDefense{
 
     /**
      * Add a tower
+     *
      * @param index the index it should be added to.
      * @param tower The tower that should be added
      */
@@ -305,7 +312,7 @@ public class TowerDefense{
     /**
      * @return return thr game score.
      */
-     int getGameScore() {
+    int getGameScore() {
         if (lives > 0)
             currentScore += lives * 100; //each life left adds another 100 pts.
         return currentScore;
@@ -320,6 +327,7 @@ public class TowerDefense{
 
     /**
      * cost the user a amount of money.
+     *
      * @param cost how much it costs
      */
     void costMoney(int cost) {
@@ -335,18 +343,20 @@ public class TowerDefense{
     }
 
 
-
     /**
      * @return a boolean if you have got the badge or not.
      */
     boolean isAdventurous() {
         return adventurous;
     }
-    boolean isStrategetic(){
+
+    boolean isStrategetic() {
         return strategetic;
 
     }
-    boolean isFortunate(){
+
+    boolean isFortunate() {
         return fortunate;
     }
 }
+

@@ -12,10 +12,4 @@ public class UserDAO implements DAO<User> {
     public User get() {
         return this.user;
     }
-
-
-    @Override
-    public void delete() {
-        this.user = null;
-    }
 }

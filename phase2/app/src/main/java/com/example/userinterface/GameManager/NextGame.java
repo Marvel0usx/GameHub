@@ -9,6 +9,10 @@ import android.widget.TextView;
 
 import com.example.userinterface.R;
 
+/**
+ * The next screen for the game, shows whether or not the user has won the game.
+ * if lost the game disable the next button.
+ */
 public class NextGame extends GameActivity {
     TextView textView;
     boolean practiceMode;
@@ -40,10 +44,18 @@ public class NextGame extends GameActivity {
         }
     }
 
+    /**
+     * The quit button that lets the user quit to the main menu
+     * @param view the button that has been clicked.
+     */
     public void quit(View view) {
         toMenu();
     }
 
+    /**
+     * The onclick method to go to the next game
+     * @param view that next button that is pressed,
+     */
     @Override
     public void next(View view) {
         super.next(view);
