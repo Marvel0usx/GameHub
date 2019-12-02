@@ -46,7 +46,7 @@ class TowerDefensePresenter implements VariableListenerTowerDefense {
         if (gamePlayed > 5) {
             addBoss0 = Math.random() < 0.3;
             addBoss1 = Math.random() < 0.2;
-            addBoss2 = Math.random() < 1;
+            addBoss2 = Math.random() < 0.1;
         }
         towerDefense.addEnemy(addBoss0, addBoss1, addBoss2);
         towerDefense.setGameStart();
