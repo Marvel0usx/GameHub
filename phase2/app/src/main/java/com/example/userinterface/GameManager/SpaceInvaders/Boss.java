@@ -2,8 +2,8 @@ package com.example.userinterface.GameManager.SpaceInvaders;
 
 import android.graphics.Canvas;
 
-public class Boss extends Enemy {
-    public Boss(int x, int y, int damage, int xSpeed, int ySpeed, int lives, int size){
+class Boss extends Enemy {
+    Boss(int x, int y, int damage, int xSpeed, int ySpeed, int lives, int size){
         super(x,y,damage, xSpeed, ySpeed, lives, size);
     }
 

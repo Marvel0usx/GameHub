@@ -17,7 +17,10 @@ import androidx.annotation.Nullable;
 import com.example.userinterface.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 
 public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
@@ -26,6 +29,9 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
     public MainThread thread;
     public boolean gameOver;
     private SpaceTrueView vSpace;
+    private List<SpaceObject> spaceObjs;
+    private List<Pair<Bitmap, Rect>> processedObjs;
+    private Map<Class, Bitmap> appearance = new Hashtable<>();
 
     public SpaceView(Context context) {
         super(context);
@@ -60,14 +66,26 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
 
 
         Space.layout();
-
+        initializingAppearanceMap();
         thread.setRunning(true);
         thread.start();
     }
 
-    public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int width, int height) {
+    private void initializingAppearanceMap(){
+        Bitmap blueBullet = BitmapFactory.decodeResource(getResources(), R.drawable.bluebullet);
+        Bitmap redBullet = BitmapFactory.decodeResource(getResources(), R.drawable.redbullet);
+        Bitmap player = BitmapFactory.decodeResource(getResources(), R.drawable.space_player);
+        Bitmap boss = BitmapFactory.decodeResource(getResources(), R.drawable.space_boss);
+        Bitmap enemy = BitmapFactory.decodeResource(getResources(), R.drawable.space_troop);
 
+        appearance.put(PlayerBullet.class, blueBullet);
+        appearance.put(EnemyBullet.class, redBullet);
+        appearance.put(Player.class, player);
+        appearance.put(Enemy.class, enemy);
+        appearance.put(Boss.class, boss);
     }
+
+    public void surfaceChanged(SurfaceHolder surfaceHolder, int format, int width, int height) {}
 
     public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
         boolean retry = true;
@@ -106,14 +124,9 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas) {
         if (canvas != null) {
             super.draw(canvas);
-//            Space.draw(canvas);
-
             vSpace.draw(canvas, processedObjs);
         }
     }
-
-    private List<SpaceObject> spaceObjs;
-    private List<Pair<Bitmap, Rect>> processedObjs;
 
     private List<Pair<Bitmap, Rect>> parse(List<SpaceObject> spaceObjectList){
         List<Pair<Bitmap, Rect>> parsed = new ArrayList<>();
@@ -121,17 +134,7 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
         for (SpaceObject item : spaceObjectList){
             Rect rect = new Rect(item.getX(), item.getY(), item.getX() + item.getSize(),
                     item.getY() + item.getSize());
-            if (item instanceof PlayerBullet)
-                bmp = BitmapFactory.decodeResource(getResources(), R.drawable.bluebullet);
-            else if (item instanceof EnemyBullet)
-                bmp = BitmapFactory.decodeResource(getResources(), R.drawable.redbullet);
-            else if (item instanceof Player)
-                bmp = BitmapFactory.decodeResource(getResources(), R.drawable.space_player);
-            else if (item instanceof Boss)
-                bmp = BitmapFactory.decodeResource(getResources(), R.drawable.space_boss);
-            else if (item instanceof Enemy)
-                bmp = BitmapFactory.decodeResource(getResources(), R.drawable.space_troop);
-
+            bmp = appearance.get(item.getClass());
             Pair<Bitmap, Rect> pair = new Pair<>(bmp, rect);
             parsed.add(pair);
         }

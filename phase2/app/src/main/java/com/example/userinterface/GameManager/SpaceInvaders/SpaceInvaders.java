@@ -211,26 +211,26 @@ public class SpaceInvaders implements Observer {
         if (this.wave == 1) {
             this.player.setMode(1);
             for (int x = 50; x < 500; x += 200)
-                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100, 80));
+                subjects.add(new Enemy(x, 100, 100, 2 * hardness, 2*hardness, 100, 80));
             for (int x = 700; x < 1000; x += 200)
-                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100, 80));
+                subjects.add(new Enemy(x, 100, 100, 2 * hardness, 2*hardness, 100, 80));
         }
         if (this.wave == 2) {
             this.player.setMode(2);
             for (int x = 50; x < 500; x += 200)
-                subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100, 80));
+                subjects.add(new Enemy(x, 100, 100, 2 * hardness, 3*hardness, 100, 80));
             for (int x = 700; x < 1000; x += 200)
-                subjects.add(new Enemy(x, 100, 100, -2 * hardness, hardness, 100, 80));
+                subjects.add(new Enemy(x, 100, 100, -2 * hardness, 3*hardness, 100, 80));
         }
         if (this.wave == 3) {
             this.player.setMode(3);
             for (int x = 50; x < 500; x += 200)
-                subjects.add(new Enemy(x, 100, 100, 0,hardness * 3  ,100, 80));
+                subjects.add(new Enemy(x, 100, 100, 0,hardness * 4  ,100, 80));
             for (int x = 700; x < 1000; x += 200)
-                subjects.add(new Enemy(x, 100, 100, 0,hardness * 3,100, 80));
+                subjects.add(new Enemy(x, 100, 100, 0,hardness * 4,100, 80));
         }
         if (this.wave == 4) {
-            subjects.add(new Boss(400, 100, 100, 0, hardness, 300, 200));
+            subjects.add(new Boss(400, 100, 100, 0, hardness, 2000, 200));
         }
     }
 
