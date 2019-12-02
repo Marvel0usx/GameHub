@@ -4,13 +4,12 @@ import android.graphics.Canvas;
 
 import com.example.userinterface.GameManager.TowerDefense.Towers.TowerFactory;
 import com.example.userinterface.GameManager.TowerDefense.Towers.Towers;
-import com.example.userinterface.GameManager.VariableChangeListener;
 
 /**
  * A Presenter Component of of the towerDefenseGame.
  * It is used to communicate TowerDefense andTowerDefenseActivity.
  */
-class TowerDefensePresenter implements VariableChangeListener {
+class TowerDefensePresenter implements VariableListenerTowerDefense {
 
     private TowerDefenseView towerDefenseView;
     private TowerDefense towerDefense;
@@ -40,14 +39,14 @@ class TowerDefensePresenter implements VariableChangeListener {
      *
      * @param gamePlayed The number of games played by the user in TowerDefenseView
      */
-    void onStartClicked(int gamePlayed) {
+    void onPopupDismissal(int gamePlayed) {
         boolean addBoss0 = false;
         boolean addBoss1 = false;
         boolean addBoss2 = false;
         if (gamePlayed > 5) {
             addBoss0 = Math.random() < 0.3;
             addBoss1 = Math.random() < 0.2;
-            addBoss2 = Math.random() < 0.1;
+            addBoss2 = Math.random() < 1;
         }
         towerDefense.addEnemy(addBoss0, addBoss1, addBoss2);
         towerDefense.setGameStart(true);
@@ -81,11 +80,11 @@ class TowerDefensePresenter implements VariableChangeListener {
      * loose and its score.
      */
     @Override
-    public void onVariableChange(boolean var) {
+    public void onGameOver(boolean var) {
         boolean won = towerDefense.getWin();
         int score = towerDefense.getGameScore();
-        towerDefense = null;
         towerDefenseView.endGame(won, score);
+        towerDefense = null;
     }
 
     /**
@@ -121,6 +120,12 @@ class TowerDefensePresenter implements VariableChangeListener {
      * Determine if this game of TowerDefense has earned an adventurous badge.
      */
     boolean getAdventurous() {
-        return towerDefense.getAdventurous();
+        return towerDefense.isAdventurous();
+    }
+    boolean getFortunate(){
+        return towerDefense.isFortunate();
+    }
+    boolean getStratgetic(){
+        return towerDefense.isStrategetic();
     }
 }

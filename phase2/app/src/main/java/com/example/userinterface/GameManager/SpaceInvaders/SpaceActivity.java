@@ -7,7 +7,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.userinterface.GameManager.GameActivity;
-import com.example.userinterface.GameManager.VariableChangeListener;
 import com.example.userinterface.R;
 
 public class SpaceActivity extends GameActivity implements VariableChangeListener {

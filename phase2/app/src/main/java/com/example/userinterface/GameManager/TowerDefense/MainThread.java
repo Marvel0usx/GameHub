@@ -40,8 +40,7 @@ public class MainThread extends Thread {
             }
         }
     }
-
-    public void setRunning(boolean isRunning) {
+    void setRunning(boolean isRunning) {
         running = isRunning;
     }
 }

@@ -3,12 +3,16 @@ package com.example.userinterface.GameManager.TowerDefense;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.example.userinterface.GameManager.*;
@@ -19,7 +23,7 @@ import com.example.userinterface.R;
  */
 public class TowerDefenseActivity extends GameActivity implements TowerDefenseView, BadgeCollector {
 
-    Button btnStart, btnTower1, btnTower2, btnTower3;
+    Button btnTower1, btnTower2, btnTower3;
     TowerDefensePresenter towerDefensePresenter;
     TowerDefense towerDefense;
     int width;
@@ -68,6 +72,7 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
         TowerPositions.setWidth(width);
         towerDefense = new TowerDefense(width, height, towerDefensePresenter);
         towerDefensePresenter.setTowerDefense(towerDefense);
+
     }
 
     /**
@@ -144,7 +149,6 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        btnStart = findViewById(R.id.start);
         btnTower1 = findViewById(R.id.tower1);
         btnTower2 = findViewById(R.id.tower2);
         btnTower3 = findViewById(R.id.tower3);
@@ -164,11 +168,12 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
         towerPositions = new TowerPositions(buttons);
         towerPositions.setXLocation();
         towerPositions.setYLocation();
-
         if (gameView != null) {
             gameView.setTowerDefensePresenter(towerDefensePresenter);
             gameView.setGameStart(true);
+            gameView.post(() -> setInstructionVisible());
         }
+
     }
 
     /**
@@ -177,17 +182,15 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
      *
      * @param v the start button
      */
-    public void onStartClick(View v) {
-        Log.d("message", "towerDefensePresenter at line 170 " + towerDefensePresenter);
+    public void onPopupDismissal(View v) {
         int gamePlayed = getUser().getStatTracker().getNumOfGames();
-        towerDefensePresenter.onStartClicked(gamePlayed);
+        towerDefensePresenter.onPopupDismissal(gamePlayed);
     }
 
     /**
      * This method will set visible buttons that are going to be used in a game.
      */
     public void setButtonVisible() {
-        btnStart.setVisibility(View.GONE);
         btnTower1.setVisibility(View.VISIBLE);
         btnTower2.setVisibility(View.VISIBLE);
         btnTower3.setVisibility(View.VISIBLE);
@@ -217,14 +220,32 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
         // record score of the level Intermediate page between games
     }
 
+    public void  setInstructionVisible(){
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.tower_defense_instruction, null);
+
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+
+        boolean focusable = false; // lets taps outside the popup also dismiss it
+        PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+        popupWindow.showAtLocation(gameView, Gravity.CENTER, 0, 0);
+        ((TextView)popupWindow.getContentView().findViewById(R.id.td_instruction)).setText(getString(R.string.instruction));
+        popupView.setOnTouchListener((v, event) -> {
+            popupWindow.dismiss();
+            onPopupDismissal(v);
+            return true;
+        });
+    }
+
     @Override
     public boolean collectFortunateBadge() {
-        return true;
+        return towerDefensePresenter.getFortunate();
     }
 
     @Override
     public boolean collectStrategicBadge() {
-        return true;
+        return towerDefensePresenter.getStratgetic();
     }
 
     @Override

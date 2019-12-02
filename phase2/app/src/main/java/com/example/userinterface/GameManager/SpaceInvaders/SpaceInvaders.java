@@ -1,15 +1,10 @@
 package com.example.userinterface.GameManager.SpaceInvaders;
 
 import android.graphics.Canvas;
-
-import com.example.userinterface.GameManager.VariableChangeListener;
-
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-
-//import android.graphics.SumPathEffect;
 
 public class SpaceInvaders implements Observer {
     // Private attributes
@@ -180,7 +175,7 @@ public class SpaceInvaders implements Observer {
         hardness++;
     }
 
-    public void spawnWaves() {
+    void spawnWaves() {
         if (this.wave == 1) {
             for (int x = 50; x < 500; x += 200)
                 subjects.add(new Enemy(x, 100, 100, 2 * hardness, hardness, 100));

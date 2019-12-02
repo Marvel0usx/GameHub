@@ -1,40 +1,40 @@
 package com.example.userinterface.GameManager.TowerDefense;
 
 import android.graphics.Canvas;
-import android.util.Log;
 import android.util.SparseArray;
 
-import com.example.userinterface.GameManager.ScoreSystem;
 import com.example.userinterface.GameManager.TowerDefense.DifferentAmmo.Ammo;
 import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Dragon;
 import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Enemies;
 import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Minion;
 import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Orc;
+import com.example.userinterface.GameManager.TowerDefense.Towers.RocketTower;
 import com.example.userinterface.GameManager.TowerDefense.Towers.Towers;
-import com.example.userinterface.GameManager.VariableChangeListener;
 
 import java.util.ArrayList;
 
-public class TowerDefense implements ScoreSystem {
-
+public class TowerDefense{
     private int currentScore;
     private int lives = 5;
     private int mapHeight;
     private int mapWidth;
     private boolean gameStart = false;
-    boolean adventurous = false;
+    private boolean adventurous = false;
+    private boolean strategetic = false;
+    private boolean fortunate = false;
 
     private boolean win;
-    private VariableChangeListener listener;
+    private VariableListenerTowerDefense listener;
     private ArrayList<Ammo> ammo;
     private Towers[] towers = new Towers[10];
     private int cash;
     private InformationBoard informationBoard;
     private int currentWave = 0;
     private SparseArray<ArrayList<Enemies>> waves = new SparseArray<>(3);
+    int counter= 0;
 
 
-    public TowerDefense(int screenWidth, int screenHeight, VariableChangeListener listener) {
+    public TowerDefense(int screenWidth, int screenHeight, VariableListenerTowerDefense listener) {
         mapHeight = screenHeight;
         mapWidth = screenWidth;
         ammo = new ArrayList<>();
@@ -51,10 +51,24 @@ public class TowerDefense implements ScoreSystem {
         updateInformationBoard();
         if (gameStart) {
             checkIfOver();
+            if (!fortunate || !strategetic)
+            checkBadge();
             updateEnemy();
-            Log.d("message", "current wave = " + currentWave);
             generateNewWave();
             updateBullet();
+        }
+    }
+    private void checkBadge() {
+        if (cash <70) {
+            fortunate = true;
+        }
+        int i = 0;
+        for(Towers tower: towers){
+            if (tower instanceof RocketTower)
+                i ++;
+        }
+        if (i == 3) {
+            strategetic = true;
         }
     }
 
@@ -70,12 +84,12 @@ public class TowerDefense implements ScoreSystem {
 
     private void checkIfOver() {
         if (lives <= 0 || currentWave == 3) {
-            //decide if game is over or not
             if (lives > 0)
                 currentScore += lives * 100; //each life left adds another 100 pts.
             win = lives > 0;
+
             if (listener != null)
-                listener.onVariableChange(true);
+                listener.onGameOver(true);
         }
     }
 
@@ -161,14 +175,15 @@ public class TowerDefense implements ScoreSystem {
             addMinion(3, 2);
             addOrc(2, 2);
         }
-        if (hiddenEnemy0 && hiddenEnemy1 && hiddenEnemy2)
-            adventurous = true;
         if (hiddenEnemy0)
             addHiddenBoss(0);
         if (hiddenEnemy1)
             addHiddenBoss(1);
-        if (hiddenEnemy2)
+        if (hiddenEnemy2) {
+            adventurous = true;
             addHiddenBoss(2);
+        }
+
     }
 
     private void addHiddenBoss(int waveNumber) {
@@ -213,14 +228,14 @@ public class TowerDefense implements ScoreSystem {
 
     void addTower(int index, Towers tower) {
         towers[index] = tower;
+
     }
 
     boolean getWin() {
         return win;
     }
 
-    @Override
-    public int getGameScore() {
+     int getGameScore() {
         if (lives > 0)
             currentScore += lives * 100; //each life left adds another 100 pts.
         return currentScore;
@@ -234,13 +249,18 @@ public class TowerDefense implements ScoreSystem {
         cash -= cost;
     }
 
-
     void setGameStart(boolean gameStart) {
         this.gameStart = gameStart;
     }
 
-
-    boolean getAdventurous() {
+    boolean isAdventurous() {
         return adventurous;
+    }
+    boolean isStrategetic(){
+        return strategetic;
+
+    }
+    boolean isFortunate(){
+        return fortunate;
     }
 }
