@@ -27,8 +27,10 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
     public SpaceInvaders Space;
     public MainThread thread;
     public boolean gameOver;
+    private int wave = 0;
     private SpaceView vSpace;
     private ScoreBoardView vScore;
+    private BackgroudView vBackground;
     private List<Pair<Bitmap, Rect>> processedObjs;
     private Map<Class, Bitmap> appearance = new Hashtable<>();
 
@@ -39,6 +41,7 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
         setFocusable(true);
         vSpace = new SpaceView();
         vScore = new ScoreBoardView();
+        vBackground = new BackgroudView();
     }
 
     public SpacePresenter(Context context, @Nullable AttributeSet attrs) {
@@ -49,6 +52,7 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
         setFocusable(true);
         vSpace = new SpaceView();
         vScore = new ScoreBoardView();
+        vBackground = new BackgroudView();
     }
 
     public SpacePresenter(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -59,13 +63,13 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
         setFocusable(true);
         vSpace = new SpaceView();
         vScore = new ScoreBoardView();
+        vBackground = new BackgroudView();
     }
 
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
         Paint paintText = new Paint();
         paintText.setTextSize(36);
         paintText.setTypeface(Typeface.DEFAULT_BOLD);
-
 
         Space.layout();
         initializingAppearanceMap();
@@ -122,15 +126,41 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
         } else {
             this.gameOver = true;
         }
+    }
 
+    private void configBackground(){
+        Bitmap bmp = Bitmap.createBitmap(BitmapFactory.decodeResource(getResources(), getScene(wave)));
+        vBackground.configBackground(bmp, getWidth(), getHeight());
+    }
+
+    int getScene(int wave){
+        switch (wave){
+            case 1:
+                return R.drawable.space_bg01;
+            case 2:
+                return R.drawable.space_bg02;
+            case 3:
+                return R.drawable.space_bg03;
+            case 4:
+                return R.drawable.space_bg04;
+            case 5:
+                return R.drawable.space_bg05;
+            default:
+                return R.drawable.space_bg06;
+        }
     }
 
     public void draw(Canvas canvas) {
         if (canvas != null) {
             super.draw(canvas);
+            if (wave != Space.getWave()){
+                configBackground();
+                wave = Space.getWave();
+            }
+            vBackground.draw(canvas);
             vSpace.draw(canvas, processedObjs);
             vScore.draw(canvas, Space.getScoreboard());
-        }
+            }
     }
 
     /**
