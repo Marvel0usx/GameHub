@@ -135,6 +135,7 @@ public class SpaceInvaders implements Observer {
             unregisterAll();
             if (this.player.getLives() > 0) {
                 this.isWin = true;
+                this.addBadges(2);
             }
             if (this.var != null)
                 this.var.onVariableChange(true);
@@ -230,6 +231,7 @@ public class SpaceInvaders implements Observer {
                 subjects.add(new Enemy(x, 100, 100, 0,hardness * 4  ,100, 80));
             for (int x = 700; x < 1000; x += 200)
                 subjects.add(new Enemy(x, 100, 100, 0,hardness * 4,100, 80));
+            this.addBadges(1);
         }
         if (this.wave == 4) {
             subjects.add(new Boss(400, 100, 100, 0, hardness, 2000, 200));
@@ -343,6 +345,7 @@ public class SpaceInvaders implements Observer {
      * instructs the player to go right
      */
     void goRight() {
+        this.addBadges(0);
         if (this.player.getX() + this.player.getXSpeed() + 80 >= width)
             this.player.move(0);
         else
@@ -383,7 +386,10 @@ public class SpaceInvaders implements Observer {
     }
 
     public boolean getBadges(int i) {
-        return badges.get(i);
+        return this.badges.get(i);
+    }
+    public void addBadges(int i){
+        this.badges.set(i, true);
     }
 
 }
