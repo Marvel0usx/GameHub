@@ -22,7 +22,8 @@ class TowerPositions {
     TowerPositions(Button[] spots) {
         this.spots = spots;
         for (Button button : this.spots) {
-            button.setLayoutParams(new ConstraintLayout.LayoutParams(width / 7, height / 13));
+            button.setLayoutParams(new ConstraintLayout.LayoutParams(width / 7,
+                    height / 13));
         }
     }
 

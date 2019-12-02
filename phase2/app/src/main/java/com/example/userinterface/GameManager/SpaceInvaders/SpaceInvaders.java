@@ -248,7 +248,7 @@ public class SpaceInvaders implements Observer {
      * @param x2 x coordinate of the second object
      * @param y2 y coordinate of the second object
      *
-     * @boolean returns true if x1, y1, are within collision range of x2, y2
+     * @return true if x1, y1, are within collision range of x2, y2
      */
     private boolean isCollide(int x1, int y1, int x2, int y2) {
         // Jan endorsed algorithm
@@ -387,10 +387,10 @@ public class SpaceInvaders implements Observer {
         return this.scoreboard;
     }
 
-    public boolean getBadges(int i) {
+    boolean getBadges(int i) {
         return this.badges.get(i);
     }
-    public void addBadges(int i){
+    private void addBadges(int i){
         this.badges.set(i, true);
     }
 
