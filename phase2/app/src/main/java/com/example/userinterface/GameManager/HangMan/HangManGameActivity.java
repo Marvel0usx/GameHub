@@ -20,11 +20,14 @@ import com.example.userinterface.GameManager.GameActivity;
 import com.example.userinterface.GameManager.User;
 import com.example.userinterface.R;
 
+import java.util.List;
+
 import static android.view.View.VISIBLE;
 
 
 public class HangManGameActivity extends GameActivity implements HangManView{
     GameState gameState;
+    Integer remainingBalloons;
     MediaPlayer mediaPlayer;
     int currentScore;
     ImageView[] balloons;
@@ -38,6 +41,7 @@ public class HangManGameActivity extends GameActivity implements HangManView{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         rootView = findViewById(android.R.id.content).getRootView();
         context = this;
         super.onCreate(savedInstanceState);
@@ -52,11 +56,12 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         ImageView characterImage = findViewById(resID);
         characterImage.setVisibility(VISIBLE);
         setGameState();
+        remainingBalloons = this.gameState.remainingBalloons;
         setAnswerKey();
     }
 
     @SuppressLint("SetTextI18n")
-    @Override
+
     /*
      * Guesses a new letter
      *
@@ -84,6 +89,25 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         boolean strategic = gameState.collectStrategicBadge();
         if (strategic) {showStrategicBadge(rootView);}
         endGame();
+    }
+
+    @Override
+    public void displayGuess(List<Integer> correctIndex) { // updates the correct letters guessed (if any)
+        //boolean correct = false;
+        //if ((remainingBalloons > 2) && numCorr > (keywordLen - 2)){
+        //   fortunateBadgeCollected = collectFortunateBadge();
+        //}
+        if (correctIndex != null){
+            for (int i = 0; i < correctIndex.size(); i++) {
+                int index = correctIndex.get(i);
+                this.gameState.answerKeyLetters[index].turnBlack(); // shows the letter on screen
+                //currentScore += difficulty.correctGuessPoints;
+            }
+        }
+        else {
+            gameState.balloons[gameState.remainingBalloons].disappear();
+        }
+
     }
 
     /**
@@ -164,7 +188,6 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
         ((TextView)popupWindow.getContentView().findViewById(R.id.badge)).setText("A Strategic Badge has been earned!");
         user.getStatTracker().addToBadges(false, true, false);
-
 
         popupView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
