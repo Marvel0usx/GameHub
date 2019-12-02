@@ -23,14 +23,16 @@ public class SpaceInvaders implements Observer {
 
     private boolean gameOver = false;
     private boolean isWin = false;
-    private List<Boolean> badges = new ArrayList<Boolean>();
+    private List<Boolean> badges = new ArrayList<>();
 
     // Initializer
     public SpaceInvaders(int width, int height) {
         this.height = height;
         this.width = width;
         this.wave = 0;
-
+        this.badges.add(false);
+        this.badges.add(false);
+        this.badges.add(false);
     }
 
     /**
@@ -308,6 +310,7 @@ public class SpaceInvaders implements Observer {
      */
     private boolean isAboutBounceBack(@NotNull SpaceObject obj) {
         int nextX;
+        this.addBadges(0);
         if (obj.getXSpeed() < 0)
             // going to the left
             nextX = obj.getX() + obj.getXSpeed();
@@ -345,7 +348,6 @@ public class SpaceInvaders implements Observer {
      * instructs the player to go right
      */
     void goRight() {
-        this.addBadges(0);
         if (this.player.getX() + this.player.getXSpeed() + 80 >= width)
             this.player.move(0);
         else
