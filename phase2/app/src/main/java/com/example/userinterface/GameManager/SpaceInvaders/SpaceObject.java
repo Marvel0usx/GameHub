@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 abstract class SpaceObject implements Subject {
-    // Private attributes
     private int x;
     private int y;
     private int damage;
@@ -16,7 +15,6 @@ abstract class SpaceObject implements Subject {
     private List<Observer> observers;
     private int size;
 
-    // Initializer
     SpaceObject(int x, int y, int damage, int ySpeed) {
         setX(x);
         setY(y);
@@ -35,11 +33,11 @@ abstract class SpaceObject implements Subject {
         observers = new ArrayList<>();
     }
 
+    // Setters and getters
     public int getX() {
         return x;
     }
 
-    // Setters and getters
     public void setX(int x) {
         this.x = x;
     }
@@ -104,11 +102,9 @@ abstract class SpaceObject implements Subject {
         this.size = size;
     }
 
-    // Implements Subject
-    @Override
-    public void registerObserver(Observer observer) {
-        // if this is an enemy ship, it's observer will be player;
-        // player, enemy.
+  // Implements Subject
+  @Override
+  public void registerObserver(Observer observer) {
         if (!observers.contains(observer))
             observers.add(observer);
     }

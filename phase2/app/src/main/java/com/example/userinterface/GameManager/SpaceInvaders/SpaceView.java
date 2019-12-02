@@ -9,8 +9,8 @@ import java.util.List;
 
 public class SpaceView {
 
-    public void draw(Canvas canvas, List<Pair<Bitmap, Rect>> processedObjs){
-        for (Pair<Bitmap, Rect> p : processedObjs){
+    public void draw(Canvas canvas, List<Pair<Bitmap, Rect>> processedObjs) {
+        for (Pair<Bitmap, Rect> p : processedObjs) {
             canvas.drawBitmap(p.first, null, p.second, null);
         }
     }

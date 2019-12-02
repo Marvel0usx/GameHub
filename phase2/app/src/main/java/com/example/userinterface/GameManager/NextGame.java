@@ -47,6 +47,7 @@ public class NextGame extends GameActivity {
 
     /**
      * The quit button that lets the user quit to the main menu
+     *
      * @param view the button that has been clicked.
      */
     public void quit(View view) {
@@ -55,6 +56,7 @@ public class NextGame extends GameActivity {
 
     /**
      * The onclick method to go to the next game
+     *
      * @param view that next button that is pressed,
      */
     @Override

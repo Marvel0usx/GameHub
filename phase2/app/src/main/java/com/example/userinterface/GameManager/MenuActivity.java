@@ -88,7 +88,7 @@ public class MenuActivity extends GameActivity {
         startActivity(intent);
     }
 
-    public void logout(View view){
+    public void logout(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         deleteUser();
         startActivity(intent);

@@ -10,8 +10,9 @@ public class Background {
 
     /**
      * The background of the tower defense game
-     * @param res the bit map or the image of the background
-     * @param width the width of the bitmap
+     *
+     * @param res    the bit map or the image of the background
+     * @param width  the width of the bitmap
      * @param height the height of the bitmap
      */
     Background(Bitmap res, int width, int height) {
@@ -22,6 +23,7 @@ public class Background {
 
     /**
      * draw the background of the gmae
+     *
      * @param canvas where to draw the background
      */
     public void draw(Canvas canvas) {

@@ -116,7 +116,7 @@ class TowerDefensePresenter implements VariableListenerTowerDefense {
         towerDefense.addTower(index, temp);
     }
 
-    int sellTower(int index){
+    int sellTower(int index) {
         return towerDefense.sellTower(index);
     }
 

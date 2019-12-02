@@ -3,7 +3,6 @@ package com.example.userinterface.GameManager.SpaceInvaders;
 abstract class Ship extends SpaceObject {
     private int lives;
 
-    // Initializer
     Ship(int x, int y, int damage, int ySpeed, int lives, int size) {
         super(x, y, damage, ySpeed);
         this.setLives(lives);
@@ -25,7 +24,6 @@ abstract class Ship extends SpaceObject {
         if (this.lives <= 0)
             setDestroyed();
     }
-
-
+    
     abstract void shoot();
 }
