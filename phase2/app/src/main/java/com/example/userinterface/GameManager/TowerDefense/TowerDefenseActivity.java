@@ -1,5 +1,6 @@
 package com.example.userinterface.GameManager.TowerDefense;
 
+import android.annotation.SuppressLint;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -32,8 +33,8 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
     TowerPositions towerPositions;
     Button[] buttonTowers;
     boolean practiceMode;
-    TextView money;
-    Button selectedTower;
+    Button selectedTower, sellBtn;
+    private boolean sellBtnClicked = false;
 
     /**
      * This is the OnCreate method for this activity.
@@ -49,7 +50,7 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.tower_defense);
         context = this;
-
+        sellBtn = findViewById(R.id.sell);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             practiceMode = bundle.getBoolean("practice");
@@ -64,7 +65,6 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
         display.getSize(size);
 
         gameView = findViewById(R.id.myView);
-        money = findViewById(R.id.money);
         towerDefensePresenter = new TowerDefensePresenter(this);
         width = size.x;
         height = size.y;
@@ -97,6 +97,7 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
                 button.setEnabled(false);
             }
             towerDefensePresenter.towerClick();
+            sellBtn.setEnabled(false);
         }
 
     }
@@ -140,6 +141,33 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
                 button.setEnabled(true);
             }
             towerPositions.showAvailable(false);
+            sellBtn.setEnabled(true);
+        }else if(sellBtnClicked){
+            int index = towerPositions.getTowerNumber((Button) view);
+            view.setBackgroundResource(R.drawable.spot);
+            int type = towerDefensePresenter.sellTower(index);
+            switch (type){
+                case 0:
+                    towerDefense.addMoney(Integer.parseInt(btnTower1.getContentDescription().
+                            toString().split(" ")[1])-10);
+                    break;
+                case 1:
+                    towerDefense.addMoney(Integer.parseInt(btnTower2.getContentDescription().
+                            toString().split(" ")[1])-15);
+                    break;
+                case 2:
+                    towerDefense.addMoney(Integer.parseInt(btnTower3.getContentDescription().
+                            toString().split(" ")[1])-20);
+                    break;
+                default:
+                    break;
+            }
+            view.setEnabled(false);
+            towerPositions.sellAvailable();
+            for (Button item: buttonTowers){
+                item.setEnabled(true);
+            }
+            sellBtnClicked = false;
         }
     }
 
@@ -224,9 +252,11 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
     /**
      * Set the instruction popup window visible. Upon dismissal the game will start.
      */
-    public void setInstructionVisible() {
+    @SuppressLint("ClickableViewAccessibility")
+    public void  setInstructionVisible(){
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        View popupView = inflater.inflate(R.layout.tower_defense_instruction, null);
+        assert inflater != null;
+        @SuppressLint("InflateParams") View popupView = inflater.inflate(R.layout.tower_defense_instruction, null);
 
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -240,6 +270,16 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
             onPopupDismissal(v);
             return true;
         });
+    }
+
+    public void sell(View view){
+        if (!towerPositions.isTowerClicked()) {
+            towerPositions.sellAvailable();
+            for (Button item: buttonTowers){
+                item.setEnabled(false);
+            }
+        }
+        sellBtnClicked = true;
     }
 
     /**

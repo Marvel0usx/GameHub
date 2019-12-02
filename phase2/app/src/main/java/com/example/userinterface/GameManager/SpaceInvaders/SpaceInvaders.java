@@ -23,14 +23,16 @@ public class SpaceInvaders implements Observer {
 
     private boolean gameOver = false;
     private boolean isWin = false;
-    private List<Boolean> badges = new ArrayList<Boolean>();
+    private List<Boolean> badges = new ArrayList<>();
 
     // Initializer
     public SpaceInvaders(int width, int height) {
         this.height = height;
         this.width = width;
         this.wave = 0;
-
+        this.badges.add(false);
+        this.badges.add(false);
+        this.badges.add(false);
     }
 
     /**
@@ -190,7 +192,7 @@ public class SpaceInvaders implements Observer {
      * generates the first layout for the game, instantiating the player, and setting basic variables
      */
     public void layout() {
-        this.player = new Player((this.width >> 1), 1500, 0, 500, 100);
+        this.player = new Player((this.width >> 1), 1500, 0, 1000, 100);
         this.player.registerObserver(this);
         subjects.add(this.player);
         scoreboard = new Scoreboard(this.height, this.width);
@@ -210,7 +212,7 @@ public class SpaceInvaders implements Observer {
     /**
      * Changes the wave count, by adding enemies and upgrading the player.
      */
-    public void spawnWaves() {
+    private void spawnWaves() {
         if (this.wave == 1) {
             this.player.setMode(1);
             for (int x = 50; x < 500; x += 200)
@@ -308,6 +310,7 @@ public class SpaceInvaders implements Observer {
      */
     private boolean isAboutBounceBack(@NotNull SpaceObject obj) {
         int nextX;
+        this.addBadges(0);
         if (obj.getXSpeed() < 0)
             // going to the left
             nextX = obj.getX() + obj.getXSpeed();
@@ -345,7 +348,6 @@ public class SpaceInvaders implements Observer {
      * instructs the player to go right
      */
     void goRight() {
-        this.addBadges(0);
         if (this.player.getX() + this.player.getXSpeed() + 80 >= width)
             this.player.move(0);
         else
