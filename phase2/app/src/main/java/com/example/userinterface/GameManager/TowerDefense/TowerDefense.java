@@ -4,10 +4,12 @@ import android.graphics.Canvas;
 import android.util.SparseArray;
 
 import com.example.userinterface.GameManager.TowerDefense.DifferentAmmo.Ammo;
+import com.example.userinterface.GameManager.TowerDefense.DifferentAmmo.Bullet;
 import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Dragon;
 import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Enemies;
 import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Minion;
 import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Orc;
+import com.example.userinterface.GameManager.TowerDefense.Towers.GunTower;
 import com.example.userinterface.GameManager.TowerDefense.Towers.RocketTower;
 import com.example.userinterface.GameManager.TowerDefense.Towers.Towers;
 
@@ -374,6 +376,25 @@ public class TowerDefense {
      */
     boolean isFortunate() {
         return fortunate;
+    }
+
+    int sellTower(int index){
+        if (towers[index] instanceof GunTower){
+            towers[index] = null;
+            return 0;
+        }
+        else if (towers[index] instanceof RocketTower){
+            towers[index] = null;
+            return 1;
+        }else{
+            towers[index] = null;
+            return 2;
+        }
+
+    }
+
+    void addMoney(int money){
+        cash+=money;
     }
 }
 

@@ -28,6 +28,8 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
     public MainThread thread;
     public boolean gameOver;
     private SpaceView vSpace;
+    private HpBarView vHp;
+    private ScoreBoardView vScore;
     private List<SpaceObject> spaceObjs;
     private List<Pair<Bitmap, Rect>> processedObjs;
     private Map<Class, Bitmap> appearance = new Hashtable<>();
@@ -38,6 +40,8 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
         vSpace = new SpaceView();
+        vScore = new ScoreBoardView();
+        vHp = new HpBarView();
     }
 
     public SpacePresenter(Context context, @Nullable AttributeSet attrs) {
@@ -47,6 +51,8 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
         vSpace = new SpaceView();
+        vScore = new ScoreBoardView();
+        vHp = new HpBarView();
     }
 
     public SpacePresenter(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -56,6 +62,8 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
         thread = new MainThread(getHolder(), this);
         setFocusable(true);
         vSpace = new SpaceView();
+        vScore = new ScoreBoardView();
+        vHp = new HpBarView();
     }
 
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
@@ -113,7 +121,6 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
             Space.run();
             spaceObjs = Space.getUpdate();
             processedObjs = parse(spaceObjs);
-
         } else {
             this.gameOver = true;
         }
@@ -124,7 +131,7 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
         if (canvas != null) {
             super.draw(canvas);
             vSpace.draw(canvas, processedObjs);
-            vSpace.draw(canvas, Space.getScoreboard());
+            vScore.draw(canvas, Space.getScoreboard());
         }
     }
 

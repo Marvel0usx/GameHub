@@ -1,6 +1,6 @@
 package com.example.userinterface.GameManager.TowerDefense.Towers;
 
-class GunTower extends MainTower implements Towers {
+public class GunTower extends MainTower implements Towers {
 
     GunTower() {
         this.setType("bullet");
