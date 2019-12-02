@@ -103,14 +103,10 @@ public class GameState implements BadgeCollector {
      */
     List<Integer> updateState(char charGuessed) { // updates the correct letters guessed (if any)
         boolean correct = false;
-        //if ((remainingBalloons > 2) && numCorr > (keywordLen - 2)){
-        //   fortunateBadgeCollected = collectFortunateBadge();
-        //}
         List<Integer> correctIndex = new ArrayList<>();
         for (int i = 0; i < this.keyword.length(); i++) {
             if (this.answerKeyLetters[i].letter == (charGuessed)) { // a correct letter being guessed
                 correct = true;
-                //this.answerKeyLetters[i].turnBlack(); // shows the letter on screen
                 correctIndex.add(i);
                 numCorr += 1;
                 currentScore += difficulty.correctGuessPoints;
@@ -119,7 +115,6 @@ public class GameState implements BadgeCollector {
         if (!correct) {
             remainingBalloons -= 1;
             currentScore += difficulty.wrongGuessPoints;
-            //this.balloons[remainingBalloons].disappear();
             return null;
         }
         return correctIndex;
