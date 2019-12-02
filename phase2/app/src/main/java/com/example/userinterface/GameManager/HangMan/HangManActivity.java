@@ -32,6 +32,9 @@ public class HangManActivity extends GameActivity {
         setHardBtn();
     }
 
+    /**
+     * sets the button responsible for choosing easy level
+     */
     private void setEasyBtn() {
         findViewById(R.id.easyButton).setOnClickListener(v -> {
             InputStream inputStream = getResources().openRawResource(R.raw.easy_word);
@@ -45,6 +48,9 @@ public class HangManActivity extends GameActivity {
         });
     }
 
+    /**
+     * sets the button responsible for choosing moderate level
+     */
     private void setModerateBtn() {
         findViewById(R.id.moderateButton).setOnClickListener(v -> {
             InputStream inputStream = getResources().openRawResource(R.raw.moderate_word);
@@ -58,6 +64,9 @@ public class HangManActivity extends GameActivity {
         });
     }
 
+    /**
+     * sets the button responsible for choosing hard level
+     */
     private void setHardBtn() {
         findViewById(R.id.hardButton).setOnClickListener(v -> {
             InputStream inputStream = getResources().openRawResource(R.raw.hard_word);

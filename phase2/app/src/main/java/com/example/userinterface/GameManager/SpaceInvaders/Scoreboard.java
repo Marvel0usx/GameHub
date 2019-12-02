@@ -1,6 +1,5 @@
 package com.example.userinterface.GameManager.SpaceInvaders;
 
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
@@ -40,11 +39,11 @@ public class Scoreboard {
         return lives;
     }
 
-    public String getAppearance() {
+    String getAppearance() {
         return appearance;
     }
 
-    public Paint getPaintText() {
+    Paint getPaintText() {
         return paintText;
     }
 
