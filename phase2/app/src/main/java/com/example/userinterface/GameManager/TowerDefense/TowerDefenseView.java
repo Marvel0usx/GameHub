@@ -32,6 +32,9 @@ interface TowerDefenseView {
      */
     void showTowerPositions();
 
+    /**
+     * Set the instruction visible.
+     */
     void setInstructionVisible();
 }
 

@@ -48,10 +48,10 @@ class TowerDefensePresenter implements VariableListenerTowerDefense {
             addBoss1 = Math.random() < 0.2;
             addBoss2 = Math.random() < 1;
         }
-       towerDefense.addEnemy(addBoss0, addBoss1, addBoss2);
-       towerDefense.setGameStart();
-       towerDefenseView.setButtonVisible();
-   }
+        towerDefense.addEnemy(addBoss0, addBoss1, addBoss2);
+        towerDefense.setGameStart();
+        towerDefenseView.setButtonVisible();
+    }
 
     /**
      * Setter for towerDefense
@@ -122,10 +122,12 @@ class TowerDefensePresenter implements VariableListenerTowerDefense {
     boolean getAdventurous() {
         return towerDefense.isAdventurous();
     }
-    boolean getFortunate(){
+
+    boolean getFortunate() {
         return towerDefense.isFortunate();
     }
-    boolean getStratgetic(){
-        return towerDefense.isStrategetic();
+
+    boolean getStratgetic() {
+        return towerDefense.isStrategic();
     }
 }
