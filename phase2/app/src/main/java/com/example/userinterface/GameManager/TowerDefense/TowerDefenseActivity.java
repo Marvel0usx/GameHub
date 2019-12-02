@@ -21,7 +21,8 @@ import com.example.userinterface.R;
 /**
  * This is the view object in MVP in a game of tower defense.
  */
-public class TowerDefenseActivity extends GameActivity implements TowerDefenseView, BadgeCollector {
+public class TowerDefenseActivity extends GameActivity implements TowerDefenseView,
+        BadgeCollector {
 
     Button btnTower1, btnTower2, btnTower3;
     TowerDefensePresenter towerDefensePresenter;
@@ -85,7 +86,8 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
 
     /**
      * This method will respond to click on tower.
-     * It checks if there is enough money, if there is, it will disable the button for further clicking.
+     * It checks if there is enough money, if there is, it will disable the button for
+     * further clicking.
      *
      * @param view the button that is clicked
      */
@@ -113,7 +115,8 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
      * if there is enough money to build the tower.
      */
     public boolean enoughMoney() {
-        int cost = Integer.parseInt(selectedTower.getContentDescription().toString().split(" ")[1]);
+        int cost = Integer.parseInt(selectedTower.getContentDescription().toString().
+                split(" ")[1]);
         return towerDefensePresenter.enoughMoney(cost);
     }
 
@@ -172,7 +175,8 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
 
     /**
      * This method finds all the buttons in the UI after the creation of this activity.
-     * It connects game view to tower defense and tells the game view a tower defense game has started.
+     * It connects game view to tower defense and tells the game view a tower defense game has
+     * started.
      */
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -192,7 +196,8 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
         Button button7 = findViewById(R.id.button8);
         Button button8 = findViewById(R.id.button9);
         Button button9 = findViewById(R.id.button10);
-        Button[] buttons = {button, button1, button2, button3, button4, button5, button6, button7, button8, button9};
+        Button[] buttons = {button, button1, button2, button3, button4, button5, button6, button7,
+                button8, button9};
         towerPositions = new TowerPositions(buttons);
         towerPositions.setXLocation();
         towerPositions.setYLocation();
@@ -255,7 +260,8 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
     public void  setInstructionVisible(){
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         assert inflater != null;
-        @SuppressLint("InflateParams") View popupView = inflater.inflate(R.layout.tower_defense_instruction, null);
+        @SuppressLint("InflateParams") View popupView = inflater.inflate(R.layout.
+                tower_defense_instruction, null);
 
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -263,7 +269,8 @@ public class TowerDefenseActivity extends GameActivity implements TowerDefenseVi
         boolean focusable = false;
         PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
         popupWindow.showAtLocation(gameView, Gravity.CENTER, 0, 0);
-        ((TextView) popupWindow.getContentView().findViewById(R.id.td_instruction)).setText(getString(R.string.instruction));
+        ((TextView) popupWindow.getContentView().findViewById(R.id.td_instruction)).
+                setText(getString(R.string.instruction));
         popupView.setOnTouchListener((v, event) -> {
             popupWindow.dismiss();
             onPopupDismissal(v);

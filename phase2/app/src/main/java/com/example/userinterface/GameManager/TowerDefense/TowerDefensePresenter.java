@@ -25,8 +25,8 @@ class TowerDefensePresenter implements VariableListenerTowerDefense {
     }
 
     /**
-     * This is a OnClick method for click on towers. TowerDefenseView will show all the available tower
-     * positions.
+     * This is a OnClick method for click on towers. TowerDefenseView will show all
+     * the available tower positions.
      */
     void towerClick() {
         towerDefenseView.showTowerPositions();

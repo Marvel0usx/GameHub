@@ -45,7 +45,8 @@ public class SignupActivity extends AppCompatActivity {
                 errorMessage("Incorrect Info", "Re-enter information.");
             } else {
                 String task = "register";
-                BackgroundActivity backgroundTask = new BackgroundActivity(SignupActivity.this);
+                BackgroundActivity backgroundTask = new
+                        BackgroundActivity(SignupActivity.this);
                 getInfo();
                 backgroundTask.execute(task, name, email, password);
                 finish();

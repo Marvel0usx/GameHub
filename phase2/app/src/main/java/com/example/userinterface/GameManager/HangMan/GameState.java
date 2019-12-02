@@ -8,7 +8,7 @@ import java.util.List;
 public class GameState implements BadgeCollector {
 
     int keywordLen; // number of characters in current word
-    int remainingBalloons; // number of balloons left, decreases each time a wrong letter is gues【sed
+    int remainingBalloons; // number of balloons left, decreases each time a wrong letter is guessed
     int numCorr; // number of letters correctly guessed
     Difficulty difficulty;
     public String keyword;
@@ -87,10 +87,10 @@ public class GameState implements BadgeCollector {
 
     @Override
     public boolean collectStrategicBadge(){
-        // randomly collected if there are more than 2 lives left with only 1 letter yet to be guessed
-        if (this.currentScore > 30){
+        // randomly collected once score is higher than 40
+        if (this.currentScore > 40){
             double randomDouble = Math.random();
-            return (randomDouble < 0.1);
+            return (randomDouble < 0.08);
         }
         return false;
     }
@@ -105,7 +105,8 @@ public class GameState implements BadgeCollector {
         boolean correct = false;
         List<Integer> correctIndex = new ArrayList<>();
         for (int i = 0; i < this.keyword.length(); i++) {
-            if (this.answerKeyLetters[i].letter == (charGuessed)) { // a correct letter being guessed
+            if (this.answerKeyLetters[i].letter == (charGuessed)) {
+                // a correct letter being guessed
                 correct = true;
                 correctIndex.add(i);
                 numCorr += 1;
