@@ -192,7 +192,7 @@ public class SpaceInvaders implements Observer {
      * generates the first layout for the game, instantiating the player, and setting basic variables
      */
     public void layout() {
-        this.player = new Player((this.width >> 1), 1500, 0, 500, 100);
+        this.player = new Player((this.width >> 1), 1500, 0, 1000, 100);
         this.player.registerObserver(this);
         subjects.add(this.player);
         scoreboard = new Scoreboard(this.height, this.width);
@@ -212,7 +212,7 @@ public class SpaceInvaders implements Observer {
     /**
      * Changes the wave count, by adding enemies and upgrading the player.
      */
-    public void spawnWaves() {
+    private void spawnWaves() {
         if (this.wave == 1) {
             this.player.setMode(1);
             for (int x = 50; x < 500; x += 200)
