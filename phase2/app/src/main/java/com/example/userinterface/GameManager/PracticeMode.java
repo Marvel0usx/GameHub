@@ -14,6 +14,10 @@ public class PracticeMode extends GameActivity {
         setContentView(R.layout.practice_mode);
     }
 
+    /**
+     * On click method for different games
+     * @param v the button that is pressed
+     */
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.imageButton1:

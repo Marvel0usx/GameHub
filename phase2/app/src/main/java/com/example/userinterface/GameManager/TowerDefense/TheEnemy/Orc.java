@@ -9,7 +9,7 @@ public class Orc extends Enemy {
     private boolean ifSpeedUp = false;
 
     public Orc() {
-        this.setHealth(30);
+        this.setHealth(25);
         this.setAppearence("👹");
         this.setSpeed(1);
         this.setMoneyGain(20);

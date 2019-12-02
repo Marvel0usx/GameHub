@@ -10,12 +10,11 @@ public class GameState implements BadgeCollector {
     int keywordLen; // number of characters in current word
     int remainingBalloons; // number of balloons left, decreases each time a wrong letter is guessed
     int numCorr; // number of letters correctly guessed
-    Difficulty difficulty;
-    public String keyword;
-    public Balloon[] balloons; // an array of Balloon objects
-    public AnswerKeyLetter[] answerKeyLetters; // all of the correct letters in correct order
+    private Difficulty difficulty;
+    private String keyword;
+    Balloon[] balloons; // an array of Balloon objects
+    AnswerKeyLetter[] answerKeyLetters; // all of the correct letters in correct order
     private int currentScore;
-    boolean fortunateBadgeCollected;
 
     /**
      * Constructs a new GameState object

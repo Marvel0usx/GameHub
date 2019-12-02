@@ -214,8 +214,7 @@ public class TowerDefense {
     }
 
     /**
-     * Add enemy to the game. The first wave will have five minions. The second wave will have
-     * 5 orcs and 10 minions. The third wave will have 15 minions and 10 orcs.
+     * Add enemy to the game.
      * At the end of each wave a boss will be added if the the boolean for that wave is true.
      *
      * @param hiddenEnemy0 a boolean telling the game whether it should add a hidden enemy.
@@ -224,11 +223,11 @@ public class TowerDefense {
      */
     void addEnemy(boolean hiddenEnemy0, boolean hiddenEnemy1, boolean hiddenEnemy2) {
         addMinion(5, 0);
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 3; i++) {
             addMinion(2, 1);
             addOrc(1, 1);
         }
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
             addMinion(3, 2);
             addOrc(2, 2);
         }
