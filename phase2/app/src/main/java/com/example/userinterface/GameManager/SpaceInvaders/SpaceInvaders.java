@@ -8,6 +8,7 @@ import java.util.List;
 //import android.graphics.SumPathEffect;
 
 public class SpaceInvaders implements Observer {
+
     // Private attributes
     private int height;
     private int width;
@@ -22,6 +23,7 @@ public class SpaceInvaders implements Observer {
 
     private boolean gameOver = false;
     private boolean isWin = false;
+    private List<Boolean> badges = new ArrayList<Boolean>();
 
     // Initializer
     public SpaceInvaders(int width, int height) {
@@ -379,4 +381,9 @@ public class SpaceInvaders implements Observer {
     Scoreboard getScoreboard(){
         return this.scoreboard;
     }
+
+    public boolean getBadges(int i) {
+        return badges.get(i);
+    }
+
 }
