@@ -95,7 +95,7 @@ public class HangManGameActivity extends GameActivity implements HangManView{
      *                     correctly guessed
      */
     @Override
-    public void displayGuess(List<Integer> correctIndex) { // updates the correct letters guessed (if any)
+    public void displayGuess(List<Integer> correctIndex) {//updates correct letters guessed (if any)
         if (correctIndex != null){
             for (int i = 0; i < correctIndex.size(); i++) {
                 int index = correctIndex.get(i);
@@ -169,7 +169,8 @@ public class HangManGameActivity extends GameActivity implements HangManView{
 
         boolean focusable = true; // lets taps outside the popup also dismiss it
         PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
-        ((TextView)popupWindow.getContentView().findViewById(R.id.hintPopUp)).setText("HINT: " + difficulty.hint);
+        ((TextView)popupWindow.getContentView().findViewById(R.id.hintPopUp)).setText("HINT: " +
+                difficulty.hint);
 
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
@@ -193,7 +194,8 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         boolean focusable = true; // lets taps outside the popup also dismiss it
         PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-        ((TextView)popupWindow.getContentView().findViewById(R.id.badge)).setText("A Strategic Badge has been earned!");
+        ((TextView)popupWindow.getContentView().findViewById(R.id.badge)).setText("A Strategic " +
+                "Badge has been earned!");
         if (!practiceMode)
             user.getStatTracker().addToBadges(false, true, false);
 
@@ -220,7 +222,8 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         boolean focusable = true; // lets taps outside the popup also dismiss it
         PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-        ((TextView)popupWindow.getContentView().findViewById(R.id.badge)).setText("An Adventurous Badge has been earned!");
+        ((TextView)popupWindow.getContentView().findViewById(R.id.badge)).setText("An " +
+                "Adventurous Badge has been earned!");
         if (!practiceMode)
             user.getStatTracker().addToBadges(false, false, true);
 
@@ -248,7 +251,8 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         boolean focusable = true; // lets taps outside the popup also dismiss it
         PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
-        ((TextView)popupWindow.getContentView().findViewById(R.id.badge)).setText("A Fortunate Badge has been earned!");
+        ((TextView)popupWindow.getContentView().findViewById(R.id.badge)).setText("A " +
+                "Fortunate Badge has been earned!");
         if(!practiceMode)
             user.getStatTracker().addToBadges(true, false, false);
 
