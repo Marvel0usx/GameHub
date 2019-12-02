@@ -64,7 +64,6 @@ public class HangManGameActivity extends GameActivity implements HangManView{
 
     /*
      * Guesses a new letter
-     *
      * @param v View object
      */
     public void makeGuess(View v) {
@@ -90,6 +89,11 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         endGame();
     }
 
+    /**
+     * displays all letters that were guessed correctly from the most recent guess
+     * @param correctIndex list of integers representing all indexes of the word that have been
+     *                     correctly guessed
+     */
     @Override
     public void displayGuess(List<Integer> correctIndex) { // updates the correct letters guessed (if any)
         if (correctIndex != null){
@@ -105,7 +109,7 @@ public class HangManGameActivity extends GameActivity implements HangManView{
     }
 
     /**
-     * Based on whether all letters habve been guessed, decides whether the game is won. If won,
+     * Based on whether all letters have been guessed, decides whether the game is won. If won,
      * currentScore is updated. This game is finished.
      */
     public void endGame() {
@@ -135,6 +139,10 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         }
     }
 
+    /**
+     * shoows all balloons before any letters have been guessed
+     * @return list of Balloon objects
+     */
     public Balloon[] showBalloons() {
         int numLives = difficulty.getNumLives();
         balloons = new ImageView[numLives];
@@ -148,6 +156,10 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         return temp;
     }
 
+    /**
+     * shows the Hint on the screen
+     * @param view a vew object
+     */
     public void showHint(View view){
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.hm_hint_popup, null);
@@ -167,6 +179,10 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         });
     }
 
+    /**
+     * notifies the user that a strategic badge has been collected
+     * @param view the view object of the game
+     */
     public void showStrategicBadge(View view){
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.badge_popup_window, null);
@@ -190,6 +206,10 @@ public class HangManGameActivity extends GameActivity implements HangManView{
             });
         }
 
+    /**
+     * notifies the user that an adventurous badge has been collected
+     * @param view the view object of the game
+     */
     public void showAdventurousBadge(View view){
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.badge_popup_window, null);
@@ -214,6 +234,10 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         });
     }
 
+    /**
+     * notifies the user that a fortunate badge has been collected
+     * @param view the view object of the game
+     */
     public void showFortunateBadge(View view){
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.badge_popup_window, null);
@@ -237,12 +261,17 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         });
     }
 
-
+    /**
+     * set the difficulty level and corresponding number of lives
+     */
     void setDifficulty(){
         difficulty.setWord();
         difficulty.setNumLives();
     }
 
+    /**
+     * set the attributes of game state
+     */
     void setGameState(){
         // initialize each Balloon object
         Balloon[] tempBalloons = showBalloons();
@@ -253,12 +282,18 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         gameState.setRemainingBalloons(difficulty.numLives);
     }
 
+    /**
+     * Set the media player
+     */
     void setMediaPlayer(){
         mediaPlayer = MediaPlayer.create(this, R.raw.hm_background_music);
         mediaPlayer.start();
         mediaPlayer.setLooping(true);
     }
 
+    /**
+     * set all answer keys (correct letters)
+     */
     @SuppressLint("SetTextI18n")
     void setAnswerKey(){
         LinearLayout wordLayout = findViewById(R.id.word);
@@ -286,6 +321,9 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         gameState.setAnswerKeys(answerKey);
     }
 
+    /**
+     * goes back menu page
+     */
     @Override
     public void onBackPressed() {
         mediaPlayer.stop();
