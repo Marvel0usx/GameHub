@@ -77,7 +77,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.515"
-        app:srcCompat="@drawable/hangman_avatar" />
+        app:srcCompat="@drawable/hangman_avatar"
+        tools:background="#00FFFFFF" />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -91,13 +92,14 @@
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/tdicon"
+        tools:background="#00FFFFFF"
         tools:layout_editor_absoluteY="342dp" />
 
     <ImageButton
         android:id="@+id/imageButton3"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:adjustViewBounds="true"
+        android:adjustViewBounds="false"
         android:contentDescription="@string/the_image_of_ufo_avatar"
         android:onClick="onClick"
         android:scaleType="fitCenter"
@@ -107,7 +109,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageButton2"
         app:layout_constraintVertical_bias="0.489"
-        app:srcCompat="@drawable/ufo_avatar" />
+        app:srcCompat="@drawable/ufo_avatar"
+        tools:background="#00445544" />
 
     <TextView
         android:id="@+id/textView12"
