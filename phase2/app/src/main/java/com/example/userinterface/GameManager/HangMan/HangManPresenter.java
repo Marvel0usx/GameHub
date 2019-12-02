@@ -13,7 +13,7 @@ class HangManPresenter {
     }
 
     void makeGuess(Character charGuessed){
-        List<Integer> correctIndex= this.gameState.updateState(charGuessed);
+        List<Integer> correctIndex = this.gameState.updateState(charGuessed);
         this.view.displayGuess(correctIndex);
     }
 
