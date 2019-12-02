@@ -16,6 +16,9 @@ import com.example.userinterface.R;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * This is the total high score board. with all the users and able to change what is shown.
+ */
 public class ScoreBoard extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     LinearLayout layout;
@@ -28,13 +31,18 @@ public class ScoreBoard extends AppCompatActivity implements AdapterView.OnItemS
         layout = findViewById(R.id.linearLayout);
         Spinner spinner = findViewById(R.id.spinner);
         String[] items = new String[]{"HIGHSCORE", "GAMESPLAYED"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_dropdown_item, items);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
         textViews = new ArrayList<>();
     }
 
 
+    /**
+     * Show the information the user wants.
+     * @param type
+     */
     @SuppressLint("SetTextI18n")
     public void show(String type) {
         String info = "";
@@ -60,7 +68,8 @@ public class ScoreBoard extends AppCompatActivity implements AdapterView.OnItemS
             for (int i = 0; i < 15 - username.length(); i++) {
                 newUsername.append("- ");
             }
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.
+                    LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             params.setMargins(10, 10, 10, 10);
             textView.setLayoutParams(params);
             textView.setText("User" + ": " + newUsername + "Score:" + highScore);

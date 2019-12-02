@@ -39,11 +39,11 @@ public class Scoreboard {
         return lives;
     }
 
-    public String getAppearance() {
+    String getAppearance() {
         return appearance;
     }
 
-    public Paint getPaintText() {
+    Paint getPaintText() {
         return paintText;
     }
 

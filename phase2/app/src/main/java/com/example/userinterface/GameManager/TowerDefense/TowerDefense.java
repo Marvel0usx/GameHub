@@ -251,7 +251,8 @@ public class TowerDefense {
     private void addHiddenBoss(int waveNumber) {
         Dragon dragon = new Dragon(waveNumber);
         int x = 50 + mapWidth / 3;
-        int y = -(int) (Math.random() * mapHeight / 2) - 100; // a period of time for enemies to walk
+        int y = -(int) (Math.random() * mapHeight / 2) - 100;
+        // a period of time for enemies to walk
         dragon.setLocation(x, y);
         waves.get(waveNumber).add(dragon);
     }
@@ -266,7 +267,8 @@ public class TowerDefense {
         for (int i = 0; i < number; i++) {
             Minion minion = new Minion();
             int x = (int) (Math.random() * (mapWidth / 3)) + (mapWidth / 3);
-            int y = -(int) (Math.random() * mapHeight / 2) - 100; // a period of time for enemies to walk
+            int y = -(int) (Math.random() * mapHeight / 2) - 100;
+            // a period of time for enemies to walk
             minion.setLocation(x, y);
             waves.get(toBeAdded).add(minion);
         }
@@ -282,7 +284,8 @@ public class TowerDefense {
         for (int i = 0; i < number; i++) {
             Orc orc = new Orc();
             int x = (int) (Math.random() * (mapWidth / 3)) + (mapWidth / 3);
-            int y = -(int) (Math.random() * mapHeight / 2) - 100; // a period of time for enemies to walk
+            int y = -(int) (Math.random() * mapHeight / 2) - 100;
+            // a period of time for enemies to walk
             orc.setLocation(x, y);
             waves.get(toBeAdded).add(orc);
 

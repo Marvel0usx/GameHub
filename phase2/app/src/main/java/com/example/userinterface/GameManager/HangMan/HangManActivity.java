@@ -41,7 +41,8 @@ public class HangManActivity extends GameActivity {
             csvReader = new CSVReader(inputStream);
             List<String[]> result = csvReader.read();
             this.diff = new EasyDifficulty(result);
-            Intent intent = new Intent(HangManActivity.this, ChooseCharacterActivity.class);
+            Intent intent = new Intent(HangManActivity.this,
+                    ChooseCharacterActivity.class);
             intent.putExtra("difficulty", diff);
             intent.putExtra("practice", practiceMode);
             startActivity(intent);
@@ -57,7 +58,8 @@ public class HangManActivity extends GameActivity {
             csvReader = new CSVReader(inputStream);
             List<String[]> result = csvReader.read();
             this.diff = new ModerateDifficulty(result);
-            Intent intent = new Intent(HangManActivity.this, ChooseCharacterActivity.class);
+            Intent intent = new Intent(HangManActivity.this,
+                    ChooseCharacterActivity.class);
             intent.putExtra("difficulty", diff);
             intent.putExtra("practice", practiceMode);
             startActivity(intent);
@@ -73,7 +75,8 @@ public class HangManActivity extends GameActivity {
             csvReader = new CSVReader(inputStream);
             List<String[]> result = csvReader.read();
             diff = new HardDifficulty(result);
-            Intent intent = new Intent(HangManActivity.this, ChooseCharacterActivity.class);
+            Intent intent = new Intent(HangManActivity.this,
+                    ChooseCharacterActivity.class);
             intent.putExtra("difficulty", diff);
             intent.putExtra("practice", practiceMode);
             startActivity(intent);

@@ -41,7 +41,8 @@ public class Stats extends GameActivity {
      */
     protected void setBadgesButton() {
         findViewById(R.id.BadgesButton).setOnClickListener(v -> {
-                    Intent intent = new Intent(Stats.this, DisplayBadgesActivity.class);
+                    Intent intent = new Intent(Stats.this,
+                            DisplayBadgesActivity.class);
                     startActivity(intent);
                 }
         );

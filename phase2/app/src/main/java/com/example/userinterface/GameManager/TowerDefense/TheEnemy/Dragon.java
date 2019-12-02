@@ -36,7 +36,8 @@ public class Dragon extends Enemy {
         Paint paintText = new Paint();
         paintText.setColor(Color.RED);
         paintText.setTextSize(80);
-        canvas.drawRect(this.getX(), this.getY() - size, this.getX() + (float) (getHealth() * 2), this.getY() - size + 10, paintText);
+        canvas.drawRect(this.getX(), this.getY() - size, this.getX() + (float)
+                (getHealth() * 2), this.getY() - size + 10, paintText);
         // decide each body parts' coordinates
 
     }

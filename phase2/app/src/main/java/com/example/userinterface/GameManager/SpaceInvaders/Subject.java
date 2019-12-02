@@ -4,9 +4,6 @@ public interface Subject {
     // Method to register an observer that observes this subject
     void registerObserver(Observer observer);
 
-    // Method to unregister an observer, e.g. unregister when a ship is destroyed
-    void unregisterObserver(Observer observer);
-
     // Method to unregister all
     void unregisterAllObservers();
 

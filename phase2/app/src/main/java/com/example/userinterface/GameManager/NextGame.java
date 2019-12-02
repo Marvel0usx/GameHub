@@ -29,7 +29,8 @@ public class NextGame extends GameActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             practiceMode = bundle.getBoolean("practice");
-            Log.d("message", "this is the boolean at to game in next game " + practiceMode);
+            Log.d("message",
+                    "this is the boolean at to game in next game " + practiceMode);
 
         } else
             practiceMode = false;
