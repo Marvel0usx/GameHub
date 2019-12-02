@@ -55,7 +55,6 @@ public class SpaceActivity extends GameActivity implements VariableChangeListene
         }
     }
 
-
     public void onBackPressed() {
         spaceView.getThread().setRunning(false);
         toMenu();

@@ -7,8 +7,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
-import android.telephony.emergency.EmergencyNumber;
 import android.util.AttributeSet;
 import android.util.Pair;
 import android.view.SurfaceHolder;
@@ -28,9 +26,6 @@ public class SpaceView extends SurfaceView implements SurfaceHolder.Callback {
     public MainThread thread;
     public boolean gameOver;
     private SpaceTrueView vSpace;
-
-//    private int screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
-//    private int screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
     public SpaceView(Context context) {
         super(context);

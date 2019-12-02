@@ -1,13 +1,9 @@
 package com.example.userinterface.GameManager.SpaceInvaders;
 
-import android.graphics.Canvas;
-
 abstract class Bullet extends SpaceObject {
     Bullet(int x, int y, int damage, int ySpeed) {
         super(x, y, damage, ySpeed);
-//        this.appearance = "*";
-//        this.paintText.setTextSize(50);
-//        this.setSize(10);
+        this.setSize(30);
     }
 
     // Implements Subject Interface
@@ -25,8 +21,4 @@ abstract class Bullet extends SpaceObject {
         setY(getY() + getYSpeed());
         notifyObservers();
     }
-
-//    public void draw(Canvas canvas) {
-//        canvas.drawText(this.appearance, this.getX(), this.getY(), paintText);
-//    }
 }

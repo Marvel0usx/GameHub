@@ -1,17 +1,9 @@
 package com.example.userinterface.GameManager.SpaceInvaders;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-
 import java.util.ArrayList;
 import java.util.List;
 
 abstract class SpaceObject implements Subject {
-    static int WIDTH = 40;
-    static int HEIGHT = 40;
-    // Public attributes
-    String appearance;
-    Paint paintText = new Paint();
     // Private attributes
     private int x;
     private int y;
@@ -154,8 +146,4 @@ abstract class SpaceObject implements Subject {
             clearChanged();
         }
     }
-
-//    // Utils
-//    public void draw(Canvas canvas) {
-//    }
 }
