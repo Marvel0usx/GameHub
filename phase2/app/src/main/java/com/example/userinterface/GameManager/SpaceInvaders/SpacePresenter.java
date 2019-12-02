@@ -30,7 +30,7 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
     private int wave = 0;
     private SpaceView vSpace;
     private ScoreBoardView vScore;
-    private BackgroudView vBackground;
+    private BackgroundView vBackground;
     private List<Pair<Bitmap, Rect>> processedObjs;
     private Map<Class, Bitmap> appearance = new Hashtable<>();
 
@@ -41,7 +41,7 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
         setFocusable(true);
         vSpace = new SpaceView();
         vScore = new ScoreBoardView();
-        vBackground = new BackgroudView();
+        vBackground = new BackgroundView();
     }
 
     public SpacePresenter(Context context, @Nullable AttributeSet attrs) {
@@ -52,7 +52,7 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
         setFocusable(true);
         vSpace = new SpaceView();
         vScore = new ScoreBoardView();
-        vBackground = new BackgroudView();
+        vBackground = new BackgroundView();
     }
 
     public SpacePresenter(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -63,7 +63,7 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
         setFocusable(true);
         vSpace = new SpaceView();
         vScore = new ScoreBoardView();
-        vBackground = new BackgroudView();
+        vBackground = new BackgroundView();
     }
 
     public void surfaceCreated(SurfaceHolder surfaceHolder) {
@@ -130,7 +130,8 @@ public class SpacePresenter extends SurfaceView implements SurfaceHolder.Callbac
 
     private void configBackground(){
         Bitmap bmp = Bitmap.createBitmap(BitmapFactory.decodeResource(getResources(), getScene(wave)));
-        vBackground.configBackground(bmp, getWidth(), getHeight());
+        bmp = Bitmap.createScaledBitmap(bmp, getWidth(), getHeight(), true);
+        vBackground.configBackground(bmp);
     }
 
     int getScene(int wave){

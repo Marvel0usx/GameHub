@@ -336,6 +336,14 @@ public class SpaceInvaders implements Observer {
     }
 
     /**
+     * Get the current wave for rendering different background
+     * @return the current wave of enemies
+     */
+    int getWave(){
+        return wave;
+    }
+
+    /**
      * instructs the player to go left
      */
     void goLeft() {
