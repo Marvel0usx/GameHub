@@ -375,4 +375,8 @@ public class SpaceInvaders implements Observer {
     int getScore() {
         return this.score;
     }
+
+    Scoreboard getScoreboard(){
+        return this.scoreboard;
+    }
 }
