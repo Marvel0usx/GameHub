@@ -14,6 +14,11 @@ import com.example.userinterface.GameManager.TowerDefense.Towers.Towers;
 import java.util.ArrayList;
 
 public class TowerDefense{
+/**
+ * This is the tower defense class that controls most of the functions of the game.
+ */
+public class TowerDefense{
+
     private int currentScore;
     private int lives = 5;
     private int mapHeight;
@@ -22,6 +27,7 @@ public class TowerDefense{
     private boolean adventurous = false;
     private boolean strategetic = false;
     private boolean fortunate = false;
+
 
     private boolean win;
     private VariableListenerTowerDefense listener;
@@ -40,13 +46,17 @@ public class TowerDefense{
         ammo = new ArrayList<>();
         cash = 100;
         informationBoard = new InformationBoard(mapHeight, mapWidth);
-        informationBoard.setAppearance(cash);
+        informationBoard.setMoneyAppearance(cash);
         waves.append(0, new ArrayList<>());
         waves.append(1, new ArrayList<>());
         waves.append(2, new ArrayList<>());
         this.listener = listener;
     }
 
+    /**
+     * updating the information board and all the enemies and bullets.
+     * While checking if the game is over or not.
+     */
     void update() {
         updateInformationBoard();
         if (gameStart) {
@@ -72,27 +82,42 @@ public class TowerDefense{
         }
     }
 
+    /**
+     * Generate a new wave of enemy
+     */
     private void generateNewWave() {
         if (waves.get(currentWave).isEmpty())
             currentWave++;
     }
 
+    /**
+     * Update information shown on the canvas
+     */
     private void updateInformationBoard() {
-        informationBoard.setAppearance(cash);
+        informationBoard.setMoneyAppearance(cash);
         informationBoard.setLivesAppearance(lives);
     }
 
+    /**
+     * Check if the game is over
+     * if so then set th variable change to true
+     */
     private void checkIfOver() {
         if (lives <= 0 || currentWave == 3) {
             if (lives > 0)
                 currentScore += lives * 100; //each life left adds another 100 pts.
             win = lives > 0;
-
-            if (listener != null)
+            if (listener != null){
                 listener.onGameOver(true);
+            }
+
+
         }
     }
 
+    /**
+     * Update the position and if the towers should generate any bullet.
+     */
     private void updateBullet() {
         for (Towers towers : towers) {
             if (towers != null) {
@@ -123,6 +148,9 @@ public class TowerDefense{
         }
     }
 
+    /**
+     * Update the positions and call remove enemy.
+     */
     private void updateEnemy() {
         for (Enemies enemy : waves.get(currentWave)) {
             enemy.move();
@@ -132,6 +160,9 @@ public class TowerDefense{
 
     }
 
+    /**
+     *Removes any enemy that has health lower or equal to 0.
+     */
     private void removeEnemy() {
         ArrayList<Enemies> temp = new ArrayList<>();
         for (Enemies e : waves.get(currentWave)) {
@@ -140,17 +171,22 @@ public class TowerDefense{
                 cash += e.getMoneyGain();
                 currentScore += e.getScore();
             }
-            if (e.getY() >= mapHeight) { //if enemy is out of map remove it
+            if (e.getY() >= mapHeight-300) { //if enemy is out of map remove it
                 temp.add(e);
                 lives -= e.getDamage();
             }
         }
         for (Enemies item : temp) {
             waves.get(currentWave).remove(item);
-            item = null;
         }
     }
 
+    /**
+     * Get the first enemy in a particular range.
+     * @param lowerbound the lowerbound of the range
+     * @param upperbound the upper bound of the range.
+     * @return the first enemy in the range provided.
+     */
     private Enemies getFirstEnemyInRange(int lowerbound, int upperbound) {
         int temp = lowerbound;
         Enemies first = null;
@@ -165,6 +201,12 @@ public class TowerDefense{
         return first;
     }
 
+    /**
+     * Add enemy to the game
+     * @param hiddenEnemy0 a boolean telling the game whether it should add a hidden enemy.
+     * @param hiddenEnemy1 a boolean telling the game whether it should add a hidden enemy.
+     * @param hiddenEnemy2 a boolean telling the game whether it should add a hidden enemy.
+     */
     void addEnemy(boolean hiddenEnemy0, boolean hiddenEnemy1, boolean hiddenEnemy2) { // GENERICS OR SOME KIND OF PATTERN??
         addMinion(5, 0);
         for (int i = 0; i < 2; i++) {
@@ -186,6 +228,10 @@ public class TowerDefense{
 
     }
 
+    /**
+     * add hidden boss to the game.
+     * @param waveNumber on what wave.
+     */
     private void addHiddenBoss(int waveNumber) {
         Dragon dragon = new Dragon(waveNumber);
         int x = 50 + mapWidth / 3;
@@ -194,6 +240,11 @@ public class TowerDefense{
         waves.get(waveNumber).add(dragon);
     }
 
+    /**
+     * add minions to the game.
+     * @param number The amount of minions to be add to the game
+     * @param toBeAdded The wave that should be added to.
+     */
     private void addMinion(int number, int toBeAdded) {
         for (int i = 0; i < number; i++) {
             Minion minion = new Minion();
@@ -204,6 +255,11 @@ public class TowerDefense{
         }
     }
 
+    /**
+     * Adding orcs to the game.
+     * @param number The number of orcs
+     * @param toBeAdded The wave that they should be added to.
+     */
     private void addOrc(int number, int toBeAdded) {
         for (int i = 0; i < number; i++) {
             Orc orc = new Orc();
@@ -215,6 +271,10 @@ public class TowerDefense{
         }
     }
 
+    /**
+     * draw everything
+     * @param canvas The canvas that should be drawn on.
+     */
     public void draw(Canvas canvas) {
         for (Enemies item : waves.get(currentWave)) {
             item.draw(canvas);
@@ -226,33 +286,59 @@ public class TowerDefense{
     }
 
 
+    /**
+     * Add a tower
+     * @param index the index it should be added to.
+     * @param tower The tower that should be added
+     */
     void addTower(int index, Towers tower) {
         towers[index] = tower;
-
     }
 
+    /**
+     * return whether the game is won or not.
+     */
     boolean getWin() {
         return win;
     }
 
+    /**
+     * @return return thr game score.
+     */
      int getGameScore() {
         if (lives > 0)
             currentScore += lives * 100; //each life left adds another 100 pts.
         return currentScore;
     }
 
+    /**
+     * @return get the amount of cash of the game
+     */
     int getCash() {
         return cash;
     }
 
+    /**
+     * cost the user a amount of money.
+     * @param cost how much it costs
+     */
     void costMoney(int cost) {
         cash -= cost;
     }
 
-    void setGameStart(boolean gameStart) {
-        this.gameStart = gameStart;
+
+    /**
+     * set the game to start.
+     */
+    void setGameStart() {
+        this.gameStart = true;
     }
 
+
+
+    /**
+     * @return a boolean if you have got the badge or not.
+     */
     boolean isAdventurous() {
         return adventurous;
     }

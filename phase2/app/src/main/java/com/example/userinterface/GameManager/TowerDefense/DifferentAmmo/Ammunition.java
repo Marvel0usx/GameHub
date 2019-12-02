@@ -4,18 +4,17 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Enemies;
-import com.example.userinterface.GameManager.TowerDefense.TheEnemy.Enemy;
 
 public abstract class Ammunition implements Ammo {
 
-    int damage;
-    int x, y;
-    String appearance;
-    int speed;
-    String direction;
-    int textSize = 50;
-    Enemies target;
-    double predictX, predictY;
+    private int damage;
+    private int x, y;
+    private String appearance;
+    private int speed;
+    private String direction;
+    private int textSize = 50;
+    private Enemies target;
+    private double predictX, predictY;
 
 
     @Override
@@ -59,13 +58,13 @@ public abstract class Ammunition implements Ammo {
 
     public void setTarget(Enemies enemy) {
         this.target = enemy;
-        if (target.getX()>x){
+        if (target.getX() > x) {
             direction = "left";
-            x+=130;
-            y+=100;
-        }else{
-            x-=10;
-            y+=100;
+            x += 130;
+            y += 100;
+        } else {
+            x -= 10;
+            y += 100;
             direction = "right";
         }
 
@@ -82,15 +81,42 @@ public abstract class Ammunition implements Ammo {
         return damage;
     }
 
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    void setAppearance(String appearance) {
+        this.appearance = appearance;
+    }
+
+    void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+
+    public int getTextSize() {
+        return textSize;
+    }
+
+    public void setTextSize(int textSize) {
+        this.textSize = textSize;
+    }
+
     public void draw(Canvas canvas) {
         Paint paint = new Paint();
         paint.setTextSize(textSize);
         canvas.drawText(appearance, x, y, paint);
         // decide each body parts' coordinates
+        System.out.println(textSize);
+        System.out.println("hello????");
+        System.out.println(appearance + "coooooola");
 
     }
 
     public void predictYPosition() {
+        if (target.getSpeed() >= this.speed) {
+            this.speed += target.getSpeed() - this.speed + 1;
+        }
         float A = (float) Math.sqrt(((y - target.getY()) * ((y - target.getY())) + ((x - target.getX())) * (x - target.getX())));
         float v1 = target.getSpeed();
         System.out.println(A);

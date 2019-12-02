@@ -9,8 +9,9 @@
 
     <Button
         android:id="@+id/practice"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
+        android:layout_width="207dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/menu_button_background"
         android:onClick="practiceMode"
         android:text="@string/practice_mode"
@@ -23,22 +24,24 @@
 
     <Button
         android:id="@+id/Resume"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/menu_button_background"
         android:text="@string/Resume"
         android:textSize="24sp"
         app:fontFamily="@font/breadcrumbs"
         app:layout_constraintBottom_toTopOf="@+id/Stats"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/start" />
 
     <Button
         android:id="@+id/Stats"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
+        android:layout_width="205dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/menu_button_background"
         android:onClick="goToStatsheet"
         android:text="@string/mystats"
@@ -46,28 +49,29 @@
         app:fontFamily="@font/breadcrumbs"
         app:layout_constraintBottom_toTopOf="@+id/practice"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Resume" />
 
     <Button
         android:id="@+id/start"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
+        android:layout_width="207dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/menu_button_background"
         android:text="@string/start"
         android:textSize="24sp"
         app:fontFamily="@font/breadcrumbs"
         app:layout_constraintBottom_toTopOf="@+id/Resume"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/scoreBoard"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
+        android:layout_width="212dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/menu_button_background"
         android:onClick="toScoreBoard"
         android:text="@string/scoreboard"
@@ -75,7 +79,22 @@
         app:fontFamily="@font/breadcrumbs"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/practice" />
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="93dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="676dp"
+        android:background="@drawable/menu_button_background"
+        android:onClick="logout"
+        android:text="@string/LOGOUT"
+        android:textSize="18sp"
+        app:fontFamily="@font/breadcrumbs"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

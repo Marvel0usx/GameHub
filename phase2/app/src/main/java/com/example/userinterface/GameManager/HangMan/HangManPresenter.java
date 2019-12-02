@@ -1,9 +1,9 @@
 package com.example.userinterface.GameManager.HangMan;
 
-public class HangManPresenter {
+class HangManPresenter {
 
-    HangManView view;
-    GameState gameState;
+    private HangManView view;
+    private GameState gameState;
 
     HangManPresenter(HangManView view, GameState gameState){
         this.gameState = gameState;

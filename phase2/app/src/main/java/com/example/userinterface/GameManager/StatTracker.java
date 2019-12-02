@@ -11,7 +11,9 @@ public class StatTracker {
     private int highScore;
     private int numOfGames;
     private int level;
-
+    private int numFortuneBadges;
+    private int numAdventurousBadges;
+    private int numStrategicBadges;
 
 
     public StatTracker(int level) {
@@ -22,7 +24,7 @@ public class StatTracker {
         currScore += gameScore;
     }
 
-    public int getCurrScore() {
+    int getCurrScore() {
         return currScore;
     }
 
@@ -30,39 +32,60 @@ public class StatTracker {
         this.currScore = currScore;
     }
 
-    public int getHighScore() {
+    int getHighScore() {
         return highScore;
-    }
-
-    public void setHighScoreToCurrent() {
-        this.highScore = this.currScore;
     }
 
     public void setHighScore(int highScore) {
         this.highScore = highScore;
     }
 
-    public void setNumOfGames(int numOfGames) {
-        this.numOfGames = numOfGames;
+    void setHighScoreToCurrent() {
+        this.highScore = this.currScore;
     }
 
     public int getNumOfGames() {
         return numOfGames;
     }
 
-    public void addNumOfGames() {
+    public void setNumOfGames(int numOfGames) {
+        this.numOfGames = numOfGames;
+    }
+
+    void addNumOfGames() {
         this.numOfGames++;
     }
 
-    public int getLevel() {
+    int getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    void setLevel(int level) {
         this.level = level;
     }
 
-    public void addToBadges(boolean fortune, boolean strategy, boolean adventure){
+    int getFortuneNum() {
+        return this.numFortuneBadges;
+    }
+
+    int getStrategicNum() {
+        return this.numStrategicBadges;
+    }
+
+    int getAdventurousNum() {
+        return this.numAdventurousBadges;
+    }
+
+    public void addToBadges(boolean fortune, boolean strategy, boolean adventure) {
+        if (fortune) {
+            this.numFortuneBadges += 1;
+        }
+        if (strategy) {
+            this.numStrategicBadges += 1;
+        }
+        if (adventure) {
+            this.numAdventurousBadges += 1;
+        }
 
     }
 }

@@ -1,12 +1,13 @@
 package com.example.userinterface.GameManager.TowerDefense.Towers;
 
-public class BombTower extends MainTower implements Towers {
-    private final int WAITTIME = 100;
 
-    public BombTower() {
-        type = "bomb";
-        waitTime = WAITTIME;
-        time = WAITTIME;
-        range = 300;
+class BombTower extends MainTower implements Towers {
+
+    BombTower() {
+        this.setType("bomb");
+        int WAITTIME = 100;
+        this.setWaitTime(WAITTIME);
+        this.setRange(300);
+        this.setTime(WAITTIME);
     }
 }

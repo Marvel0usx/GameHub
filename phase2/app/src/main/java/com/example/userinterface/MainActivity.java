@@ -1,8 +1,7 @@
 package com.example.userinterface;
 
-import android.os.Bundle;
 import android.content.Intent;
-import android.view.View;
+import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -28,33 +27,27 @@ public class MainActivity extends AppCompatActivity {
         etEmail = findViewById(R.id.email);
         btnLogin = findViewById(R.id.login);
 
-        /**
+        /*
          * This is the button listener that will login the user if the user had the correct user
          * information
          */
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                stringEmail = etEmail.getText().toString();
-                stringPassword = etPassword.getText().toString();
-                String task = "login";
-                BackgroundActivity backgroundTask = new BackgroundActivity(MainActivity.this);
+        btnLogin.setOnClickListener(v -> {
+            stringEmail = etEmail.getText().toString();
+            stringPassword = etPassword.getText().toString();
+            String task = "login";
+            BackgroundActivity backgroundTask = new BackgroundActivity(MainActivity.this);
 
-                etEmail.setText("");
-                etPassword.setText("");
-                backgroundTask.execute(task, stringEmail, stringPassword);
-            }
+            etEmail.setText("");
+            etPassword.setText("");
+            backgroundTask.execute(task, stringEmail, stringPassword);
         });
 
-        /**
+        /*
          * This is a button listener that directs the button to the register page.
          */
-        btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SignupActivity.class);
-                startActivity(intent);
-            }
+        btnRegister.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SignupActivity.class);
+            startActivity(intent);
         });
     }
 }

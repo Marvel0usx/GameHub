@@ -1,17 +1,6 @@
 package com.example.userinterface.GameManager.HangMan;
 
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.TextView;
-
 import com.example.userinterface.GameManager.BadgeCollector;
-import com.example.userinterface.R;
-
-import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 public class GameState implements BadgeCollector {
 
@@ -81,7 +70,7 @@ public class GameState implements BadgeCollector {
         // only if hard level is selected
         if (this.difficulty.type.equals("Hard")){
             double randomDouble = Math.random();
-            return (randomDouble < 0.3);
+            return (randomDouble < 0.1);
         }
         return false;
     }
@@ -90,7 +79,7 @@ public class GameState implements BadgeCollector {
     public boolean collectFortunateBadge(){
         // randomly collected
         double randomDouble = Math.random();
-        return (randomDouble < 0.1);
+        return (randomDouble < 0.05);
     }
 
     @Override
@@ -98,7 +87,7 @@ public class GameState implements BadgeCollector {
         // randomly collected if there are more than 2 lives left with only 1 letter yet to be guessed
         if (this.currentScore > 30){
             double randomDouble = Math.random();
-            return (randomDouble < 0.5);
+            return (randomDouble < 0.1);
         }
         return false;
     }

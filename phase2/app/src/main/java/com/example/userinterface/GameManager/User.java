@@ -19,7 +19,7 @@ public class User implements Serializable {
         return statTracker;
     }
 
-    public String getEmail() {
+    String getEmail() {
         return email;
     }
 

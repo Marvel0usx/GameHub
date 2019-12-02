@@ -76,6 +76,45 @@
     If you have accumulated more than 200 in cash, you will win the fortunate badge.\n
     The strategic badge we leave to you to explore!\n\n
     Click on me to start the game!</string>
+    <string name="LOGOUT">LOGOUT</string>
+    <string name="you_win">You Win</string>
+    <string name="save_and_go_to_menu">Save and Go To Menu</string>
+    <string name="the_image_of_char_e">the_image_of_char_e</string>
+    <string name="the_image_of_char_d">the_image_of_char_d</string>
+    <string name="the_image_of_char_c">the_image_of_char_c</string>
+    <string name="the_image_of_char_b">the_image_of_char_b</string>
+    <string name="the_image_of_char_a">image of char a</string>
+    <string name="the_image_of_char_f">image of char f</string>
+    <string name="invaders">Invaders</string>
+    <string name="space">Space</string>
+    <string name="defense">Defense</string>
+    <string name="tower">Tower</string>
+    <string name="the_image_of_hangman_avatar">image of hangman avatar</string>
+    <string name="the_image_of_tower_defense_avatar">image of tower defense avatar</string>
+    <string name="the_image_of_ufo_avatar">image of ufo avatar</string>
+    <string name="hang_man">Hang Man</string>
+    <string name="fortune_badges">Fortune Badges</string>
+    <string name="the_image_of_fortune_badge">Image of Fortune Badge</string>
+    <string name="the_image_of_strategic_badge">image of strategy badge</string>
+    <string name="the_image_of_adventurous_badge">image of adventure badge</string>
+    <string name="your_badges">Your Badges</string>
+    <string name="strategic_badges">Strategic Badges</string>
+    <string name="adventurous_badges">Adventurous Badges</string>
+    <string name="rocket_50">rocket 50</string>
+    <string name="gun_40">gun 40</string>
+    <string name="bomb_60">bomb 60</string>
+    <string name="your_statistics">Your Statistics</string>
+    <string name="games_played">Games Played</string>
+    <string name="user_level">User Level</string>
+    <string name="highest_score">Highest Score</string>
+    <string name="current_score">Current Score</string>
+    <string name="view_badges">View Badges</string>
+    <string name="collection">Collection</string>
+    <string name="re_enter_password">Re-enter Password</string>
+    <string name="register">Register</string>
+    <string name="username">Username</string>
+    <string name="next">Next</string>
+    <string name="quit">Quit</string>
 
 
 </resources>

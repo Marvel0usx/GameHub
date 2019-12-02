@@ -1,7 +1,5 @@
 package com.example.userinterface.GameManager.HangMan;
 
-import android.util.Log;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

@@ -44,5 +44,8 @@ public class NextGame extends GameActivity {
         toMenu();
     }
 
-
+    @Override
+    public void next(View view) {
+        super.next(view);
+    }
 }
