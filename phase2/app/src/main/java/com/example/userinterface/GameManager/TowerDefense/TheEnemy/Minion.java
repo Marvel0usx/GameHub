@@ -7,7 +7,7 @@ import android.graphics.Paint;
 public class Minion extends Enemy {
 
     public Minion() {
-        this.setHealth(3);
+        this.setHealth(5);
         this.setSpeed(5);
         this.setScore(50);
         this.setAppearence("👻");
