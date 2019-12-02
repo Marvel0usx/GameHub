@@ -81,7 +81,6 @@ public class HangManGameActivity extends GameActivity implements HangManView{
         char charGuessed = letterGuessed.charAt(0);
         v.setEnabled(false);
         v.setBackgroundResource(R.drawable.hm_letter_clicked);
-        // updates the gameState by calling the updateState method
         this.hangManPresenter.makeGuess(charGuessed);
         this.currentScore = gameState.getCurrentScore();
         TextView scoreNumberDisplay = findViewById(R.id.scoreNumberDisplay);
@@ -93,15 +92,10 @@ public class HangManGameActivity extends GameActivity implements HangManView{
 
     @Override
     public void displayGuess(List<Integer> correctIndex) { // updates the correct letters guessed (if any)
-        //boolean correct = false;
-        //if ((remainingBalloons > 2) && numCorr > (keywordLen - 2)){
-        //   fortunateBadgeCollected = collectFortunateBadge();
-        //}
         if (correctIndex != null){
             for (int i = 0; i < correctIndex.size(); i++) {
                 int index = correctIndex.get(i);
                 this.gameState.answerKeyLetters[index].turnBlack(); // shows the letter on screen
-                //currentScore += difficulty.correctGuessPoints;
             }
         }
         else {
