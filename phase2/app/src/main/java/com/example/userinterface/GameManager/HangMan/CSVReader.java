@@ -8,13 +8,25 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A CVS reader.
+ */
 class CSVReader implements Serializable {
+
     private InputStream inputStream;
 
+    /**
+     * Construct a new CVS reader
+     * @param inputStream the input stream of a csv file
+     */
     CSVReader(InputStream inputStream) {
         this.inputStream = inputStream;
     }
 
+    /**
+     * Read the csv file
+     * @return a list of string array of word and hint
+     */
     List<String[]> read(){
         List<String[]> result = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
