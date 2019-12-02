@@ -9,6 +9,10 @@ public class Boss extends Enemy {
         this.paintText.setTextSize(80);
     }
 
+    /**
+     * shoots an enemyBullet object by generating a list of bullets, which is added to an observer
+     * list.
+     */
     @Override
     void shoot() {
         //fires bullet objects that deductLife player

@@ -58,7 +58,7 @@ public class SpaceInvaders implements Observer {
     }
 
     /**
-     * Removes all objects from 
+     * Removes all objects from
      */
     public void unregisterAll() {
         subjects.clear();
