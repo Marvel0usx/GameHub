@@ -85,10 +85,8 @@
     <string name="the_image_of_char_b">the_image_of_char_b</string>
     <string name="the_image_of_char_a">image of char a</string>
     <string name="the_image_of_char_f">image of char f</string>
-    <string name="invaders">Invaders</string>
-    <string name="space">Space</string>
-    <string name="defense">Defense</string>
-    <string name="tower">Tower</string>
+    <string name="space"> Space \nInvader</string>
+    <string name="tower"> Tower\nDefense</string>
     <string name="the_image_of_hangman_avatar">image of hangman avatar</string>
     <string name="the_image_of_tower_defense_avatar">image of tower defense avatar</string>
     <string name="the_image_of_ufo_avatar">image of ufo avatar</string>
