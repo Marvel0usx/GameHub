@@ -27,9 +27,9 @@ class BulletFactory {
                 }
                 if (mode == 3){
 
-                    bulletList.add(new PlayerBullet(x+37-40, y, 25, -12));
-                    bulletList.add(new PlayerBullet(x+37, y, 25, -12));
-                    bulletList.add(new PlayerBullet(x+77, y, 25, -12));
+                    bulletList.add(new PlayerBullet(x+37-40, y, 50, -12));
+                    bulletList.add(new PlayerBullet(x+37, y, 50, -12));
+                    bulletList.add(new PlayerBullet(x+77, y, 50, -12));
                 }
                 break;
             case "Enemy":
@@ -43,9 +43,11 @@ class BulletFactory {
                 }
                 break;
             case "Boss":
+                bulletList.add(new EnemyBullet(x + 150, y, 10, 20));
+                bulletList.add(new EnemyBullet(x + 100, y, 10, 20));
                 bulletList.add(new EnemyBullet(x + 50, y, 100, 20));
-                bulletList.add(new EnemyBullet(x - 50, y, 100, 20));
-                bulletList.add(new EnemyBullet(x, y, 100, 20));
+                bulletList.add(new EnemyBullet(x +200, y, 10, 20));
+                bulletList.add(new EnemyBullet(x, y, 10, 20));
         }
         return bulletList;
     }
