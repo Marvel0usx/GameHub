@@ -1,0 +1,41 @@
+Dear group_0597
+
+This semester, we talked about MVP, the Model-View-Presenter architecture. It has many advantages, particularly when working with Android. As you can see from your project, your activity classes have methods that are specific to Android. If you encapsulate the rest of your code sufficiently, it is possible to port it to another platform simply by creating a new UI (for example, a website).
+
+Encapsulation can take on many forms. You can package your View classes together. You can ensure that your dependencies go one-way, towards the inner more abstract layers. You can incorporate SOLID principles as much as possible and design patterns where they make sense.
+Here is feedback that is specific to your project:
+
+You made good use of…
++ Good working on Hashing the password to save it in the database - PHP and MySQL
++ Extension to the difficulty modes of each Game was Impressive
++ Addition of Badges in scoreboard
++ Tried to add good complexity to the program and its method levels
++ Frequent use of comments and Javadoc helps to understand the code
++ Various design patterns such as MVP, Observer, Serializable and Factory in your code
++ Appreciate the user experience, being able to practice specific games, and checking the scoreboard for the game
++ Good use of interface and inheritance for consolidating the GameActivity classes across all games
++ Code was presented well, mostly concise and organized
++ Documentation was consistent for the most part.
+
+The user sees…
++ User Interface was smooth and good to see
++ User has two options one is the practice mode where user can first learn to play the game and the second is the actual games
++ The three games were SpaceInvader, Hangman and TowerDefense 
+
+A good next step would be to…
++ Try to do a bit more refactoring to eliminate repeat code such as, in the Hangman game, the various levels had the exact same method which was setWord
++ Similarly there were some duplicate code in space invader game such as the setX and setY functions.
++ Make sure that all of your access modifiers are included.
++ Reconsider your use of static variables/methods. Can the code be refactored to eliminate this?
++ Lack of Encapsulation is found as each game has its own MVP
++ One thing is to improve is instead of making different MVP for each Game, it made to optimized to just one MVP where all games use the same MVP 
++ Method doInBackground in class BackgroundActivity can be refactored to call in helper methods so that it is not so long. Similarly in gameBackgroundActivity
++ Avoid hardcoded values such as in BulletFactory, by creating class variables and calling the variables inside your methods. That way, any change to the value of that variable only has to happen once. 
++ Include more Javadoc
++ Make your variables private and include getters/setters to increase encapsulation
+
+We hope that you enjoyed working on this project and found it a useful learning experience.
+
+Cheers,
+The CSC207 Instructional Team
+
